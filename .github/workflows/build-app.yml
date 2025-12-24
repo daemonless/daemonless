@@ -77,7 +77,9 @@ jobs:
           copyback: false
           envs: "GITHUB_TOKEN GITHUB_ACTOR"
           prepare: |
-            pkg install -y podman
+            pkg install -y podman doas
+            echo "permit nopass keepenv :wheel" > /usr/local/etc/doas.conf
+            echo "permit nopass keepenv runner" >> /usr/local/etc/doas.conf
             rm -rf /var/db/containers /var/lib/containers 2>/dev/null || true
             kldload pf
             sysctl net.inet.ip.forwarding=1
@@ -100,6 +102,7 @@ jobs:
             fi
 
             ./scripts/build.sh \
+              --doas \
               --registry ${{ env.REGISTRY }} \
               --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
               --containerfile ${{ matrix.containerfile }} \
