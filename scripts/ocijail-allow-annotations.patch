@@ -1,0 +1,42 @@
+--- ocijail/create.cpp.orig
++++ ocijail/create.cpp
+@@ -214,6 +214,7 @@
+     // Get the parent jail name and requested vnet type (if any)
+     std::optional<std::string> parent_jail;
+     auto vnet = jail::INHERIT;
++    std::vector<std::string> allow_params;
+     if (config.contains("annotations")) {
+         auto config_annotations = config["annotations"];
+         if (config_annotations.contains("org.freebsd.parentJail")) {
+@@ -232,6 +233,20 @@
+                     "bad value for org.freebsd.jail.vnet: " + val);
+             }
+         }
++
++        // Check for allow.* annotations (e.g., org.freebsd.jail.allow.mlock)
++        const std::string allow_prefix = "org.freebsd.jail.allow.";
++        for (auto& [key, value] : config_annotations.items()) {
++            if (key.rfind(allow_prefix, 0) == 0) {
++                std::string param = "allow." + key.substr(allow_prefix.length());
++                if (value.is_string()) {
++                    std::string val = value;
++                    if (val == "true" || val == "1") {
++                        allow_params.push_back(param);
++                    }
++                }
++            }
++        }
+     }
+ 
+     // Create a jail config from the OCI config
+@@ -247,6 +262,10 @@
+     if (allow_chflags) {
+         jconf.set("allow.chflags");
+     }
++    // Set additional allow parameters from annotations
++    for (const auto& param : allow_params) {
++        jconf.set(param);
++    }
+     if (root_readonly) {
+         jconf.set("path", readonly_root_path);
+     } else {

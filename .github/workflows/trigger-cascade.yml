@@ -1,0 +1,64 @@
+name: Trigger Cascade Rebuilds
+
+# Manually trigger cascade rebuilds when base images change
+# This rebuilds all dependent images in order
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_image:
+        description: 'Base image that changed'
+        required: true
+        type: choice
+        options:
+          - base
+          - arr-base
+          - nginx-base
+      wait_between:
+        description: 'Minutes to wait between builds'
+        required: false
+        default: '5'
+        type: string
+
+jobs:
+  cascade-rebuild:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Determine rebuild order
+        id: order
+        run: |
+          case "${{ inputs.base_image }}" in
+            base)
+              # Base changed - rebuild everything
+              echo "repos=arr-base nginx-base radarr sonarr prowlarr lidarr readarr sabnzbd tautulli jellyfin transmission transmission-wireguard gitea tailscale traefik mealie n8n overseerr unifi woodpecker openspeedtest organizr smokeping nextcloud vaultwarden" >> $GITHUB_OUTPUT
+              ;;
+            arr-base)
+              # arr-base changed - rebuild arr apps
+              echo "repos=radarr sonarr prowlarr lidarr readarr" >> $GITHUB_OUTPUT
+              ;;
+            nginx-base)
+              # nginx-base changed - rebuild nginx apps
+              echo "repos=openspeedtest organizr smokeping nextcloud vaultwarden" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Trigger rebuilds
+        env:
+          GH_TOKEN: ${{ secrets.REBUILD_TOKEN }}
+        run: |
+          REPOS="${{ steps.order.outputs.repos }}"
+          WAIT_MINS="${{ inputs.wait_between }}"
+
+          for repo in $REPOS; do
+            echo "=== Triggering build for: $repo ==="
+            gh workflow run build.yml --repo "daemonless/$repo" --ref main || echo "Warning: Failed to trigger $repo"
+
+            echo "Waiting ${WAIT_MINS} minutes before next build..."
+            sleep $((WAIT_MINS * 60))
+          done
+
+          echo "=== Cascade rebuild complete ==="

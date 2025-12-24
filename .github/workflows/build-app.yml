@@ -1,0 +1,112 @@
+name: Reusable App Build
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        description: 'Image name (e.g., radarr, sonarr)'
+        required: true
+        type: string
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  # Detect which Containerfiles exist and build dynamic matrix
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect Containerfiles
+        id: set-matrix
+        run: |
+          # Build JSON matrix based on existing Containerfiles
+          entries=""
+          has_source="false"
+
+          if [ -f "Containerfile" ]; then
+            has_source="true"
+            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":""},'
+          fi
+
+          if [ -f "Containerfile.pkg" ]; then
+            entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":""},'
+            # If no source build, pkg-latest should also be tagged as "latest"
+            if [ "$has_source" = "false" ]; then
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15","version_suffix":"-pkg-latest","push_latest":"--push-latest"},'
+            else
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15","version_suffix":"-pkg-latest","push_latest":""},'
+            fi
+          fi
+
+          # Remove trailing comma and wrap in matrix format
+          entries="${entries%,}"
+          matrix="{\"include\":[${entries}]}"
+
+          echo "Detected matrix: $matrix"
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
+  build:
+    needs: detect
+    if: ${{ needs.detect.outputs.matrix != '{"include":[]}' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.detect.outputs.matrix) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build in FreeBSD VM (${{ matrix.tag }})
+        uses: vmactions/freebsd-vm@v1.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        with:
+          release: "15.0"
+          usesh: true
+          copyback: false
+          envs: "GITHUB_TOKEN GITHUB_ACTOR"
+          prepare: |
+            pkg install -y podman
+            rm -rf /var/db/containers /var/lib/containers 2>/dev/null || true
+            kldload pf
+            sysctl net.inet.ip.forwarding=1
+          run: |
+            set -e
+            # Download shared build script (pinned to version)
+            mkdir -p scripts
+            fetch -qo scripts/build.sh \
+              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.0.0/scripts/build.sh"
+            chmod +x scripts/build.sh
+
+            PUSH_FLAG=""
+            if [ "${{ github.event_name }}" != "pull_request" ]; then
+              PUSH_FLAG="--login --push"
+            fi
+
+            BASE_VERSION_ARG=""
+            if [ -n "${{ matrix.base_version }}" ]; then
+              BASE_VERSION_ARG="--base-version ${{ matrix.base_version }}"
+            fi
+
+            ./scripts/build.sh \
+              --registry ${{ env.REGISTRY }} \
+              --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
+              --containerfile ${{ matrix.containerfile }} \
+              $BASE_VERSION_ARG \
+              --tag ${{ matrix.tag }} \
+              --tag-version \
+              --version-suffix "${{ matrix.version_suffix }}" \
+              ${{ matrix.push_latest }} \
+              --skip-wip \
+              $PUSH_FLAG

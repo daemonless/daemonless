@@ -1,0 +1,192 @@
+name: Check for Package Updates
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Daily at 6 AM UTC
+  workflow_dispatch:
+
+jobs:
+  check-updates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check FreeBSD package versions
+        uses: vmactions/freebsd-vm@v1.3.0
+        with:
+          release: "15.0"
+          usesh: true
+          copyback: true
+          run: |
+            set -e
+            pkg update -q
+
+            # Packages to check
+            PACKAGES="radarr sonarr prowlarr lidarr readarr sabnzbd tautulli jellyfin \
+              transmission-daemon gitea tailscale traefik vaultwarden smokeping nginx \
+              s6 execline sqlite3 icu nextcloud-php83"
+
+            # Get quarterly versions
+            echo "=== Quarterly Package Versions ===" > /tmp/pkg-quarterly.txt
+            for pkg in $PACKAGES; do
+              ver=$(pkg rquery '%v' "$pkg" 2>/dev/null || echo "not_found")
+              echo "$pkg $ver" >> /tmp/pkg-quarterly.txt
+            done
+
+            # Copy results back
+            cp /tmp/pkg-quarterly.txt .
+
+      - name: Check upstream versions
+        run: |
+          set -e
+
+          # Function to get GitHub release version
+          gh_release() {
+            curl -sf "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name // "unknown"'
+          }
+
+          # Function to get Servarr version
+          servarr() {
+            curl -sf "$1" | jq -r '.[0].version // "unknown"'
+          }
+
+          echo "=== Upstream Versions ===" > upstream-versions.txt
+
+          # Servarr apps
+          echo "radarr $(servarr 'https://radarr.servarr.com/v1/update/master/changes?os=bsd')" >> upstream-versions.txt
+          echo "sonarr $(curl -sf 'https://services.sonarr.tv/v1/releases' | jq -r '[.[] | select(.branch == "main")] | .[0].version // "unknown"')" >> upstream-versions.txt
+          echo "prowlarr $(servarr 'https://prowlarr.servarr.com/v1/update/master/changes?os=bsd')" >> upstream-versions.txt
+          echo "lidarr $(servarr 'https://lidarr.servarr.com/v1/update/master/changes?os=bsd')" >> upstream-versions.txt
+          echo "readarr $(servarr 'https://readarr.servarr.com/v1/update/develop/changes?os=bsd')" >> upstream-versions.txt
+
+          # GitHub releases
+          echo "sabnzbd $(gh_release 'sabnzbd/sabnzbd')" >> upstream-versions.txt
+          echo "tautulli $(gh_release 'Tautulli/Tautulli')" >> upstream-versions.txt
+          echo "jellyfin $(gh_release 'jellyfin/jellyfin')" >> upstream-versions.txt
+          echo "traefik $(gh_release 'traefik/traefik')" >> upstream-versions.txt
+          echo "mealie $(gh_release 'mealie-recipes/mealie')" >> upstream-versions.txt
+          echo "woodpecker $(gh_release 'woodpecker-ci/woodpecker')" >> upstream-versions.txt
+          echo "openspeedtest $(gh_release 'openspeedtest/OpenSpeedTest')" >> upstream-versions.txt
+
+          # npm
+          echo "n8n $(curl -sf 'https://registry.npmjs.org/n8n/latest' | jq -r '.version // "unknown"')" >> upstream-versions.txt
+
+          cat upstream-versions.txt
+
+      - name: Compare with stored versions
+        id: compare
+        run: |
+          set -e
+
+          CHANGES=""
+
+          # Compare package versions
+          if [ -f pkg-quarterly.txt ] && [ -f versions.json ]; then
+            while read -r pkg ver; do
+              stored=$(jq -r ".packages.quarterly.\"$pkg\" // \"\"" versions.json)
+              if [ -n "$stored" ] && [ "$stored" != "$ver" ] && [ "$ver" != "not_found" ]; then
+                CHANGES="${CHANGES}pkg:${pkg} ${stored}->${ver}\n"
+              fi
+            done < pkg-quarterly.txt
+          fi
+
+          # Compare upstream versions
+          if [ -f upstream-versions.txt ] && [ -f versions.json ]; then
+            while read -r app ver; do
+              stored=$(jq -r ".upstream.\"$app\" // \"\"" versions.json)
+              if [ -n "$stored" ] && [ "$stored" != "$ver" ] && [ "$ver" != "unknown" ]; then
+                CHANGES="${CHANGES}upstream:${app} ${stored}->${ver}\n"
+              fi
+            done < upstream-versions.txt
+          fi
+
+          if [ -n "$CHANGES" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changes<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$CHANGES" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            echo "::notice::Version changes detected"
+            echo -e "$CHANGES"
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "::notice::No version changes detected"
+          fi
+
+      - name: Update versions.json
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          set -e
+
+          # Update package versions
+          if [ -f pkg-quarterly.txt ]; then
+            while read -r pkg ver; do
+              if [ "$ver" != "not_found" ]; then
+                jq ".packages.quarterly.\"$pkg\" = \"$ver\"" versions.json > tmp.json && mv tmp.json versions.json
+              fi
+            done < pkg-quarterly.txt
+          fi
+
+          # Update upstream versions
+          if [ -f upstream-versions.txt ]; then
+            while read -r app ver; do
+              if [ "$ver" != "unknown" ]; then
+                jq ".upstream.\"$app\" = \"$ver\"" versions.json > tmp.json && mv tmp.json versions.json
+              fi
+            done < upstream-versions.txt
+          fi
+
+          # Update timestamp
+          jq ".last_check = \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" versions.json > tmp.json && mv tmp.json versions.json
+
+      - name: Commit changes
+        if: steps.compare.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add versions.json
+          git commit -m "Update versions: $(echo '${{ steps.compare.outputs.changes }}' | head -3 | tr '\n' ' ')"
+          git push
+
+      - name: Trigger rebuilds
+        if: steps.compare.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.REBUILD_TOKEN }}
+        run: |
+          set -e
+
+          # Parse changes and trigger appropriate builds
+          echo '${{ steps.compare.outputs.changes }}' | while read -r line; do
+            [ -z "$line" ] && continue
+
+            type=$(echo "$line" | cut -d: -f1)
+            pkg=$(echo "$line" | cut -d: -f2 | cut -d' ' -f1)
+
+            echo "Processing: $type $pkg"
+
+            # Determine which repos to rebuild based on dependencies.json
+            # For now, just trigger the direct repo
+            case "$pkg" in
+              radarr|sonarr|prowlarr|lidarr|readarr|sabnzbd|tautulli|jellyfin|traefik|gitea|tailscale|transmission-daemon|vaultwarden|smokeping|nextcloud-php83|woodpecker|mealie|n8n|overseerr|openspeedtest)
+                repo="${pkg%-*}"  # Remove -daemon suffix etc
+                [ "$pkg" = "transmission-daemon" ] && repo="transmission"
+                [ "$pkg" = "nextcloud-php83" ] && repo="nextcloud"
+
+                echo "Triggering build for: $repo"
+                gh workflow run build.yml --repo "daemonless/$repo" --ref main || echo "Failed to trigger $repo"
+                ;;
+              s6|execline)
+                echo "Base package changed, triggering base rebuild"
+                gh workflow run build.yml --repo "daemonless/base" --ref main || true
+                ;;
+              sqlite3|icu)
+                echo "arr-base package changed, triggering arr-base rebuild"
+                gh workflow run build.yml --repo "daemonless/arr-base" --ref main || true
+                ;;
+              nginx)
+                echo "nginx-base package changed, triggering nginx-base rebuild"
+                gh workflow run build.yml --repo "daemonless/nginx-base" --ref main || true
+                ;;
+            esac
+          done

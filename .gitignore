@@ -1,0 +1,20 @@
+# OS generated files
+.DS_Store
+.Thumbs.db
+
+# Build artifacts
+*.log
+*.pid
+
+# Script artifacts
+/tmp/
+/scripts/*.orig
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Woodpecker local builds
+.woodpecker/

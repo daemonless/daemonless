@@ -1,0 +1,243 @@
+{
+  "description": "Dependency graph for daemonless container images. Used for cascade rebuilds.",
+  "base_images": {
+    "base": {
+      "packages": ["s6", "execline", "FreeBSD-utilities"],
+      "children": ["arr-base", "nginx-base", "transmission", "transmission-wireguard", "gitea", "tailscale", "traefik", "sabnzbd", "tautulli", "jellyfin", "mealie", "n8n", "overseerr", "unifi", "woodpecker"]
+    },
+    "arr-base": {
+      "parent": "base",
+      "packages": ["sqlite3", "icu", "libunwind", "libinotify", "libiconv", "krb5", "ca_root_nss", "compat13x-amd64", "openssl"],
+      "children": ["radarr", "sonarr", "prowlarr", "lidarr", "readarr"]
+    },
+    "nginx-base": {
+      "parent": "base",
+      "packages": ["nginx"],
+      "children": ["openspeedtest", "organizr", "smokeping", "nextcloud", "vaultwarden"]
+    }
+  },
+  "images": {
+    "radarr": {
+      "parent": "arr-base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "radarr"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "radarr"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "radarr"}
+      }
+    },
+    "sonarr": {
+      "parent": "arr-base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "sonarr"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "sonarr"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "sonarr"}
+      }
+    },
+    "prowlarr": {
+      "parent": "arr-base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "prowlarr"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "prowlarr"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "prowlarr"}
+      }
+    },
+    "lidarr": {
+      "parent": "arr-base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "lidarr"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "lidarr"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "lidarr"}
+      }
+    },
+    "readarr": {
+      "parent": "arr-base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "readarr"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "readarr"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "readarr"}
+      }
+    },
+    "sabnzbd": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "sabnzbd"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "sabnzbd"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "sabnzbd"}
+      }
+    },
+    "tautulli": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "tautulli"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "tautulli"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "tautulli"}
+      }
+    },
+    "jellyfin": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "jellyfin", "wip": true},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "jellyfin"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "jellyfin"}
+      }
+    },
+    "transmission": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "pkg", "repo": "latest", "package": "transmission-daemon"}
+      }
+    },
+    "transmission-wireguard": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "pkg", "repo": "latest", "package": "transmission-daemon"}
+      }
+    },
+    "gitea": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "pkg", "repo": "latest", "package": "gitea"}
+      }
+    },
+    "tailscale": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "pkg", "repo": "latest", "package": "tailscale"}
+      }
+    },
+    "traefik": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "traefik"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "traefik"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "traefik"}
+      }
+    },
+    "openspeedtest": {
+      "parent": "nginx-base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "openspeedtest"}
+      }
+    },
+    "organizr": {
+      "parent": "nginx-base",
+      "tags": {
+        "latest": {"type": "pkg", "repo": "latest", "packages": ["php84"]}
+      }
+    },
+    "smokeping": {
+      "parent": "nginx-base",
+      "tags": {
+        "latest": {"type": "source", "upstream": null},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "smokeping"},
+        "pkg-latest": {"type": "pkg", "repo": "latest", "package": "smokeping"}
+      }
+    },
+    "nextcloud": {
+      "parent": "nginx-base",
+      "tags": {
+        "latest": {"type": "pkg", "repo": "latest", "package": "nextcloud-php83"}
+      }
+    },
+    "vaultwarden": {
+      "parent": "nginx-base",
+      "tags": {
+        "latest": {"type": "pkg", "repo": "latest", "package": "vaultwarden"}
+      }
+    },
+    "mealie": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "mealie", "wip": true}
+      }
+    },
+    "n8n": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "n8n", "wip": true}
+      }
+    },
+    "overseerr": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "overseerr"}
+      }
+    },
+    "unifi": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "unifi"},
+        "pkg": {"type": "pkg", "repo": "quarterly", "package": "unifi-controller"}
+      }
+    },
+    "woodpecker": {
+      "parent": "base",
+      "tags": {
+        "latest": {"type": "source", "upstream": "woodpecker"}
+      }
+    }
+  },
+  "upstream_sources": {
+    "radarr": {
+      "type": "servarr",
+      "url": "https://radarr.servarr.com/v1/update/master/changes?os=bsd"
+    },
+    "sonarr": {
+      "type": "sonarr",
+      "url": "https://services.sonarr.tv/v1/releases"
+    },
+    "prowlarr": {
+      "type": "servarr",
+      "url": "https://prowlarr.servarr.com/v1/update/master/changes?os=bsd"
+    },
+    "lidarr": {
+      "type": "servarr",
+      "url": "https://lidarr.servarr.com/v1/update/master/changes?os=bsd"
+    },
+    "readarr": {
+      "type": "servarr",
+      "url": "https://readarr.servarr.com/v1/update/develop/changes?os=bsd"
+    },
+    "sabnzbd": {
+      "type": "github",
+      "repo": "sabnzbd/sabnzbd"
+    },
+    "tautulli": {
+      "type": "github",
+      "repo": "Tautulli/Tautulli"
+    },
+    "jellyfin": {
+      "type": "github",
+      "repo": "jellyfin/jellyfin"
+    },
+    "traefik": {
+      "type": "github",
+      "repo": "traefik/traefik"
+    },
+    "overseerr": {
+      "type": "github_commits",
+      "repo": "sct/overseerr",
+      "branch": "develop"
+    },
+    "mealie": {
+      "type": "github",
+      "repo": "mealie-recipes/mealie"
+    },
+    "n8n": {
+      "type": "npm",
+      "package": "n8n"
+    },
+    "woodpecker": {
+      "type": "github",
+      "repo": "woodpecker-ci/woodpecker"
+    },
+    "openspeedtest": {
+      "type": "github",
+      "repo": "openspeedtest/OpenSpeedTest"
+    },
+    "unifi": {
+      "type": "ubiquiti",
+      "url": "https://fw-update.ubnt.com/api/firmware-latest"
+    }
+  }
+}
