@@ -17,6 +17,8 @@ The stock `ocijail` runtime (used by Podman on FreeBSD) doesn't yet provide a wa
 
 Our patch adds support for mapping OCI annotations directly to jail parameters. Any annotation prefixed with `org.freebsd.jail.allow.` is automatically translated to the corresponding `allow.` jail parameter.
 
+**Download Patch:** [ocijail-allow-annotations.patch](https://github.com/daemonless/daemonless/blob/main/scripts/ocijail-allow-annotations.patch)
+
 **Example Translation:**
 `--annotation org.freebsd.jail.allow.mlock=true`  =>  `allow.mlock`
 
