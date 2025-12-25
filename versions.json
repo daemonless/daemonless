@@ -1,5 +1,5 @@
 {
-  "last_check": "2024-12-23T00:00:00Z",
+  "last_check": "2025-12-25T06:40:49Z",
   "packages": {
     "quarterly": {
       "radarr": "5.27.5.10198",
@@ -21,7 +21,8 @@
       "execline": "2.9.6.1",
       "sqlite3": "3.50.4_1,1",
       "icu": "76.1,1",
-      "nextcloud-php83": "32.0.0"
+      "nextcloud-php83": "32.0.0",
+      "===": "Quarterly Package Versions ==="
     },
     "latest": {
       "radarr": "5.27.5.10198",
@@ -48,19 +49,20 @@
   },
   "upstream": {
     "radarr": "3.2.2.5080",
-    "sonarr": "4.0.15.2941",
+    "sonarr": "4.0.16.2944",
     "prowlarr": "1.0.0.0",
     "lidarr": "0.8.1.2135",
     "readarr": "0.4.16.2793",
     "sabnzbd": "4.5.5",
-    "tautulli": "2.16.0",
-    "jellyfin": "10.11.5",
-    "traefik": "3.6.5",
+    "tautulli": "v2.16.0",
+    "jellyfin": "v10.11.5",
+    "traefik": "v3.6.5",
     "overseerr": "develop",
-    "mealie": "v3.7.0",
-    "n8n": "1.0.0",
+    "mealie": "v3.8.0",
+    "n8n": "2.1.4",
     "woodpecker": "v3.12.0",
-    "openspeedtest": "v2.0.0",
-    "unifi": "8.0.0"
+    "openspeedtest": "",
+    "unifi": "8.0.0",
+    "===": "Upstream Versions ==="
   }
 }
