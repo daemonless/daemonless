@@ -109,6 +109,7 @@ printf '    "traefik": "%s",\n' "$(get_github_version 'traefik/traefik')"
 printf '    "mealie": "%s",\n' "$(get_github_version 'mealie-recipes/mealie')"
 printf '    "woodpecker": "%s",\n' "$(get_github_version 'woodpecker-ci/woodpecker')"
 printf '    "openspeedtest": "%s",\n' "$(get_github_version 'openspeedtest/OpenSpeedTest')"
+printf '    "smokeping": "%s",\n' "$(get_github_version 'oetiker/SmokePing')"
 
 # GitHub commits (for develop branches)
 printf '    "overseerr": "%s",\n' "$(get_github_commit 'sct/overseerr' 'develop')"
