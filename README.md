@@ -187,26 +187,29 @@ podman-compose up -d
 
 | Image | Port | Description | Tags |
 |-------|------|-------------|------|
-| [radarr](images/radarr/) | 7878 | Movie management | `:latest`, `:pkg`, `:pkg-latest` |
-| [sonarr](images/sonarr/) | 8989 | TV show management | `:latest`, `:pkg`, `:pkg-latest` |
-| [prowlarr](images/prowlarr/) | 9696 | Indexer management | `:latest`, `:pkg`, `:pkg-latest` |
-| [lidarr](images/lidarr/) | 8686 | Music management | `:latest`, `:pkg`, `:pkg-latest` |
-| [readarr](images/readarr/) | 8787 | Book management | `:latest` |
-| [tautulli](images/tautulli/) | 8181 | Plex monitoring | `:latest`, `:pkg`, `:pkg-latest` |
-| [overseerr](images/overseerr/) | 5055 | Media requests | `:latest` |
-| [sabnzbd](images/sabnzbd/) | 8080 | Usenet downloader | `:latest`, `:pkg`, `:pkg-latest` |
-| [transmission](images/transmission/) | 9091 | BitTorrent client | `:latest` |
-| [transmission-wireguard](images/transmission-wireguard/) | 9091 | BitTorrent + VPN | `:latest` |
-| [openspeedtest](images/openspeedtest/) | 3000 | Network speed test | `:latest` |
-| [organizr](images/organizr/) | 80 | Service dashboard | `:latest` |
-| [unifi](images/unifi/) | 8443 | UniFi Network Controller | `:latest`, `:pkg`, `:pkg-latest` |
-| [smokeping](images/smokeping/) | 80 | Network latency monitoring | `:latest`, `:pkg`, `:pkg-latest` |
-| [traefik](images/traefik/) | 80/443/8080 | Reverse proxy | `:latest`, `:pkg`, `:pkg-latest` |
-| [gitea](images/gitea/) | 3000 | Self-hosted Git | `:latest`, `:pkg`, `:pkg-latest` |
-| [tailscale](images/tailscale/) | - | Mesh VPN | `:latest` |
-| [mealie](images/mealie/) | 9000 | Recipe manager | `:latest` |
-| [nextcloud](images/nextcloud/) | 80 | File hosting | `:latest` |
-| [n8n](images/n8n/) | 5678 | Workflow automation | `:latest` |
+| [radarr](https://github.com/daemonless/radarr) | 7878 | Movie management | `:latest`, `:pkg`, `:pkg-latest` |
+| [sonarr](https://github.com/daemonless/sonarr) | 8989 | TV show management | `:latest`, `:pkg`, `:pkg-latest` |
+| [prowlarr](https://github.com/daemonless/prowlarr) | 9696 | Indexer management | `:latest`, `:pkg`, `:pkg-latest` |
+| [lidarr](https://github.com/daemonless/lidarr) | 8686 | Music management | `:latest`, `:pkg`, `:pkg-latest` |
+| [readarr](https://github.com/daemonless/readarr) | 8787 | Book management | `:latest`, `:pkg`, `:pkg-latest` |
+| [tautulli](https://github.com/daemonless/tautulli) | 8181 | Plex monitoring | `:latest`, `:pkg`, `:pkg-latest` |
+| [overseerr](https://github.com/daemonless/overseerr) | 5055 | Media requests | `:latest`, `:pkg`, `:pkg-latest` |
+| [sabnzbd](https://github.com/daemonless/sabnzbd) | 8080 | Usenet downloader | `:latest`, `:pkg`, `:pkg-latest` |
+| [transmission](https://github.com/daemonless/transmission) | 9091 | BitTorrent client | `:latest`, `:pkg`, `:pkg-latest` |
+| [transmission-wireguard](https://github.com/daemonless/transmission-wireguard) | 9091 | BitTorrent + VPN | `:latest`, `:pkg`, `:pkg-latest` |
+| [openspeedtest](https://github.com/daemonless/openspeedtest) | 3000 | Network speed test | `:latest`, `:pkg`, `:pkg-latest` |
+| [organizr](https://github.com/daemonless/organizr) | 80 | Service dashboard | `:latest`, `:pkg`, `:pkg-latest` |
+| [unifi](https://github.com/daemonless/unifi) | 8443 | UniFi Network Controller | `:latest`, `:pkg`, `:pkg-latest` |
+| [smokeping](https://github.com/daemonless/smokeping) | 80 | Network latency monitoring | `:latest`, `:pkg`, `:pkg-latest` |
+| [traefik](https://github.com/daemonless/traefik) | 80/443/8080 | Reverse proxy | `:latest`, `:pkg`, `:pkg-latest` |
+| [gitea](https://github.com/daemonless/gitea) | 3000 | Self-hosted Git | `:latest`, `:pkg`, `:pkg-latest` |
+| [tailscale](https://github.com/daemonless/tailscale) | - | Mesh VPN | `:latest`, `:pkg`, `:pkg-latest` |
+| [mealie](https://github.com/daemonless/mealie) | 9000 | Recipe manager | `:latest`, `:pkg`, `:pkg-latest` |
+| [nextcloud](https://github.com/daemonless/nextcloud) | 80 | File hosting | `:latest`, `:pkg`, `:pkg-latest` |
+| [n8n](https://github.com/daemonless/n8n) | 5678 | Workflow automation | `:latest`, `:pkg`, `:pkg-latest` |
+| [jellyfin](https://github.com/daemonless/jellyfin) | 8096 | Media Server | `:latest`, `:pkg`, `:pkg-latest` |
+| [vaultwarden](https://github.com/daemonless/vaultwarden) | 80 | Password Manager | `:latest`, `:pkg`, `:pkg-latest` |
+| [woodpecker](https://github.com/daemonless/woodpecker) | 8000 | CI/CD | `:latest`, `:pkg`, `:pkg-latest` |
 
 ### Image Tags
 
