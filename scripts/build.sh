@@ -3,7 +3,7 @@
 # Shared build script for daemonless container images
 # Works with both GitHub Actions (via vmactions) and Woodpecker CI
 #
-# Version: 1.1.1
+# Version: 1.2.0
 #
 # Usage: ./scripts/build.sh [OPTIONS]
 #   --registry REGISTRY       Container registry (default: ghcr.io)
@@ -14,6 +14,7 @@
 #   --tag TAG                 Primary tag for built image (e.g., latest, pkg)
 #   --tag-version             Also tag with version from /app/version
 #   --version-suffix SUFFIX   Suffix for version tag (e.g., -pkg)
+#   --alias ALIAS             Additional alias tag (can be used multiple times)
 #   --push                    Push to registry (requires login first)
 #   --login                   Login to registry (requires GITHUB_TOKEN env var)
 #   --doas                    Use doas for podman commands
@@ -21,7 +22,7 @@
 #
 set -e
 
-BUILD_SCRIPT_VERSION="1.1.1"
+BUILD_SCRIPT_VERSION="1.2.0"
 
 # Defaults
 REGISTRY="${REGISTRY:-ghcr.io}"
@@ -36,6 +37,7 @@ DO_PUSH="false"
 DO_LOGIN="false"
 PODMAN="podman"
 SKIP_WIP="false"
+ALIASES=""
 
 # Parse arguments
 while [ $# -gt 0 ]; do
@@ -70,6 +72,10 @@ while [ $# -gt 0 ]; do
             ;;
         --version-suffix)
             VERSION_SUFFIX="$2"
+            shift 2
+            ;;
+        --alias)
+            ALIASES="$ALIASES $2"
             shift 2
             ;;
         --push)
@@ -194,6 +200,13 @@ if [ "$DO_PUSH" = "true" ]; then
         $PODMAN tag "${IMAGE_NAME}:build" "${IMAGE_NAME}:${VTAG}"
         $PODMAN push "${IMAGE_NAME}:${VTAG}"
     fi
+
+    # Tag and push aliases
+    for ALIAS in $ALIASES; do
+        echo "=== Tagging and Pushing Alias :${ALIAS} ==="
+        $PODMAN tag "${IMAGE_NAME}:build" "${IMAGE_NAME}:${ALIAS}"
+        $PODMAN push "${IMAGE_NAME}:${ALIAS}"
+    done
 
     echo "=== Push Complete ==="
 else
