@@ -3,13 +3,14 @@
 # Shared build script for daemonless container images
 # Works with both GitHub Actions (via vmactions) and Woodpecker CI
 #
-# Version: 1.1.0
+# Version: 1.1.1
 #
 # Usage: ./scripts/build.sh [OPTIONS]
 #   --registry REGISTRY       Container registry (default: ghcr.io)
 #   --image IMAGE             Full image name (e.g., ghcr.io/daemonless/radarr)
 #   --containerfile FILE      Containerfile to use (default: Containerfile)
 #   --base-version VERSION    Base image version arg (e.g., 15, 15-quarterly)
+#   --pkg-repo REPO           Package repo branch (latest/quarterly)
 #   --tag TAG                 Primary tag for built image (e.g., latest, pkg)
 #   --tag-version             Also tag with version from /app/version
 #   --version-suffix SUFFIX   Suffix for version tag (e.g., -pkg)
@@ -20,13 +21,14 @@
 #
 set -e
 
-BUILD_SCRIPT_VERSION="1.1.0"
+BUILD_SCRIPT_VERSION="1.1.1"
 
 # Defaults
 REGISTRY="${REGISTRY:-ghcr.io}"
 IMAGE_NAME="${IMAGE_NAME:-}"
 CONTAINERFILE="Containerfile"
 BASE_VERSION=""
+PKG_REPO=""
 TAG="latest"
 TAG_VERSION="false"
 VERSION_SUFFIX=""
@@ -52,6 +54,10 @@ while [ $# -gt 0 ]; do
             ;;
         --base-version)
             BASE_VERSION="$2"
+            shift 2
+            ;;
+        --pkg-repo)
+            PKG_REPO="$2"
             shift 2
             ;;
         --tag)
@@ -120,6 +126,7 @@ echo "Registry:       $REGISTRY"
 echo "Image:          $IMAGE_NAME"
 echo "Containerfile:  $CONTAINERFILE"
 echo "Base Version:   ${BASE_VERSION:-default}"
+echo "Pkg Repo:       ${PKG_REPO:-default}"
 echo "Tag:            $TAG"
 echo "Tag Version:    $TAG_VERSION"
 echo "Version Suffix: $VERSION_SUFFIX"
@@ -141,6 +148,9 @@ fi
 BUILD_ARGS="--network=host"
 if [ -n "$BASE_VERSION" ]; then
     BUILD_ARGS="$BUILD_ARGS --build-arg BASE_VERSION=$BASE_VERSION"
+fi
+if [ -n "$PKG_REPO" ]; then
+    BUILD_ARGS="$BUILD_ARGS --build-arg PKG_BRANCH=$PKG_REPO"
 fi
 BUILD_ARGS="$BUILD_ARGS --build-arg FREEBSD_ARCH=amd64"
 
