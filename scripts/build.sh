@@ -3,7 +3,7 @@
 # Shared build script for daemonless container images
 # Works with both GitHub Actions (via vmactions) and Woodpecker CI
 #
-# Version: 1.0.0
+# Version: 1.1.0
 #
 # Usage: ./scripts/build.sh [OPTIONS]
 #   --registry REGISTRY       Container registry (default: ghcr.io)
@@ -20,7 +20,7 @@
 #
 set -e
 
-BUILD_SCRIPT_VERSION="1.0.0"
+BUILD_SCRIPT_VERSION="1.1.0"
 
 # Defaults
 REGISTRY="${REGISTRY:-ghcr.io}"
@@ -143,6 +143,19 @@ if [ -n "$BASE_VERSION" ]; then
     BUILD_ARGS="$BUILD_ARGS --build-arg BASE_VERSION=$BASE_VERSION"
 fi
 BUILD_ARGS="$BUILD_ARGS --build-arg FREEBSD_ARCH=amd64"
+
+# Add Dynamic OCI Labels
+# BUILD_DATE: RFC 3339 format
+BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+# VCS_REF: Short git sha
+VCS_REF=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
+
+echo "=== Injecting Metadata ==="
+echo "Created:  $BUILD_DATE"
+echo "Revision: $VCS_REF"
+
+BUILD_ARGS="$BUILD_ARGS --label org.opencontainers.image.created=$BUILD_DATE"
+BUILD_ARGS="$BUILD_ARGS --label org.opencontainers.image.revision=$VCS_REF"
 
 # Build image
 echo "=== Building Image ==="
