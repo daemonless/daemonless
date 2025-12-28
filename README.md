@@ -15,7 +15,7 @@ Native FreeBSD OCI containers using Podman and ocijail. Similar to [LinuxServer.
 ## Quick Start
 
 ```bash
-pkg install podman ocijail
+pkg install podman-suite cni-dnsname
 ```
 
 See the full [Quick Start Guide](https://daemonless.io/quick-start/) for host configuration and setup.
