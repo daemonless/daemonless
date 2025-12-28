@@ -19,6 +19,8 @@
 #   --login                   Login to registry (requires GITHUB_TOKEN env var)
 #   --doas                    Use doas for podman commands
 #   --skip-wip                Skip build if image is marked WIP
+#   --distcc                  Use buildah with distcc/ccache for distributed compilation
+#   --ccache-dir DIR          Ccache directory to mount (default: /data/ccache)
 #
 set -e
 
@@ -38,6 +40,8 @@ DO_LOGIN="false"
 PODMAN="podman"
 SKIP_WIP="false"
 ALIASES=""
+USE_DISTCC="false"
+CCACHE_DIR="${CCACHE_DIR:-/data/ccache}"
 
 # Parse arguments
 while [ $# -gt 0 ]; do
@@ -94,6 +98,14 @@ while [ $# -gt 0 ]; do
             SKIP_WIP="true"
             shift
             ;;
+        --distcc)
+            USE_DISTCC="true"
+            shift
+            ;;
+        --ccache-dir)
+            CCACHE_DIR="$2"
+            shift 2
+            ;;
         --version)
             echo "build.sh version $BUILD_SCRIPT_VERSION"
             exit 0
@@ -138,6 +150,8 @@ echo "Tag Version:    $TAG_VERSION"
 echo "Version Suffix: $VERSION_SUFFIX"
 echo "Push:           $DO_PUSH"
 echo "Podman:         $PODMAN"
+echo "Distcc:         $USE_DISTCC"
+echo "Ccache Dir:     $CCACHE_DIR"
 echo ""
 
 # Login to registry
@@ -175,7 +189,18 @@ BUILD_ARGS="$BUILD_ARGS --label org.opencontainers.image.revision=$VCS_REF"
 
 # Build image
 echo "=== Building Image ==="
-$PODMAN build $BUILD_ARGS -f "$CONTAINERFILE" -t "${IMAGE_NAME}:build" .
+if [ "$USE_DISTCC" = "true" ]; then
+    # Use buildah with ccache volume mount for distributed compilation
+    echo "Using buildah with distcc/ccache (mounting $CCACHE_DIR)"
+    BUILDAH="buildah"
+    [ "$PODMAN" = "doas podman" ] && BUILDAH="doas buildah"
+    $BUILDAH bud $BUILD_ARGS \
+        -v "${CCACHE_DIR}:${CCACHE_DIR}:rw" \
+        -f "$CONTAINERFILE" \
+        -t "${IMAGE_NAME}:build" .
+else
+    $PODMAN build $BUILD_ARGS -f "$CONTAINERFILE" -t "${IMAGE_NAME}:build" .
+fi
 
 # Extract version
 echo "=== Extracting Version ==="
