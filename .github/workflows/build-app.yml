@@ -76,7 +76,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build in FreeBSD VM (${{ matrix.tag }})
-        uses: vmactions/freebsd-vm@v1.3.2
+        uses: vmactions/freebsd-vm@v1.3.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
