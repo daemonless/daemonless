@@ -194,7 +194,14 @@ if [ "$USE_DISTCC" = "true" ]; then
     echo "Using buildah with distcc/ccache (mounting $CCACHE_DIR)"
     BUILDAH="buildah"
     [ "$PODMAN" = "doas podman" ] && BUILDAH="doas buildah"
+
+    # Load distcc config if available
+    DISTCC_HOSTS="${DISTCC_HOSTS:-localhost}"
+    [ -f /etc/distcc.conf ] && . /etc/distcc.conf
+    echo "DISTCC_HOSTS: $DISTCC_HOSTS"
+
     $BUILDAH bud $BUILD_ARGS \
+        --build-arg "DISTCC_HOSTS=$DISTCC_HOSTS" \
         -v "${CCACHE_DIR}:${CCACHE_DIR}:rw" \
         -f "$CONTAINERFILE" \
         -t "${IMAGE_NAME}:build" .
