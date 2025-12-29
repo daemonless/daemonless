@@ -38,40 +38,21 @@ jobs:
             # Copy results back
             cp /tmp/pkg-quarterly.txt .
 
+      - name: Install skopeo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y skopeo
+
       - name: Check upstream versions
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -e
-
-          # Function to get GitHub release version
-          gh_release() {
-            curl -sf "https://api.github.com/repos/$1/releases/latest" | jq -r '.tag_name // "unknown"'
-          }
-
-          # Function to get Servarr version
-          servarr() {
-            curl -sf "$1" | jq -r '.[0].version // "unknown"'
-          }
-
           echo "=== Upstream Versions ===" > upstream-versions.txt
 
-          # Servarr apps
-          echo "radarr $(servarr 'https://radarr.servarr.com/v1/update/master/changes?os=bsd')" >> upstream-versions.txt
-          echo "sonarr $(curl -sf 'https://services.sonarr.tv/v1/releases' | jq -r '[.[] | select(.branch == "main")] | .[0].version // "unknown"')" >> upstream-versions.txt
-          echo "prowlarr $(servarr 'https://prowlarr.servarr.com/v1/update/master/changes?os=bsd')" >> upstream-versions.txt
-          echo "lidarr $(servarr 'https://lidarr.servarr.com/v1/update/master/changes?os=bsd')" >> upstream-versions.txt
-          echo "readarr $(servarr 'https://readarr.servarr.com/v1/update/develop/changes?os=bsd')" >> upstream-versions.txt
-
-          # GitHub releases
-          echo "sabnzbd $(gh_release 'sabnzbd/sabnzbd')" >> upstream-versions.txt
-          echo "tautulli $(gh_release 'Tautulli/Tautulli')" >> upstream-versions.txt
-          echo "jellyfin $(gh_release 'jellyfin/jellyfin')" >> upstream-versions.txt
-          echo "traefik $(gh_release 'traefik/traefik')" >> upstream-versions.txt
-          echo "mealie $(gh_release 'mealie-recipes/mealie')" >> upstream-versions.txt
-          echo "woodpecker $(gh_release 'woodpecker-ci/woodpecker')" >> upstream-versions.txt
-          echo "openspeedtest $(gh_release 'openspeedtest/OpenSpeedTest')" >> upstream-versions.txt
-
-          # npm
-          echo "n8n $(curl -sf 'https://registry.npmjs.org/n8n/latest' | jq -r '.version // "unknown"')" >> upstream-versions.txt
+          # Use dynamic script to read versions from container labels
+          chmod +x scripts/check-upstream-dynamic.sh
+          ./scripts/check-upstream-dynamic.sh >> upstream-versions.txt
 
           cat upstream-versions.txt
 
