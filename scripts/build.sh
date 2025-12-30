@@ -3,7 +3,7 @@
 # Shared build script for daemonless container images
 # Works with both GitHub Actions (via vmactions) and Woodpecker CI
 #
-# Version: 1.2.0
+# Version: 1.5.0
 #
 # Usage: ./scripts/build.sh [OPTIONS]
 #   --registry REGISTRY       Container registry (default: ghcr.io)
@@ -15,6 +15,7 @@
 #   --tag-version             Also tag with version from /app/version
 #   --version-suffix SUFFIX   Suffix for version tag (e.g., -pkg)
 #   --alias ALIAS             Additional alias tag (can be used multiple times)
+#   --build-arg KEY=VALUE     Additional build argument (can be used multiple times)
 #   --push                    Push to registry (requires login first)
 #   --login                   Login to registry (requires GITHUB_TOKEN env var)
 #   --doas                    Use doas for podman commands
@@ -24,7 +25,7 @@
 #
 set -e
 
-BUILD_SCRIPT_VERSION="1.2.0"
+BUILD_SCRIPT_VERSION="1.5.0"
 
 # Defaults
 REGISTRY="${REGISTRY:-ghcr.io}"
@@ -40,6 +41,7 @@ DO_LOGIN="false"
 PODMAN="podman"
 SKIP_WIP="false"
 ALIASES=""
+EXTRA_BUILD_ARGS=""
 USE_DISTCC="false"
 CCACHE_DIR="${CCACHE_DIR:-/data/ccache}"
 
@@ -80,6 +82,10 @@ while [ $# -gt 0 ]; do
             ;;
         --alias)
             ALIASES="$ALIASES $2"
+            shift 2
+            ;;
+        --build-arg)
+            EXTRA_BUILD_ARGS="$EXTRA_BUILD_ARGS --build-arg $2"
             shift 2
             ;;
         --push)
@@ -150,6 +156,7 @@ echo "Tag Version:    $TAG_VERSION"
 echo "Version Suffix: $VERSION_SUFFIX"
 echo "Push:           $DO_PUSH"
 echo "Podman:         $PODMAN"
+echo "Build Args:     ${EXTRA_BUILD_ARGS:-none}"
 echo "Distcc:         $USE_DISTCC"
 echo "Ccache Dir:     $CCACHE_DIR"
 echo ""
@@ -173,6 +180,11 @@ if [ -n "$PKG_REPO" ]; then
     BUILD_ARGS="$BUILD_ARGS --build-arg PKG_BRANCH=$PKG_REPO"
 fi
 BUILD_ARGS="$BUILD_ARGS --build-arg FREEBSD_ARCH=amd64"
+
+# Add extra build args
+if [ -n "$EXTRA_BUILD_ARGS" ]; then
+    BUILD_ARGS="$BUILD_ARGS $EXTRA_BUILD_ARGS"
+fi
 
 # Add Dynamic OCI Labels
 # BUILD_DATE: RFC 3339 format
