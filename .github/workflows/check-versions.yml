@@ -18,25 +18,25 @@ jobs:
 
       - name: Check versions in FreeBSD VM
         uses: vmactions/freebsd-vm@v1.3.4
+        env:
+          GH_TOKEN: ${{ github.token }}
         with:
           release: "15.0"
           usesh: true
           copyback: true
           envs: 'GH_TOKEN'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -e
+          run: |
+            set -e
 
-          # Install dependencies
-          pkg update -q
-          pkg install -y skopeo gh jq
+            # Install dependencies
+            pkg update -q
+            pkg install -y skopeo gh jq
 
-          # Run dynamic version checker (handles both pkg and upstream)
-          chmod +x scripts/check-upstream-dynamic.sh
-          ./scripts/check-upstream-dynamic.sh > upstream-versions.txt
+            # Run dynamic version checker (handles both pkg and upstream)
+            chmod +x scripts/check-upstream-dynamic.sh
+            ./scripts/check-upstream-dynamic.sh > upstream-versions.txt
 
-          cat upstream-versions.txt
+            cat upstream-versions.txt
 
       - name: Compare with stored versions
         id: compare
