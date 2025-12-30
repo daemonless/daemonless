@@ -73,11 +73,15 @@ jobs:
 
     steps:
       - name: Free disk space
-        run: |
-          # Remove unnecessary tools to free ~30GB
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
-          sudo rm -rf /usr/local/share/boost /usr/share/swift
-          df -h /
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: false
 
       - name: Checkout repository
         uses: actions/checkout@v4

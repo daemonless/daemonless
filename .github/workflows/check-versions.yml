@@ -13,46 +13,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check FreeBSD package versions
+      - name: Check versions in FreeBSD VM
         uses: vmactions/freebsd-vm@v1.3.4
         with:
           release: "15.0"
           usesh: true
           copyback: true
-          run: |
-            set -e
-            pkg update -q
-
-            # Packages to check
-            PACKAGES="radarr sonarr prowlarr lidarr readarr sabnzbd tautulli jellyfin \
-              transmission-daemon gitea tailscale traefik vaultwarden smokeping nginx \
-              s6 execline sqlite3 icu nextcloud-php83"
-
-            # Get quarterly versions
-            echo "=== Quarterly Package Versions ===" > /tmp/pkg-quarterly.txt
-            for pkg in $PACKAGES; do
-              ver=$(pkg rquery '%v' "$pkg" 2>/dev/null || echo "not_found")
-              echo "$pkg $ver" >> /tmp/pkg-quarterly.txt
-            done
-
-            # Copy results back
-            cp /tmp/pkg-quarterly.txt .
-
-      - name: Install skopeo
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y skopeo
-
-      - name: Check upstream versions
+          envs: 'GH_TOKEN'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -e
-          echo "=== Upstream Versions ===" > upstream-versions.txt
 
-          # Use dynamic script to read versions from container labels
+          # Install dependencies
+          pkg update -q
+          pkg install -y skopeo gh jq
+
+          # Run dynamic version checker (handles both pkg and upstream)
           chmod +x scripts/check-upstream-dynamic.sh
-          ./scripts/check-upstream-dynamic.sh >> upstream-versions.txt
+          ./scripts/check-upstream-dynamic.sh > upstream-versions.txt
 
           cat upstream-versions.txt
 
@@ -63,22 +42,13 @@ jobs:
 
           CHANGES=""
 
-          # Compare package versions
-          if [ -f pkg-quarterly.txt ] && [ -f versions.json ]; then
-            while read -r pkg ver; do
-              stored=$(jq -r ".packages.quarterly.\"$pkg\" // \"\"" versions.json)
-              if [ -n "$stored" ] && [ "$stored" != "$ver" ] && [ "$ver" != "not_found" ]; then
-                CHANGES="${CHANGES}pkg:${pkg} ${stored}->${ver}\n"
-              fi
-            done < pkg-quarterly.txt
-          fi
-
-          # Compare upstream versions
+          # Compare versions from dynamic script output
           if [ -f upstream-versions.txt ] && [ -f versions.json ]; then
             while read -r app ver; do
+              [ -z "$app" ] && continue
               stored=$(jq -r ".upstream.\"$app\" // \"\"" versions.json)
               if [ -n "$stored" ] && [ "$stored" != "$ver" ] && [ "$ver" != "unknown" ]; then
-                CHANGES="${CHANGES}upstream:${app} ${stored}->${ver}\n"
+                CHANGES="${CHANGES}${app} ${stored}->${ver}\n"
               fi
             done < upstream-versions.txt
           fi
@@ -100,23 +70,13 @@ jobs:
         run: |
           set -e
 
-          # Update package versions
-          if [ -f pkg-quarterly.txt ]; then
-            while read -r pkg ver; do
-              if [ "$ver" != "not_found" ]; then
-                jq ".packages.quarterly.\"$pkg\" = \"$ver\"" versions.json > tmp.json && mv tmp.json versions.json
-              fi
-            done < pkg-quarterly.txt
-          fi
-
-          # Update upstream versions
-          if [ -f upstream-versions.txt ]; then
-            while read -r app ver; do
-              if [ "$ver" != "unknown" ]; then
-                jq ".upstream.\"$app\" = \"$ver\"" versions.json > tmp.json && mv tmp.json versions.json
-              fi
-            done < upstream-versions.txt
-          fi
+          # Update upstream versions from dynamic script output
+          while read -r app ver; do
+            [ -z "$app" ] && continue
+            if [ "$ver" != "unknown" ]; then
+              jq ".upstream.\"$app\" = \"$ver\"" versions.json > tmp.json && mv tmp.json versions.json
+            fi
+          done < upstream-versions.txt
 
           # Update timestamp
           jq ".last_check = \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" versions.json > tmp.json && mv tmp.json versions.json
