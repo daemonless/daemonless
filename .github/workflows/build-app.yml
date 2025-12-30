@@ -95,6 +95,7 @@ jobs:
           release: "15.0"
           usesh: true
           copyback: false
+          data-dir: /mnt/freebsd-vm
           envs: "GITHUB_TOKEN GITHUB_ACTOR"
           prepare: |
             # Create 4GB swap for heavy builds
