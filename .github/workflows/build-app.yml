@@ -86,6 +86,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare VM data directory
+        run: sudo mkdir -p /mnt/freebsd-vm && sudo chmod 777 /mnt/freebsd-vm
+
       - name: Build in FreeBSD VM (${{ matrix.tag }})
         uses: vmactions/freebsd-vm@v1.3.4
         env:
