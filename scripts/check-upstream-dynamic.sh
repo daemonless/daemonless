@@ -26,19 +26,15 @@ LATEST_DATA=$(mktemp)
 UPSTREAM_DATA=$(mktemp)
 trap "rm -f $QUARTERLY_DATA $LATEST_DATA $UPSTREAM_DATA" EXIT
 
-# Get version from FreeBSD quarterly repo
+# Get version from FreeBSD ports via repology API
 get_pkg_quarterly() {
-    # Try quarterly repo first, fall back to FreeBSD-quarterly name
-    pkg rquery -r quarterly '%v' "$1" 2>/dev/null || \
-    pkg rquery -r FreeBSD-quarterly '%v' "$1" 2>/dev/null || \
-    echo "not_found"
+    $FETCH "https://repology.org/api/v1/project/$1" 2>/dev/null | \
+    jq -r '.[] | select(.repo == "freebsd") | .version' 2>/dev/null | head -1 || echo "not_found"
 }
 
-# Get version from FreeBSD latest repo
+# Get version from FreeBSD latest repo (use local pkg as fallback)
 get_pkg_latest() {
-    # Try latest repo first, fall back to FreeBSD name, then default
-    pkg rquery -r latest '%v' "$1" 2>/dev/null || \
-    pkg rquery -r FreeBSD '%v' "$1" 2>/dev/null || \
+    # Try local pkg first (usually points to latest)
     pkg rquery '%v' "$1" 2>/dev/null || \
     echo "not_found"
 }
@@ -67,15 +63,14 @@ check_image() {
         return
     }
 
-    # Check upstream version using generic url + sed approach
-    # Labels define both the API URL and sed expression to extract version
+    # Check upstream version using jq
     url=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-url"] // empty')
-    sed_expr=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-sed"] // empty')
+    jq_expr=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-jq"] // empty')
 
-    # Skip if no url or sed expression defined
-    [ -z "$url" ] || [ -z "$sed_expr" ] && return
+    # Skip if no url or jq expression defined
+    [ -z "$url" ] || [ -z "$jq_expr" ] && return
 
-    version=$($FETCH "$url" 2>/dev/null | sed -n "$sed_expr" | head -1)
+    version=$($FETCH "$url" 2>/dev/null | jq -r "$jq_expr" 2>/dev/null)
     if [ -n "$version" ]; then
         echo "${image} ${version}" >> "$UPSTREAM_DATA"
     fi
