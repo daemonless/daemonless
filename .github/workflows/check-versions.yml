@@ -30,13 +30,13 @@ jobs:
 
             # Install dependencies
             pkg update -q
-            pkg install -y skopeo gh jq
+            pkg install -y skopeo jq curl
 
-            # Run dynamic version checker (handles both pkg and upstream)
+            # Run dynamic version checker (outputs JSON)
             chmod +x scripts/check-upstream-dynamic.sh
-            ./scripts/check-upstream-dynamic.sh > upstream-versions.txt
+            ./scripts/check-upstream-dynamic.sh > versions-output.json
 
-            cat upstream-versions.txt
+            cat versions-output.json
 
       - name: Compare with stored versions
         id: compare
@@ -45,15 +45,17 @@ jobs:
 
           CHANGES=""
 
-          # Compare versions from dynamic script output
-          if [ -f upstream-versions.txt ] && [ -f versions.json ]; then
-            while read -r app ver; do
-              [ -z "$app" ] && continue
+          # Compare upstream versions from JSON output
+          if [ -f versions-output.json ] && [ -f versions.json ]; then
+            # Get all upstream apps from the new output
+            for app in $(jq -r '.upstream | keys[]' versions-output.json 2>/dev/null); do
+              new_ver=$(jq -r ".upstream.\"$app\"" versions-output.json)
               stored=$(jq -r ".upstream.\"$app\" // \"\"" versions.json)
-              if [ -n "$stored" ] && [ "$stored" != "$ver" ] && [ "$ver" != "unknown" ]; then
-                CHANGES="${CHANGES}${app} ${stored}->${ver}\n"
+
+              if [ -n "$stored" ] && [ "$stored" != "$new_ver" ] && [ "$new_ver" != "unknown" ]; then
+                CHANGES="${CHANGES}${app} ${stored}->${new_ver}\n"
               fi
-            done < upstream-versions.txt
+            done
           fi
 
           if [ -n "$CHANGES" ]; then
@@ -73,13 +75,13 @@ jobs:
         run: |
           set -e
 
-          # Update upstream versions from dynamic script output
-          while read -r app ver; do
-            [ -z "$app" ] && continue
-            if [ "$ver" != "unknown" ]; then
-              jq ".upstream.\"$app\" = \"$ver\"" versions.json > tmp.json && mv tmp.json versions.json
+          # Merge upstream versions from JSON output into versions.json
+          for app in $(jq -r '.upstream | keys[]' versions-output.json 2>/dev/null); do
+            new_ver=$(jq -r ".upstream.\"$app\"" versions-output.json)
+            if [ "$new_ver" != "unknown" ] && [ -n "$new_ver" ]; then
+              jq ".upstream.\"$app\" = \"$new_ver\"" versions.json > tmp.json && mv tmp.json versions.json
             fi
-          done < upstream-versions.txt
+          done
 
           # Update timestamp
           jq ".last_check = \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" versions.json > tmp.json && mv tmp.json versions.json
@@ -100,37 +102,32 @@ jobs:
         run: |
           set -e
 
-          # Parse changes and trigger appropriate builds
+          # Parse changes (format: "app old->new") and trigger appropriate builds
           echo '${{ steps.compare.outputs.changes }}' | while read -r line; do
             [ -z "$line" ] && continue
 
-            type=$(echo "$line" | cut -d: -f1)
-            pkg=$(echo "$line" | cut -d: -f2 | cut -d' ' -f1)
+            # Extract app name (first word before space)
+            app=$(echo "$line" | cut -d' ' -f1)
+            [ -z "$app" ] && continue
 
-            echo "Processing: $type $pkg"
+            echo "Processing: $app"
 
-            # Determine which repos to rebuild based on dependencies.json
-            # For now, just trigger the direct repo
-            case "$pkg" in
-              radarr|sonarr|prowlarr|lidarr|readarr|sabnzbd|tautulli|jellyfin|traefik|gitea|tailscale|transmission-daemon|vaultwarden|smokeping|nextcloud-php83|woodpecker|mealie|n8n|overseerr|openspeedtest)
-                repo="${pkg%-*}"  # Remove -daemon suffix etc
-                [ "$pkg" = "transmission-daemon" ] && repo="transmission"
-                [ "$pkg" = "nextcloud-php83" ] && repo="nextcloud"
-
-                echo "Triggering build for: $repo"
-                gh workflow run build.yml --repo "daemonless/$repo" --ref main || echo "Failed to trigger $repo"
+            # Map image names to repo names and trigger builds
+            case "$app" in
+              radarr|sonarr|prowlarr|lidarr|readarr|sabnzbd|tautulli|jellyfin|traefik|tailscale|vaultwarden|smokeping|woodpecker|mealie|n8n|overseerr|openspeedtest|plex|unifi)
+                echo "Triggering build for: $app"
+                gh workflow run build.yml --repo "daemonless/$app" --ref main || echo "Failed to trigger $app"
                 ;;
-              s6|execline)
-                echo "Base package changed, triggering base rebuild"
-                gh workflow run build.yml --repo "daemonless/base" --ref main || true
+              immich-server|immich-ml|uptime-kuma|arr-base|nginx-base)
+                echo "Triggering build for: $app"
+                gh workflow run build.yml --repo "daemonless/$app" --ref main || echo "Failed to trigger $app"
                 ;;
-              sqlite3|icu)
-                echo "arr-base package changed, triggering arr-base rebuild"
-                gh workflow run build.yml --repo "daemonless/arr-base" --ref main || true
+              gitea|nextcloud|organizr|transmission)
+                echo "Triggering build for: $app"
+                gh workflow run build.yml --repo "daemonless/$app" --ref main || echo "Failed to trigger $app"
                 ;;
-              nginx)
-                echo "nginx-base package changed, triggering nginx-base rebuild"
-                gh workflow run build.yml --repo "daemonless/nginx-base" --ref main || true
+              *)
+                echo "Unknown app: $app - skipping"
                 ;;
             esac
           done

@@ -7,7 +7,7 @@
 #   If image-name provided, check only that image
 #   Otherwise, check all images in ghcr.io/daemonless
 #
-# Requires: skopeo, jq, gh, pkg (FreeBSD)
+# Requires: skopeo, jq (for JSON parsing), curl, pkg (FreeBSD)
 #
 set -e
 
@@ -43,26 +43,6 @@ get_pkg_latest() {
     echo "not_found"
 }
 
-# Get version from Servarr API (radarr, prowlarr, lidarr, readarr)
-get_servarr_version() {
-    $FETCH "$1" 2>/dev/null | jq -r '.[0].version // "unknown"'
-}
-
-# Get version from Sonarr API (different format)
-get_sonarr_version() {
-    $FETCH "$1" 2>/dev/null | jq -r '[.[] | select(.branch == "main")] | .[0].version // "unknown"'
-}
-
-# Get version from GitHub releases
-get_github_version() {
-    $FETCH "https://api.github.com/repos/${1}/releases/latest" 2>/dev/null | jq -r '.tag_name // "unknown"'
-}
-
-# Get version from npm registry
-get_npm_version() {
-    $FETCH "https://registry.npmjs.org/${1}/latest" 2>/dev/null | jq -r '.version // "unknown"'
-}
-
 # Check a single image and collect data
 check_image() {
     image="$1"
@@ -87,49 +67,18 @@ check_image() {
         return
     }
 
-    # Check upstream version based on mode
-    mode=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-mode"] // empty')
-    [ -z "$mode" ] && return
+    # Check upstream version using generic url + sed approach
+    # Labels define both the API URL and sed expression to extract version
+    url=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-url"] // empty')
+    sed_expr=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-sed"] // empty')
 
-    case "$mode" in
-        pkg)
-            # pkg-only mode - no upstream to check, already handled above
-            ;;
-        servarr)
-            url=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-url"] // empty')
-            if [ -n "$url" ]; then
-                version=$(get_servarr_version "$url")
-                echo "${image} ${version}" >> "$UPSTREAM_DATA"
-            fi
-            ;;
-        sonarr)
-            url=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-url"] // empty')
-            if [ -n "$url" ]; then
-                version=$(get_sonarr_version "$url")
-                echo "${image} ${version}" >> "$UPSTREAM_DATA"
-            fi
-            ;;
-        github)
-            repo=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-repo"] // empty')
-            if [ -n "$repo" ]; then
-                version=$(get_github_version "$repo")
-                echo "${image} ${version}" >> "$UPSTREAM_DATA"
-            fi
-            ;;
-        npm)
-            package=$(echo "$labels" | jq -r '.Labels["io.daemonless.upstream-package"] // empty')
-            if [ -n "$package" ]; then
-                version=$(get_npm_version "$package")
-                echo "${image} ${version}" >> "$UPSTREAM_DATA"
-            fi
-            ;;
-        source|ubiquiti)
-            # Skip - requires manual handling
-            ;;
-        *)
-            echo "# ${image}: unknown mode (${mode})" >&2
-            ;;
-    esac
+    # Skip if no url or sed expression defined
+    [ -z "$url" ] || [ -z "$sed_expr" ] && return
+
+    version=$($FETCH "$url" 2>/dev/null | sed -n "$sed_expr" | head -1)
+    if [ -n "$version" ]; then
+        echo "${image} ${version}" >> "$UPSTREAM_DATA"
+    fi
 }
 
 # Output JSON from collected data
@@ -204,9 +153,17 @@ else
     # Update pkg database first
     pkg update -q 2>/dev/null || true
 
-    # Get all images from registry
-    images=$(gh api orgs/daemonless/packages?package_type=container --jq '.[].name' 2>/dev/null) || {
-        echo "Error: Failed to list packages (need gh CLI authenticated)" >&2
+    # Get all images from registry using GitHub API directly
+    # Note: requires curl for Authorization header (fetch doesn't support custom headers)
+    TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}"
+    if [ -z "$TOKEN" ]; then
+        echo "Error: No GitHub token found (set GH_TOKEN or GITHUB_TOKEN)" >&2
+        exit 1
+    fi
+
+    API_URL="https://api.github.com/orgs/daemonless/packages?package_type=container"
+    images=$(curl -sf -H "Authorization: Bearer ${TOKEN}" "$API_URL" 2>/dev/null | jq -r '.[].name') || {
+        echo "Error: Failed to list packages from GitHub API" >&2
         exit 1
     }
 

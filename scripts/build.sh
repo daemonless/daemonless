@@ -226,6 +226,14 @@ echo "=== Extracting Version ==="
 VERSION=$($PODMAN run --rm --entrypoint="" "${IMAGE_NAME}:build" cat /app/version 2>/dev/null | sed 's/^v//' | tr -d '\n' || echo "")
 echo "Version: ${VERSION:-none}"
 
+# Add version label to image if version exists
+if [ -n "$VERSION" ]; then
+    echo "=== Adding Version Label ==="
+    BUILDAH_CMD="buildah"
+    [ "$PODMAN" = "doas podman" ] && BUILDAH_CMD="doas buildah"
+    $BUILDAH_CMD config --label "org.opencontainers.image.version=${VERSION}" "${IMAGE_NAME}:build"
+fi
+
 # Show image info
 echo "=== Image Info ==="
 $PODMAN images | grep -E "(REPOSITORY|${IMAGE_NAME})" || true
