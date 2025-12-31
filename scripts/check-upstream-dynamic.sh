@@ -145,6 +145,37 @@ output_json() {
     echo "}"
 }
 
+# List of images to check (excluding base images)
+# This avoids needing GitHub API access which requires special token permissions
+IMAGES="
+gitea
+immich-ml
+immich-server
+jellyfin
+lidarr
+mealie
+n8n
+nextcloud
+openspeedtest
+organizr
+overseerr
+plex
+prowlarr
+radarr
+readarr
+sabnzbd
+smokeping
+sonarr
+tailscale
+tautulli
+traefik
+transmission
+unifi
+uptime-kuma
+vaultwarden
+woodpecker
+"
+
 # Main
 if [ -n "$1" ]; then
     # Check single image
@@ -153,25 +184,9 @@ else
     # Update pkg database first
     pkg update -q 2>/dev/null || true
 
-    # Get all images from registry using GitHub API directly
-    # Note: requires curl for Authorization header (fetch doesn't support custom headers)
-    TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-}}"
-    if [ -z "$TOKEN" ]; then
-        echo "Error: No GitHub token found (set GH_TOKEN or GITHUB_TOKEN)" >&2
-        exit 1
-    fi
-
-    API_URL="https://api.github.com/orgs/daemonless/packages?package_type=container"
-    images=$(curl -sf -H "Authorization: Bearer ${TOKEN}" "$API_URL" 2>/dev/null | jq -r '.[].name') || {
-        echo "Error: Failed to list packages from GitHub API" >&2
-        exit 1
-    }
-
-    for image in $images; do
-        # Skip base images
-        case "$image" in
-            base|arr-base|nginx-base) continue ;;
-        esac
+    for image in $IMAGES; do
+        # Skip empty lines
+        [ -z "$image" ] && continue
 
         echo "# Checking ${image}..." >&2
         check_image "$image"
