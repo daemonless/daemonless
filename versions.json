@@ -1,5 +1,5 @@
 {
-  "last_check": "2025-12-31T11:45:01Z",
+  "last_check": "2026-01-01T06:20:57Z",
   "packages": {
     "quarterly": {
       "radarr": "5.27.5.10198_1",
@@ -48,10 +48,10 @@
     }
   },
   "upstream": {
-    "radarr": "3.0.2.4552",
+    "radarr": "6.0.4.10291",
     "sonarr": "4.0.16.2944",
-    "prowlarr": "1.36.3.5071",
-    "lidarr": "0.7.0.1347",
+    "prowlarr": "2.3.0.5236",
+    "lidarr": "3.1.0.4875",
     "readarr": "0.4.14.2782",
     "sabnzbd": "4.5.5",
     "tautulli": "v2.16.0",
@@ -61,12 +61,19 @@
     "mealie": "v3.8.0",
     "n8n": "2.1.4",
     "woodpecker": "v3.12.0",
-    "openspeedtest": "",
+    "openspeedtest": "v2.0.5",
     "unifi": "10.0.162",
     "===": "Upstream Versions ===",
     "immich-server": "v2.4.1",
     "plex": "1.42.2.10156-f737b826c",
     "smokeping": "v2.9.0",
-    "uptime-kuma": "2.0.2"
+    "uptime-kuma": "2.0.2",
+    "gitea": "v1.25.3",
+    "immich-ml": "v2.4.1",
+    "nextcloud": "v31.0.12",
+    "organizr": "1.90",
+    "tailscale": "v1.92.3",
+    "transmission": "4.0.6",
+    "vaultwarden": "1.35.1"
   }
 }
