@@ -90,7 +90,7 @@ jobs:
         run: sudo mkdir -p /mnt/freebsd-vm && sudo chmod 777 /mnt/freebsd-vm
 
       - name: Build in FreeBSD VM (${{ matrix.tag }})
-        uses: vmactions/freebsd-vm@v1.3.4
+        uses: vmactions/freebsd-vm@v1.3.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
