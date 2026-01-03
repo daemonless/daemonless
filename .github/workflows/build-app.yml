@@ -154,12 +154,18 @@ jobs:
 
             BUILD_ARGS=""
             if [ -n "${{ inputs.build_args }}" ]; then
-              BUILD_ARGS="--build-arg ${{ inputs.build_args }}"
+              # Handle comma-separated build args
+              for arg in $(echo "${{ inputs.build_args }}" | tr ',' ' '); do
+                BUILD_ARGS="$BUILD_ARGS --build-arg $arg"
+              done
             fi
 
             EXTRA_TAGS=""
             if [ -n "${{ inputs.extra_tags }}" ]; then
-              EXTRA_TAGS="--alias ${{ inputs.extra_tags }}"
+              # Handle comma-separated extra tags
+              for tag in $(echo "${{ inputs.extra_tags }}" | tr ',' ' '); do
+                EXTRA_TAGS="$EXTRA_TAGS --alias $tag"
+              done
             fi
 
             ./scripts/build.sh \
