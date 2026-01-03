@@ -55,7 +55,7 @@ echo "Building for FreeBSD ${FREEBSD_VERSION} (${ARCH}), tag: ${TAG}"
 # Returns 0 if WIP, 1 if not
 is_wip() {
     local name="$1"
-    local containerfile="../repos/${name}/Containerfile"
+    local containerfile="../${name}/Containerfile"
 
     if [ ! -f "$containerfile" ]; then
         return 1
@@ -70,7 +70,7 @@ is_wip() {
 supports_arch() {
     local name="$1"
     local arch="$2"
-    local containerfile="../repos/${name}/Containerfile"
+    local containerfile="../${name}/Containerfile"
 
     if [ ! -f "$containerfile" ]; then
         return 1
@@ -108,13 +108,13 @@ build_base() {
     [ "$branch" = "quarterly" ] && base_tag="${FREEBSD_VERSION}-quarterly"
     [ "$ARCH" = "arm64" ] && base_tag="${base_tag}-arm64"
 
-    echo "==> Building base image: base-image:${base_tag} (pkg branch: ${branch}, arch: ${ARCH})"
+    echo "==> Building base image: base:${base_tag} (pkg branch: ${branch}, arch: ${ARCH})"
     podman build --network=host \
         --build-arg "PKG_BRANCH=${branch}" \
         --build-arg "FREEBSD_ARCH=${FREEBSD_ARCH}" \
-        -t "base-image:${base_tag}" \
-        -t "localhost/base-image:${base_tag}" \
-        "../repos/base-image/${FREEBSD_VERSION}/"
+        -t "ghcr.io/daemonless/base:${base_tag}" \
+        -t "localhost/base:${base_tag}" \
+        "../base/${FREEBSD_VERSION}/"
 }
 
 # Track which base images have been built
@@ -131,12 +131,12 @@ build_nginx_base() {
         return
     fi
 
-    echo "==> Building nginx base image: nginx-base-image:${base_version}"
+    echo "==> Building nginx base image: nginx-base:${base_version}"
     podman build --network=host \
         --build-arg "BASE_VERSION=${base_version}" \
-        -t "nginx-base-image:${base_version}" \
-        -t "localhost/nginx-base-image:${base_version}" \
-        "../repos/nginx-base-image/"
+        -t "ghcr.io/daemonless/nginx-base:${base_version}" \
+        -t "localhost/nginx-base:${base_version}" \
+        "../nginx-base/"
 
     NGINX_BASE_BUILT="$base_version"
 }
@@ -144,13 +144,13 @@ build_nginx_base() {
 # Check if image uses main Containerfile for pkg builds (io.daemonless.pkg-source="containerfile")
 # This means no separate Containerfile.pkg - use same file with different base
 uses_main_containerfile_for_pkg() {
-    local containerfile="../repos/$1/Containerfile"
+    local containerfile="../$1/Containerfile"
     [ -f "$containerfile" ] && grep -q 'io.daemonless.pkg-source="containerfile"' "$containerfile"
 }
 
 # Check if image needs nginx base (io.daemonless.base="nginx")
 needs_nginx_base() {
-    local containerfile="../repos/$1/Containerfile"
+    local containerfile="../$1/Containerfile"
     [ -f "$containerfile" ] && grep -q 'io.daemonless.base="nginx"' "$containerfile"
 }
 
@@ -158,7 +158,7 @@ needs_nginx_base() {
 build_image() {
     local name="$1"
     local tag="$2"
-    local containerfile="../repos/${name}/Containerfile"
+    local containerfile="../${name}/Containerfile"
     local base_version="${FREEBSD_VERSION}"
     local image_tag="$tag"
 
@@ -173,13 +173,13 @@ build_image() {
 
     # For pkg tags, use Containerfile.pkg if it exists, or main Containerfile if labeled
     if [ "$tag" = "pkg" ] || [ "$tag" = "pkg-latest" ]; then
-        if [ -f "../repos/${name}/Containerfile.pkg" ]; then
-            containerfile="../repos/${name}/Containerfile.pkg"
+        if [ -f "../${name}/Containerfile.pkg" ]; then
+            containerfile="../${name}/Containerfile.pkg"
             # Use quarterly base for :pkg tag
             [ "$tag" = "pkg" ] && base_version="${FREEBSD_VERSION}-quarterly"
         elif uses_main_containerfile_for_pkg "$name"; then
             # Use main Containerfile with appropriate base
-            containerfile="../repos/${name}/Containerfile"
+            containerfile="../${name}/Containerfile"
             [ "$tag" = "pkg" ] && base_version="${FREEBSD_VERSION}-quarterly"
         else
             echo "==> Skipping ${name}: no Containerfile.pkg"
@@ -207,7 +207,7 @@ build_image() {
         -f "$containerfile" \
         -t "${name}:${image_tag}" \
         -t "localhost/${name}:${image_tag}" \
-        "../repos/${name}/"
+        "../${name}/"
 
     # For images using main Containerfile for pkg, :pkg-latest is alias for :latest
     # (both use latest base, so they produce identical images)
@@ -229,9 +229,10 @@ fi
 # Build requested image(s)
 if [ "$IMAGE" = "all" ]; then
     # Build all images (skip WIP)
-    for dir in ../repos/*/; do
+    for dir in ../*/;
+    do
         name=$(basename "$dir")
-        if [ "$name" = "base-image" ] || [ "$name" = "nginx-base-image" ]; then
+        if [ "$name" = "base" ] || [ "$name" = "nginx-base" ] || [ "$name" = "daemonless" ]; then
             continue
         fi
         if is_wip "$name"; then
