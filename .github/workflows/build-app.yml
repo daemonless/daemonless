@@ -139,7 +139,7 @@ jobs:
             # Download shared build script (pinned to version)
             mkdir -p scripts
             fetch -qo scripts/build.sh \
-              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.2.0/scripts/build.sh"
+              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.5.0/scripts/build.sh"
             chmod +x scripts/build.sh
 
             PUSH_FLAG=""
