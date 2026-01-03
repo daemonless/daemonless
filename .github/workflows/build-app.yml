@@ -7,6 +7,21 @@ on:
         description: 'Image name (e.g., radarr, sonarr)'
         required: true
         type: string
+      image_tag:
+        description: 'Override tag (skips auto-detection)'
+        required: false
+        type: string
+        default: ''
+      build_args:
+        description: 'Build args (e.g., PG_VERSION=14)'
+        required: false
+        type: string
+        default: ''
+      extra_tags:
+        description: 'Extra tags (e.g., latest)'
+        required: false
+        type: string
+        default: ''
 
 env:
   REGISTRY: ghcr.io
@@ -24,6 +39,14 @@ jobs:
       - name: Detect Containerfiles
         id: set-matrix
         run: |
+          # If image_tag is provided, skip auto-detection (manual mode)
+          if [ -n "${{ inputs.image_tag }}" ]; then
+            matrix='{"include":[{"containerfile":"Containerfile","tag":"${{ inputs.image_tag }}","base_version":"","version_suffix":"","push_latest":""}]}'
+            echo "Manual mode: $matrix"
+            echo "matrix=$matrix" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
           # Build JSON matrix based on existing Containerfiles
           entries=""
           has_source="false"
@@ -129,14 +152,26 @@ jobs:
               BASE_VERSION_ARG="--base-version ${{ matrix.base_version }}"
             fi
 
+            BUILD_ARGS=""
+            if [ -n "${{ inputs.build_args }}" ]; then
+              BUILD_ARGS="--build-arg ${{ inputs.build_args }}"
+            fi
+
+            EXTRA_TAGS=""
+            if [ -n "${{ inputs.extra_tags }}" ]; then
+              EXTRA_TAGS="--alias ${{ inputs.extra_tags }}"
+            fi
+
             ./scripts/build.sh \
               --registry ${{ env.REGISTRY }} \
               --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
               --containerfile ${{ matrix.containerfile }} \
               $BASE_VERSION_ARG \
+              $BUILD_ARGS \
               --tag ${{ matrix.tag }} \
               --tag-version \
               --version-suffix "${{ matrix.version_suffix }}" \
               ${{ matrix.push_latest }} \
+              $EXTRA_TAGS \
               --skip-wip \
               $PUSH_FLAG
