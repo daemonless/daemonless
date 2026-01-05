@@ -25,6 +25,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  CIT_VERSION: "0.2.2"
 
 jobs:
   # Detect which Containerfiles exist and build dynamic matrix
@@ -120,7 +121,7 @@ jobs:
         with:
           release: "15.0"
           usesh: true
-          copyback: false
+          copyback: true
           data-dir: /mnt/freebsd-vm
           envs: "GITHUB_TOKEN GITHUB_ACTOR"
           prepare: |
@@ -131,9 +132,15 @@ jobs:
             swapon /dev/md0
 
             pkg install -y podman
+
+            # Install patched ocijail for .NET apps (mlock support)
+            fetch -qo /tmp/ocijail.pkg https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2.pkg
+            pkg install -fy /tmp/ocijail.pkg
+
             rm -rf /var/db/containers /var/lib/containers 2>/dev/null || true
             kldload pf
             sysctl net.inet.ip.forwarding=1
+            sysctl kern.ipc.shm_allow_removed=1
           run: |
             set -e
             # Download shared build script (pinned to version)
@@ -141,11 +148,6 @@ jobs:
             fetch -qo scripts/build.sh \
               "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.5.0/scripts/build.sh"
             chmod +x scripts/build.sh
-
-            PUSH_FLAG=""
-            if [ "${{ github.event_name }}" != "pull_request" ]; then
-              PUSH_FLAG="--login --push"
-            fi
 
             BASE_VERSION_ARG=""
             if [ -n "${{ matrix.base_version }}" ]; then
@@ -168,6 +170,7 @@ jobs:
               done
             fi
 
+            # Build (no push yet)
             ./scripts/build.sh \
               --registry ${{ env.REGISTRY }} \
               --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
@@ -179,8 +182,46 @@ jobs:
               --version-suffix "${{ matrix.version_suffix }}" \
               ${{ matrix.push_latest }} \
               $EXTRA_TAGS \
-              --skip-wip \
-              $PUSH_FLAG
+              --skip-wip
+
+            # Test with cit (blocking - must pass before push)
+            echo "=== Running cit tests ==="
+            fetch -qo - https://github.com/daemonless/cit/releases/download/v${{ env.CIT_VERSION }}/cit-${{ env.CIT_VERSION }}.tar.gz | tar xz
+            ./cit-${{ env.CIT_VERSION }}/cit --setup
+
+            mkdir -p cit-results
+            ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
+              --repo . \
+              --json cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
+              --screenshot cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
+              --verbose
+
+            # Push only after cit passes (non-PR)
+            if [ "${{ github.event_name }}" != "pull_request" ]; then
+              echo "=== Pushing image ==="
+              echo "$GITHUB_TOKEN" | podman login ${{ env.REGISTRY }} -u $GITHUB_ACTOR --password-stdin
+              ./scripts/build.sh \
+                --registry ${{ env.REGISTRY }} \
+                --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
+                --containerfile ${{ matrix.containerfile }} \
+                $BASE_VERSION_ARG \
+                $BUILD_ARGS \
+                --tag ${{ matrix.tag }} \
+                --tag-version \
+                --version-suffix "${{ matrix.version_suffix }}" \
+                ${{ matrix.push_latest }} \
+                $EXTRA_TAGS \
+                --skip-wip \
+                --push
+            fi
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cit-results-${{ matrix.tag }}
+          path: cit-results/
+          retention-days: 30
 
       - name: Discord notification
         if: always() && (matrix.tag == 'latest' || job.status == 'failure')
