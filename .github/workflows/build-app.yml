@@ -236,6 +236,9 @@ jobs:
             STATUS="❌ Failed"
           fi
 
+          SHORT_SHA="${{ github.sha }}"
+          SHORT_SHA="${SHORT_SHA:0:7}"
+
           curl -sS -H "Content-Type: application/json" \
-            -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }}:${{ matrix.tag }} $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Trigger\",\"value\":\"${{ github.event_name }}\",\"inline\":true}]}]}" \
+            -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }}:${{ matrix.tag }} $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Registry\",\"value\":\"[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }})\",\"inline\":true}]}]}" \
             "$DISCORD_WEBHOOK"
