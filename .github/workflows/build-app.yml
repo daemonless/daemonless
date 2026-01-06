@@ -25,7 +25,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  CIT_VERSION: "0.2.3"
+  CIT_VERSION: "0.2.4"
+  COMPOSE_PACKAGES: "py311-podman-compose"
 
 jobs:
   # Detect which Containerfiles exist and build dynamic matrix
@@ -188,6 +189,11 @@ jobs:
             echo "=== Running cit tests ==="
             fetch -qo - https://github.com/daemonless/cit/releases/download/v${{ env.CIT_VERSION }}/cit-${{ env.CIT_VERSION }}.tar.gz | tar xz
             ./cit-${{ env.CIT_VERSION }}/cit --setup
+
+            # Install podman-compose if compose mode needed
+            if [ -f ".daemonless/compose.yml" ] || [ -f ".daemonless/compose.yaml" ]; then
+              pkg install -y ${{ env.COMPOSE_PACKAGES }}
+            fi
 
             mkdir -p cit-results
             ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
