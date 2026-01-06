@@ -34,6 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      compose_only: ${{ steps.set-matrix.outputs.compose_only }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,6 +47,7 @@ jobs:
             matrix='{"include":[{"containerfile":"Containerfile","tag":"${{ inputs.image_tag }}","base_version":"","version_suffix":"","push_latest":""}]}'
             echo "Manual mode: $matrix"
             echo "matrix=$matrix" >> $GITHUB_OUTPUT
+            echo "compose_only=false" >> $GITHUB_OUTPUT
             exit 0
           fi
 
@@ -80,6 +82,14 @@ jobs:
           # Remove trailing comma and wrap in matrix format
           entries="${entries%,}"
           matrix="{\"include\":[${entries}]}"
+
+          # Check for compose-only mode (no Containerfiles but has compose.yml)
+          if [ -z "$entries" ] && { [ -f ".daemonless/compose.yml" ] || [ -f ".daemonless/compose.yaml" ]; }; then
+            echo "Compose-only mode detected"
+            echo "compose_only=true" >> $GITHUB_OUTPUT
+          else
+            echo "compose_only=false" >> $GITHUB_OUTPUT
+          fi
 
           echo "Detected matrix: $matrix"
           echo "matrix=$matrix" >> $GITHUB_OUTPUT
@@ -252,4 +262,93 @@ jobs:
 
           curl -sS -H "Content-Type: application/json" \
             -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }}:${{ matrix.tag }} $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Registry\",\"value\":\"[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }})\",\"inline\":true}]}]}" \
+            "$DISCORD_WEBHOOK"
+
+  # Compose-only test (no build, just test pre-built images)
+  test-compose:
+    needs: detect
+    if: ${{ needs.detect.outputs.compose_only == 'true' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: false
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare VM data directory
+        run: sudo mkdir -p /mnt/freebsd-vm && sudo chmod 777 /mnt/freebsd-vm
+
+      - name: Test in FreeBSD VM
+        uses: vmactions/freebsd-vm@v1.3.5
+        with:
+          release: "15.0"
+          usesh: true
+          copyback: true
+          data-dir: /mnt/freebsd-vm
+          prepare: |
+            set -e
+            mkdir -p /etc/pkg
+            echo 'FreeBSD: { url: "http://pkg.FreeBSD.org/${ABI}/latest" }' > /etc/pkg/FreeBSD.conf
+            pkg update -f
+            pkg install -y podman ${{ env.COMPOSE_PACKAGES }} jq
+
+            # Install patched ocijail for .NET apps (mlock support)
+            fetch -qo /tmp/ocijail.pkg https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2.pkg
+            pkg install -fy /tmp/ocijail.pkg
+
+            rm -rf /var/db/containers /var/lib/containers 2>/dev/null || true
+            kldload pf
+            sysctl net.inet.ip.forwarding=1
+            sysctl kern.ipc.shm_allow_removed=1
+          run: |
+            set -e
+
+            # Download cit
+            fetch -qo - https://github.com/daemonless/cit/releases/download/v${{ env.CIT_VERSION }}/cit-${{ env.CIT_VERSION }}.tar.gz | tar xz
+            ./cit-${{ env.CIT_VERSION }}/cit --setup
+
+            # Run cit in compose mode
+            mkdir -p cit-results
+            ./cit-${{ env.CIT_VERSION }}/cit compose \
+              --repo . \
+              --json cit-results/${{ inputs.image_name }}.json \
+              --screenshot cit-results/${{ inputs.image_name }}.png \
+              --verbose
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cit-results
+          path: cit-results/
+          retention-days: 30
+
+      - name: Discord notification
+        if: always()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            COLOR=3066993
+            STATUS="✅ Success"
+          else
+            COLOR=15158332
+            STATUS="❌ Failed"
+          fi
+
+          SHORT_SHA="${{ github.sha }}"
+          SHORT_SHA="${SHORT_SHA:0:7}"
+
+          curl -sS -H "Content-Type: application/json" \
+            -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }} compose test $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true}]}]}" \
             "$DISCORD_WEBHOOK"
