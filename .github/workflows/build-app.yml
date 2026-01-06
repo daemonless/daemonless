@@ -126,12 +126,14 @@ jobs:
           data-dir: /mnt/freebsd-vm
           envs: "GITHUB_TOKEN GITHUB_ACTOR"
           prepare: |
+            set -e
             # Create 4GB swap for heavy builds
             dd if=/dev/zero of=/swapfile bs=1m count=4096
             chmod 0600 /swapfile
             mdconfig -a -t vnode -f /swapfile -u 0
             swapon /dev/md0
 
+            pkg update -f
             pkg install -y podman jq
 
             # Install patched ocijail for .NET apps (mlock support)
