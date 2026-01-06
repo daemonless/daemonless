@@ -135,7 +135,7 @@ jobs:
 
             # Use latest repo for CI tools (quarterly often has sync issues)
             mkdir -p /etc/pkg
-            echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest" }' > /etc/pkg/FreeBSD.conf
+            echo 'FreeBSD: { url: "http://pkg.FreeBSD.org/${ABI}/latest" }' > /etc/pkg/FreeBSD.conf
             pkg update -f
             pkg install -y podman jq
 
