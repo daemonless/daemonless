@@ -131,7 +131,7 @@ jobs:
             mdconfig -a -t vnode -f /swapfile -u 0
             swapon /dev/md0
 
-            pkg install -y podman
+            pkg install -y podman jq
 
             # Install patched ocijail for .NET apps (mlock support)
             fetch -qo /tmp/ocijail.pkg https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2.pkg
