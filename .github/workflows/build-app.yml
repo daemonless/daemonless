@@ -224,7 +224,7 @@ jobs:
           retention-days: 30
 
       - name: Discord notification
-        if: always() && (matrix.tag == 'latest' || matrix.push_latest != '' || job.status == 'failure')
+        if: always()
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
