@@ -28,6 +28,10 @@ IMAGE="${2:-all}"
 TAG="${3:-latest}"
 ARCH="${4:-amd64}"
 
+# Registry and Organization configuration
+REGISTRY="${REGISTRY:-ghcr.io}"
+ORG="${ORG:-daemonless}"
+
 # Map arch names
 case "$ARCH" in
     amd64|x86_64|x64)
@@ -134,7 +138,7 @@ build_nginx_base() {
     echo "==> Building nginx base image: nginx-base:${base_version}"
     podman build --network=host \
         --build-arg "BASE_VERSION=${base_version}" \
-        -t "ghcr.io/daemonless/nginx-base:${base_version}" \
+        -t "${REGISTRY}/${ORG}/nginx-base:${base_version}" \
         -t "localhost/nginx-base:${base_version}" \
         "../nginx-base/"
 

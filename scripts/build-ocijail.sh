@@ -133,8 +133,9 @@ else
     fi
 
     log_info "Building ocijail with Bazel (this may take a while)..."
-    # Set HOME to avoid Bazel cache permission issues
-    export HOME=/root
+    # Set a temporary HOME within WORK_DIR to avoid Bazel cache issues
+    mkdir -p "${WORK_DIR}/home"
+    export HOME="${WORK_DIR}/home"
     bazel build //ocijail
 
     if [ ! -f "bazel-bin/ocijail/ocijail" ]; then
