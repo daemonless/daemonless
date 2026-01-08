@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-01-06T06:20:04Z",
+  "last_check": "2026-01-08T06:19:01Z",
   "packages": {
     "quarterly": {
       "radarr": "5.27.5.10198_1",
@@ -59,7 +59,7 @@
     "traefik": "v3.6.6",
     "overseerr": "v1.34.0",
     "mealie": "v3.9.2",
-    "n8n": "2.1.4",
+    "n8n": "2.2.4",
     "woodpecker": "v3.12.0",
     "openspeedtest": "v2.0.5",
     "unifi": "10.0.162",
@@ -72,7 +72,7 @@
     "immich-ml": "v2.4.1",
     "nextcloud": "v31.0.12",
     "organizr": "1.90",
-    "tailscale": "v1.92.3",
+    "tailscale": "v1.92.5",
     "transmission": "4.0.6",
     "vaultwarden": "1.35.1"
   }
