@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-01-08T06:19:01Z",
+  "last_check": "2026-01-09T06:19:24Z",
   "packages": {
     "quarterly": {
       "radarr": "5.27.5.10198_1",
@@ -59,7 +59,7 @@
     "traefik": "v3.6.6",
     "overseerr": "v1.34.0",
     "mealie": "v3.9.2",
-    "n8n": "2.2.4",
+    "n8n": "2.2.5",
     "woodpecker": "v3.12.0",
     "openspeedtest": "v2.0.5",
     "unifi": "10.0.162",
