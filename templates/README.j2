@@ -1,0 +1,330 @@
+{%- set main_port = ports[0] if ports else None -%}
+{%- set port_var = "@" ~ name|upper|replace("-", "_") ~ "_PORT@" -%}
+{%- if render_mode == "mkdocs" -%}
+---
+title: "{{ title }} on FreeBSD: Native OCI Container using Podman & Jails"
+description: "Install {{ title }} on FreeBSD natively using Podman and Daemonless. Enjoy lightweight, secure OCI containers in FreeBSD Jails without the overhead of Linux VMs."
+placeholders:
+{%- if main_port %}
+  {{ port_var | replace("@", "") }}:
+    default: "{{ main_port.port }}"
+    description: {{ title }} Host Port
+{%- endif %}
+---
+
+# {{ icon }} {{ title }}
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/daemonless/{{ name }}/build.yml?style=flat-square&label=Build&color=green)](https://github.com/daemonless/{{ name }}/actions)
+[![Last Commit](https://img.shields.io/github/last-commit/daemonless/{{ name }}?style=flat-square&label=Last+Commit&color=blue)](https://github.com/daemonless/{{ name }}/commits)
+
+{{ description }}
+
+## Version Tags
+
+| Tag | Description | Best For |
+| :--- | :--- | :--- |
+| `latest` | {% if upstream_binary %}**Upstream Binary**. Downloads the official release.{% else %}**FreeBSD Port**. Installs from latest packages.{% endif %} | Most users. Matches Linux Docker behavior. |
+{%- if "pkg" in tags %}
+| `pkg` | **FreeBSD Port**. Installs from Quarterly ports. | Stability. Uses system libraries. |
+{%- endif %}
+{%- if "pkg-latest" in tags %}
+| `pkg-latest` | **FreeBSD Port**. Installs from Latest ports. | Bleeding edge system packages. |
+{%- endif %}
+
+## Prerequisites
+
+Before deploying, ensure your host environment is ready. See the [Quick Start Guide](../quick-start.md) for host setup instructions.
+
+{%- if mlock %}
+!!! warning "Memory Locking (Critical)"
+    This application is built on .NET and requires memory locking enabled in the jail.
+    You **must** use the `allow.mlock` annotation and have a [patched ocijail](../guides/ocijail-patch.md).
+{%- endif %}
+
+## Deployment
+
+=== ":material-docker: Podman Compose"
+
+    ```yaml
+    services:
+      {{ name }}:
+        image: ghcr.io/daemonless/{{ name }}:latest
+        container_name: {{ name }}
+        environment:
+    {%- for e in env %}
+          - {{ e.name }}={{ e.placeholder if e.placeholder else e.default }}
+    {%- endfor %}
+        volumes:
+    {%- for v in volumes %}
+          - {{ v.root_var ~ "/" if v.root_var else "" }}{{ v.placeholder if v.placeholder else v.source }}:{{ v.path }}{{ " # optional" if v.optional else "" }}
+    {%- endfor %}
+        ports:
+    {%- for p in ports %}
+    {%- if loop.first %}
+          - {{ port_var }}:{{ p.port }}
+    {%- else %}
+          - {{ p.port }}:{{ p.port }}
+    {%- endif %}
+    {%- endfor %}
+    {%- if mlock %}
+        annotations:
+          org.freebsd.jail.allow.mlock: "true"
+    {%- endif %}
+    {%- if healthcheck %}
+        healthcheck:
+          test: ["CMD", "{{ healthcheck }}"]
+    {%- endif %}
+        restart: unless-stopped
+    ```
+
+=== ":material-console: Podman CLI"
+
+    ```bash
+    podman run -d --name {{ name }} \
+    {%- for p in ports %}
+    {%- if loop.first %}
+      -p {{ port_var }}:{{ p.port }} \
+    {%- else %}
+      -p {{ p.port }}:{{ p.port }} \
+    {%- endif %}
+    {%- endfor %}
+    {%- if mlock %}
+      --annotation 'org.freebsd.jail.allow.mlock=true' \
+    {%- endif %}
+    {%- if healthcheck %}
+      --health-cmd {{ healthcheck }} \
+    {%- endif %}
+    {%- for e in env %}
+      -e {{ e.name }}={{ e.placeholder if e.placeholder else e.default }} \
+    {%- endfor %}
+    {%- for v in volumes %}
+      -v {{ v.root_var ~ "/" if v.root_var else "" }}{{ v.placeholder if v.placeholder else v.source }}:{{ v.path }} \ {{ " # optional" if v.optional else "" }}
+    {%- endfor %}
+      ghcr.io/daemonless/{{ name }}:latest
+    ```
+
+=== ":simple-ansible: Ansible"
+
+    ```yaml
+    - name: Deploy {{ name }}
+      containers.podman.podman_container:
+        name: {{ name }}
+        image: ghcr.io/daemonless/{{ name }}:latest
+        state: started
+        restart_policy: always
+    {%- if env %}
+        env:
+    {%- for e in env %}
+          {{ e.name }}: "{{ e.placeholder if e.placeholder else e.default }}"
+    {%- endfor %}
+    {%- endif %}
+    {%- if ports %}
+        ports:
+    {%- for p in ports %}
+    {%- if loop.first %}
+          - "{{ port_var }}:{{ p.port }}"
+    {%- else %}
+          - "{{ p.port }}:{{ p.port }}"
+    {%- endif %}
+    {%- endfor %}
+    {%- endif %}
+    {%- if volumes %}
+        volumes:
+    {%- for v in volumes %}
+          - "{{ v.root_var ~ "/" if v.root_var else "" }}{{ v.placeholder if v.placeholder else v.source }}:{{ v.path }}"{{ " # optional" if v.optional else "" }}
+    {%- endfor %}
+    {%- endif %}
+{%- if mlock %}
+        annotation:
+          org.freebsd.jail.allow.mlock: "true"
+    {%- endif %}
+    ```
+
+{%- if main_port %}
+
+Access the Web UI at: `http://localhost:{{ port_var }}`
+{%- endif %}
+
+### Interactive Configuration
+
+<div class="placeholder-settings-panel"></div>
+
+## Parameters
+
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+{%- for e in env %}
+| `{{ e.name }}` | `{{ e.default }}` | {{ e.desc }} |
+{%- endfor %}
+
+### Volumes
+
+| Path | Description |
+|------|-------------|
+{%- for v in volumes %}
+| `{{ v.path }}` | {{ v.desc }}{{ " (Optional)" if v.optional else "" }} |
+{%- endfor %}
+
+### Ports
+
+| Port | Protocol | Description |
+|------|----------|-------------|
+{%- for p in ports %}
+| `{{ p.port }}` | {{ p.protocol|upper }} | {{ p.desc }} |
+{%- endfor %}
+
+!!! info "Implementation Details"
+
+    - **User:** `{{ user }}` (UID/GID set via [PUID/PGID](../guides/permissions.md)). Defaults to `1000:1000`.
+    - **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD 15.0).
+    {%- if mlock %}
+    - **.NET App:** Requires `--annotation 'org.freebsd.jail.allow.mlock=true'` and a [patched ocijail](../guides/ocijail-patch.md).
+    {%- endif %}
+
+[Website]({{ web_url }}){ .md-button .md-button--primary }
+[Source Code]({{ upstream_url }}){ .md-button }
+{% if freshports_url %}[FreshPorts]({{ freshports_url }}){ .md-button }{% endif %}
+
+{%- else -%}
+# {{ title }}
+
+{{ description }}
+
+| | |
+|---|---|
+{%- if main_port %}
+| **Port** | {{ main_port.port }} |
+{%- endif %}
+| **Registry** | `ghcr.io/daemonless/{{ name }}` |
+| **Source** | [{{ upstream_url }}]({{ upstream_url }}) |
+{%- if web_url %}
+| **Website** | [{{ web_url }}]({{ web_url }}) |
+{%- endif %}
+
+## Deployment
+
+### Podman Compose
+
+```yaml
+services:
+  {{ name }}:
+    image: ghcr.io/daemonless/{{ name }}:latest
+    container_name: {{ name }}
+    environment:
+{%- for e in env %}
+      - {{ e.name }}={{ e.default }}
+{%- endfor %}
+    volumes:
+{%- for v in volumes %}
+      - {% if v.root_var %}/path/to/containers/{{ v.source }}{% else %}/path/to/{{ v.source }}{% endif %}:{{ v.path }}{{ " # optional" if v.optional else "" }}
+{%- endfor %}
+    ports:
+{%- for p in ports %}
+      - {{ p.port }}:{{ p.port }}
+{%- endfor %}
+{%- if mlock %}
+    annotations:
+      org.freebsd.jail.allow.mlock: "true"
+{%- endif %}
+{%- if healthcheck %}
+    healthcheck:
+      test: ["CMD", "{{ healthcheck }}"]
+{%- endif %}
+    restart: unless-stopped
+```
+
+### Podman CLI
+
+```bash
+podman run -d --name {{ name }} \
+{%- for p in ports %}
+  -p {{ p.port }}:{{ p.port }} \
+{%- endfor %}
+{%- if mlock %}
+  --annotation 'org.freebsd.jail.allow.mlock=true' \
+{%- endif %}
+{%- if healthcheck %}
+  --health-cmd {{ healthcheck }} \
+{%- endif %}
+{%- for e in env %}
+  -e {{ e.name }}={{ e.placeholder if e.placeholder else e.default }} \
+{%- endfor %}
+{%- for v in volumes %}
+  -v {% if v.root_var %}/path/to/containers/{{ v.source }}{% else %}/path/to/{{ v.source }}{% endif %}:{{ v.path }} \ {{ " # optional" if v.optional else "" }}
+{%- endfor %}
+  ghcr.io/daemonless/{{ name }}:latest
+```
+
+{%- if main_port %}
+Access at: `http://localhost:{{ main_port.port }}`
+{%- endif %}
+
+### Ansible
+
+```yaml
+- name: Deploy {{ name }}
+  containers.podman.podman_container:
+    name: {{ name }}
+    image: ghcr.io/daemonless/{{ name }}:latest
+    state: started
+    restart_policy: always
+{%- if env %}
+    env:
+{%- for e in env %}
+      {{ e.name }}: "{{ e.default }}"
+{%- endfor %}
+{%- endif %}
+{%- if ports %}
+    ports:
+{%- for p in ports %}
+      - "{{ p.port }}:{{ p.port }}"
+{%- endfor %}
+{%- endif %}
+{%- if volumes %}
+    volumes:
+{%- for v in volumes %}
+      - "{% if v.root_var %}/path/to/containers/{{ v.source }}{% else %}/path/to/{{ v.source }}{% endif %}:{{ v.path }}"{{ " # optional" if v.optional else "" }}
+{%- endfor %}
+{%- endif %}
+{%- if mlock %}
+    annotation:
+      org.freebsd.jail.allow.mlock: "true"
+{%- endif %}
+```
+
+## Configuration
+
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+{%- for e in env %}
+| `{{ e.name }}` | `{{ e.default }}` | {{ e.desc }} |
+{%- endfor %}
+
+### Volumes
+
+| Path | Description |
+|------|-------------|
+{%- for v in volumes %}
+| `{{ v.path }}` | {{ v.desc }}{{ " (Optional)" if v.optional else "" }} |
+{%- endfor %}
+
+### Ports
+
+| Port | Protocol | Description |
+|------|----------|-------------|
+{%- for p in ports %}
+| `{{ p.port }}` | {{ p.protocol|upper }} | {{ p.desc }} |
+{%- endfor %}
+
+## Notes
+
+- **User:** `{{ user }}` (UID/GID set via PUID/PGID)
+- **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD)
+{%- if mlock %}
+- **.NET App:** Requires `--annotation 'org.freebsd.jail.allow.mlock=true'` and a [patched ocijail](https://daemonless.io/guides/ocijail-patch).
+{%- endif %}
+{%- endif %}
