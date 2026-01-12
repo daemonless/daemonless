@@ -210,11 +210,11 @@ jobs:
               pkg install -y ${{ env.COMPOSE_PACKAGES }}
             fi
 
-            mkdir -p cit-results
+            mkdir -p /mnt/freebsd-vm/cit-results
             ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
               --repo . \
-              --json cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
-              --screenshot cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
+              --json /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
+              --screenshot /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
               --verbose
 
             # Push only after cit passes (non-PR)
@@ -241,7 +241,7 @@ jobs:
         if: always()
         with:
           name: cit-results-${{ matrix.tag }}
-          path: cit-results/
+          path: /mnt/freebsd-vm/cit-results/
           retention-days: 30
 
       - name: Discord notification
@@ -318,11 +318,11 @@ jobs:
             ./cit-${{ env.CIT_VERSION }}/cit --setup
 
             # Run cit in compose mode
-            mkdir -p cit-results
+            mkdir -p /mnt/freebsd-vm/cit-results
             ./cit-${{ env.CIT_VERSION }}/cit compose \
               --repo . \
-              --json cit-results/${{ inputs.image_name }}.json \
-              --screenshot cit-results/${{ inputs.image_name }}.png \
+              --json /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}.json \
+              --screenshot /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}.png \
               --verbose
 
       - name: Upload test artifacts
@@ -330,7 +330,7 @@ jobs:
         if: always()
         with:
           name: cit-results
-          path: cit-results/
+          path: /mnt/freebsd-vm/cit-results/
           retention-days: 30
 
       - name: Discord notification
