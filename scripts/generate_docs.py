@@ -122,7 +122,12 @@ def load_compose_config(repo_path):
     service = data['services'][service_name]
     meta = data.get('x-daemonless', {})
     docs = meta.get('docs', {})
-    
+
+    # Check if README generation should be skipped
+    # Supports both: docs: manual (string) and docs: { manual: true } (dict)
+    skip_readme = (docs == 'manual' or
+                   (isinstance(docs, dict) and docs.get('manual', False)))
+
     config = {
         'name': repo_path.name,
         'title': meta.get('title', repo_path.name.title()),
@@ -137,6 +142,7 @@ def load_compose_config(repo_path):
         'icon': meta.get('icon', None),
         'healthcheck': meta.get('healthcheck', None), # Could parse from service.healthcheck too
         'notes': meta.get('notes', ''),
+        'skip_readme': skip_readme,
         'env': [],
         'volumes': [],
         'ports': []
@@ -286,11 +292,14 @@ def main():
         if not config:
             continue
 
-        # 1. Generate GitHub README.md
-        readme_content = template.render(config, render_mode="github")
-        with open(repo / "README.md", "w") as f:
-            f.write(readme_content)
-        print(f"Generated README.md for {config['name']}")
+        # 1. Generate GitHub README.md (skip if docs: manual)
+        if config.get('skip_readme'):
+            print(f"Skipping README.md for {config['name']} (docs: manual)")
+        else:
+            readme_content = template.render(config, render_mode="github")
+            with open(repo / "README.md", "w") as f:
+                f.write(readme_content)
+            print(f"Generated README.md for {config['name']}")
 
         # 2. Generate Containerfile (if .j2 exists)
         generate_containerfile(config, repo)
