@@ -76,11 +76,15 @@ def load_config(repo_path):
     return data
 
 def load_compose_config(repo_path):
-    compose_path = repo_path / "compose.yaml"
-    if not compose_path.exists():
-        compose_path = repo_path / "compose.yaml"
-    
-    if not compose_path.exists():
+    # Check compose.yaml first, then container-compose.yml for stacks
+    compose_path = None
+    for name in ["compose.yaml", "container-compose.yml"]:
+        candidate = repo_path / name
+        if candidate.exists():
+            compose_path = candidate
+            break
+
+    if not compose_path:
         return None
     
     with open(compose_path, "r") as f:
