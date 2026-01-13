@@ -41,6 +41,7 @@ def load_config(repo_path):
     data["repo_url"] = f"https://github.com/daemonless/{repo_path.name}"
     data["tags"] = get_tags(repo_path)
     data["upstream_binary"] = data.get("upstream_binary", True)
+    data.setdefault("notes", "")
     # data["root_var"] is now per-volume
     
     # Ensure lists exist
@@ -135,6 +136,7 @@ def load_compose_config(repo_path):
         'upstream_binary': meta.get('upstream_binary', True),
         'icon': meta.get('icon', None),
         'healthcheck': meta.get('healthcheck', None), # Could parse from service.healthcheck too
+        'notes': meta.get('notes', ''),
         'env': [],
         'volumes': [],
         'ports': []
