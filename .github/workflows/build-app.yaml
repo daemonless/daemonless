@@ -317,9 +317,9 @@ jobs:
             fetch -qo - https://github.com/daemonless/cit/releases/download/v${{ env.CIT_VERSION }}/cit-${{ env.CIT_VERSION }}.tar.gz | tar xz
             ./cit-${{ env.CIT_VERSION }}/cit --setup
 
-            # Run cit in compose mode
+            # Run cit in compose mode (no image arg - detected from config)
             mkdir -p /mnt/freebsd-vm/cit-results
-            ./cit-${{ env.CIT_VERSION }}/cit compose \
+            ./cit-${{ env.CIT_VERSION }}/cit \
               --repo . \
               --json /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}.json \
               --screenshot /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}.png \
