@@ -25,7 +25,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  CIT_VERSION: "0.3.1"
+  CIT_VERSION: "0.3.2"
   COMPOSE_PACKAGES: "py311-podman-compose"
 
 jobs:
@@ -213,6 +213,7 @@ jobs:
             mkdir -p /mnt/freebsd-vm/cit-results
             ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
               --repo . \
+              --tag ${{ matrix.tag }} \
               --json /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
               --screenshot /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
               --verbose
