@@ -9,7 +9,6 @@
 #
 # Requires: skopeo, jq (for JSON parsing), curl, pkg (FreeBSD)
 #
-set -e
 
 REGISTRY="ghcr.io/daemonless"
 
