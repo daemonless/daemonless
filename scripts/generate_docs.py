@@ -206,6 +206,7 @@ def load_compose_config(repo_path):
             
         # Determine source path
         # SHARED_PATHS defined globally at top level now
+        config_root = "/path/to/containers"
         if tgt in SHARED_PATHS:
             source_path = tgt.lstrip('/')
             placeholder = f"@{clean_target}_PATH@"
@@ -215,6 +216,13 @@ def load_compose_config(repo_path):
             placeholder = f"@{config['name'].upper().replace('-', '_')}_CONFIG_PATH@"
             source_path = config['name']
             root_var = CONFIG_ROOT_VAR
+        elif src.startswith(config_root):
+            # Respect explicit source path from compose.yaml
+            source_path = src.replace(config_root, "").lstrip("/")
+            root_var = CONFIG_ROOT_VAR
+            # Generate placeholder from the clean source path
+            placeholder_suffix = source_path.replace("/", "_").replace("-", "_").upper()
+            placeholder = f"@{placeholder_suffix}_PATH@"
         else:
             source_path = f"{config['name']}{tgt}"
             root_var = CONFIG_ROOT_VAR
