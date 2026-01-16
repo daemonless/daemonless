@@ -231,7 +231,18 @@ if [ -n "$VERSION" ]; then
     echo "=== Adding Version Label ==="
     BUILDAH_CMD="buildah"
     [ "$PODMAN" = "doas podman" ] && BUILDAH_CMD="doas buildah"
-    $BUILDAH_CMD config --label "org.opencontainers.image.version=${VERSION}" "${IMAGE_NAME}:build"
+    
+    # Create a working container from the image
+    CTR=$($BUILDAH_CMD from "${IMAGE_NAME}:build")
+    
+    # Apply label
+    $BUILDAH_CMD config --label "org.opencontainers.image.version=${VERSION}" "$CTR"
+    
+    # Commit back to image
+    $BUILDAH_CMD commit "$CTR" "${IMAGE_NAME}:build"
+    
+    # Cleanup
+    $BUILDAH_CMD rm "$CTR"
 fi
 
 # Show image info
