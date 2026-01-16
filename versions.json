@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-01-15T06:25:55Z",
+  "last_check": "2026-01-16T06:26:08Z",
   "packages": {
     "quarterly": {
       "radarr": "5.27.5.10198_1",
@@ -70,7 +70,7 @@
     "uptime-kuma": "2.0.2",
     "gitea": "v1.25.3",
     "immich-ml": "v2.4.1",
-    "nextcloud": "v31.0.12",
+    "nextcloud": "v31.0.13",
     "organizr": "1.90",
     "tailscale": "v1.92.5",
     "transmission": "4.0.6",
