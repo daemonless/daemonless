@@ -13,7 +13,8 @@ set -e
 
 IMAGE_NAME="$1"
 REGISTRY="${REGISTRY:-ghcr.io}"
-BUILD_SCRIPT_URL="https://raw.githubusercontent.com/daemonless/daemonless/main/scripts/build.sh"
+# Use local Gitea for testing
+BUILD_SCRIPT_URL="https://gitea.ahze.lan/ahze/daemonless/raw/branch/main/scripts/build.sh"
 
 if [ -z "$IMAGE_NAME" ]; then
     # Try to detect image name from directory name if not provided
