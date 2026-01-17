@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-01-16T06:26:08Z",
+  "last_check": "2026-01-17T06:24:08Z",
   "packages": {
     "quarterly": {
       "radarr": "5.27.5.10198_1",
@@ -59,7 +59,7 @@
     "traefik": "v3.6.7",
     "overseerr": "v1.34.0",
     "mealie": "v3.9.2",
-    "n8n": "2.3.5",
+    "n8n": "2.3.6",
     "woodpecker": "v3.12.0",
     "openspeedtest": "v2.0.5",
     "unifi": "10.0.162",
@@ -70,7 +70,7 @@
     "uptime-kuma": "2.0.2",
     "gitea": "v1.25.3",
     "immich-ml": "v2.4.1",
-    "nextcloud": "v31.0.13",
+    "nextcloud": "v32.0.5",
     "organizr": "1.90",
     "tailscale": "v1.92.5",
     "transmission": "4.0.6",
