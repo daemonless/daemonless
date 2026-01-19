@@ -108,15 +108,15 @@ def list_repos():
     return sorted(repos)
 
 
-def fetch_containerfile(repo):
-    """Fetch Containerfile or Containerfile.pkg from repo."""
+def fetch_containerfiles(repo):
+    """Fetch both Containerfile and Containerfile.pkg from repo."""
+    results = {}
     for filename in ["Containerfile", "Containerfile.pkg"]:
         url = f"{RAW_GITHUB}/{GITHUB_ORG}/{repo}/main/{filename}"
         content = fetch_url(url)
         if content:
-            return content, filename
-
-    return None, None
+            results[filename] = content
+    return results
 
 
 def resolve_vars(text, vars_dict):
@@ -262,19 +262,32 @@ def process_service(repo):
     """Process a single service repo and return version info."""
     print(f"Processing {repo}...", file=sys.stderr)
 
-    content, filename = fetch_containerfile(repo)
-    if not content:
+    files = fetch_containerfiles(repo)
+    if not files:
         print(f"  No Containerfile found", file=sys.stderr)
         return None
 
-    labels = parse_containerfile(content, repo)
-    pkg_name = labels.get("pkg-name")
-    upstream_url = labels.get("upstream-url")
-    upstream_jq = labels.get("upstream-jq")
+    # Parse both files and merge labels
+    pkg_name = None
+    upstream_url = None
+    upstream_jq = None
 
-    # Fallback: if Containerfile.pkg exists but no pkg-name, use repo name
-    if not pkg_name and filename == "Containerfile.pkg":
-        pkg_name = repo
+    # Check Containerfile first (for upstream info)
+    if "Containerfile" in files:
+        labels = parse_containerfile(files["Containerfile"], repo)
+        upstream_url = labels.get("upstream-url")
+        upstream_jq = labels.get("upstream-jq")
+        pkg_name = labels.get("pkg-name")
+
+    # Check Containerfile.pkg (for pkg info) - this takes priority for pkg-name
+    if "Containerfile.pkg" in files:
+        pkg_labels = parse_containerfile(files["Containerfile.pkg"], repo)
+        if pkg_labels.get("pkg-name"):
+            pkg_name = pkg_labels.get("pkg-name")
+        # Also grab upstream info if not found in Containerfile
+        if not upstream_url:
+            upstream_url = pkg_labels.get("upstream-url")
+            upstream_jq = pkg_labels.get("upstream-jq")
 
     result = {}
 
