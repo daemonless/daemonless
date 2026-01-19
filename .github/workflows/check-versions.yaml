@@ -27,17 +27,18 @@ jobs:
             pkg install -y python3 git jq
           run: |
             set -e
-            # Clone all services to sibling directories
-            mkdir -p ../
+            # Clone all services to subdirectory
+            mkdir -p services
             while read -r service; do
               if [ -n "$service" ]; then
                 echo "Cloning $service..."
                 # Clone shallowly to save time
-                git clone --depth 1 "https://github.com/daemonless/$service" "../$service" || echo "Failed to clone $service"
+                git clone --depth 1 "https://github.com/daemonless/$service" "services/$service" || echo "Failed to clone $service"
               fi
             done < scripts/services.txt
             
             # Run python generator
+            export SERVICES_DIR=services
             python3 scripts/generate_versions.py > daemonless-versions.json
             cat daemonless-versions.json
 

@@ -252,7 +252,16 @@ def main():
     services = {}
     
     # Scan directories
-    dirs_to_scan = sorted(glob.glob(os.path.join(PARENT_DIR, "*")))
+    services_dir = os.environ.get("SERVICES_DIR")
+    if services_dir:
+        scan_root = os.path.abspath(services_dir)
+    else:
+        scan_root = PARENT_DIR
+
+    print(f"Scanning directories in: {scan_root}", file=sys.stderr)
+    
+    dirs_to_scan = sorted(glob.glob(os.path.join(scan_root, "*")))
+    print(f"Found {len(dirs_to_scan)} candidates.", file=sys.stderr)
     
     for d in dirs_to_scan:
         if not os.path.isdir(d):
@@ -261,11 +270,15 @@ def main():
         if name in [".git", ".github", "scripts", "daemonless", "ahze.lan", "ahze.net"]: 
             continue
             
+        print(f"Checking {name}...", file=sys.stderr)
+        
         if (os.path.exists(os.path.join(d, "Containerfile")) or 
             os.path.exists(os.path.join(d, "Containerfile.pkg"))):
             res = process_service(d)
             if res:
                 services.update(res)
+        else:
+            print(f"  No Containerfile found in {name}", file=sys.stderr)
 
     output = {
         "last_check": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
