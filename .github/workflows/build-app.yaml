@@ -224,12 +224,24 @@ jobs:
             fi
 
             mkdir -p /mnt/freebsd-vm/cit-results
+
+            # Run cit and capture exit code (don't fail immediately)
+            cit_exit=0
             ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
               --repo . \
               --tag ${{ matrix.tag }} \
               --json /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
               --screenshot /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
-              --verbose
+              --verbose || cit_exit=$?
+
+            # Always copy any temp screenshots to results (for debugging failures)
+            cp /tmp/cit-screenshot*.png /mnt/freebsd-vm/cit-results/ 2>/dev/null || true
+
+            # Fail if cit failed
+            if [ $cit_exit -ne 0 ]; then
+              echo "cit failed with exit code $cit_exit"
+              exit $cit_exit
+            fi
 
             # Push only after cit passes (non-PR)
             if [ "${{ github.event_name }}" != "pull_request" ]; then
