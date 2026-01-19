@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-01-17T06:24:08Z",
+  "last_check": "2026-01-19T06:30:46Z",
   "packages": {
     "quarterly": {
       "radarr": "5.27.5.10198_1",
@@ -55,7 +55,7 @@
     "readarr": "0.4.14.2782",
     "sabnzbd": "4.5.5",
     "tautulli": "v2.16.0",
-    "jellyfin": "v10.11.5",
+    "jellyfin": "v10.11.6",
     "traefik": "v3.6.7",
     "overseerr": "v1.34.0",
     "mealie": "v3.9.2",
