@@ -25,7 +25,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  CIT_VERSION: "0.3.2"
+  CIT_VERSION: "0.3.3"
   COMPOSE_PACKAGES: "py311-podman-compose"
 
 jobs:
