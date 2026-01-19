@@ -28,8 +28,6 @@ SKIP_REPOS = {
     "base",
     "arr-base",
     "nginx-base",
-    "postgres",
-    "redis",
     "cit",
 }
 

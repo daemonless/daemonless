@@ -56,17 +56,9 @@ jobs:
           has_source="false"
 
           if [ -f "Containerfile" ]; then
-            # Check if this single Containerfile handles pkg builds (e.g. redis, transmission)
-            if grep -q 'io.daemonless.pkg-source="containerfile"' Containerfile; then
-              # PKG SOURCE MODE: 2 builds (pkg, pkg-latest aliased to latest)
-              has_source="true" # Treat as source for dependency logic
-              entries+='{"containerfile":"Containerfile","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":""},'
-              entries+='{"containerfile":"Containerfile","tag":"pkg-latest","base_version":"15","version_suffix":"-pkg-latest","push_latest":"--alias latest"},'
-            else
-              # STANDARD MODE: Source build (latest)
-              has_source="true"
-              entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":""},'
-            fi
+            # Source build from upstream binaries (latest tag)
+            has_source="true"
+            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":""},'
           fi
 
           if [ -f "Containerfile.pkg" ]; then
