@@ -29,10 +29,11 @@ jobs:
             pkg upgrade -y
             pkg install -y python3 jq
             # Configure both quarterly and latest repos for version checking
+            # Use https:// instead of pkg+http:// to avoid SRV lookup issues
             mkdir -p /usr/local/etc/pkg/repos
             echo 'FreeBSD: { enabled: no }' > /usr/local/etc/pkg/repos/FreeBSD.conf
-            echo 'FreeBSD-quarterly: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/quarterly", enabled: yes }' > /usr/local/etc/pkg/repos/quarterly.conf
-            echo 'FreeBSD-latest: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest", enabled: yes }' > /usr/local/etc/pkg/repos/latest.conf
+            echo 'FreeBSD-quarterly: { url: "https://pkg.FreeBSD.org/${ABI}/quarterly", enabled: yes }' > /usr/local/etc/pkg/repos/quarterly.conf
+            echo 'FreeBSD-latest: { url: "https://pkg.FreeBSD.org/${ABI}/latest", enabled: yes }' > /usr/local/etc/pkg/repos/latest.conf
             pkg update -f
           run: |
             python3 scripts/generate_versions.py > daemonless-versions.json
