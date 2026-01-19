@@ -137,7 +137,7 @@ def resolve_vars(text, vars_dict):
     return text
 
 
-def parse_containerfile(content):
+def parse_containerfile(content, repo_name=None):
     """Parse Containerfile content to extract ARGs and labels."""
     envs = {}
     labels = {}
@@ -186,11 +186,24 @@ def parse_containerfile(content):
 
     labels["upstream-url"] = find_label("io.daemonless.upstream-url")
     labels["upstream-jq"] = find_label("io.daemonless.upstream-jq")
-    labels["pkg-name"] = find_label("io.daemonless.pkg-name")
 
-    # Fallback: ARG PKG_NAME
-    if not labels["pkg-name"]:
-        labels["pkg-name"] = envs.get("PKG_NAME")
+    # Find pkg name from labels or ARGs
+    # Only use PACKAGES if it matches repo name (not build dependencies like ca_root_nss)
+    pkg_name = find_label("io.daemonless.pkg-name")
+    if not pkg_name:
+        pkg_name = envs.get("PKG_NAME")
+    if not pkg_name and repo_name:
+        # Check io.daemonless.packages label - only if matches repo name
+        packages_label = find_label("io.daemonless.packages")
+        if packages_label and packages_label == repo_name:
+            pkg_name = packages_label
+    if not pkg_name and repo_name:
+        # Check ARG PACKAGES - only if matches repo name
+        packages_arg = envs.get("PACKAGES")
+        if packages_arg and packages_arg == repo_name:
+            pkg_name = packages_arg
+
+    labels["pkg-name"] = pkg_name
 
     return labels
 
@@ -254,7 +267,7 @@ def process_service(repo):
         print(f"  No Containerfile found", file=sys.stderr)
         return None
 
-    labels = parse_containerfile(content)
+    labels = parse_containerfile(content, repo)
     pkg_name = labels.get("pkg-name")
     upstream_url = labels.get("upstream-url")
     upstream_jq = labels.get("upstream-jq")
