@@ -65,7 +65,7 @@ jobs:
             entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":""},'
             # If no source build, pkg-latest should also be tagged as "latest"
             if [ "$has_source" = "false" ]; then
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15","version_suffix":"-pkg-latest","push_latest":"--push-latest"},'
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15","version_suffix":"-pkg-latest","push_latest":"--alias latest"},'
             else
               entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15","version_suffix":"-pkg-latest","push_latest":""},'
             fi
