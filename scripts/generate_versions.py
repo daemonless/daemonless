@@ -1,118 +1,131 @@
 #!/usr/bin/env python3
+"""
+Generate daemonless-versions.json by fetching service info from GitHub.
 
-import os
-import json
-import subprocess
-import glob
-import sys
+Uses GitHub API to discover repos and raw.githubusercontent.com to fetch
+Containerfiles. No local cloning required.
+"""
+
 import datetime
+import json
+import os
 import re
-import urllib.request
+import subprocess
+import sys
 import urllib.error
+import urllib.request
 
-# Configuration
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PARENT_DIR = os.path.dirname(ROOT_DIR)  # src/daemonless
-OUTPUT_FILE = os.path.join(ROOT_DIR, "daemonless-versions.json")
+GITHUB_ORG = "daemonless"
+GITHUB_API = "https://api.github.com"
+RAW_GITHUB = "https://raw.githubusercontent.com"
 
-def run_command(cmd):
-    try:
-        result = subprocess.run(cmd, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        return result.stdout.strip()
-    except subprocess.CalledProcessError:
-        return None
+# Repos to skip (not services)
+SKIP_REPOS = {
+    "daemonless",
+    "daemonless-io",
+    "ci-daemonless-io",
+    "freebsd-ports",
+    "base",
+    "arr-base",
+    "nginx-base",
+    "postgres",
+    "redis",
+    "cit",
+}
 
-def get_pkg_version(pkg_name, repo_type="latest"):
-    """
-    Query pkg version.
-    repo_type: 'quarterly' or 'latest'
-    """
-    if not pkg_name:
-        return None
-    
-    repo_flag = ""
-    if repo_type == "quarterly":
-        repo_flag = "-r FreeBSD-quarterly"
-    else:
-        repo_flag = "-r FreeBSD"
-
-    # 1. Try local pkg command (FreeBSD native)
-    try:
-        cmd = f"pkg rquery {repo_flag} '%v' {pkg_name} 2>/dev/null"
-        ver = run_command(cmd)
-        if ver:
-            return ver
-    except Exception:
-        pass
-        
-    # 2. Fallback: SSH to saturn (FreeBSD host)
-    # Check if we can ssh to saturn (simple check once could be better, but let's just try)
-    try:
-        # We need to escape the repo_flag and query properly for the shell
-        ssh_cmd = f"ssh -o BatchMode=yes -o ConnectTimeout=5 saturn \"pkg rquery {repo_flag} '%v' {pkg_name}\""
-        ver = run_command(ssh_cmd)
-        if ver:
-             return ver
-    except Exception:
-        pass
-
-    # 3. Fallback: Podman on Linux
-    # Check if podman is available
-    if os.path.exists("/usr/bin/podman") or os.path.exists("/usr/local/bin/podman"):
-        image = "ghcr.io/daemonless/base:15"
-        # We use -U to ensure we have data (since ephemeral container has empty /var/db/pkg)
-        podman_cmd = f"podman run --rm {image} pkg rquery -U {repo_flag} '%v' {pkg_name}"
-        
-        try:
-            result = subprocess.run(podman_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            if result.returncode == 0:
-                return result.stdout.strip()
-        except Exception:
-            pass
-
-    return None
-
-    return None
 
 def get_github_token():
+    """Get GitHub token from environment or gh CLI."""
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     if token:
         return token
-    # Try gh cli
     try:
-        return run_command("gh auth token")
+        result = subprocess.run(
+            ["gh", "auth", "token"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        return result.stdout.strip()
     except Exception:
         return None
 
-def fetch_url(url):
+
+def fetch_url(url, accept=None):
+    """Fetch URL content with optional GitHub authentication."""
+    headers = {"User-Agent": "daemonless-versions/1.0"}
+
+    if "api.github.com" in url or "raw.githubusercontent.com" in url:
+        token = get_github_token()
+        if token:
+            headers["Authorization"] = f"token {token}"
+
+    if accept:
+        headers["Accept"] = accept
+
     try:
-        headers = {'User-Agent': 'daemonless/1.0'}
-        if "api.github.com" in url:
-            token = get_github_token()
-            if token:
-                headers['Authorization'] = f'token {token}'
-        
         req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req) as response:
-            return response.read().decode('utf-8')
+        with urllib.request.urlopen(req, timeout=30) as response:
+            return response.read().decode("utf-8")
     except urllib.error.HTTPError as e:
+        if e.code == 404:
+            return None
         if e.code == 403:
-            print(f"Rate limit exceeded for {url}", file=sys.stderr)
+            print(f"Rate limited: {url}", file=sys.stderr)
         else:
-            print(f"HTTP Error {e.code} fetching {url}: {e}", file=sys.stderr)
+            print(f"HTTP {e.code}: {url}", file=sys.stderr)
         return None
     except Exception as e:
         print(f"Error fetching {url}: {e}", file=sys.stderr)
         return None
 
+
+def list_repos():
+    """List all repos in the daemonless org via GitHub API."""
+    repos = []
+    page = 1
+    per_page = 100
+
+    while True:
+        url = f"{GITHUB_API}/orgs/{GITHUB_ORG}/repos?per_page={per_page}&page={page}"
+        content = fetch_url(url, accept="application/vnd.github.v3+json")
+        if not content:
+            break
+
+        data = json.loads(content)
+        if not data:
+            break
+
+        for repo in data:
+            name = repo.get("name")
+            if name and name not in SKIP_REPOS:
+                repos.append(name)
+
+        if len(data) < per_page:
+            break
+        page += 1
+
+    return sorted(repos)
+
+
+def fetch_containerfile(repo):
+    """Fetch Containerfile or Containerfile.pkg from repo."""
+    for filename in ["Containerfile", "Containerfile.pkg"]:
+        url = f"{RAW_GITHUB}/{GITHUB_ORG}/{repo}/main/{filename}"
+        content = fetch_url(url)
+        if content:
+            return content, filename
+
+    return None, None
+
+
 def resolve_vars(text, vars_dict):
-    """Recursively resolve ${VAR} in text using vars_dict."""
+    """Resolve ${VAR} references in text."""
     if not text:
         return text
-    # Simple regex for ${VAR}
-    pattern = re.compile(r'\$\{([a-zA-Z0-9_]+)\}')
-    
-    # Avoid infinite loops with a max_depth
+
+    pattern = re.compile(r"\$\{([a-zA-Z0-9_]+)\}")
+
     for _ in range(5):
         match = pattern.search(text)
         if not match:
@@ -120,172 +133,181 @@ def resolve_vars(text, vars_dict):
         var_name = match.group(1)
         val = vars_dict.get(var_name, "")
         text = text.replace(f"${{{var_name}}}", val)
+
     return text
 
-def parse_containerfile(filepath):
-    """
-    Parse Containerfile to extract ARGs and LABELs.
-    Returns a dict with 'envs' (arg values) and 'labels'.
-    """
+
+def parse_containerfile(content):
+    """Parse Containerfile content to extract ARGs and labels."""
     envs = {}
     labels = {}
-    
-    try:
-        with open(filepath, 'r') as f:
-            lines = f.readlines()
-            
-        for line in lines:
-            line = line.strip()
-            if line.startswith("ARG "):
-                content = line[4:].strip()
-                if "=" in content:
-                    key, val = content.split("=", 1)
-                    key = key.strip()
-                    val = val.strip()
-                    
-                    # Handle quoting
-                    if val.startswith('"') and val.endswith('"'):
-                        val = val[1:-1].replace(r'\"', '"')
-                    elif val.startswith("'") and val.endswith("'"):
-                        val = val[1:-1]
 
-                    val = resolve_vars(val, envs)
-                    envs[key] = val
-                    
-        # Robust label finding
-        content = "".join(lines).replace("\\\n", " ") 
-        
-        def find_label(name):
-            # match keys with values in:
-            # 1. Double quotes (allowing escaped quotes inside)
-            # 2. Single quotes
-            # 3. Bare words
-            pattern = re.compile(
-                rf"{re.escape(name)}\s*=\s*(?:\"((?:[^\"]|\\.)*)\"|'([^']*)'|([^\s]*))"
-            )
-            msg = pattern.search(content)
-            if msg:
-                # Group 1: Double quoted (may have escapes)
-                # Group 2: Single quoted
-                # Group 3: Bare
-                if msg.group(1) is not None:
-                    raw_val = msg.group(1).replace(r'\"', '"')
-                elif msg.group(2) is not None:
-                    raw_val = msg.group(2)
-                else:
-                    raw_val = msg.group(3)
-                    
-                return resolve_vars(raw_val, envs)
-            return None
+    # Handle line continuations (backslash + newline)
+    content_joined = re.sub(r"\\\s*\n\s*", " ", content)
+    lines = content_joined.splitlines()
 
-        labels["upstream-url"] = find_label("io.daemonless.upstream-url")
-        labels["upstream-jq"] = find_label("io.daemonless.upstream-jq")
-        labels["pkg-name"] = find_label("io.daemonless.pkg-name")
-        
-        # Fallback for ARG PKG_NAME if label missing
-        if not labels["pkg-name"]:
-            labels["pkg-name"] = envs.get("PKG_NAME")
-            
-        return labels
+    # Parse ARGs
+    for line in lines:
+        line = line.strip()
+        if line.startswith("ARG "):
+            arg_content = line[4:].strip()
+            if "=" in arg_content:
+                key, val = arg_content.split("=", 1)
+                key = key.strip()
+                val = val.strip()
 
-    except Exception as e:
-        print(f"Error parsing {filepath}: {e}", file=sys.stderr)
-        return {}
+                # Handle quoting
+                if val.startswith('"') and val.endswith('"'):
+                    val = val[1:-1].replace(r"\"", '"')
+                elif val.startswith("'") and val.endswith("'"):
+                    val = val[1:-1]
 
-def process_service(service_path):
-    service_name = os.path.basename(service_path)
-    
-    # 1. Parse Containerfile (preferred) or Containerfile.pkg
-    cf_path = os.path.join(service_path, "Containerfile")
-    if not os.path.exists(cf_path):
-        cf_path = os.path.join(service_path, "Containerfile.pkg")
-        
-    if not os.path.exists(cf_path):
+                val = resolve_vars(val, envs)
+                envs[key] = val
+
+    # Use the joined content for label searching
+    full_content = " ".join(lines)
+
+    def find_label(name):
+        """Find label value by name."""
+        pattern = re.compile(
+            rf'{re.escape(name)}\s*=\s*(?:"((?:[^"]|\\.)*)"|\'([^\']*)\'|([^\s]*))'
+        )
+        match = pattern.search(full_content)
+        if match:
+            if match.group(1) is not None:
+                raw_val = match.group(1).replace(r"\"", '"')
+            elif match.group(2) is not None:
+                raw_val = match.group(2)
+            else:
+                raw_val = match.group(3)
+            return resolve_vars(raw_val, envs)
         return None
 
-    info = parse_containerfile(cf_path)
-    pkg_name = info.get("pkg-name")
-    upstream_url = info.get("upstream-url")
-    upstream_jq = info.get("upstream-jq")
-    
-    # Fallback: if pkg_name not found but Containerfile.pkg exists, assume service_name or parse that file specifically
-    if not pkg_name and os.path.exists(os.path.join(service_path, "Containerfile.pkg")):
-         pkg_info = parse_containerfile(os.path.join(service_path, "Containerfile.pkg"))
-         pkg_name = pkg_info.get("pkg-name") or service_name
+    labels["upstream-url"] = find_label("io.daemonless.upstream-url")
+    labels["upstream-jq"] = find_label("io.daemonless.upstream-jq")
+    labels["pkg-name"] = find_label("io.daemonless.pkg-name")
+
+    # Fallback: ARG PKG_NAME
+    if not labels["pkg-name"]:
+        labels["pkg-name"] = envs.get("PKG_NAME")
+
+    return labels
+
+
+def get_pkg_version(pkg_name, repo_type):
+    """Query pkg version from FreeBSD repository."""
+    if not pkg_name:
+        return None
+
+    repo_name = f"FreeBSD-{repo_type}"
+    cmd = ["pkg", "rquery", "-r", repo_name, "%v", pkg_name]
+
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            return result.stdout.strip()
+    except Exception as e:
+        print(f"pkg query error for {pkg_name}: {e}", file=sys.stderr)
+
+    return None
+
+
+def get_upstream_version(upstream_url, upstream_jq):
+    """Fetch upstream version using URL and jq filter."""
+    if not upstream_url or not upstream_jq:
+        return None
+
+    content = fetch_url(upstream_url)
+    if not content:
+        return None
+
+    try:
+        result = subprocess.run(
+            ["jq", "-r", upstream_jq],
+            input=content,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        if result.returncode == 0:
+            val = result.stdout.strip()
+            if val and val != "null":
+                return val
+    except Exception as e:
+        print(f"jq error: {e}", file=sys.stderr)
+
+    return None
+
+
+def process_service(repo):
+    """Process a single service repo and return version info."""
+    print(f"Processing {repo}...", file=sys.stderr)
+
+    content, filename = fetch_containerfile(repo)
+    if not content:
+        print(f"  No Containerfile found", file=sys.stderr)
+        return None
+
+    labels = parse_containerfile(content)
+    pkg_name = labels.get("pkg-name")
+    upstream_url = labels.get("upstream-url")
+    upstream_jq = labels.get("upstream-jq")
+
+    # Fallback: if Containerfile.pkg exists but no pkg-name, use repo name
+    if not pkg_name and filename == "Containerfile.pkg":
+        pkg_name = repo
 
     result = {}
-    
-    # 1. Get PKG versions
+
+    # Get pkg versions
     if pkg_name:
         q_ver = get_pkg_version(pkg_name, "quarterly")
         l_ver = get_pkg_version(pkg_name, "latest")
-        
+
         if q_ver:
             result["pkg"] = q_ver
         if l_ver:
             result["pkg-latest"] = l_ver
 
-    # 2. Get Upstream version
+    # Get upstream version
     if upstream_url and upstream_jq:
-        content = fetch_url(upstream_url)
-        if content:
-            try:
-                # Use system jq
-                jq_cmd = ["jq", "-r", upstream_jq]
-                jq_proc = subprocess.Popen(jq_cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                out, err = jq_proc.communicate(input=content)
-                if jq_proc.returncode == 0:
-                    val = out.strip()
-                    if val and val != "null":
-                        result["upstream"] = val
-                else:
-                    print(f"jq error for {service_name}: {err}", file=sys.stderr)
-            except Exception as e:
-                print(f"Error running jq for {service_name}: {e}", file=sys.stderr)
+        u_ver = get_upstream_version(upstream_url, upstream_jq)
+        if u_ver:
+            result["upstream"] = u_ver
 
     if not result:
+        print(f"  No versions found", file=sys.stderr)
         return None
-        
-    return {service_name: result}
+
+    return result
+
 
 def main():
-    services = {}
-    
-    # Scan directories
-    services_dir = os.environ.get("SERVICES_DIR")
-    if services_dir:
-        scan_root = os.path.abspath(services_dir)
-    else:
-        scan_root = PARENT_DIR
+    print("Fetching repo list from GitHub...", file=sys.stderr)
+    repos = list_repos()
+    print(f"Found {len(repos)} repos", file=sys.stderr)
 
-    print(f"Scanning directories in: {scan_root}", file=sys.stderr)
-    
-    dirs_to_scan = sorted(glob.glob(os.path.join(scan_root, "*")))
-    print(f"Found {len(dirs_to_scan)} candidates.", file=sys.stderr)
-    
-    for d in dirs_to_scan:
-        if not os.path.isdir(d):
-            continue
-        name = os.path.basename(d)
-        if name in [".git", ".github", "scripts", "daemonless", "ahze.lan", "ahze.net"]: 
-            continue
-            
-        print(f"Checking {name}...", file=sys.stderr)
-        
-        if (os.path.exists(os.path.join(d, "Containerfile")) or 
-            os.path.exists(os.path.join(d, "Containerfile.pkg"))):
-            res = process_service(d)
-            if res:
-                services.update(res)
-        else:
-            print(f"  No Containerfile found in {name}", file=sys.stderr)
+    services = {}
+    for repo in repos:
+        result = process_service(repo)
+        if result:
+            services[repo] = result
 
     output = {
-        "last_check": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
-        "services": services
+        "last_check": datetime.datetime.now(datetime.timezone.utc)
+        .isoformat()
+        .replace("+00:00", "Z"),
+        "services": services,
     }
-    
+
     print(json.dumps(output, indent=2, sort_keys=True))
+
 
 if __name__ == "__main__":
     main()

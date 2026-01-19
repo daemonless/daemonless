@@ -18,32 +18,27 @@ jobs:
 
       - name: Check versions in FreeBSD VM
         uses: vmactions/freebsd-vm@v1.3.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release: "15.0"
           usesh: true
           copyback: true
-          # Upgrade base packages first to avoid ABI mismatches, then install dependencies
+          envs: 'GITHUB_TOKEN'
           prepare: |
             pkg upgrade -y
-            pkg install -y python3 git jq
+            pkg install -y python3 jq
+            # Configure both quarterly and latest repos for version checking
+            mkdir -p /usr/local/etc/pkg/repos
+            echo 'FreeBSD: { enabled: no }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+            echo 'FreeBSD-quarterly: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/quarterly", enabled: yes }' > /usr/local/etc/pkg/repos/quarterly.conf
+            echo 'FreeBSD-latest: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest", enabled: yes }' > /usr/local/etc/pkg/repos/latest.conf
+            pkg update -f
           run: |
-            set -e
-            # Clone all services to subdirectory
-            mkdir -p services
-            while read -r service; do
-              if [ -n "$service" ]; then
-                echo "Cloning $service..."
-                # Clone shallowly to save time
-                git clone --depth 1 "https://github.com/daemonless/$service" "services/$service" || echo "Failed to clone $service"
-              fi
-            done < scripts/services.txt
-            
-            # Run python generator
-            export SERVICES_DIR=services
             python3 scripts/generate_versions.py > daemonless-versions.json
             cat daemonless-versions.json
 
-      - name: Upload artifact (optional debugging)
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: daemonless-versions
@@ -53,8 +48,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # We only want to commit if there are changes
+
           if [[ -n $(git status -s daemonless-versions.json) ]]; then
             git add daemonless-versions.json
             git commit -m "Update daemonless-versions.json"
@@ -62,6 +56,3 @@ jobs:
           else
             echo "No changes to commit."
           fi
-
-      # TODO: Trigger rebuilds logic will need to be adapted to the new JSON structure
-      # For now, we are just generating the file as requested.
