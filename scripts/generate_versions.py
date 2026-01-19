@@ -15,6 +15,11 @@ import sys
 import urllib.error
 import urllib.request
 
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
 GITHUB_ORG = "daemonless"
 GITHUB_API = "https://api.github.com"
 RAW_GITHUB = "https://raw.githubusercontent.com"
@@ -115,6 +120,107 @@ def fetch_containerfiles(repo):
         if content:
             results[filename] = content
     return results
+
+
+def parse_simple_yaml(content):
+    """Simple YAML parser for config.yaml when PyYAML not available."""
+    if not content:
+        return None
+
+    result = {}
+    current_section = None
+    current_subsection = None
+
+    for line in content.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+
+        # Calculate indent level
+        indent = len(line) - len(line.lstrip())
+
+        # Parse key: value
+        if ":" in stripped:
+            key, _, value = stripped.partition(":")
+            key = key.strip()
+            value = value.strip()
+
+            # Remove quotes from value
+            if value.startswith('"') and value.endswith('"'):
+                value = value[1:-1]
+            elif value.startswith("'") and value.endswith("'"):
+                value = value[1:-1]
+
+            if indent == 0:
+                # Top-level key
+                if value:
+                    result[key] = value
+                else:
+                    result[key] = {}
+                    current_section = key
+                    current_subsection = None
+            elif indent == 2 and current_section:
+                # Section-level key
+                if isinstance(result.get(current_section), dict):
+                    if value:
+                        result[current_section][key] = value
+                    else:
+                        result[current_section][key] = {}
+                        current_subsection = key
+            elif indent == 4 and current_section and current_subsection:
+                # Subsection-level key
+                section = result.get(current_section)
+                if isinstance(section, dict):
+                    subsection = section.get(current_subsection)
+                    if isinstance(subsection, dict):
+                        subsection[key] = value
+
+        # Handle list items (- value)
+        elif stripped.startswith("- "):
+            item = stripped[2:].strip()
+            # Parse inline dict { key: val, ... }
+            if item.startswith("{") and item.endswith("}"):
+                item_dict = {}
+                inner = item[1:-1]
+                for part in inner.split(","):
+                    if ":" in part:
+                        k, _, v = part.partition(":")
+                        k = k.strip()
+                        v = v.strip().strip('"').strip("'")
+                        item_dict[k] = v
+                item = item_dict
+
+            if current_section and current_subsection:
+                section = result.get(current_section)
+                if isinstance(section, dict):
+                    subsection = section.get(current_subsection)
+                    if not isinstance(subsection, list):
+                        result[current_section][current_subsection] = []
+                    result[current_section][current_subsection].append(item)
+
+    return result
+
+
+def get_config_yaml(repo):
+    """Fetch and parse .daemonless/config.yaml from repo."""
+    url = f"{RAW_GITHUB}/{GITHUB_ORG}/{repo}/main/.daemonless/config.yaml"
+    content = fetch_url(url)
+    if not content:
+        return None
+
+    if yaml:
+        try:
+            return yaml.safe_load(content)
+        except Exception as e:
+            print(f"  Error parsing config.yaml with PyYAML: {e}", file=sys.stderr)
+            return None
+    else:
+        # Fall back to simple parser
+        try:
+            return parse_simple_yaml(content)
+        except Exception as e:
+            print(f"  Error parsing config.yaml: {e}", file=sys.stderr)
+            return None
 
 
 def resolve_vars(text, vars_dict):
@@ -256,9 +362,91 @@ def get_upstream_version(upstream_url, upstream_jq):
     return None
 
 
+def process_multi_version_service(repo, config):
+    """Process a multi-version service using config.yaml variants."""
+    versions_config = config.get("versions", {})
+    variants = versions_config.get("variants", [])
+
+    if not variants:
+        return None
+
+    result = {
+        "type": "multi-version",
+        "variants": {},
+    }
+
+    # Find default variant
+    default_variant = None
+    for variant in variants:
+        if variant.get("default"):
+            default_variant = variant.get("id")
+            break
+
+    if default_variant:
+        result["default"] = default_variant
+
+    # Process each variant
+    for variant in variants:
+        variant_id = variant.get("id")
+        if not variant_id:
+            continue
+
+        pkg_name = variant.get("pkg_name")
+        if not pkg_name:
+            continue
+
+        # Determine which pkg repo to query based on variant id
+        # Variants ending in -pkg-latest use "latest" repo, others use "quarterly"
+        if variant_id.endswith("-pkg-latest"):
+            # This is a pkg-latest variant
+            l_ver = get_pkg_version(pkg_name, "latest")
+            if l_ver:
+                result["variants"][variant_id] = {"pkg-latest": l_ver}
+        else:
+            # This is a quarterly (pkg) variant
+            q_ver = get_pkg_version(pkg_name, "quarterly")
+            if q_ver:
+                result["variants"][variant_id] = {"pkg": q_ver}
+
+    # Consolidate: group by major version
+    # e.g., "14" and "14-pkg-latest" -> "14": {"pkg": x, "pkg-latest": y}
+    consolidated = {}
+    for variant_id, versions in result["variants"].items():
+        # Extract base version (e.g., "14" from "14-pkg-latest")
+        base_version = variant_id.replace("-pkg-latest", "")
+
+        if base_version not in consolidated:
+            consolidated[base_version] = {}
+
+        consolidated[base_version].update(versions)
+
+    if consolidated:
+        result["variants"] = consolidated
+
+    if not result["variants"]:
+        return None
+
+    return result
+
+
 def process_service(repo):
     """Process a single service repo and return version info."""
     print(f"Processing {repo}...", file=sys.stderr)
+
+    # First check for config.yaml with versions section
+    config = get_config_yaml(repo)
+    if config and "versions" in config:
+        versions_config = config["versions"]
+
+        # Check if multi-version service
+        if versions_config.get("type") == "multi-version":
+            print(f"  Multi-version service detected", file=sys.stderr)
+            return process_multi_version_service(repo, config)
+
+        # Simple config with just pkg_name override
+        pkg_name_override = versions_config.get("pkg_name")
+        if pkg_name_override:
+            print(f"  Using pkg_name from config: {pkg_name_override}", file=sys.stderr)
 
     files = fetch_containerfiles(repo)
     if not files:
@@ -286,6 +474,12 @@ def process_service(repo):
         if not upstream_url:
             upstream_url = pkg_labels.get("upstream-url")
             upstream_jq = pkg_labels.get("upstream-jq")
+
+    # Override pkg_name from config.yaml if specified
+    if config and "versions" in config:
+        pkg_name_override = config["versions"].get("pkg_name")
+        if pkg_name_override:
+            pkg_name = pkg_name_override
 
     result = {}
 

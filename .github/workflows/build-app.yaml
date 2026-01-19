@@ -44,7 +44,28 @@ jobs:
         run: |
           # If image_tag is provided, skip auto-detection (manual mode)
           if [ -n "${{ inputs.image_tag }}" ]; then
-            matrix='{"include":[{"containerfile":"Containerfile","tag":"${{ inputs.image_tag }}","base_version":"","version_suffix":"","push_latest":""}]}'
+            tag="${{ inputs.image_tag }}"
+
+            # Select containerfile based on tag name
+            # Tags containing "pkg" use Containerfile.pkg, others use Containerfile
+            if [[ "$tag" == "pkg" || "$tag" == "pkg-latest" || "$tag" == *"-pkg" || "$tag" == *"-pkg-latest" ]]; then
+              cf="Containerfile.pkg"
+            else
+              cf="Containerfile"
+            fi
+
+            # Fall back if preferred file doesn't exist
+            if [ ! -f "$cf" ]; then
+              if [ -f "Containerfile" ]; then
+                cf="Containerfile"
+              elif [ -f "Containerfile.pkg" ]; then
+                cf="Containerfile.pkg"
+              else
+                echo "ERROR: No Containerfile or Containerfile.pkg found"
+                exit 1
+              fi
+            fi
+            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"\",\"push_latest\":\"\"}]}"
             echo "Manual mode: $matrix"
             echo "matrix=$matrix" >> $GITHUB_OUTPUT
             echo "compose_only=false" >> $GITHUB_OUTPUT

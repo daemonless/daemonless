@@ -9,6 +9,7 @@
 # Script artifacts
 /tmp/
 /scripts/*.orig
+__pycache__/
 
 # Editor files
 .vscode/
