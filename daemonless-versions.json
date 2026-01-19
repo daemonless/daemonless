@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-01-19T22:55:12.914492Z",
+  "last_check": "2026-01-19T23:13:56.147467Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_1",
@@ -49,6 +49,8 @@
       "upstream": "2.3.6"
     },
     "nextcloud": {
+      "pkg": "32.0.3_4",
+      "pkg-latest": "32.0.5",
       "upstream": "v32.0.5"
     },
     "openspeedtest": {
@@ -118,9 +120,13 @@
       "upstream": "v3.6.7"
     },
     "transmission": {
+      "pkg": "4.0.6_7",
+      "pkg-latest": "4.0.6_7",
       "upstream": "4.0.6"
     },
     "transmission-wireguard": {
+      "pkg": "4.0.6_7",
+      "pkg-latest": "4.0.6_7",
       "upstream": "4.0.6"
     },
     "unifi": {
@@ -132,6 +138,8 @@
       "upstream": "2.0.2"
     },
     "vaultwarden": {
+      "pkg": "1.35.2",
+      "pkg-latest": "1.35.2",
       "upstream": "1.35.2"
     },
     "woodpecker": {
