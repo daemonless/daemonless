@@ -22,8 +22,9 @@ jobs:
           release: "15.0"
           usesh: true
           copyback: true
-          # Install python3 and dependencies
+          # Upgrade base packages first to avoid ABI mismatches, then install dependencies
           prepare: |
+            pkg upgrade -y
             pkg install -y python3 git jq
           run: |
             set -e
