@@ -27,7 +27,7 @@ jobs:
           envs: 'GITHUB_TOKEN'
           prepare: |
             pkg upgrade -y
-            pkg install -y python3 jq
+            pkg install -y python3 py311-pyyaml jq
             # Configure both quarterly and latest repos for version checking
             # Use https:// instead of pkg+http:// to avoid SRV lookup issues
             mkdir -p /usr/local/etc/pkg/repos
