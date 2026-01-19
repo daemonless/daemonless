@@ -22,109 +22,34 @@ jobs:
           release: "15.0"
           usesh: true
           copyback: true
+          # Install python3 and dependencies
+          prepare: |
+            pkg install -y python3
           run: |
             set -e
+            # Run python generator
+            python3 scripts/generate_versions.py > daemonless-versions.json
+            cat daemonless-versions.json
 
-            # Install dependencies
-            pkg update -q
-            pkg install -y skopeo jq
-
-            # Run dynamic version checker (outputs JSON)
-            chmod +x scripts/check-upstream-dynamic.sh
-            ./scripts/check-upstream-dynamic.sh > versions-output.json
-
-            cat versions-output.json
-
-      - name: Compare with stored versions
-        id: compare
-        run: |
-          set -e
-
-          CHANGES=""
-
-          # Compare upstream versions from JSON output
-          if [ -f versions-output.json ] && [ -f versions.json ]; then
-            # Get all upstream apps from the new output
-            for app in $(jq -r '.upstream | keys[]' versions-output.json 2>/dev/null); do
-              new_ver=$(jq -r ".upstream.\"$app\"" versions-output.json)
-              stored=$(jq -r ".upstream.\"$app\" // \"\"" versions.json)
-
-              if [ -n "$stored" ] && [ "$stored" != "$new_ver" ] && [ "$new_ver" != "unknown" ]; then
-                CHANGES="${CHANGES}${app} ${stored}->${new_ver}\n"
-              fi
-            done
-          fi
-
-          if [ -n "$CHANGES" ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "changes<<EOF" >> $GITHUB_OUTPUT
-            echo -e "$CHANGES" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
-            echo "::notice::Version changes detected"
-            echo -e "$CHANGES"
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "::notice::No version changes detected"
-          fi
-
-      - name: Update versions.json
-        if: steps.compare.outputs.changed == 'true'
-        run: |
-          set -e
-
-          # Merge upstream versions from JSON output into versions.json
-          for app in $(jq -r '.upstream | keys[]' versions-output.json 2>/dev/null); do
-            new_ver=$(jq -r ".upstream.\"$app\"" versions-output.json)
-            if [ "$new_ver" != "unknown" ] && [ -n "$new_ver" ]; then
-              jq ".upstream.\"$app\" = \"$new_ver\"" versions.json > tmp.json && mv tmp.json versions.json
-            fi
-          done
-
-          # Update timestamp
-          jq ".last_check = \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" versions.json > tmp.json && mv tmp.json versions.json
+      - name: Upload artifact (optional debugging)
+        uses: actions/upload-artifact@v4
+        with:
+          name: daemonless-versions
+          path: daemonless-versions.json
 
       - name: Commit changes
-        if: steps.compare.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add versions.json
-          git commit -m "Update versions: $(echo '${{ steps.compare.outputs.changes }}' | head -3 | tr '\n' ' ')"
-          git push
+          
+          # We only want to commit if there are changes
+          if [[ -n $(git status -s daemonless-versions.json) ]]; then
+            git add daemonless-versions.json
+            git commit -m "Update daemonless-versions.json"
+            git push
+          else
+            echo "No changes to commit."
+          fi
 
-      - name: Trigger rebuilds
-        if: steps.compare.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.REBUILD_TOKEN }}
-        run: |
-          set -e
-
-          # Parse changes (format: "app old->new") and trigger appropriate builds
-          echo '${{ steps.compare.outputs.changes }}' | while read -r line; do
-            [ -z "$line" ] && continue
-
-            # Extract app name (first word before space)
-            app=$(echo "$line" | cut -d' ' -f1)
-            [ -z "$app" ] && continue
-
-            echo "Processing: $app"
-
-            # Map image names to repo names and trigger builds
-            case "$app" in
-              radarr|sonarr|prowlarr|lidarr|readarr|sabnzbd|tautulli|jellyfin|traefik|tailscale|vaultwarden|smokeping|woodpecker|mealie|n8n|overseerr|openspeedtest|plex|unifi)
-                echo "Triggering build for: $app"
-                gh workflow run build.yml --repo "daemonless/$app" --ref main || echo "Failed to trigger $app"
-                ;;
-              immich-server|immich-ml|uptime-kuma|arr-base|nginx-base)
-                echo "Triggering build for: $app"
-                gh workflow run build.yml --repo "daemonless/$app" --ref main || echo "Failed to trigger $app"
-                ;;
-              gitea|nextcloud|organizr|transmission)
-                echo "Triggering build for: $app"
-                gh workflow run build.yml --repo "daemonless/$app" --ref main || echo "Failed to trigger $app"
-                ;;
-              *)
-                echo "Unknown app: $app - skipping"
-                ;;
-            esac
-          done
+      # TODO: Trigger rebuilds logic will need to be adapted to the new JSON structure
+      # For now, we are just generating the file as requested.
