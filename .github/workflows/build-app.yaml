@@ -237,14 +237,15 @@ jobs:
             # Always copy any temp screenshots to results (for debugging failures)
             cp /tmp/cit-screenshot*.png /mnt/freebsd-vm/cit-results/ 2>/dev/null || true
 
-            # Fail if cit failed
-            if [ $cit_exit -ne 0 ]; then
-              echo "cit failed with exit code $cit_exit"
-              exit $cit_exit
-            fi
+            # Save cit exit code to file (don't exit here - let copyback happen first)
+            echo "$cit_exit" > /mnt/freebsd-vm/cit-results/cit-exit-code
 
-            # Push only after cit passes (non-PR)
-            if [ "${{ github.event_name }}" != "pull_request" ]; then
+            # Only push if cit passed and not a PR
+            if [ $cit_exit -ne 0 ]; then
+              echo "cit failed with exit code $cit_exit - skipping push"
+            elif [ "${{ github.event_name }}" = "pull_request" ]; then
+              echo "PR build - skipping push"
+            else
               echo "=== Pushing image ==="
               echo "$GITHUB_TOKEN" | podman login ${{ env.REGISTRY }} -u $GITHUB_ACTOR --password-stdin
               ./scripts/build.sh \
@@ -269,6 +270,17 @@ jobs:
           name: cit-results-${{ matrix.tag }}
           path: /mnt/freebsd-vm/cit-results/
           retention-days: 30
+
+      - name: Check cit result
+        if: always()
+        run: |
+          if [ -f /mnt/freebsd-vm/cit-results/cit-exit-code ]; then
+            exit_code=$(cat /mnt/freebsd-vm/cit-results/cit-exit-code)
+            if [ "$exit_code" != "0" ]; then
+              echo "cit failed with exit code $exit_code"
+              exit $exit_code
+            fi
+          fi
 
       - name: Discord notification
         if: always()
