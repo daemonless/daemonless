@@ -223,22 +223,22 @@ jobs:
               pkg install -y ${{ env.COMPOSE_PACKAGES }}
             fi
 
-            mkdir -p /mnt/freebsd-vm/cit-results
+            mkdir -p cit-results
 
             # Run cit and capture exit code (don't fail immediately)
             cit_exit=0
             ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
               --repo . \
               --tag ${{ matrix.tag }} \
-              --json /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
-              --screenshot /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
+              --json cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
+              --screenshot cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
               --verbose || cit_exit=$?
 
             # Always copy any temp screenshots to results (for debugging failures)
-            cp /tmp/cit-screenshot*.png /mnt/freebsd-vm/cit-results/ 2>/dev/null || true
+            cp /tmp/cit-screenshot*.png cit-results/ 2>/dev/null || true
 
             # Save cit exit code to file (don't exit here - let copyback happen first)
-            echo "$cit_exit" > /mnt/freebsd-vm/cit-results/cit-exit-code
+            echo "$cit_exit" > cit-results/cit-exit-code
 
             # Only push if cit passed and not a PR
             if [ $cit_exit -ne 0 ]; then
@@ -268,18 +268,20 @@ jobs:
         if: always()
         with:
           name: cit-results-${{ matrix.tag }}
-          path: /mnt/freebsd-vm/cit-results/
+          path: cit-results/
           retention-days: 30
 
       - name: Check cit result
         if: always()
         run: |
-          if [ -f /mnt/freebsd-vm/cit-results/cit-exit-code ]; then
-            exit_code=$(cat /mnt/freebsd-vm/cit-results/cit-exit-code)
-            if [ "$exit_code" != "0" ]; then
-              echo "cit failed with exit code $exit_code"
-              exit $exit_code
-            fi
+          if [ ! -f cit-results/cit-exit-code ]; then
+            echo "ERROR: cit-exit-code file not found - copyback may have failed"
+            exit 1
+          fi
+          exit_code=$(cat cit-results/cit-exit-code)
+          if [ "$exit_code" != "0" ]; then
+            echo "cit failed with exit code $exit_code"
+            exit $exit_code
           fi
 
       - name: Discord notification
@@ -356,11 +358,11 @@ jobs:
             ./cit-${{ env.CIT_VERSION }}/cit --setup
 
             # Run cit in compose mode (no image arg - detected from config)
-            mkdir -p /mnt/freebsd-vm/cit-results
+            mkdir -p cit-results
             ./cit-${{ env.CIT_VERSION }}/cit \
               --repo . \
-              --json /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}.json \
-              --screenshot /mnt/freebsd-vm/cit-results/${{ inputs.image_name }}.png \
+              --json cit-results/${{ inputs.image_name }}.json \
+              --screenshot cit-results/${{ inputs.image_name }}.png \
               --verbose
 
       - name: Upload test artifacts
@@ -368,7 +370,7 @@ jobs:
         if: always()
         with:
           name: cit-results
-          path: /mnt/freebsd-vm/cit-results/
+          path: cit-results/
           retention-days: 30
 
       - name: Discord notification
