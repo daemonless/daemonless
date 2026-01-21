@@ -392,3 +392,19 @@ jobs:
           curl -sS -H "Content-Type: application/json" \
             -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }} compose test $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true}]}]}" \
             "$DISCORD_WEBHOOK"
+
+  # Trigger status page update after successful builds
+  notify-status:
+    needs: [build, test-compose]
+    if: always() && !failure() && !cancelled() && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger status update
+        env:
+          DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+        run: |
+          curl -X POST \
+            -H "Authorization: token $DISPATCH_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/daemonless/daemonless-io/dispatches \
+            -d '{"event_type": "status-update", "client_payload": {"image": "${{ inputs.image_name }}"}}'
