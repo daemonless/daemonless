@@ -14,8 +14,12 @@ from pathlib import Path
 VERSIONS_FILE = Path(__file__).parent.parent / "daemonless-versions.json"
 ORG = "daemonless"
 
-def get_deployed_versions(package: str) -> dict:
-    """Get currently deployed versions from ghcr.io tags."""
+def get_deployed_versions(package: str, variant: str = None) -> dict:
+    """Get currently deployed versions from ghcr.io tags.
+
+    If variant is specified (e.g., "14" for postgres), only look for tags
+    matching that variant (14-pkg, 14-pkg-latest, 14.x.x).
+    """
     try:
         # Get all version info with tags grouped
         result = subprocess.run(
@@ -41,31 +45,48 @@ def get_deployed_versions(package: str) -> dict:
 
         # Check if this version has the 'latest' alias alongside a pkg tag
         has_latest = "latest" in tags
-        has_pkg_latest = "pkg-latest" in tags
-        has_pkg = "pkg" in tags
 
-        for tag in tags:
-            if tag in ("latest", "pkg", "pkg-latest"):
-                continue
-            if tag.endswith("-pkg-latest"):
-                # Only set if not already set (newest first from API)
-                if "pkg-latest" not in deployed:
-                    deployed["pkg-latest"] = tag.replace("-pkg-latest", "")
-                if has_latest:
-                    latest_is_pkg = True
-            elif tag.endswith("-pkg"):
-                if "pkg" not in deployed:
-                    deployed["pkg"] = tag.replace("-pkg", "")
-                if has_latest:
-                    latest_is_pkg = True
-            elif not "-" in tag or re.match(r"^\d+\.\d+", tag):
-                # Version tag without suffix = latest/upstream
-                if "latest" not in deployed and not latest_is_pkg:
-                    deployed["latest"] = tag
+        if variant:
+            # Multi-version mode: look for variant-specific tags
+            variant_pkg = f"{variant}-pkg"
+            variant_pkg_latest = f"{variant}-pkg-latest"
 
-    # If latest is just an alias to pkg, don't track it separately
-    if latest_is_pkg:
-        deployed.pop("latest", None)
+            for tag in tags:
+                # Match version tags like "14.20" for variant "14"
+                if tag.startswith(f"{variant}.") and "-" not in tag:
+                    if "pkg" not in deployed:
+                        # This is the version number for the variant
+                        deployed["pkg"] = tag
+                        deployed["pkg-latest"] = tag  # Same for pkg-based builds
+                # Match explicit variant-pkg tags
+                if variant_pkg in tags and tag.startswith(f"{variant}."):
+                    deployed["pkg"] = tag
+                if variant_pkg_latest in tags and tag.startswith(f"{variant}."):
+                    deployed["pkg-latest"] = tag
+        else:
+            # Standard single-version mode
+            for tag in tags:
+                if tag in ("latest", "pkg", "pkg-latest"):
+                    continue
+                if tag.endswith("-pkg-latest"):
+                    # Only set if not already set (newest first from API)
+                    if "pkg-latest" not in deployed:
+                        deployed["pkg-latest"] = tag.replace("-pkg-latest", "")
+                    if has_latest:
+                        latest_is_pkg = True
+                elif tag.endswith("-pkg"):
+                    if "pkg" not in deployed:
+                        deployed["pkg"] = tag.replace("-pkg", "")
+                    if has_latest:
+                        latest_is_pkg = True
+                elif not "-" in tag or re.match(r"^\d+\.\d+", tag):
+                    # Version tag without suffix = latest/upstream
+                    if "latest" not in deployed and not latest_is_pkg:
+                        deployed["latest"] = tag
+
+            # If latest is just an alias to pkg, don't track it separately
+            if latest_is_pkg:
+                deployed.pop("latest", None)
 
     return deployed
 
@@ -74,8 +95,13 @@ def normalize_version(v: str) -> str:
     """Normalize version for comparison (strip 'v' prefix, handle epoch commas, etc)."""
     if not v:
         return ""
-    # Strip v prefix, convert commas to underscores (OCI tags can't have commas)
-    return v.lstrip("v").replace(",", "_")
+    v = v.lstrip("v")
+    # Convert commas to underscores (OCI tags can't have commas)
+    v = v.replace(",", "_")
+    # Strip FreeBSD port revision suffix (_N) for comparison
+    # e.g., 14.20_1 -> 14.20, 17.7_1 -> 17.7
+    v = re.sub(r'_\d+$', '', v)
+    return v
 
 
 def versions_match(available: str, deployed: str) -> bool:
@@ -187,8 +213,26 @@ def main():
     if not args.quiet and args.format == "text":
         print(f"Checking {len(services)} services against ghcr.io...\n", file=sys.stderr)
 
-    for name, versions in sorted(services.items()):
-        deployed = get_deployed_versions(name)
+    # Expand multi-version services into separate entries
+    expanded_services = {}
+    for name, versions in services.items():
+        if versions.get("type") == "multi-version":
+            # Expand variants into separate entries (e.g., postgres-14, postgres-17)
+            for variant_id, variant_versions in versions.get("variants", {}).items():
+                expanded_name = f"{name}-{variant_id}"
+                expanded_services[expanded_name] = {
+                    "_base_name": name,
+                    "_variant": variant_id,
+                    **variant_versions
+                }
+        else:
+            expanded_services[name] = versions
+
+    for name, versions in sorted(expanded_services.items()):
+        base_name = versions.get("_base_name", name)
+        variant = versions.get("_variant")
+
+        deployed = get_deployed_versions(base_name, variant)
         deployed_info[name] = deployed
 
         if not deployed:
@@ -233,7 +277,7 @@ def main():
     if args.format == "json":
         output_json(outdated, current, errors)
     elif args.format == "markdown":
-        output_markdown(outdated, current, errors, services, deployed_info)
+        output_markdown(outdated, current, errors, expanded_services, deployed_info)
     else:
         output_text(outdated, current, errors)
 
