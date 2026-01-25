@@ -3,7 +3,7 @@
 # Shared build script for daemonless base image
 # Works with both GitHub Actions (via vmactions) and Woodpecker CI
 #
-# Version: 1.0.0
+# Version: 1.1.0
 #
 # Usage: ./scripts/build-base.sh [OPTIONS]
 #   --registry REGISTRY       Container registry (default: ghcr.io)
@@ -17,7 +17,7 @@
 #
 set -e
 
-BUILD_SCRIPT_VERSION="1.0.0"
+BUILD_SCRIPT_VERSION="1.1.0"
 
 # Defaults
 REGISTRY="${REGISTRY:-ghcr.io}"
@@ -89,10 +89,13 @@ if [ ! -d "$BUILD_DIR" ]; then
 fi
 
 # Determine tags
+# quarterly = stable default (:15), latest = bleeding edge (:15-latest)
 if [ "$PKG_BRANCH" = "quarterly" ]; then
-    PRIMARY_TAG="${FREEBSD_VERSION}-quarterly"
-else
     PRIMARY_TAG="${FREEBSD_VERSION}"
+    ALIAS_TAG="${FREEBSD_VERSION}-quarterly"
+else
+    PRIMARY_TAG="${FREEBSD_VERSION}-latest"
+    ALIAS_TAG=""
 fi
 
 echo "=== Build Configuration ==="
@@ -135,19 +138,26 @@ $PODMAN images | grep -E "(REPOSITORY|${IMAGE_NAME})" || true
 
 # Push if requested
 if [ "$DO_PUSH" = "true" ]; then
-    # Push primary tag (e.g., :15 or :15-quarterly)
+    # Push primary tag (e.g., :15 for quarterly, :15-latest for latest)
     echo "=== Tagging and Pushing :${PRIMARY_TAG} ==="
     $PODMAN tag "${IMAGE_NAME}:build" "${IMAGE_NAME}:${PRIMARY_TAG}"
     $PODMAN push "${IMAGE_NAME}:${PRIMARY_TAG}"
 
-    # Push full version tag (e.g., :15.0-RELEASE-p1) - only for latest branch
-    if [ "$PKG_BRANCH" = "latest" ] && [ -n "$VERSION" ]; then
+    # Push alias tag if set (e.g., :15-quarterly for quarterly builds)
+    if [ -n "$ALIAS_TAG" ]; then
+        echo "=== Tagging and Pushing :${ALIAS_TAG} ==="
+        $PODMAN tag "${IMAGE_NAME}:build" "${IMAGE_NAME}:${ALIAS_TAG}"
+        $PODMAN push "${IMAGE_NAME}:${ALIAS_TAG}"
+    fi
+
+    # Push full version tag (e.g., :15.0-RELEASE-p1) - only for quarterly (stable)
+    if [ "$PKG_BRANCH" = "quarterly" ] && [ -n "$VERSION" ]; then
         echo "=== Tagging and Pushing :${VERSION} ==="
         $PODMAN tag "${IMAGE_NAME}:build" "${IMAGE_NAME}:${VERSION}"
         $PODMAN push "${IMAGE_NAME}:${VERSION}"
     fi
 
-    # Push :latest if requested
+    # Push :latest if requested (for quarterly/stable builds)
     if [ "$PUSH_LATEST" = "true" ]; then
         echo "=== Pushing :latest ==="
         $PODMAN tag "${IMAGE_NAME}:build" "${IMAGE_NAME}:latest"
