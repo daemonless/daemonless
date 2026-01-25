@@ -62,7 +62,7 @@ if [ -f "Containerfile" ]; then
         echo ">> Building :pkg-latest"
         run_build \
             --containerfile Containerfile \
-            --base-version 15 \
+            --base-version 15-latest \
             --tag pkg-latest \
             --tag-version \
             --version-suffix "-pkg-latest" \
@@ -95,7 +95,7 @@ if [ -f "Containerfile.pkg" ]; then
     echo ">> Building :pkg-latest"
     run_build \
         --containerfile Containerfile.pkg \
-        --base-version 15 \
+        --base-version 15-latest \
         --tag pkg-latest \
         --tag-version \
         --version-suffix "-pkg-latest"
