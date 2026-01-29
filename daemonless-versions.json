@@ -1,8 +1,8 @@
 {
-  "last_check": "2026-01-22T06:27:35.993874Z",
+  "last_check": "2026-01-29T09:48:44.866727Z",
   "services": {
     "adguardhome": {
-      "pkg": "0.107.69_1",
+      "pkg": "0.107.69_2",
       "pkg-latest": "0.107.71",
       "upstream": "v0.107.71"
     },
@@ -10,11 +10,11 @@
       "upstream": "v0.8.2"
     },
     "cloudflared": {
-      "pkg": "2025.8.0_4",
+      "pkg": "2025.8.0_5",
       "pkg-latest": "2025.8.0_5"
     },
     "gitea": {
-      "pkg": "1.24.2_7",
+      "pkg": "1.24.2_8",
       "pkg-latest": "1.24.2_8",
       "upstream": "v1.25.4"
     },
@@ -24,15 +24,15 @@
       "upstream": "v1.9.0"
     },
     "hugo": {
-      "pkg": "0.154.5,1",
+      "pkg": "0.154.5_1,1",
       "pkg-latest": "0.154.5_1,1",
-      "upstream": "v0.154.5"
+      "upstream": "v0.155.0"
     },
     "immich-ml": {
-      "upstream": "v2.4.1"
+      "upstream": "v2.5.0"
     },
     "immich-server": {
-      "upstream": "v2.4.1"
+      "upstream": "v2.5.0"
     },
     "jellyfin": {
       "pkg": "10.11.5",
@@ -44,11 +44,21 @@
       "pkg-latest": "3.1.0.4875",
       "upstream": "3.1.0.4875"
     },
+    "mariadb": {
+      "default": "11.4",
+      "type": "multi-version",
+      "variants": {
+        "11.4": {
+          "pkg": "11.4.9",
+          "pkg-latest": "11.4.9"
+        }
+      }
+    },
     "mealie": {
       "upstream": "v3.9.2"
     },
     "n8n": {
-      "upstream": "2.4.4"
+      "upstream": "2.4.6"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
@@ -107,9 +117,9 @@
       "upstream": "4.0.16.2944"
     },
     "tailscale": {
-      "pkg": "1.92.5",
+      "pkg": "1.92.5_1",
       "pkg-latest": "1.92.5_1",
-      "upstream": "v1.92.5"
+      "upstream": "v1.94.1"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
@@ -117,19 +127,19 @@
       "upstream": "v2.16.0"
     },
     "traefik": {
-      "pkg": "3.6.6",
+      "pkg": "3.6.6_1",
       "pkg-latest": "3.6.6_1",
       "upstream": "v3.6.7"
     },
     "transmission": {
       "pkg": "4.0.6_7",
       "pkg-latest": "4.0.6_7",
-      "upstream": "4.0.6"
+      "upstream": "4.1.0"
     },
     "transmission-wireguard": {
       "pkg": "4.0.6_7",
       "pkg-latest": "4.0.6_7",
-      "upstream": "4.0.6"
+      "upstream": "4.1.0"
     },
     "unifi": {
       "pkg": "10.0.160",

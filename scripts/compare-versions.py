@@ -52,17 +52,21 @@ def get_deployed_versions(package: str, variant: str = None) -> dict:
             variant_pkg_latest = f"{variant}-pkg-latest"
 
             for tag in tags:
-                # Match version tags like "14.20" for variant "14"
-                if tag.startswith(f"{variant}.") and "-" not in tag:
+                # Match version tags like "14.20-pkg" or "14.20-pkg-latest" for variant "14"
+                if tag.endswith("-pkg-latest") and tag.startswith(f"{variant}."):
+                    # e.g., "14.20-pkg-latest" -> "14.20"
+                    version = tag.replace("-pkg-latest", "")
+                    deployed["pkg-latest"] = version
+                elif tag.endswith("-pkg") and tag.startswith(f"{variant}."):
+                    # e.g., "14.20-pkg" -> "14.20"
+                    version = tag.replace("-pkg", "")
+                    deployed["pkg"] = version
+                # Also match legacy tags without suffix (e.g., "14.20")
+                elif tag.startswith(f"{variant}.") and "-" not in tag:
                     if "pkg" not in deployed:
-                        # This is the version number for the variant
                         deployed["pkg"] = tag
-                        deployed["pkg-latest"] = tag  # Same for pkg-based builds
-                # Match explicit variant-pkg tags
-                if variant_pkg in tags and tag.startswith(f"{variant}."):
-                    deployed["pkg"] = tag
-                if variant_pkg_latest in tags and tag.startswith(f"{variant}."):
-                    deployed["pkg-latest"] = tag
+                    if "pkg-latest" not in deployed:
+                        deployed["pkg-latest"] = tag
         else:
             # Standard single-version mode
             for tag in tags:

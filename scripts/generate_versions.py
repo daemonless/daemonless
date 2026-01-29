@@ -24,6 +24,16 @@ GITHUB_ORG = "daemonless"
 GITHUB_API = "https://api.github.com"
 RAW_GITHUB = "https://raw.githubusercontent.com"
 
+# FreeBSD pkg repository base URLs
+FREEBSD_PKG_BASE = "http://pkg.FreeBSD.org/FreeBSD:15:amd64"
+PKG_REPOS = {
+    "quarterly": f"{FREEBSD_PKG_BASE}/quarterly",
+    "latest": f"{FREEBSD_PKG_BASE}/latest",
+}
+
+# Cache for pkg indices (loaded lazily)
+_pkg_index_cache = {}
+
 # Repos to skip (not services)
 SKIP_REPOS = {
     "daemonless",
@@ -312,27 +322,84 @@ def parse_containerfile(content, repo_name=None):
     return labels
 
 
+def load_pkg_index(repo_type):
+    """Load and cache the package index from FreeBSD pkg server."""
+    if repo_type in _pkg_index_cache:
+        return _pkg_index_cache[repo_type]
+
+    repo_url = PKG_REPOS.get(repo_type)
+    if not repo_url:
+        print(f"Unknown repo type: {repo_type}", file=sys.stderr)
+        return {}
+
+    # Fetch packagesite.pkg and extract using command-line tools
+    # FreeBSD 15 uses zstd-compressed tar archives
+    pkg_url = f"{repo_url}/packagesite.pkg"
+    print(f"  Fetching pkg index from {pkg_url}...", file=sys.stderr)
+
+    yaml_content = None
+
+    # Use fetch + zstd + tar pipeline (most reliable on FreeBSD)
+    try:
+        result = subprocess.run(
+            f'fetch -qo - "{pkg_url}" | zstd -d | tar -xOf - packagesite.yaml',
+            shell=True,
+            capture_output=True,
+            text=True,
+            timeout=300,
+        )
+        if result.returncode == 0 and result.stdout:
+            yaml_content = result.stdout
+    except Exception as e:
+        print(f"  Error with zstd extraction: {e}", file=sys.stderr)
+
+    # Fallback: try xz
+    if not yaml_content:
+        try:
+            result = subprocess.run(
+                f'fetch -qo - "{pkg_url}" | xz -d | tar -xOf - packagesite.yaml',
+                shell=True,
+                capture_output=True,
+                text=True,
+                timeout=300,
+            )
+            if result.returncode == 0 and result.stdout:
+                yaml_content = result.stdout
+        except Exception:
+            pass
+
+    if not yaml_content:
+        print(f"  Could not extract packagesite.yaml from {repo_type}", file=sys.stderr)
+        _pkg_index_cache[repo_type] = {}
+        return {}
+
+    # Parse the YAML (actually JSON lines format)
+    index = {}
+    for line in yaml_content.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            pkg_info = json.loads(line)
+            name = pkg_info.get("name")
+            version = pkg_info.get("version")
+            if name and version:
+                index[name] = version
+        except json.JSONDecodeError:
+            continue
+
+    print(f"  Loaded {len(index)} packages from {repo_type}", file=sys.stderr)
+    _pkg_index_cache[repo_type] = index
+    return index
+
+
 def get_pkg_version(pkg_name, repo_type):
-    """Query pkg version from FreeBSD repository."""
+    """Query pkg version from FreeBSD repository via HTTP."""
     if not pkg_name:
         return None
 
-    repo_name = f"FreeBSD-{repo_type}"
-    cmd = ["pkg", "rquery", "-r", repo_name, "%v", pkg_name]
-
-    try:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=30,
-        )
-        if result.returncode == 0 and result.stdout.strip():
-            return result.stdout.strip()
-    except Exception as e:
-        print(f"pkg query error for {pkg_name}: {e}", file=sys.stderr)
-
-    return None
+    index = load_pkg_index(repo_type)
+    return index.get(pkg_name)
 
 
 def get_upstream_version(upstream_url, upstream_jq):
