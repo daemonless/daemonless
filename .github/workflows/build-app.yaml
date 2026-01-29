@@ -47,7 +47,6 @@ jobs:
             tag="${{ inputs.image_tag }}"
 
             # Select containerfile based on tag name
-            # Tags containing "pkg" use Containerfile.pkg, others use Containerfile
             if [[ "$tag" == "pkg" || "$tag" == "pkg-latest" || "$tag" == *"-pkg" || "$tag" == *"-pkg-latest" ]]; then
               cf="Containerfile.pkg"
             else
@@ -65,7 +64,16 @@ jobs:
                 exit 1
               fi
             fi
-            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"\",\"push_latest\":\"\"}]}"
+
+            # Determine version_suffix based on final containerfile and tag
+            if [[ "$tag" == "pkg-latest" || "$tag" == *"-pkg-latest" ]]; then
+              vs="-pkg-latest"
+            elif [ "$cf" = "Containerfile.pkg" ]; then
+              vs="-pkg"
+            else
+              vs=""
+            fi
+            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"${vs}\",\"push_latest\":\"\"}]}"
             echo "Manual mode: $matrix"
             echo "matrix=$matrix" >> $GITHUB_OUTPUT
             echo "compose_only=false" >> $GITHUB_OUTPUT
