@@ -3,7 +3,7 @@
 # Shared build script for daemonless container images
 # Works with both GitHub Actions (via vmactions) and Woodpecker CI
 #
-# Version: 1.5.0
+# Version: 1.6.0
 #
 # Usage: ./scripts/build.sh [OPTIONS]
 #   --registry REGISTRY       Container registry (default: ghcr.io)
@@ -16,6 +16,8 @@
 #   --version-suffix SUFFIX   Suffix for version tag (e.g., -pkg)
 #   --alias ALIAS             Additional alias tag (can be used multiple times)
 #   --build-arg KEY=VALUE     Additional build argument (can be used multiple times)
+#   --auto-version            Auto-detect and increment dl version from registry
+#   --dl-version VERSION      Explicit dl version (e.g., 15-dl3)
 #   --push                    Push to registry (requires login first)
 #   --login                   Login to registry (requires GITHUB_TOKEN env var)
 #   --doas                    Use doas for podman commands
@@ -25,7 +27,7 @@
 #
 set -e
 
-BUILD_SCRIPT_VERSION="1.5.0"
+BUILD_SCRIPT_VERSION="1.6.0"
 
 # Defaults
 REGISTRY="${REGISTRY:-ghcr.io}"
@@ -44,6 +46,8 @@ ALIASES=""
 EXTRA_BUILD_ARGS=""
 USE_DISTCC="false"
 CCACHE_DIR="${CCACHE_DIR:-/data/ccache}"
+AUTO_VERSION="false"
+DL_VERSION=""
 
 # Parse arguments
 while [ $# -gt 0 ]; do
@@ -112,6 +116,14 @@ while [ $# -gt 0 ]; do
             CCACHE_DIR="$2"
             shift 2
             ;;
+        --auto-version)
+            AUTO_VERSION="true"
+            shift
+            ;;
+        --dl-version)
+            DL_VERSION="$2"
+            shift 2
+            ;;
         --version)
             echo "build.sh version $BUILD_SCRIPT_VERSION"
             exit 0
@@ -154,12 +166,50 @@ echo "Pkg Repo:       ${PKG_REPO:-default}"
 echo "Tag:            $TAG"
 echo "Tag Version:    $TAG_VERSION"
 echo "Version Suffix: $VERSION_SUFFIX"
+echo "Auto Version:   $AUTO_VERSION"
 echo "Push:           $DO_PUSH"
 echo "Podman:         $PODMAN"
 echo "Build Args:     ${EXTRA_BUILD_ARGS:-none}"
 echo "Distcc:         $USE_DISTCC"
 echo "Ccache Dir:     $CCACHE_DIR"
 echo ""
+
+# =============================================================================
+# Auto-Version Detection (dl-number)
+# =============================================================================
+get_next_dl_version() {
+    _image="$1"
+    _tag="$2"
+
+    # Query current version from registry using skopeo
+    _current_dl=$(skopeo inspect "docker://${_image}:${_tag}" 2>/dev/null \
+        | jq -r '.Labels["org.opencontainers.image.version"] // empty' \
+        | sed 's/.*-dl//' || echo "")
+
+    [ -z "$_current_dl" ] && _current_dl=0
+
+    _new_dl=$((_current_dl + 1))
+    echo "${_tag}-dl${_new_dl}"
+}
+
+if [ "$AUTO_VERSION" = "true" ] && [ -z "$DL_VERSION" ]; then
+    if command -v skopeo >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
+        echo "=== Auto-Version Detection ==="
+        # Get current version from registry
+        CURRENT_DL=$(skopeo inspect "docker://${IMAGE_NAME}:${TAG}" 2>/dev/null \
+            | jq -r '.Labels["org.opencontainers.image.version"] // empty' \
+            | sed 's/.*-dl//' || echo "")
+        [ -z "$CURRENT_DL" ] && CURRENT_DL=0
+
+        NEW_DL=$((CURRENT_DL + 1))
+        DL_VERSION="${TAG}-dl${NEW_DL}"
+        echo "Previous:     dl${CURRENT_DL}"
+        echo "New Version:  ${DL_VERSION}"
+        echo ""
+    else
+        echo "Warning: skopeo or jq not found, skipping auto-version"
+    fi
+fi
 
 # Login to registry
 if [ "$DO_LOGIN" = "true" ]; then
@@ -186,6 +236,11 @@ if [ -n "$EXTRA_BUILD_ARGS" ]; then
     BUILD_ARGS="$BUILD_ARGS $EXTRA_BUILD_ARGS"
 fi
 
+# Add dl-version as build arg if set
+if [ -n "$DL_VERSION" ]; then
+    BUILD_ARGS="$BUILD_ARGS --build-arg VERSION=$DL_VERSION"
+fi
+
 # Add Dynamic OCI Labels
 # BUILD_DATE: RFC 3339 format
 BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
@@ -198,6 +253,9 @@ echo "Revision: $VCS_REF"
 
 BUILD_ARGS="$BUILD_ARGS --label org.opencontainers.image.created=$BUILD_DATE"
 BUILD_ARGS="$BUILD_ARGS --label org.opencontainers.image.revision=$VCS_REF"
+if [ -n "$DL_VERSION" ]; then
+    BUILD_ARGS="$BUILD_ARGS --label org.opencontainers.image.version=$DL_VERSION"
+fi
 
 # Build image
 echo "=== Building Image ==="
@@ -256,7 +314,14 @@ if [ "$DO_PUSH" = "true" ]; then
     $PODMAN tag "${IMAGE_NAME}:build" "${IMAGE_NAME}:${TAG}"
     $PODMAN push "${IMAGE_NAME}:${TAG}"
 
-    # Tag and push version if requested and version exists
+    # Tag and push dl-version if set
+    if [ -n "$DL_VERSION" ]; then
+        echo "=== Tagging and Pushing :${DL_VERSION} ==="
+        $PODMAN tag "${IMAGE_NAME}:build" "${IMAGE_NAME}:${DL_VERSION}"
+        $PODMAN push "${IMAGE_NAME}:${DL_VERSION}"
+    fi
+
+    # Tag and push version if requested and version exists (from /app/version)
     if [ "$TAG_VERSION" = "true" ] && [ -n "$VERSION" ]; then
         VTAG="${VERSION}${VERSION_SUFFIX}"
         echo "=== Tagging and Pushing :${VTAG} ==="

@@ -39,9 +39,46 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Detect Containerfiles
+      - name: Install yq
+        uses: mikefarah/yq@master
+
+      - name: Detect build matrix
         id: set-matrix
         run: |
+          CONFIG_FILE=".daemonless/config.yaml"
+
+          # Check for config.yaml with build.variants
+          if [ -f "$CONFIG_FILE" ] && yq -e '.build.variants' "$CONFIG_FILE" >/dev/null 2>&1; then
+            echo "Using build.variants from config.yaml"
+
+            # Get auto_version and type
+            auto_version=$(yq -r '.build.auto_version // false' "$CONFIG_FILE")
+            img_type=$(yq -r '.type // "app"' "$CONFIG_FILE")
+
+            # Build matrix from variants
+            entries=""
+            variant_count=$(yq '.build.variants | length' "$CONFIG_FILE")
+
+            for i in $(seq 0 $((variant_count - 1))); do
+              tag=$(yq -r ".build.variants[$i].tag" "$CONFIG_FILE")
+
+              # Convert args object to space-separated KEY=VALUE string
+              build_args=$(yq -r ".build.variants[$i].args // {} | to_entries | map(.key + \"=\" + .value) | join(\" \")" "$CONFIG_FILE")
+
+              # Convert aliases array to space-separated string
+              aliases=$(yq -r ".build.variants[$i].aliases // [] | join(\" \")" "$CONFIG_FILE")
+
+              entries+="{\"tag\":\"${tag}\",\"build_args\":\"${build_args}\",\"aliases\":\"${aliases}\",\"auto_version\":${auto_version},\"type\":\"${img_type}\",\"containerfile\":\"Containerfile\"},"
+            done
+
+            entries="${entries%,}"
+            matrix="{\"include\":[${entries}]}"
+            echo "Config matrix: $matrix"
+            echo "matrix=$matrix" >> $GITHUB_OUTPUT
+            echo "compose_only=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
           # If image_tag is provided, skip auto-detection (manual mode)
           if [ -n "${{ inputs.image_tag }}" ]; then
             tag="${{ inputs.image_tag }}"
@@ -73,7 +110,7 @@ jobs:
             else
               vs=""
             fi
-            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"${vs}\",\"push_latest\":\"\"}]}"
+            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"${vs}\",\"push_latest\":\"\",\"auto_version\":false,\"type\":\"app\"}]}"
             echo "Manual mode: $matrix"
             echo "matrix=$matrix" >> $GITHUB_OUTPUT
             echo "compose_only=false" >> $GITHUB_OUTPUT
@@ -87,16 +124,16 @@ jobs:
           if [ -f "Containerfile" ]; then
             # Source build from upstream binaries (latest tag)
             has_source="true"
-            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":""},'
+            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":"","auto_version":false,"type":"app"},'
           fi
 
           if [ -f "Containerfile.pkg" ]; then
-            entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":""},'
+            entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":"","auto_version":false,"type":"app"},'
             # If no source build, pkg-latest should also be tagged as "latest"
             if [ "$has_source" = "false" ]; then
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"--alias latest"},'
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"--alias latest","auto_version":false,"type":"app"},'
             else
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":""},'
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"","auto_version":false,"type":"app"},'
             fi
           fi
 
@@ -168,7 +205,7 @@ jobs:
             mkdir -p /etc/pkg
             echo 'FreeBSD: { url: "http://pkg.FreeBSD.org/${ABI}/latest" }' > /etc/pkg/FreeBSD.conf
             pkg update -f
-            pkg install -y podman jq
+            pkg install -y podman jq skopeo buildah
 
             # Install patched ocijail for .NET apps (mlock support)
             fetch -qo /tmp/ocijail.pkg https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2.pkg
@@ -183,28 +220,45 @@ jobs:
             # Download shared build script (pinned to version)
             mkdir -p scripts
             fetch -qo scripts/build.sh \
-              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.5.0/scripts/build.sh"
+              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.6.0/scripts/build.sh"
             chmod +x scripts/build.sh
 
-            BASE_VERSION_ARG=""
-            if [ -n "${{ matrix.base_version }}" ]; then
-              BASE_VERSION_ARG="--base-version ${{ matrix.base_version }}"
-            fi
-
+            # Build args from matrix (config.yaml) or inputs
             BUILD_ARGS=""
+            if [ -n "${{ matrix.build_args }}" ]; then
+              for arg in ${{ matrix.build_args }}; do
+                BUILD_ARGS="$BUILD_ARGS --build-arg $arg"
+              done
+            fi
             if [ -n "${{ inputs.build_args }}" ]; then
-              # Handle comma-separated build args
               for arg in $(echo "${{ inputs.build_args }}" | tr ',' ' '); do
                 BUILD_ARGS="$BUILD_ARGS --build-arg $arg"
               done
             fi
 
-            EXTRA_TAGS=""
-            if [ -n "${{ inputs.extra_tags }}" ]; then
-              # Handle comma-separated extra tags
-              for tag in $(echo "${{ inputs.extra_tags }}" | tr ',' ' '); do
-                EXTRA_TAGS="$EXTRA_TAGS --alias $tag"
+            # Base version (legacy apps)
+            BASE_VERSION_ARG=""
+            if [ -n "${{ matrix.base_version }}" ]; then
+              BASE_VERSION_ARG="--base-version ${{ matrix.base_version }}"
+            fi
+
+            # Aliases from matrix (config.yaml) or inputs
+            ALIASES=""
+            if [ -n "${{ matrix.aliases }}" ]; then
+              for a in ${{ matrix.aliases }}; do
+                ALIASES="$ALIASES --alias $a"
               done
+            fi
+            if [ -n "${{ inputs.extra_tags }}" ]; then
+              for tag in $(echo "${{ inputs.extra_tags }}" | tr ',' ' '); do
+                ALIASES="$ALIASES --alias $tag"
+              done
+            fi
+
+            # Version flag: auto_version (base images) or tag-version (apps)
+            VERSION_FLAG="--tag-version"
+            if [ "${{ matrix.auto_version }}" = "true" ]; then
+              VERSION_FLAG="--auto-version"
             fi
 
             # Build (no push yet)
@@ -215,10 +269,10 @@ jobs:
               $BASE_VERSION_ARG \
               $BUILD_ARGS \
               --tag ${{ matrix.tag }} \
-              --tag-version \
+              $VERSION_FLAG \
               --version-suffix "${{ matrix.version_suffix }}" \
               ${{ matrix.push_latest }} \
-              $EXTRA_TAGS \
+              $ALIASES \
               --skip-wip
 
             # Test with cit (blocking - must pass before push)
@@ -233,11 +287,18 @@ jobs:
 
             mkdir -p cit-results
 
+            # Test mode: shell for base images, default for apps
+            CIT_MODE=""
+            if [ "${{ matrix.type }}" = "base" ]; then
+              CIT_MODE="--mode shell"
+            fi
+
             # Run cit and capture exit code (don't fail immediately)
             cit_exit=0
             ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
               --repo . \
               --tag ${{ matrix.tag }} \
+              $CIT_MODE \
               --json cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
               --screenshot cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
               --verbose || cit_exit=$?
@@ -263,10 +324,10 @@ jobs:
                 $BASE_VERSION_ARG \
                 $BUILD_ARGS \
                 --tag ${{ matrix.tag }} \
-                --tag-version \
+                $VERSION_FLAG \
                 --version-suffix "${{ matrix.version_suffix }}" \
                 ${{ matrix.push_latest }} \
-                $EXTRA_TAGS \
+                $ALIASES \
                 --skip-wip \
                 --push
             fi
