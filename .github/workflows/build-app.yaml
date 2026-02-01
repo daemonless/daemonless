@@ -561,9 +561,60 @@ jobs:
             -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }} compose test $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true}]}]}" \
             "$DISCORD_WEBHOOK"
 
+  # Merge SBOMs and commit to repo
+  commit-sbom:
+    needs: build
+    if: success() && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all SBOM artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: sbom-*
+          path: sbom-artifacts/
+
+      - name: Merge SBOMs
+        run: |
+          # Combine all tag SBOMs into one file
+          jq -n \
+            --arg image "${{ inputs.image_name }}" \
+            --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{image: $image, generated: $generated, tags: {}}' > sbom.json
+
+          for f in sbom-artifacts/sbom-*/*-sbom.json; do
+            [ -f "$f" ] || continue
+            tag=$(jq -r '.tag' "$f")
+            jq --arg tag "$tag" \
+               --slurpfile data "$f" \
+               '.tags[$tag] = ($data[0] | del(.image, .tag))' \
+               sbom.json > tmp.json && mv tmp.json sbom.json
+          done
+
+          echo "Merged SBOM:"
+          jq '.tags | keys' sbom.json
+
+      - name: Commit SBOM
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sbom.json
+          if git diff --staged --quiet; then
+            echo "No changes to sbom.json"
+          else
+            git commit -m "Update sbom.json [skip ci]"
+            git push
+          fi
+
   # Trigger status page update after successful builds
   notify-status:
-    needs: [build, test-compose]
+    needs: [build, test-compose, commit-sbom]
     if: always() && !failure() && !cancelled() && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
