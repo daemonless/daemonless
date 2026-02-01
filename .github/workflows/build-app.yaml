@@ -187,12 +187,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         with:
           release: "15.0"
           usesh: true
           copyback: true
           data-dir: /mnt/freebsd-vm
-          envs: "GITHUB_TOKEN GITHUB_ACTOR"
+          envs: "GITHUB_TOKEN GITHUB_ACTOR DOCKERHUB_USERNAME DOCKERHUB_TOKEN"
           prepare: |
             set -e
             # Create 4GB swap for heavy builds
@@ -315,7 +317,7 @@ jobs:
             elif [ "${{ github.event_name }}" = "pull_request" ]; then
               echo "PR build - skipping push"
             else
-              echo "=== Pushing image ==="
+              echo "=== Pushing to ghcr.io ==="
               echo "$GITHUB_TOKEN" | podman login ${{ env.REGISTRY }} -u $GITHUB_ACTOR --password-stdin
               ./scripts/build.sh \
                 --registry ${{ env.REGISTRY }} \
@@ -330,6 +332,25 @@ jobs:
                 $ALIASES \
                 --skip-wip \
                 --push
+
+              # Also push to Docker Hub if credentials are available
+              if [ -n "$DOCKERHUB_USERNAME" ] && [ -n "$DOCKERHUB_TOKEN" ]; then
+                echo "=== Pushing to Docker Hub ==="
+                echo "$DOCKERHUB_TOKEN" | podman login docker.io -u $DOCKERHUB_USERNAME --password-stdin
+                ./scripts/build.sh \
+                  --registry docker.io \
+                  --image docker.io/daemonless/${{ inputs.image_name }} \
+                  --containerfile ${{ matrix.containerfile }} \
+                  $BASE_VERSION_ARG \
+                  $BUILD_ARGS \
+                  --tag ${{ matrix.tag }} \
+                  $VERSION_FLAG \
+                  --version-suffix "${{ matrix.version_suffix }}" \
+                  ${{ matrix.push_latest }} \
+                  $ALIASES \
+                  --skip-wip \
+                  --push
+              fi
             fi
 
       - name: Upload test artifacts
@@ -357,6 +378,7 @@ jobs:
         if: always()
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          HAS_DOCKERHUB: ${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != '' }}
         run: |
           if [ "${{ job.status }}" = "success" ]; then
             COLOR=3066993
@@ -369,8 +391,13 @@ jobs:
           SHORT_SHA="${{ github.sha }}"
           SHORT_SHA="${SHORT_SHA:0:7}"
 
+          REGISTRY_VALUE="[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }})"
+          if [ "$HAS_DOCKERHUB" = "true" ]; then
+            REGISTRY_VALUE="[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }}) / [docker.io](https://hub.docker.com/r/daemonless/${{ inputs.image_name }})"
+          fi
+
           curl -sS -H "Content-Type: application/json" \
-            -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }}:${{ matrix.tag }} $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Registry\",\"value\":\"[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }})\",\"inline\":true}]}]}" \
+            -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }}:${{ matrix.tag }} $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Registry\",\"value\":\"$REGISTRY_VALUE\",\"inline\":true}]}]}" \
             "$DISCORD_WEBHOOK"
 
   # Compose-only test (no build, just test pre-built images)
