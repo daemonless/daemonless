@@ -207,7 +207,7 @@ jobs:
             mkdir -p /etc/pkg
             echo 'FreeBSD: { url: "http://pkg.FreeBSD.org/${ABI}/latest" }' > /etc/pkg/FreeBSD.conf
             pkg update -f
-            pkg install -y podman jq skopeo buildah
+            pkg install -y podman jq skopeo buildah trivy
 
             # Install patched ocijail for .NET apps (mlock support)
             fetch -qo /tmp/ocijail.pkg https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2.pkg
@@ -351,6 +351,65 @@ jobs:
                   --skip-wip \
                   --push
               fi
+
+              # Generate SBOM
+              echo "=== Generating SBOM ==="
+              mkdir -p sbom-results
+              IMAGE="${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build"
+
+              # Get app version
+              APP_VERSION=$(podman run --rm --entrypoint sh "$IMAGE" -c 'cat /app/version 2>/dev/null || pkg query "%v" $(pkg query -e "%At = title" "%n") 2>/dev/null | head -1 || echo "unknown"' 2>/dev/null || echo "unknown")
+
+              # Get FreeBSD packages
+              podman run --rm --entrypoint sh "$IMAGE" -c 'pkg query "%n %v"' 2>/dev/null | \
+                tr -cd '[:print:]\n' | \
+                jq -R 'split(" ") | {name: .[0], version: .[1]}' | \
+                jq -s '.' > /tmp/freebsd_pkgs.json 2>/dev/null || echo "[]" > /tmp/freebsd_pkgs.json
+
+              # Get trivy packages (.NET, Python, Node, etc.)
+              trivy image --format json "$IMAGE" 2>/dev/null > /tmp/trivy.json || echo '{}' > /tmp/trivy.json
+
+              # Extract unique packages by type
+              jq -c '{
+                dotnet: [.Results[]? | select(.Type == "dotnet-core") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+                python: [.Results[]? | select(.Type == "python-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+                node: [.Results[]? | select(.Type == "node-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+                go: [.Results[]? | select(.Type == "gobinary" or .Type == "gomod") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name)
+              }' /tmp/trivy.json > /tmp/trivy_pkgs.json 2>/dev/null || echo '{"dotnet":[],"python":[],"node":[],"go":[]}' > /tmp/trivy_pkgs.json
+
+              # Merge into SBOM
+              jq -n \
+                --arg image "${{ inputs.image_name }}" \
+                --arg tag "${{ matrix.tag }}" \
+                --arg version "$APP_VERSION" \
+                --arg source "${{ matrix.containerfile }}" \
+                --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+                --slurpfile freebsd /tmp/freebsd_pkgs.json \
+                --slurpfile trivy /tmp/trivy_pkgs.json \
+                '{
+                  image: $image,
+                  tag: $tag,
+                  app_version: $version,
+                  source: (if $source == "Containerfile" then "upstream-binary" elif $tag == "pkg-latest" then "freebsd-latest" else "freebsd-quarterly" end),
+                  generated: $generated,
+                  packages: {
+                    freebsd: $freebsd[0],
+                    dotnet: $trivy[0].dotnet,
+                    python: $trivy[0].python,
+                    node: $trivy[0].node,
+                    go: $trivy[0].go
+                  },
+                  summary: {
+                    freebsd: ($freebsd[0] | length),
+                    dotnet: ($trivy[0].dotnet | length),
+                    python: ($trivy[0].python | length),
+                    node: ($trivy[0].node | length),
+                    go: ($trivy[0].go | length),
+                    total: (($freebsd[0] | length) + ($trivy[0].dotnet | length) + ($trivy[0].python | length) + ($trivy[0].node | length) + ($trivy[0].go | length))
+                  }
+                }' > sbom-results/${{ inputs.image_name }}-${{ matrix.tag }}-sbom.json
+
+              echo "SBOM generated: $(jq -c '.summary' sbom-results/${{ inputs.image_name }}-${{ matrix.tag }}-sbom.json)"
             fi
 
       - name: Upload test artifacts
@@ -360,6 +419,14 @@ jobs:
           name: cit-results-${{ matrix.tag }}
           path: cit-results/
           retention-days: 30
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        if: success() && github.event_name != 'pull_request'
+        with:
+          name: sbom-${{ matrix.tag }}
+          path: sbom-results/
+          retention-days: 90
 
       - name: Check cit result
         if: always()
@@ -374,31 +441,31 @@ jobs:
             exit $exit_code
           fi
 
+      - name: Install yq
+        if: success() && matrix.tag == 'latest' && github.event_name != 'pull_request'
+        uses: mikefarah/yq@master
+
+      - name: Update Docker Hub description
+        if: success() && matrix.tag == 'latest' && github.event_name != 'pull_request' && secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != ''
+        uses: ./.github/actions/dockerhub-desc
+        with:
+          image_name: ${{ inputs.image_name }}
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Discord notification
         if: always()
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          HAS_DOCKERHUB: ${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != '' }}
-        run: |
-          if [ "${{ job.status }}" = "success" ]; then
-            COLOR=3066993
-            STATUS="✅ Success"
-          else
-            COLOR=15158332
-            STATUS="❌ Failed"
-          fi
-
-          SHORT_SHA="${{ github.sha }}"
-          SHORT_SHA="${SHORT_SHA:0:7}"
-
-          REGISTRY_VALUE="[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }})"
-          if [ "$HAS_DOCKERHUB" = "true" ]; then
-            REGISTRY_VALUE="[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }}) / [docker.io](https://hub.docker.com/r/daemonless/${{ inputs.image_name }})"
-          fi
-
-          curl -sS -H "Content-Type: application/json" \
-            -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }}:${{ matrix.tag }} $STATUS\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ github.ref_name }}\",\"inline\":true},{\"name\":\"Registry\",\"value\":\"$REGISTRY_VALUE\",\"inline\":true}]}]}" \
-            "$DISCORD_WEBHOOK"
+        uses: ./.github/actions/discord-notify
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          image_name: ${{ inputs.image_name }}
+          tag: ${{ matrix.tag }}
+          status: ${{ job.status }}
+          commit_sha: ${{ github.sha }}
+          commit_url: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
+          run_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          branch: ${{ github.ref_name }}
+          has_dockerhub: ${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != '' }}
 
   # Compose-only test (no build, just test pre-built images)
   test-compose:

@@ -1,0 +1,61 @@
+name: 'Discord Notification'
+description: 'Send build status notification to Discord'
+
+inputs:
+  webhook_url:
+    description: 'Discord webhook URL'
+    required: true
+  image_name:
+    description: 'Image name (e.g., radarr)'
+    required: true
+  tag:
+    description: 'Image tag (e.g., latest)'
+    required: true
+  status:
+    description: 'Job status (success, failure, cancelled)'
+    required: true
+  commit_sha:
+    description: 'Git commit SHA'
+    required: true
+  commit_url:
+    description: 'URL to the commit'
+    required: true
+  run_url:
+    description: 'URL to the workflow run'
+    required: true
+  branch:
+    description: 'Git branch name'
+    required: true
+  has_dockerhub:
+    description: 'Whether Docker Hub credentials are available'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Send notification
+      shell: bash
+      run: |
+        if [ "${{ inputs.status }}" = "success" ]; then
+          COLOR=3066993
+          STATUS_EMOJI="✅ Success"
+        elif [ "${{ inputs.status }}" = "cancelled" ]; then
+          COLOR=15105570
+          STATUS_EMOJI="⚠️ Cancelled"
+        else
+          COLOR=15158332
+          STATUS_EMOJI="❌ Failed"
+        fi
+
+        SHORT_SHA="${{ inputs.commit_sha }}"
+        SHORT_SHA="${SHORT_SHA:0:7}"
+
+        REGISTRY_VALUE="[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }})"
+        if [ "${{ inputs.has_dockerhub }}" = "true" ]; then
+          REGISTRY_VALUE="[ghcr.io](https://ghcr.io/daemonless/${{ inputs.image_name }}) / [docker.io](https://hub.docker.com/r/daemonless/${{ inputs.image_name }})"
+        fi
+
+        curl -sS -H "Content-Type: application/json" \
+          -d "{\"embeds\":[{\"title\":\"${{ inputs.image_name }}:${{ inputs.tag }} $STATUS_EMOJI\",\"url\":\"${{ inputs.run_url }}\",\"color\":$COLOR,\"fields\":[{\"name\":\"Commit\",\"value\":\"[$SHORT_SHA](${{ inputs.commit_url }})\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"${{ inputs.branch }}\",\"inline\":true},{\"name\":\"Registry\",\"value\":\"$REGISTRY_VALUE\",\"inline\":true}]}]}" \
+          "${{ inputs.webhook_url }}"

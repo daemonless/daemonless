@@ -1,0 +1,107 @@
+name: 'Update Docker Hub Description'
+description: 'Update Docker Hub repository description from compose.yaml metadata'
+
+inputs:
+  image_name:
+    description: 'Image name (e.g., radarr)'
+    required: true
+  dockerhub_username:
+    description: 'Docker Hub username'
+    required: true
+  dockerhub_token:
+    description: 'Docker Hub token'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Update description
+      shell: bash
+      env:
+        DOCKERHUB_USERNAME: ${{ inputs.dockerhub_username }}
+        DOCKERHUB_TOKEN: ${{ inputs.dockerhub_token }}
+      run: |
+        # Get JWT token
+        JWT=$(curl -s -X POST https://hub.docker.com/v2/users/login \
+          -H "Content-Type: application/json" \
+          -d "{\"username\":\"${DOCKERHUB_USERNAME}\",\"password\":\"${DOCKERHUB_TOKEN}\"}" | jq -r .token)
+
+        if [ "$JWT" = "null" ] || [ -z "$JWT" ]; then
+          echo "WARNING: Failed to authenticate with Docker Hub"
+          exit 0
+        fi
+
+        # Extract metadata from compose.yaml
+        if [ ! -f compose.yaml ]; then
+          echo "No compose.yaml found, skipping description update"
+          exit 0
+        fi
+
+        TITLE=$(yq -r '.["x-daemonless"].title // empty' compose.yaml)
+        DESC=$(yq -r '.["x-daemonless"].description // empty' compose.yaml)
+        UPSTREAM=$(yq -r '.["x-daemonless"].upstream_url // empty' compose.yaml)
+        WEBSITE=$(yq -r '.["x-daemonless"].web_url // empty' compose.yaml)
+        MLOCK=$(yq -r '.["x-daemonless"].mlock // false' compose.yaml)
+        SYSVIPC=$(yq -r '.services[].annotations["org.freebsd.jail.allow.sysvipc"] // false' compose.yaml 2>/dev/null || echo "false")
+
+        if [ -z "$DESC" ]; then
+          echo "No description in x-daemonless, skipping"
+          exit 0
+        fi
+
+        # Build quick start example based on requirements
+        if [ "$MLOCK" = "true" ]; then
+          QUICKSTART="\`\`\`bash
+        podman run -d --name ${{ inputs.image_name }} \\
+          --annotation 'org.freebsd.jail.allow.mlock=true' \\
+          docker.io/daemonless/${{ inputs.image_name }}:latest
+        \`\`\`
+
+        > **Note:** This is a .NET application requiring a [patched ocijail](https://daemonless.io/guides/ocijail-patch/) for memory locking support."
+        elif [ "$SYSVIPC" = "true" ]; then
+          QUICKSTART="\`\`\`bash
+        podman run -d --name ${{ inputs.image_name }} \\
+          --annotation 'org.freebsd.jail.allow.sysvipc=true' \\
+          docker.io/daemonless/${{ inputs.image_name }}:latest
+        \`\`\`
+
+        > **Note:** This application requires System V IPC (shared memory) support in the jail."
+        else
+          QUICKSTART="\`\`\`bash
+        podman run -d --name ${{ inputs.image_name }} \\
+          docker.io/daemonless/${{ inputs.image_name }}:latest
+        \`\`\`"
+        fi
+
+        # Build full description
+        FULL_DESC="# ${TITLE:-${{ inputs.image_name }}}
+
+        ${DESC}
+
+        ## Quick Start
+
+        ${QUICKSTART}
+
+        ## Documentation
+
+        - **Docs**: [daemonless.io/images/${{ inputs.image_name }}](https://daemonless.io/images/${{ inputs.image_name }}/)
+        - **Source**: [github.com/daemonless/${{ inputs.image_name }}](https://github.com/daemonless/${{ inputs.image_name }})
+        ${UPSTREAM:+- **Upstream**: [${UPSTREAM}](${UPSTREAM})}
+        ${WEBSITE:+- **Website**: [${WEBSITE}](${WEBSITE})}
+
+        ## About Daemonless
+
+        Native FreeBSD OCI containers. No Linux VMs, no emulation - just FreeBSD jails running in Podman.
+
+        [daemonless.io](https://daemonless.io) | [Discord](https://discord.gg/PTg5DJ2y) | [GitHub](https://github.com/daemonless)
+        "
+
+        SHORT_DESC=$(echo "$DESC" | head -c 100)
+        FULL_DESC_JSON=$(printf '%s' "$FULL_DESC" | jq -Rs .)
+
+        curl -s -X PATCH "https://hub.docker.com/v2/repositories/daemonless/${{ inputs.image_name }}/" \
+          -H "Authorization: Bearer $JWT" \
+          -H "Content-Type: application/json" \
+          -d "{\"description\":\"${SHORT_DESC}\",\"full_description\":${FULL_DESC_JSON}}" | jq .
+
+        echo "Docker Hub description updated"
