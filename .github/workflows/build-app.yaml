@@ -446,7 +446,10 @@ jobs:
         uses: mikefarah/yq@master
 
       - name: Update Docker Hub description
-        if: success() && matrix.tag == 'latest' && github.event_name != 'pull_request' && secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != ''
+        if: success() && matrix.tag == 'latest' && github.event_name != 'pull_request'
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         uses: ./.github/actions/dockerhub-desc
         with:
           image_name: ${{ inputs.image_name }}
@@ -455,6 +458,8 @@ jobs:
 
       - name: Discord notification
         if: always()
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         uses: ./.github/actions/discord-notify
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
@@ -465,7 +470,7 @@ jobs:
           commit_url: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
           run_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           branch: ${{ github.ref_name }}
-          has_dockerhub: ${{ secrets.DOCKERHUB_USERNAME != '' && secrets.DOCKERHUB_TOKEN != '' }}
+          has_dockerhub: ${{ secrets.DOCKERHUB_USERNAME != '' }}
 
   # Compose-only test (no build, just test pre-built images)
   test-compose:
