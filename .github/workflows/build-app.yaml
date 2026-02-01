@@ -441,12 +441,9 @@ jobs:
             exit $exit_code
           fi
 
-      - name: Install yq
-        if: success() && matrix.tag == 'latest' && github.event_name != 'pull_request'
-        uses: mikefarah/yq@master
-
       - name: Update Docker Hub description
         if: success() && matrix.tag == 'latest' && github.event_name != 'pull_request'
+        continue-on-error: true
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}

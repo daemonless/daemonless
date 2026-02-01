@@ -15,6 +15,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Install yq
+      shell: bash
+      run: sudo apt-get install -y yq
+
     - name: Update description
       shell: bash
       env:
