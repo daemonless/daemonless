@@ -68,7 +68,10 @@ jobs:
               # Convert aliases array to space-separated string
               aliases=$(yq -r ".build.variants[$i].aliases // [] | join(\" \")" "$CONFIG_FILE")
 
-              entries+="{\"tag\":\"${tag}\",\"build_args\":\"${build_args}\",\"aliases\":\"${aliases}\",\"auto_version\":${auto_version},\"type\":\"${img_type}\",\"containerfile\":\"Containerfile\"},"
+              # Get containerfile (default to Containerfile)
+              containerfile=$(yq -r ".build.variants[$i].containerfile // \"Containerfile\"" "$CONFIG_FILE")
+
+              entries+="{\"tag\":\"${tag}\",\"build_args\":\"${build_args}\",\"aliases\":\"${aliases}\",\"auto_version\":${auto_version},\"type\":\"${img_type}\",\"containerfile\":\"${containerfile}\"},"
             done
 
             entries="${entries%,}"
@@ -577,7 +580,6 @@ jobs:
 
       - name: Merge SBOMs
         run: |
-          # Combine all tag SBOMs into one file
           jq -n \
             --arg image "${{ inputs.image_name }}" \
             --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
