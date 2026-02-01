@@ -450,7 +450,7 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        uses: ./.github/actions/dockerhub-desc
+        uses: daemonless/daemonless/.github/actions/dockerhub-desc@main
         with:
           image_name: ${{ inputs.image_name }}
           dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -460,7 +460,7 @@ jobs:
         if: always()
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        uses: ./.github/actions/discord-notify
+        uses: daemonless/daemonless/.github/actions/discord-notify@main
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           image_name: ${{ inputs.image_name }}
