@@ -430,11 +430,16 @@ def get_upstream_version(upstream_url, upstream_jq):
 
 
 def process_multi_version_service(repo, config):
-    """Process a multi-version service using config.yaml variants."""
-    versions_config = config.get("versions", {})
-    variants = versions_config.get("variants", [])
+    """Process a multi-version service using build.variants with pkg_name."""
+    build_config = config.get("build", {})
+    variants = build_config.get("variants", [])
 
     if not variants:
+        return None
+
+    # Check if any variant has pkg_name (required for version tracking)
+    has_pkg_name = any(v.get("pkg_name") for v in variants)
+    if not has_pkg_name:
         return None
 
     result = {
@@ -446,7 +451,7 @@ def process_multi_version_service(repo, config):
     default_variant = None
     for variant in variants:
         if variant.get("default"):
-            default_variant = variant.get("id")
+            default_variant = variant.get("tag") or variant.get("id")
             break
 
     if default_variant:
@@ -454,7 +459,8 @@ def process_multi_version_service(repo, config):
 
     # Process each variant
     for variant in variants:
-        variant_id = variant.get("id")
+        # Support both "id" (legacy) and "tag" (new) fields
+        variant_id = variant.get("tag") or variant.get("id")
         if not variant_id:
             continue
 
@@ -500,18 +506,22 @@ def process_service(repo):
     """Process a single service repo and return version info."""
     print(f"Processing {repo}...", file=sys.stderr)
 
-    # First check for config.yaml with versions section
+    # First check for config.yaml with build.variants section
     config = get_config_yaml(repo)
-    if config and "versions" in config:
-        versions_config = config["versions"]
+    if config:
+        build_config = config.get("build", {})
 
-        # Check if multi-version service
-        if versions_config.get("type") == "multi-version":
+        # Check if multi-version service (build.variants with pkg_name)
+        has_build_variants_with_pkg = any(
+            v.get("pkg_name") for v in build_config.get("variants", [])
+        )
+
+        if has_build_variants_with_pkg:
             print(f"  Multi-version service detected", file=sys.stderr)
             return process_multi_version_service(repo, config)
 
         # Simple config with just pkg_name override
-        pkg_name_override = versions_config.get("pkg_name")
+        pkg_name_override = build_config.get("pkg_name")
         if pkg_name_override:
             print(f"  Using pkg_name from config: {pkg_name_override}", file=sys.stderr)
 
@@ -543,8 +553,8 @@ def process_service(repo):
             upstream_jq = pkg_labels.get("upstream-jq")
 
     # Override pkg_name from config.yaml if specified
-    if config and "versions" in config:
-        pkg_name_override = config["versions"].get("pkg_name")
+    if config and "build" in config:
+        pkg_name_override = config["build"].get("pkg_name")
         if pkg_name_override:
             pkg_name = pkg_name_override
 
