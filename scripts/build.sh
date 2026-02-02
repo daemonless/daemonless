@@ -18,6 +18,7 @@
 #   --build-arg KEY=VALUE     Additional build argument (can be used multiple times)
 #   --auto-version            Auto-detect and increment dl version from registry
 #   --dl-version VERSION      Explicit dl version (e.g., 15-dl3)
+#   --arch ARCH               Target architecture (amd64, arm64, riscv64)
 #   --push                    Push to registry (requires login first)
 #   --login                   Login to registry (requires GITHUB_TOKEN env var)
 #   --doas                    Use doas for podman commands
@@ -48,6 +49,7 @@ USE_DISTCC="false"
 CCACHE_DIR="${CCACHE_DIR:-/data/ccache}"
 AUTO_VERSION="false"
 DL_VERSION=""
+ARCH="amd64"
 
 # Parse arguments
 while [ $# -gt 0 ]; do
@@ -124,6 +126,10 @@ while [ $# -gt 0 ]; do
             DL_VERSION="$2"
             shift 2
             ;;
+        --arch)
+            ARCH="$2"
+            shift 2
+            ;;
         --version)
             echo "build.sh version $BUILD_SCRIPT_VERSION"
             exit 0
@@ -161,6 +167,7 @@ echo "Script Version: $BUILD_SCRIPT_VERSION"
 echo "Registry:       $REGISTRY"
 echo "Image:          $IMAGE_NAME"
 echo "Containerfile:  $CONTAINERFILE"
+echo "Architecture:   $ARCH"
 echo "Base Version:   ${BASE_VERSION:-default}"
 echo "Pkg Repo:       ${PKG_REPO:-default}"
 echo "Tag:            $TAG"
@@ -229,7 +236,25 @@ fi
 if [ -n "$PKG_REPO" ]; then
     BUILD_ARGS="$BUILD_ARGS --build-arg PKG_BRANCH=$PKG_REPO"
 fi
-BUILD_ARGS="$BUILD_ARGS --build-arg FREEBSD_ARCH=amd64"
+
+# Map architecture names to FreeBSD convention
+case "$ARCH" in
+    amd64|x86_64|x64)
+        FREEBSD_ARCH="amd64"
+        ;;
+    arm64|aarch64)
+        FREEBSD_ARCH="aarch64"
+        ;;
+    riscv64|riscv)
+        FREEBSD_ARCH="riscv64"
+        ;;
+    *)
+        echo "Error: Unknown architecture: $ARCH"
+        echo "Supported: amd64, arm64, riscv64"
+        exit 1
+        ;;
+esac
+BUILD_ARGS="$BUILD_ARGS --build-arg FREEBSD_ARCH=$FREEBSD_ARCH"
 
 # Add extra build args
 if [ -n "$EXTRA_BUILD_ARGS" ]; then

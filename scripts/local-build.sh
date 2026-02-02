@@ -10,6 +10,7 @@
 # Architectures:
 #   amd64       - x86_64 (default)
 #   arm64       - aarch64 (Pi4, etc)
+#   riscv64     - RISC-V 64-bit
 #
 # Examples:
 #   ./scripts/local-build.sh 15 radarr latest
@@ -19,7 +20,7 @@
 #   ./scripts/local-build.sh 15 sabnzbd latest arm64
 #   ./scripts/local-build.sh 15 all latest arm64
 #
-# ARM64 support is determined by io.daemonless.arch label in Containerfile
+# Architecture support is determined by io.daemonless.arch label in Containerfile
 
 set -e
 
@@ -37,14 +38,21 @@ case "$ARCH" in
     amd64|x86_64|x64)
         ARCH="amd64"
         FREEBSD_ARCH="amd64"
+        ARCH_SUFFIX=""
         ;;
     arm64|aarch64)
         ARCH="arm64"
         FREEBSD_ARCH="aarch64"
+        ARCH_SUFFIX="-arm64"
+        ;;
+    riscv64|riscv)
+        ARCH="riscv64"
+        FREEBSD_ARCH="riscv64"
+        ARCH_SUFFIX="-riscv64"
         ;;
     *)
         echo "Error: Unknown architecture: $ARCH"
-        echo "Supported: amd64, arm64"
+        echo "Supported: amd64, arm64, riscv64"
         exit 1
         ;;
 esac
@@ -110,7 +118,7 @@ build_base() {
     local branch="$1"
     local base_tag="${FREEBSD_VERSION}"
     [ "$branch" = "quarterly" ] && base_tag="${FREEBSD_VERSION}-quarterly"
-    [ "$ARCH" = "arm64" ] && base_tag="${base_tag}-arm64"
+    [ -n "$ARCH_SUFFIX" ] && base_tag="${base_tag}${ARCH_SUFFIX}"
 
     echo "==> Building base image: base:${base_tag} (pkg branch: ${branch}, arch: ${ARCH})"
     podman build --network=host \
@@ -128,7 +136,7 @@ NGINX_BASE_BUILT=""
 build_nginx_base() {
     local base_version="${FREEBSD_VERSION}"
     [ "$TAG" = "pkg" ] && base_version="${FREEBSD_VERSION}-quarterly"
-    [ "$ARCH" = "arm64" ] && base_version="${base_version}-arm64"
+    [ -n "$ARCH_SUFFIX" ] && base_version="${base_version}${ARCH_SUFFIX}"
 
     # Only build once per run
     if [ "$NGINX_BASE_BUILT" = "$base_version" ]; then
@@ -166,13 +174,13 @@ build_image() {
     local base_version="${FREEBSD_VERSION}"
     local image_tag="$tag"
 
-    # Check architecture support via label
-    if [ "$ARCH" = "arm64" ]; then
-        if ! supports_arch "$name" "arm64"; then
-            echo "==> Skipping ${name}: not supported on ARM64 (check io.daemonless.arch label)"
+    # Check architecture support via label (for non-amd64)
+    if [ -n "$ARCH_SUFFIX" ]; then
+        if ! supports_arch "$name" "$ARCH"; then
+            echo "==> Skipping ${name}: not supported on ${ARCH} (check io.daemonless.arch label)"
             return
         fi
-        image_tag="${tag}-arm64"
+        image_tag="${tag}${ARCH_SUFFIX}"
     fi
 
     # For pkg tags, use Containerfile.pkg if it exists, or main Containerfile if labeled
@@ -202,8 +210,8 @@ build_image() {
         build_nginx_base
     fi
 
-    # Add arm64 suffix to base version
-    [ "$ARCH" = "arm64" ] && base_version="${base_version}-arm64"
+    # Add arch suffix to base version
+    [ -n "$ARCH_SUFFIX" ] && base_version="${base_version}${ARCH_SUFFIX}"
 
     echo "==> Building image: ${name}:${image_tag}"
     podman build --network=host \
@@ -216,8 +224,7 @@ build_image() {
     # For images using main Containerfile for pkg, :pkg-latest is alias for :latest
     # (both use latest base, so they produce identical images)
     if [ "$tag" = "latest" ] && uses_main_containerfile_for_pkg "$name"; then
-        local alias_tag="pkg-latest"
-        [ "$ARCH" = "arm64" ] && alias_tag="pkg-latest-arm64"
+        local alias_tag="pkg-latest${ARCH_SUFFIX}"
         echo "==> Tagging ${name}:${image_tag} as ${name}:${alias_tag}"
         podman tag "localhost/${name}:${image_tag}" "localhost/${name}:${alias_tag}"
     fi

@@ -55,7 +55,11 @@ jobs:
             auto_version=$(yq -r '.build.auto_version // false' "$CONFIG_FILE")
             img_type=$(yq -r '.type // "app"' "$CONFIG_FILE")
 
-            # Build matrix from variants
+            # Get architectures (default to amd64 only)
+            architectures=$(yq -r '.build.architectures // ["amd64"] | join(" ")' "$CONFIG_FILE")
+            echo "Architectures: $architectures"
+
+            # Build matrix from variants x architectures
             entries=""
             variant_count=$(yq '.build.variants | length' "$CONFIG_FILE")
 
@@ -71,7 +75,21 @@ jobs:
               # Get containerfile (default to Containerfile)
               containerfile=$(yq -r ".build.variants[$i].containerfile // \"Containerfile\"" "$CONFIG_FILE")
 
-              entries+="{\"tag\":\"${tag}\",\"build_args\":\"${build_args}\",\"aliases\":\"${aliases}\",\"auto_version\":${auto_version},\"type\":\"${img_type}\",\"containerfile\":\"${containerfile}\"},"
+              # Create entry for each architecture
+              for arch in $architectures; do
+                # Add arch suffix for non-amd64
+                if [ "$arch" = "amd64" ]; then
+                  arch_suffix=""
+                  vm_sync="rsync"
+                elif [ "$arch" = "arm64" ]; then
+                  arch_suffix="-arm64"
+                  vm_sync="rsync"
+                elif [ "$arch" = "riscv64" ]; then
+                  arch_suffix="-riscv64"
+                  vm_sync="scp"
+                fi
+                entries+="{\"tag\":\"${tag}\",\"build_args\":\"${build_args}\",\"aliases\":\"${aliases}\",\"auto_version\":${auto_version},\"type\":\"${img_type}\",\"containerfile\":\"${containerfile}\",\"arch\":\"${arch}\",\"arch_suffix\":\"${arch_suffix}\",\"vm_sync\":\"${vm_sync}\"},"
+              done
             done
 
             entries="${entries%,}"
@@ -113,7 +131,7 @@ jobs:
             else
               vs=""
             fi
-            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"${vs}\",\"push_latest\":\"\",\"auto_version\":false,\"type\":\"app\"}]}"
+            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"${vs}\",\"push_latest\":\"\",\"auto_version\":false,\"type\":\"app\",\"arch\":\"amd64\",\"arch_suffix\":\"\",\"vm_sync\":\"rsync\"}]}"
             echo "Manual mode: $matrix"
             echo "matrix=$matrix" >> $GITHUB_OUTPUT
             echo "compose_only=false" >> $GITHUB_OUTPUT
@@ -127,16 +145,16 @@ jobs:
           if [ -f "Containerfile" ]; then
             # Source build from upstream binaries (latest tag)
             has_source="true"
-            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":"","auto_version":false,"type":"app"},'
+            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_sync":"rsync"},'
           fi
 
           if [ -f "Containerfile.pkg" ]; then
-            entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":"","auto_version":false,"type":"app"},'
+            entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_sync":"rsync"},'
             # If no source build, pkg-latest should also be tagged as "latest"
             if [ "$has_source" = "false" ]; then
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"--alias latest","auto_version":false,"type":"app"},'
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"--alias latest","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_sync":"rsync"},'
             else
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"","auto_version":false,"type":"app"},'
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_sync":"rsync"},'
             fi
           fi
 
@@ -185,7 +203,7 @@ jobs:
       - name: Prepare VM data directory
         run: sudo mkdir -p /mnt/freebsd-vm && sudo chmod 777 /mnt/freebsd-vm
 
-      - name: Build in FreeBSD VM (${{ matrix.tag }})
+      - name: Build in FreeBSD VM (${{ matrix.tag }}${{ matrix.arch_suffix }})
         uses: vmactions/freebsd-vm@v1.3.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -194,6 +212,8 @@ jobs:
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         with:
           release: "15.0"
+          arch: ${{ matrix.arch == 'amd64' && '' || matrix.arch }}
+          sync: ${{ matrix.vm_sync }}
           usesh: true
           copyback: true
           data-dir: /mnt/freebsd-vm
@@ -271,9 +291,10 @@ jobs:
               --registry ${{ env.REGISTRY }} \
               --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
               --containerfile ${{ matrix.containerfile }} \
+              --arch ${{ matrix.arch }} \
               $BASE_VERSION_ARG \
               $BUILD_ARGS \
-              --tag ${{ matrix.tag }} \
+              --tag ${{ matrix.tag }}${{ matrix.arch_suffix }} \
               $VERSION_FLAG \
               --version-suffix "${{ matrix.version_suffix }}" \
               ${{ matrix.push_latest }} \
@@ -302,10 +323,10 @@ jobs:
             cit_exit=0
             ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
               --repo . \
-              --tag ${{ matrix.tag }} \
+              --tag ${{ matrix.tag }}${{ matrix.arch_suffix }} \
               $CIT_MODE \
-              --json cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.json \
-              --screenshot cit-results/${{ inputs.image_name }}-${{ matrix.tag }}.png \
+              --json cit-results/${{ inputs.image_name }}-${{ matrix.tag }}${{ matrix.arch_suffix }}.json \
+              --screenshot cit-results/${{ inputs.image_name }}-${{ matrix.tag }}${{ matrix.arch_suffix }}.png \
               --verbose || cit_exit=$?
 
             # Always copy any temp screenshots to results (for debugging failures)
@@ -326,9 +347,10 @@ jobs:
                 --registry ${{ env.REGISTRY }} \
                 --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
                 --containerfile ${{ matrix.containerfile }} \
+                --arch ${{ matrix.arch }} \
                 $BASE_VERSION_ARG \
                 $BUILD_ARGS \
-                --tag ${{ matrix.tag }} \
+                --tag ${{ matrix.tag }}${{ matrix.arch_suffix }} \
                 $VERSION_FLAG \
                 --version-suffix "${{ matrix.version_suffix }}" \
                 ${{ matrix.push_latest }} \
@@ -344,9 +366,10 @@ jobs:
                   --registry docker.io \
                   --image docker.io/daemonless/${{ inputs.image_name }} \
                   --containerfile ${{ matrix.containerfile }} \
+                  --arch ${{ matrix.arch }} \
                   $BASE_VERSION_ARG \
                   $BUILD_ARGS \
-                  --tag ${{ matrix.tag }} \
+                  --tag ${{ matrix.tag }}${{ matrix.arch_suffix }} \
                   $VERSION_FLAG \
                   --version-suffix "${{ matrix.version_suffix }}" \
                   ${{ matrix.push_latest }} \
@@ -385,7 +408,8 @@ jobs:
               # Merge into SBOM
               jq -n \
                 --arg image "${{ inputs.image_name }}" \
-                --arg tag "${{ matrix.tag }}" \
+                --arg tag "${{ matrix.tag }}${{ matrix.arch_suffix }}" \
+                --arg arch "${{ matrix.arch }}" \
                 --arg version "$APP_VERSION" \
                 --arg source "${{ matrix.containerfile }}" \
                 --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
@@ -412,16 +436,16 @@ jobs:
                     go: ($trivy[0].go | length),
                     total: (($freebsd[0] | length) + ($trivy[0].dotnet | length) + ($trivy[0].python | length) + ($trivy[0].node | length) + ($trivy[0].go | length))
                   }
-                }' > sbom-results/${{ inputs.image_name }}-${{ matrix.tag }}-sbom.json
+                }' > sbom-results/${{ inputs.image_name }}-${{ matrix.tag }}${{ matrix.arch_suffix }}-sbom.json
 
-              echo "SBOM generated: $(jq -c '.summary' sbom-results/${{ inputs.image_name }}-${{ matrix.tag }}-sbom.json)"
+              echo "SBOM generated: $(jq -c '.summary' sbom-results/${{ inputs.image_name }}-${{ matrix.tag }}${{ matrix.arch_suffix }}-sbom.json)"
             fi
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cit-results-${{ matrix.tag }}
+          name: cit-results-${{ matrix.tag }}${{ matrix.arch_suffix }}
           path: cit-results/
           retention-days: 30
 
@@ -429,7 +453,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: success() && github.event_name != 'pull_request'
         with:
-          name: sbom-${{ matrix.tag }}
+          name: sbom-${{ matrix.tag }}${{ matrix.arch_suffix }}
           path: sbom-results/
           retention-days: 90
 
@@ -447,7 +471,7 @@ jobs:
           fi
 
       - name: Update Docker Hub description
-        if: success() && matrix.tag == 'latest' && github.event_name != 'pull_request'
+        if: success() && matrix.tag == 'latest' && matrix.arch == 'amd64' && github.event_name != 'pull_request'
         continue-on-error: true
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -466,7 +490,7 @@ jobs:
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           image_name: ${{ inputs.image_name }}
-          tag: ${{ matrix.tag }}
+          tag: ${{ matrix.tag }}${{ matrix.arch_suffix }}
           status: ${{ job.status }}
           commit_sha: ${{ github.sha }}
           commit_url: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}

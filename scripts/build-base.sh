@@ -11,6 +11,7 @@
 #   --freebsd-version VER     FreeBSD major version (14 or 15)
 #   --pkg-branch BRANCH       Package branch: latest or quarterly
 #   --push-latest             Also push :latest tag (only for primary build)
+#   --arch ARCH               Target architecture (amd64, arm64, riscv64)
 #   --push                    Push to registry
 #   --login                   Login to registry (requires GITHUB_TOKEN env var)
 #   --doas                    Use doas for podman commands
@@ -28,6 +29,7 @@ PUSH_LATEST="false"
 DO_PUSH="false"
 DO_LOGIN="false"
 PODMAN="podman"
+ARCH="amd64"
 
 # Parse arguments
 while [ $# -gt 0 ]; do
@@ -64,6 +66,10 @@ while [ $# -gt 0 ]; do
             PODMAN="doas podman"
             shift
             ;;
+        --arch)
+            ARCH="$2"
+            shift 2
+            ;;
         --version)
             echo "build-base.sh version $BUILD_SCRIPT_VERSION"
             exit 0
@@ -81,20 +87,44 @@ if [ -z "$IMAGE_NAME" ]; then
     exit 1
 fi
 
-# Build directory
-BUILD_DIR="${FREEBSD_VERSION}"
-if [ ! -d "$BUILD_DIR" ]; then
-    echo "Error: Build directory not found: $BUILD_DIR"
+# Build directory - check for version subdirectory or use current directory
+if [ -d "${FREEBSD_VERSION}" ]; then
+    BUILD_DIR="${FREEBSD_VERSION}"
+elif [ -f "Containerfile" ]; then
+    BUILD_DIR="."
+else
+    echo "Error: No Containerfile found (checked ${FREEBSD_VERSION}/ and ./)"
     exit 1
 fi
+
+# Map architecture names to FreeBSD convention
+case "$ARCH" in
+    amd64|x86_64|x64)
+        FREEBSD_ARCH="amd64"
+        ARCH_SUFFIX=""
+        ;;
+    arm64|aarch64)
+        FREEBSD_ARCH="aarch64"
+        ARCH_SUFFIX="-arm64"
+        ;;
+    riscv64|riscv)
+        FREEBSD_ARCH="riscv64"
+        ARCH_SUFFIX="-riscv64"
+        ;;
+    *)
+        echo "Error: Unknown architecture: $ARCH"
+        echo "Supported: amd64, arm64, riscv64"
+        exit 1
+        ;;
+esac
 
 # Determine tags
 # quarterly = stable default (:15), latest = bleeding edge (:15-latest)
 if [ "$PKG_BRANCH" = "quarterly" ]; then
-    PRIMARY_TAG="${FREEBSD_VERSION}"
-    ALIAS_TAG="${FREEBSD_VERSION}-quarterly"
+    PRIMARY_TAG="${FREEBSD_VERSION}${ARCH_SUFFIX}"
+    ALIAS_TAG="${FREEBSD_VERSION}-quarterly${ARCH_SUFFIX}"
 else
-    PRIMARY_TAG="${FREEBSD_VERSION}-latest"
+    PRIMARY_TAG="${FREEBSD_VERSION}-latest${ARCH_SUFFIX}"
     ALIAS_TAG=""
 fi
 
@@ -108,6 +138,7 @@ echo "Primary Tag:     $PRIMARY_TAG"
 echo "Push Latest:     $PUSH_LATEST"
 echo "Push:            $DO_PUSH"
 echo "Podman:          $PODMAN"
+echo "Architecture:    $ARCH ($FREEBSD_ARCH)"
 echo ""
 
 # Login to registry
@@ -125,6 +156,7 @@ echo "=== Building Image ==="
 cd "$BUILD_DIR"
 $PODMAN build --network=host \
     --build-arg PKG_BRANCH="$PKG_BRANCH" \
+    --build-arg FREEBSD_ARCH="$FREEBSD_ARCH" \
     -t "${IMAGE_NAME}:build" .
 
 # Extract FreeBSD version
