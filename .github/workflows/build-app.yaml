@@ -370,7 +370,9 @@ jobs:
                 jq -s '.' > /tmp/freebsd_pkgs.json 2>/dev/null || echo "[]" > /tmp/freebsd_pkgs.json
 
               # Get trivy packages (.NET, Python, Node, etc.)
-              trivy image --format json "$IMAGE" 2>/dev/null > /tmp/trivy.json || echo '{}' > /tmp/trivy.json
+              # Use podman: prefix to tell trivy to use podman instead of docker
+              trivy image --image-src podman --format json "$IMAGE" > /tmp/trivy.json 2>&1 || echo '{}' > /tmp/trivy.json
+              echo "Trivy scan result: $(cat /tmp/trivy.json | head -c 500)"
 
               # Extract unique packages by type
               jq -c '{
