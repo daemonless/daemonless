@@ -77,18 +77,21 @@ jobs:
 
               # Create entry for each architecture
               for arch in $architectures; do
-                # Add arch suffix for non-amd64
+                # Map arch to vmactions settings
                 if [ "$arch" = "amd64" ]; then
                   arch_suffix=""
+                  vm_arch=""
                   vm_sync="rsync"
-                elif [ "$arch" = "arm64" ]; then
-                  arch_suffix="-arm64"
+                elif [ "$arch" = "aarch64" ]; then
+                  arch_suffix="-aarch64"
+                  vm_arch="aarch64"
                   vm_sync="rsync"
                 elif [ "$arch" = "riscv64" ]; then
                   arch_suffix="-riscv64"
+                  vm_arch="riscv64"
                   vm_sync="scp"
                 fi
-                entries+="{\"tag\":\"${tag}\",\"build_args\":\"${build_args}\",\"aliases\":\"${aliases}\",\"auto_version\":${auto_version},\"type\":\"${img_type}\",\"containerfile\":\"${containerfile}\",\"arch\":\"${arch}\",\"arch_suffix\":\"${arch_suffix}\",\"vm_sync\":\"${vm_sync}\"},"
+                entries+="{\"tag\":\"${tag}\",\"build_args\":\"${build_args}\",\"aliases\":\"${aliases}\",\"auto_version\":${auto_version},\"type\":\"${img_type}\",\"containerfile\":\"${containerfile}\",\"arch\":\"${arch}\",\"arch_suffix\":\"${arch_suffix}\",\"vm_arch\":\"${vm_arch}\",\"vm_sync\":\"${vm_sync}\"},"
               done
             done
 
@@ -131,7 +134,7 @@ jobs:
             else
               vs=""
             fi
-            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"${vs}\",\"push_latest\":\"\",\"auto_version\":false,\"type\":\"app\",\"arch\":\"amd64\",\"arch_suffix\":\"\",\"vm_sync\":\"rsync\"}]}"
+            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"${vs}\",\"push_latest\":\"\",\"auto_version\":false,\"type\":\"app\",\"arch\":\"amd64\",\"arch_suffix\":\"\",\"vm_arch\":\"\",\"vm_sync\":\"rsync\"}]}"
             echo "Manual mode: $matrix"
             echo "matrix=$matrix" >> $GITHUB_OUTPUT
             echo "compose_only=false" >> $GITHUB_OUTPUT
@@ -145,16 +148,16 @@ jobs:
           if [ -f "Containerfile" ]; then
             # Source build from upstream binaries (latest tag)
             has_source="true"
-            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_sync":"rsync"},'
+            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_arch":"","vm_sync":"rsync"},'
           fi
 
           if [ -f "Containerfile.pkg" ]; then
-            entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_sync":"rsync"},'
+            entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_arch":"","vm_sync":"rsync"},'
             # If no source build, pkg-latest should also be tagged as "latest"
             if [ "$has_source" = "false" ]; then
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"--alias latest","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_sync":"rsync"},'
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"--alias latest","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_arch":"","vm_sync":"rsync"},'
             else
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_sync":"rsync"},'
+              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_arch":"","vm_sync":"rsync"},'
             fi
           fi
 
@@ -212,7 +215,7 @@ jobs:
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         with:
           release: "15.0"
-          arch: ${{ matrix.arch == 'amd64' && '' || matrix.arch }}
+          arch: ${{ matrix.vm_arch }}
           sync: ${{ matrix.vm_sync }}
           usesh: true
           copyback: true
@@ -233,7 +236,7 @@ jobs:
             pkg install -y podman jq skopeo buildah trivy
 
             # Install patched ocijail for .NET apps (mlock support)
-            fetch -qo /tmp/ocijail.pkg https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2.pkg
+            fetch -qo /tmp/ocijail.pkg "https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2-${{ matrix.arch }}.pkg"
             pkg install -fy /tmp/ocijail.pkg
 
             rm -rf /var/db/containers /var/lib/containers 2>/dev/null || true
@@ -537,7 +540,7 @@ jobs:
             pkg install -y podman ${{ env.COMPOSE_PACKAGES }} jq
 
             # Install patched ocijail for .NET apps (mlock support)
-            fetch -qo /tmp/ocijail.pkg https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2.pkg
+            fetch -qo /tmp/ocijail.pkg "https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2-${{ matrix.arch }}.pkg"
             pkg install -fy /tmp/ocijail.pkg
 
             rm -rf /var/db/containers /var/lib/containers 2>/dev/null || true

@@ -242,7 +242,7 @@ case "$ARCH" in
     amd64|x86_64|x64)
         FREEBSD_ARCH="amd64"
         ;;
-    arm64|aarch64)
+    aarch64|arm64)
         FREEBSD_ARCH="aarch64"
         ;;
     riscv64|riscv)
@@ -250,7 +250,7 @@ case "$ARCH" in
         ;;
     *)
         echo "Error: Unknown architecture: $ARCH"
-        echo "Supported: amd64, arm64, riscv64"
+        echo "Supported: amd64, aarch64, riscv64"
         exit 1
         ;;
 esac

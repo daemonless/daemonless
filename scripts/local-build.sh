@@ -9,7 +9,7 @@
 #
 # Architectures:
 #   amd64       - x86_64 (default)
-#   arm64       - aarch64 (Pi4, etc)
+#   aarch64     - ARM64 (Pi4, etc)
 #   riscv64     - RISC-V 64-bit
 #
 # Examples:
@@ -40,10 +40,10 @@ case "$ARCH" in
         FREEBSD_ARCH="amd64"
         ARCH_SUFFIX=""
         ;;
-    arm64|aarch64)
-        ARCH="arm64"
+    aarch64|arm64)
+        ARCH="aarch64"
         FREEBSD_ARCH="aarch64"
-        ARCH_SUFFIX="-arm64"
+        ARCH_SUFFIX="-aarch64"
         ;;
     riscv64|riscv)
         ARCH="riscv64"
@@ -52,7 +52,7 @@ case "$ARCH" in
         ;;
     *)
         echo "Error: Unknown architecture: $ARCH"
-        echo "Supported: amd64, arm64, riscv64"
+        echo "Supported: amd64, aarch64, riscv64"
         exit 1
         ;;
 esac
