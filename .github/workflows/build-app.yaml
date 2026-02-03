@@ -35,6 +35,8 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       compose_only: ${{ steps.set-matrix.outputs.compose_only }}
+      architectures: ${{ steps.set-matrix.outputs.architectures }}
+      manifest_tags: ${{ steps.set-matrix.outputs.manifest_tags }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -100,6 +102,22 @@ jobs:
             echo "Config matrix: $matrix"
             echo "matrix=$matrix" >> $GITHUB_OUTPUT
             echo "compose_only=false" >> $GITHUB_OUTPUT
+
+            # Output architectures for manifest job
+            arch_json=$(yq -r '.build.architectures // ["amd64"] | @json' "$CONFIG_FILE")
+            echo "architectures=$arch_json" >> $GITHUB_OUTPUT
+
+            # Build manifest tags list (tag + aliases for each variant)
+            manifest_tags=""
+            for i in $(seq 0 $((variant_count - 1))); do
+              tag=$(yq -r ".build.variants[$i].tag" "$CONFIG_FILE")
+              manifest_tags="$manifest_tags $tag"
+              aliases=$(yq -r ".build.variants[$i].aliases // [] | .[]" "$CONFIG_FILE")
+              for a in $aliases; do
+                manifest_tags="$manifest_tags $a"
+              done
+            done
+            echo "manifest_tags=$manifest_tags" >> $GITHUB_OUTPUT
             exit 0
           fi
 
@@ -271,15 +289,16 @@ jobs:
             fi
 
             # Aliases from matrix (config.yaml) or inputs
+            # Add arch suffix for non-amd64 to avoid overwriting
             ALIASES=""
             if [ -n "${{ matrix.aliases }}" ]; then
               for a in ${{ matrix.aliases }}; do
-                ALIASES="$ALIASES --alias $a"
+                ALIASES="$ALIASES --alias ${a}${{ matrix.arch_suffix }}"
               done
             fi
             if [ -n "${{ inputs.extra_tags }}" ]; then
               for tag in $(echo "${{ inputs.extra_tags }}" | tr ',' ' '); do
-                ALIASES="$ALIASES --alias $tag"
+                ALIASES="$ALIASES --alias ${tag}${{ matrix.arch_suffix }}"
               done
             fi
 
@@ -501,6 +520,49 @@ jobs:
           branch: ${{ github.ref_name }}
           has_dockerhub: ${{ secrets.DOCKERHUB_USERNAME != '' }}
 
+  # Create multi-arch manifests
+  create-manifests:
+    needs: [detect, build]
+    if: success() && github.event_name != 'pull_request' && contains(needs.detect.outputs.architectures, 'aarch64')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Login to Docker Hub
+        if: ${{ secrets.DOCKERHUB_USERNAME != '' }}
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: echo "$DOCKERHUB_TOKEN" | podman login docker.io -u $DOCKERHUB_USERNAME --password-stdin
+
+      - name: Create and push manifests
+        env:
+          MANIFEST_TAGS: ${{ needs.detect.outputs.manifest_tags }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        run: |
+          IMAGE_NAME="${{ inputs.image_name }}"
+
+          for tag in $MANIFEST_TAGS; do
+            echo "=== Creating manifest for $tag ==="
+
+            # GHCR manifest
+            podman manifest create ghcr.io/daemonless/${IMAGE_NAME}:${tag} \
+              ghcr.io/daemonless/${IMAGE_NAME}:${tag} \
+              ghcr.io/daemonless/${IMAGE_NAME}:${tag}-aarch64 || continue
+            podman manifest push ghcr.io/daemonless/${IMAGE_NAME}:${tag} \
+              docker://ghcr.io/daemonless/${IMAGE_NAME}:${tag}
+
+            # Docker Hub manifest
+            if [ -n "$DOCKERHUB_USERNAME" ]; then
+              podman manifest create docker.io/daemonless/${IMAGE_NAME}:${tag} \
+                docker.io/daemonless/${IMAGE_NAME}:${tag} \
+                docker.io/daemonless/${IMAGE_NAME}:${tag}-aarch64 || continue
+              podman manifest push docker.io/daemonless/${IMAGE_NAME}:${tag} \
+                docker://docker.io/daemonless/${IMAGE_NAME}:${tag}
+            fi
+          done
+
   # Compose-only test (no build, just test pre-built images)
   test-compose:
     needs: detect
@@ -642,7 +704,7 @@ jobs:
 
   # Trigger status page update after successful builds
   notify-status:
-    needs: [build, test-compose, commit-sbom]
+    needs: [build, test-compose, commit-sbom, create-manifests]
     if: always() && !failure() && !cancelled() && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
