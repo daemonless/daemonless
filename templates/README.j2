@@ -189,6 +189,7 @@ Access the Web UI at: `http://localhost:{{ port_var }}`
 
 !!! info "Implementation Details"
 
+    - **Architectures:** {{ architectures | default(['amd64']) | join(', ') }}
     - **User:** `{{ user }}` (UID/GID set via [PUID/PGID](../guides/permissions.md)). Defaults to `1000:1000`.
     - **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD 15.0).
     {%- if mlock %}
@@ -353,6 +354,7 @@ Access at: `http://localhost:{{ main_port.port }}`
 
 ## Notes
 
+- **Architectures:** {{ architectures | default(['amd64']) | join(', ') }}
 - **User:** `{{ user }}` (UID/GID set via PUID/PGID)
 - **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD)
 {%- if mlock %}

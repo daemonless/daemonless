@@ -271,7 +271,19 @@ def load_compose_config(repo_path):
     config.setdefault("repo_url", f"https://github.com/daemonless/{repo_path.name}")
     config["tags"] = get_tags(repo_path)
     # config["root_var"] Removed as it's now per-volume
-    
+
+    # Load architectures from .daemonless/config.yaml
+    daemonless_config = repo_path / ".daemonless" / "config.yaml"
+    if daemonless_config.exists():
+        with open(daemonless_config, "r") as f:
+            dc = yaml.safe_load(f)
+            if dc:
+                config["architectures"] = dc.get("build", {}).get("architectures", ["amd64"])
+            else:
+                config["architectures"] = ["amd64"]
+    else:
+        config["architectures"] = ["amd64"]
+
     return config
 
 def generate_containerfile(config, repo_path):
