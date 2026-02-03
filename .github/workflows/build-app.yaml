@@ -266,7 +266,7 @@ jobs:
             # Download shared build script (pinned to version)
             mkdir -p scripts
             fetch -qo scripts/build.sh \
-              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.7.0/scripts/build.sh"
+              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.8.0/scripts/build.sh"
             chmod +x scripts/build.sh
 
             # Build args from matrix (config.yaml) or inputs
@@ -529,19 +529,18 @@ jobs:
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Login to Docker Hub
-        if: ${{ secrets.DOCKERHUB_USERNAME != '' }}
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        run: echo "$DOCKERHUB_TOKEN" | podman login docker.io -u $DOCKERHUB_USERNAME --password-stdin
-
       - name: Create and push manifests
         env:
           MANIFEST_TAGS: ${{ needs.detect.outputs.manifest_tags }}
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           IMAGE_NAME="${{ inputs.image_name }}"
+
+          # Login to Docker Hub if credentials available
+          if [ -n "$DOCKERHUB_USERNAME" ] && [ -n "$DOCKERHUB_TOKEN" ]; then
+            echo "$DOCKERHUB_TOKEN" | podman login docker.io -u $DOCKERHUB_USERNAME --password-stdin
+          fi
 
           for tag in $MANIFEST_TAGS; do
             echo "=== Creating manifest for $tag ==="
