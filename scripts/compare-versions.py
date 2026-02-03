@@ -177,10 +177,10 @@ def output_markdown(outdated, current, errors, all_services=None, deployed_info=
                 if key in outdated_lookup:
                     update = outdated_lookup[key]
                     available = update['available'].lstrip('v')
-                    print(f"| :material-close-circle:{{ .outdated }} | {name} | {tag} | {update['deployed']} → **{available}** |")
+                    print(f"| :material-close-circle:{{ .outdated }} | [{name}](https://github.com/daemonless/{name}/actions) | {tag} | {update['deployed']} → **{available}** |")
                 elif tag in deployed:
                     # Current - show deployed version
-                    print(f"| :material-check-circle:{{ .current }} | {name} | {tag} | {deployed[tag]} |")
+                    print(f"| :material-check-circle:{{ .current }} | [{name}](https://github.com/daemonless/{name}/actions) | {tag} | {deployed[tag]} |")
         print()
 
     if errors:
