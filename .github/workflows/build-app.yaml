@@ -263,11 +263,13 @@ jobs:
             sysctl kern.ipc.shm_allow_removed=1
           run: |
             set -e
-            # Download shared build script (pinned to version)
+            # Download shared scripts (pinned to version)
             mkdir -p scripts
             fetch -qo scripts/build.sh \
               "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.8.0/scripts/build.sh"
-            chmod +x scripts/build.sh
+            fetch -qo scripts/generate-sbom.sh \
+              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.8.0/scripts/generate-sbom.sh"
+            chmod +x scripts/build.sh scripts/generate-sbom.sh
 
             # Build args from matrix (config.yaml) or inputs
             BUILD_ARGS=""
@@ -400,67 +402,12 @@ jobs:
                   --push
               fi
 
-              # Generate SBOM
-              echo "=== Generating SBOM ==="
-              mkdir -p sbom-results
-              IMAGE="${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build"
-
-              # Get app version
-              APP_VERSION=$(podman run --rm --entrypoint sh "$IMAGE" -c 'cat /app/version 2>/dev/null || pkg query "%v" $(pkg query -e "%At = title" "%n") 2>/dev/null | head -1 || echo "unknown"' 2>/dev/null || echo "unknown")
-
-              # Get FreeBSD packages
-              podman run --rm --entrypoint sh "$IMAGE" -c 'pkg query "%n %v"' 2>/dev/null | \
-                tr -cd '[:print:]\n' | \
-                jq -R 'split(" ") | {name: .[0], version: .[1]}' | \
-                jq -s '.' > /tmp/freebsd_pkgs.json 2>/dev/null || echo "[]" > /tmp/freebsd_pkgs.json
-
-              # Get trivy packages (.NET, Python, Node, etc.)
-              # Use podman: prefix to tell trivy to use podman instead of docker
-              trivy image --image-src podman --format json "$IMAGE" > /tmp/trivy.json 2>&1 || echo '{}' > /tmp/trivy.json
-              echo "Trivy scan result: $(cat /tmp/trivy.json | head -c 500)"
-
-              # Extract unique packages by type
-              jq -c '{
-                dotnet: [.Results[]? | select(.Type == "dotnet-core") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
-                python: [.Results[]? | select(.Type == "python-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
-                node: [.Results[]? | select(.Type == "node-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
-                go: [.Results[]? | select(.Type == "gobinary" or .Type == "gomod") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name)
-              }' /tmp/trivy.json > /tmp/trivy_pkgs.json 2>/dev/null || echo '{"dotnet":[],"python":[],"node":[],"go":[]}' > /tmp/trivy_pkgs.json
-
-              # Merge into SBOM
-              jq -n \
-                --arg image "${{ inputs.image_name }}" \
-                --arg tag "${{ matrix.tag }}${{ matrix.arch_suffix }}" \
-                --arg arch "${{ matrix.arch }}" \
-                --arg version "$APP_VERSION" \
-                --arg source "${{ matrix.containerfile }}" \
-                --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
-                --slurpfile freebsd /tmp/freebsd_pkgs.json \
-                --slurpfile trivy /tmp/trivy_pkgs.json \
-                '{
-                  image: $image,
-                  tag: $tag,
-                  app_version: $version,
-                  source: (if $source == "Containerfile" then "upstream-binary" elif $tag == "pkg-latest" then "freebsd-latest" else "freebsd-quarterly" end),
-                  generated: $generated,
-                  packages: {
-                    freebsd: $freebsd[0],
-                    dotnet: $trivy[0].dotnet,
-                    python: $trivy[0].python,
-                    node: $trivy[0].node,
-                    go: $trivy[0].go
-                  },
-                  summary: {
-                    freebsd: ($freebsd[0] | length),
-                    dotnet: ($trivy[0].dotnet | length),
-                    python: ($trivy[0].python | length),
-                    node: ($trivy[0].node | length),
-                    go: ($trivy[0].go | length),
-                    total: (($freebsd[0] | length) + ($trivy[0].dotnet | length) + ($trivy[0].python | length) + ($trivy[0].node | length) + ($trivy[0].go | length))
-                  }
-                }' > sbom-results/${{ inputs.image_name }}-${{ matrix.tag }}${{ matrix.arch_suffix }}-sbom.json
-
-              echo "SBOM generated: $(jq -c '.summary' sbom-results/${{ inputs.image_name }}-${{ matrix.tag }}${{ matrix.arch_suffix }}-sbom.json)"
+              # Generate CycloneDX SBOM
+              ./scripts/generate-sbom.sh \
+                --image "${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build" \
+                --image-name "${{ inputs.image_name }}" \
+                --tag "${{ matrix.tag }}${{ matrix.arch_suffix }}" \
+                --arch "${{ matrix.arch }}"
             fi
 
       - name: Upload test artifacts
@@ -673,19 +620,22 @@ jobs:
           jq -n \
             --arg image "${{ inputs.image_name }}" \
             --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
-            '{image: $image, generated: $generated, tags: {}}' > sbom.json
+            '{bomFormat: "CycloneDX", specVersion: "1.5", image: $image, generated: $generated, tags: {}}' > sbom.json
 
           for f in sbom-artifacts/sbom-*/*-sbom.json; do
             [ -f "$f" ] || continue
-            tag=$(jq -r '.tag' "$f")
+            # Extract tag from CycloneDX properties
+            tag=$(jq -r '.metadata.component.properties[] | select(.name == "daemonless:tag") | .value' "$f" 2>/dev/null || echo "")
+            [ -z "$tag" ] && continue
+            echo "Processing: $tag"
             jq --arg tag "$tag" \
                --slurpfile data "$f" \
-               '.tags[$tag] = ($data[0] | del(.image, .tag))' \
+               '.tags[$tag] = $data[0]' \
                sbom.json > tmp.json && mv tmp.json sbom.json
           done
 
-          echo "Merged SBOM:"
-          jq '.tags | keys' sbom.json
+          echo "Tags: $(jq -r '.tags | keys | join(", ")' sbom.json)"
+          jq '.tags | to_entries[] | "\(.key): \(.value.components | length) components"' sbom.json
 
       - name: Commit SBOM
         env:
