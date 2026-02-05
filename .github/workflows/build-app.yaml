@@ -620,22 +620,21 @@ jobs:
           jq -n \
             --arg image "${{ inputs.image_name }}" \
             --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
-            '{bomFormat: "CycloneDX", specVersion: "1.5", image: $image, generated: $generated, tags: {}}' > sbom.json
+            '{image: $image, generated: $generated, tags: {}}' > sbom.json
 
           for f in sbom-artifacts/sbom-*/*-sbom.json; do
             [ -f "$f" ] || continue
-            # Extract tag from CycloneDX properties
-            tag=$(jq -r '.metadata.component.properties[] | select(.name == "daemonless:tag") | .value' "$f" 2>/dev/null || echo "")
+            tag=$(jq -r '.tag' "$f")
             [ -z "$tag" ] && continue
             echo "Processing: $tag"
             jq --arg tag "$tag" \
                --slurpfile data "$f" \
-               '.tags[$tag] = $data[0]' \
+               '.tags[$tag] = ($data[0] | del(.image, .tag))' \
                sbom.json > tmp.json && mv tmp.json sbom.json
           done
 
           echo "Tags: $(jq -r '.tags | keys | join(", ")' sbom.json)"
-          jq '.tags | to_entries[] | "\(.key): \(.value.components | length) components"' sbom.json
+          jq -r '.tags | to_entries[] | "\(.key): \(.value.summary.total) packages"' sbom.json
 
       - name: Commit SBOM
         env:

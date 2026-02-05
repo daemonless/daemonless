@@ -1,8 +1,8 @@
 #!/bin/sh
 #
-# Generate CycloneDX SBOM for FreeBSD container images
+# Generate SBOM for FreeBSD container images
 #
-# Version: 1.0.0
+# Version: 1.1.0
 #
 # Usage: ./scripts/generate-sbom.sh [OPTIONS]
 #   --image IMAGE           Full image reference to scan (required)
@@ -15,7 +15,7 @@
 #
 set -e
 
-SBOM_VERSION="1.0.0"
+SBOM_VERSION="1.1.0"
 
 # Defaults
 IMAGE=""
@@ -72,66 +72,65 @@ echo "App version: $APP_VERSION"
 echo "Saving image to tar..."
 $PODMAN save "$IMAGE" -o /tmp/image-scan.tar
 
-# Generate CycloneDX with Trivy (detects Node, Python, .NET, Go, etc.)
+# Run Trivy to detect app packages (Node, Python, .NET, Go)
 echo "Running Trivy scan..."
-trivy image --input /tmp/image-scan.tar --format cyclonedx --scanners vuln \
-  --output /tmp/trivy-sbom.json 2>&1 || echo '{"components":[]}' > /tmp/trivy-sbom.json
+trivy image --input /tmp/image-scan.tar --format json --scanners vuln \
+  --output /tmp/trivy.json 2>&1 || echo '{}' > /tmp/trivy.json
 
-# Extract FreeBSD packages (Trivy doesn't detect pkg)
+# Extract FreeBSD packages
 echo "Extracting FreeBSD packages..."
-$PODMAN run --rm --entrypoint sh "$IMAGE" -c 'pkg query "%n %v %c"' 2>/dev/null | \
-  tr -cd '[:print:]\n' > /tmp/freebsd_raw.txt || true
+$PODMAN run --rm --entrypoint sh "$IMAGE" -c 'pkg query "%n %v"' 2>/dev/null | \
+  tr -cd '[:print:]\n' | \
+  jq -R 'split(" ") | {name: .[0], version: .[1]}' | \
+  jq -s '.' > /tmp/freebsd_pkgs.json 2>/dev/null || echo "[]" > /tmp/freebsd_pkgs.json
 
-# Convert FreeBSD packages to CycloneDX components
-jq -Rs '
-  split("\n") | map(select(length > 0)) | map(
-    split(" ") | {
-      type: "library",
-      "bom-ref": ("pkg:freebsd/" + .[0] + "@" + .[1]),
-      name: .[0],
-      version: .[1],
-      description: (.[2:] | join(" ")),
-      purl: ("pkg:freebsd/" + .[0] + "@" + .[1])
-    }
-  )
-' /tmp/freebsd_raw.txt > /tmp/freebsd_components.json 2>/dev/null || echo "[]" > /tmp/freebsd_components.json
+# Extract packages by type from Trivy output
+jq '{
+  dotnet: [.Results[]? | select(.Type == "dotnet-core") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+  python: [.Results[]? | select(.Type == "python-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+  node: [.Results[]? | select(.Type == "node-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+  go: [.Results[]? | select(.Type == "gobinary" or .Type == "gomod") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name)
+}' /tmp/trivy.json > /tmp/trivy_pkgs.json 2>/dev/null || echo '{"dotnet":[],"python":[],"node":[],"go":[]}' > /tmp/trivy_pkgs.json
 
-# Merge into CycloneDX SBOM
+# Build SBOM in simple format
 GENERATED=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-jq --slurpfile freebsd /tmp/freebsd_components.json \
+jq -n \
   --arg image "$IMAGE_NAME" \
   --arg tag "$TAG" \
   --arg arch "$ARCH" \
   --arg version "$APP_VERSION" \
   --arg source "$SOURCE" \
   --arg generated "$GENERATED" \
-  '
-  .metadata.component.name = $image |
-  .metadata.component.version = $version |
-  .metadata.component.properties = [
-    {name: "daemonless:tag", value: $tag},
-    {name: "daemonless:arch", value: $arch},
-    {name: "daemonless:source", value: $source},
-    {name: "daemonless:generated", value: $generated}
-  ] |
-  .components = (.components + $freebsd[0]) |
-  .metadata.tools = [{
-    vendor: "daemonless",
-    name: "sbom-generator",
-    version: "1.0"
-  }]
-' /tmp/trivy-sbom.json > "$SBOM_FILE"
+  --slurpfile freebsd /tmp/freebsd_pkgs.json \
+  --slurpfile trivy /tmp/trivy_pkgs.json \
+  '{
+    image: $image,
+    tag: $tag,
+    arch: $arch,
+    app_version: $version,
+    source: $source,
+    generated: $generated,
+    packages: {
+      freebsd: $freebsd[0],
+      dotnet: $trivy[0].dotnet,
+      python: $trivy[0].python,
+      node: $trivy[0].node,
+      go: $trivy[0].go
+    },
+    summary: {
+      freebsd: ($freebsd[0] | length),
+      dotnet: ($trivy[0].dotnet | length),
+      python: ($trivy[0].python | length),
+      node: ($trivy[0].node | length),
+      go: ($trivy[0].go | length),
+      total: (($freebsd[0] | length) + ($trivy[0].dotnet | length) + ($trivy[0].python | length) + ($trivy[0].node | length) + ($trivy[0].go | length))
+    }
+  }' > "$SBOM_FILE"
 
 # Summary
-FREEBSD_COUNT=$(jq 'length' /tmp/freebsd_components.json)
-APP_COUNT=$(jq '.components | map(select(.purl | startswith("pkg:freebsd") | not)) | length' "$SBOM_FILE" 2>/dev/null || echo 0)
-TOTAL_COUNT=$(jq '.components | length' "$SBOM_FILE")
-
 echo "=== SBOM Complete ==="
-echo "FreeBSD packages: $FREEBSD_COUNT"
-echo "App packages: $APP_COUNT"
-echo "Total: $TOTAL_COUNT"
+jq -c '.summary' "$SBOM_FILE"
 echo "Output: $SBOM_FILE"
 
 # Cleanup
-rm -f /tmp/image-scan.tar /tmp/trivy-sbom.json /tmp/freebsd_raw.txt /tmp/freebsd_components.json
+rm -f /tmp/image-scan.tar /tmp/trivy.json /tmp/freebsd_pkgs.json /tmp/trivy_pkgs.json
