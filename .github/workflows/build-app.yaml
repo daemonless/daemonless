@@ -225,7 +225,7 @@ jobs:
         run: sudo mkdir -p /mnt/freebsd-vm && sudo chmod 777 /mnt/freebsd-vm
 
       - name: Build in FreeBSD VM (${{ matrix.tag }}${{ matrix.arch_suffix }})
-        uses: vmactions/freebsd-vm@v1.3.5
+        uses: vmactions/freebsd-vm@v1.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
@@ -238,6 +238,7 @@ jobs:
           usesh: true
           copyback: true
           data-dir: /mnt/freebsd-vm
+          debug-on-error: true
           envs: "GITHUB_TOKEN GITHUB_ACTOR DOCKERHUB_USERNAME DOCKERHUB_TOKEN"
           prepare: |
             set -e
@@ -534,12 +535,13 @@ jobs:
         run: sudo mkdir -p /mnt/freebsd-vm && sudo chmod 777 /mnt/freebsd-vm
 
       - name: Test in FreeBSD VM
-        uses: vmactions/freebsd-vm@v1.3.5
+        uses: vmactions/freebsd-vm@v1.4.0
         with:
           release: "15.0"
           usesh: true
           copyback: true
           data-dir: /mnt/freebsd-vm
+          debug-on-error: true
           prepare: |
             set -e
             mkdir -p /etc/pkg

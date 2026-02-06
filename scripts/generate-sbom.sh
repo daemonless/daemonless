@@ -15,7 +15,7 @@
 #
 set -e
 
-SBOM_VERSION="1.1.0"
+SBOM_VERSION="1.2.0"
 
 # Defaults
 IMAGE=""
@@ -72,7 +72,7 @@ echo "App version: $APP_VERSION"
 echo "Saving image to tar..."
 $PODMAN save "$IMAGE" -o /tmp/image-scan.tar
 
-# Run Trivy to detect app packages (Node, Python, .NET, Go)
+# Run Trivy to detect app packages
 echo "Running Trivy scan..."
 trivy image --input /tmp/image-scan.tar --format json --scanners vuln \
   --output /tmp/trivy.json 2>&1 || echo '{}' > /tmp/trivy.json
@@ -87,10 +87,14 @@ $PODMAN run --rm --entrypoint sh "$IMAGE" -c 'pkg query "%n %v"' 2>/dev/null | \
 # Extract packages by type from Trivy output
 jq '{
   dotnet: [.Results[]? | select(.Type == "dotnet-core") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
-  python: [.Results[]? | select(.Type == "python-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+  go: [.Results[]? | select(.Type == "gobinary" or .Type == "gomod") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+  java: [.Results[]? | select(.Type == "jar" or .Type == "pom") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
   node: [.Results[]? | select(.Type == "node-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
-  go: [.Results[]? | select(.Type == "gobinary" or .Type == "gomod") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name)
-}' /tmp/trivy.json > /tmp/trivy_pkgs.json 2>/dev/null || echo '{"dotnet":[],"python":[],"node":[],"go":[]}' > /tmp/trivy_pkgs.json
+  php: [.Results[]? | select(.Type == "composer") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+  python: [.Results[]? | select(.Type == "python-pkg") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+  ruby: [.Results[]? | select(.Type == "bundler" or .Type == "gemspec") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name),
+  rust: [.Results[]? | select(.Type == "rustbinary" or .Type == "cargo") | .Packages[]? | {name: .Name, version: .Version}] | unique_by(.name)
+}' /tmp/trivy.json > /tmp/trivy_pkgs.json 2>/dev/null || echo '{"dotnet":[],"go":[],"java":[],"node":[],"php":[],"python":[],"ruby":[],"rust":[]}' > /tmp/trivy_pkgs.json
 
 # Build SBOM in simple format
 GENERATED=$(date -u +%Y-%m-%dT%H:%M:%SZ)
@@ -113,17 +117,25 @@ jq -n \
     packages: {
       freebsd: $freebsd[0],
       dotnet: $trivy[0].dotnet,
-      python: $trivy[0].python,
+      go: $trivy[0].go,
+      java: $trivy[0].java,
       node: $trivy[0].node,
-      go: $trivy[0].go
+      php: $trivy[0].php,
+      python: $trivy[0].python,
+      ruby: $trivy[0].ruby,
+      rust: $trivy[0].rust
     },
     summary: {
       freebsd: ($freebsd[0] | length),
       dotnet: ($trivy[0].dotnet | length),
-      python: ($trivy[0].python | length),
-      node: ($trivy[0].node | length),
       go: ($trivy[0].go | length),
-      total: (($freebsd[0] | length) + ($trivy[0].dotnet | length) + ($trivy[0].python | length) + ($trivy[0].node | length) + ($trivy[0].go | length))
+      java: ($trivy[0].java | length),
+      node: ($trivy[0].node | length),
+      php: ($trivy[0].php | length),
+      python: ($trivy[0].python | length),
+      ruby: ($trivy[0].ruby | length),
+      rust: ($trivy[0].rust | length),
+      total: (($freebsd[0] | length) + ($trivy[0].dotnet | length) + ($trivy[0].go | length) + ($trivy[0].java | length) + ($trivy[0].node | length) + ($trivy[0].php | length) + ($trivy[0].python | length) + ($trivy[0].ruby | length) + ($trivy[0].rust | length))
     }
   }' > "$SBOM_FILE"
 
