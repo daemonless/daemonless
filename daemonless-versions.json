@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-03T06:43:09.742369Z",
+  "last_check": "2026-02-06T21:53:32.094832Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_2",
@@ -24,19 +24,20 @@
     "homepage": {
       "pkg": "1.8.0",
       "pkg-latest": "1.8.0",
-      "upstream": "v1.9.0"
+      "upstream": "v1.10.1"
     },
     "hugo": {
       "upstream": "v0.155.2"
     },
     "immich-ml": {
-      "upstream": "v2.5.2"
+      "upstream": "v2.5.5"
     },
     "immich-server": {
-      "upstream": "v2.5.2"
+      "upstream": "v2.5.5"
     },
     "jellyfin": {
       "pkg": "10.11.5",
+      "pkg-latest": "10.11.6",
       "upstream": "v10.11.6"
     },
     "lidarr": {
@@ -55,10 +56,10 @@
       }
     },
     "mealie": {
-      "upstream": "v3.10.1"
+      "upstream": "v3.10.2"
     },
     "n8n": {
-      "upstream": "2.6.3"
+      "upstream": "2.6.4"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
