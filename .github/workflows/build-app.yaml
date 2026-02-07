@@ -366,46 +366,80 @@ jobs:
             elif [ "${{ github.event_name }}" = "pull_request" ]; then
               echo "PR build - skipping push"
             else
+              # Free disk before push (build is done, swap no longer needed)
+              swapoff /dev/md0 2>/dev/null; mdconfig -d -u 0 2>/dev/null; rm -f /swapfile
+              podman image prune -f
+              pkg clean -ay
+              rm -rf /tmp/cit-* ./cit-${{ env.CIT_VERSION }}
+
+              IMAGE="${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}"
+              TAG="${{ matrix.tag }}${{ matrix.arch_suffix }}"
+
+              # Extract version from already-built image
+              VERSION=$(podman run --rm --entrypoint="" "${IMAGE}:build" cat /app/version 2>/dev/null | sed 's/^v//' | tr -d '\n' || echo "")
+
+              # Build list of all tags to push
+              PUSH_TAGS="${TAG}"
+
+              # Version tag (--tag-version)
+              if [ "${{ matrix.auto_version }}" != "true" ] && [ -n "$VERSION" ]; then
+                PUSH_TAGS="${PUSH_TAGS} ${VERSION}${{ matrix.version_suffix }}"
+              fi
+
+              # Auto-version / dl-version tag (base images)
+              if [ "${{ matrix.auto_version }}" = "true" ]; then
+                CURRENT_DL=$(skopeo inspect "docker://${IMAGE}:${TAG}" 2>/dev/null \
+                  | jq -r '.Labels["org.opencontainers.image.version"] // empty' \
+                  | sed 's/.*-dl//' || echo "")
+                [ -z "$CURRENT_DL" ] && CURRENT_DL=0
+                NEW_DL=$((CURRENT_DL + 1))
+                PUSH_TAGS="${PUSH_TAGS} ${TAG}-dl${NEW_DL}"
+              fi
+
+              # Aliases from matrix (config.yaml)
+              for a in ${{ matrix.aliases }}; do
+                PUSH_TAGS="${PUSH_TAGS} ${a}${{ matrix.arch_suffix }}"
+              done
+
+              # push_latest alias (legacy detection: "--alias latest" or empty)
+              PUSH_LATEST=$(echo "${{ matrix.push_latest }}" | sed 's/--alias //')
+              if [ -n "$PUSH_LATEST" ]; then
+                PUSH_TAGS="${PUSH_TAGS} ${PUSH_LATEST}"
+              fi
+
+              # Extra tags from inputs
+              if [ -n "${{ inputs.extra_tags }}" ]; then
+                for t in $(echo "${{ inputs.extra_tags }}" | tr ',' ' '); do
+                  PUSH_TAGS="${PUSH_TAGS} ${t}${{ matrix.arch_suffix }}"
+                done
+              fi
+
+              echo "=== Tags to push: ${PUSH_TAGS} ==="
+
+              # Push to ghcr.io
               echo "=== Pushing to ghcr.io ==="
               echo "$GITHUB_TOKEN" | podman login ${{ env.REGISTRY }} -u $GITHUB_ACTOR --password-stdin
-              ./scripts/build.sh \
-                --registry ${{ env.REGISTRY }} \
-                --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
-                --containerfile ${{ matrix.containerfile }} \
-                --arch ${{ matrix.arch }} \
-                $BASE_VERSION_ARG \
-                $BUILD_ARGS \
-                --tag ${{ matrix.tag }}${{ matrix.arch_suffix }} \
-                $VERSION_FLAG \
-                --version-suffix "${{ matrix.version_suffix }}" \
-                ${{ matrix.push_latest }} \
-                $ALIASES \
-                --skip-wip \
-                --push
+              for t in $PUSH_TAGS; do
+                echo "--- Pushing ${IMAGE}:${t} ---"
+                podman tag "${IMAGE}:build" "${IMAGE}:${t}"
+                podman push "${IMAGE}:${t}"
+              done
 
-              # Also push to Docker Hub if credentials are available
+              # Push to Docker Hub if credentials are available
               if [ -n "$DOCKERHUB_USERNAME" ] && [ -n "$DOCKERHUB_TOKEN" ]; then
                 echo "=== Pushing to Docker Hub ==="
+                DH_IMAGE="docker.io/daemonless/${{ inputs.image_name }}"
                 echo "$DOCKERHUB_TOKEN" | podman login docker.io -u $DOCKERHUB_USERNAME --password-stdin
-                ./scripts/build.sh \
-                  --registry docker.io \
-                  --image docker.io/daemonless/${{ inputs.image_name }} \
-                  --containerfile ${{ matrix.containerfile }} \
-                  --arch ${{ matrix.arch }} \
-                  $BASE_VERSION_ARG \
-                  $BUILD_ARGS \
-                  --tag ${{ matrix.tag }}${{ matrix.arch_suffix }} \
-                  $VERSION_FLAG \
-                  --version-suffix "${{ matrix.version_suffix }}" \
-                  ${{ matrix.push_latest }} \
-                  $ALIASES \
-                  --skip-wip \
-                  --push
+                for t in $PUSH_TAGS; do
+                  echo "--- Pushing ${DH_IMAGE}:${t} ---"
+                  podman tag "${IMAGE}:build" "${DH_IMAGE}:${t}"
+                  podman push "${DH_IMAGE}:${t}"
+                done
               fi
 
               # Generate CycloneDX SBOM
               ./scripts/generate-sbom.sh \
-                --image "${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build" \
+                --image "${IMAGE}:build" \
                 --image-name "${{ inputs.image_name }}" \
                 --tag "${{ matrix.tag }}${{ matrix.arch_suffix }}" \
                 --arch "${{ matrix.arch }}"
