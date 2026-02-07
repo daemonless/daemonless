@@ -267,9 +267,9 @@ jobs:
             # Download shared scripts (pinned to version)
             mkdir -p scripts
             fetch -qo scripts/build.sh \
-              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.9.2/scripts/build.sh"
+              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.10.0/scripts/build.sh"
             fetch -qo scripts/generate-sbom.sh \
-              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.9.2/scripts/generate-sbom.sh"
+              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.10.0/scripts/generate-sbom.sh"
             chmod +x scripts/build.sh scripts/generate-sbom.sh
 
             # Build args from matrix (config.yaml) or inputs
