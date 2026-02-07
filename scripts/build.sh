@@ -256,6 +256,11 @@ case "$ARCH" in
 esac
 BUILD_ARGS="$BUILD_ARGS --build-arg FREEBSD_ARCH=$FREEBSD_ARCH"
 
+# Forward GITHUB_TOKEN for authenticated GitHub API access (avoids rate limiting)
+if [ -n "$GITHUB_TOKEN" ]; then
+    BUILD_ARGS="$BUILD_ARGS --build-arg GITHUB_TOKEN=$GITHUB_TOKEN"
+fi
+
 # Add extra build args
 if [ -n "$EXTRA_BUILD_ARGS" ]; then
     BUILD_ARGS="$BUILD_ARGS $EXTRA_BUILD_ARGS"
