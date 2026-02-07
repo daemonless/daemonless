@@ -425,15 +425,16 @@ jobs:
                 podman push "${IMAGE}:${t}"
               done
 
-              # Push to Docker Hub if credentials are available
+              # Copy to Docker Hub via skopeo (registry-to-registry, no local disk needed)
               if [ -n "$DOCKERHUB_USERNAME" ] && [ -n "$DOCKERHUB_TOKEN" ]; then
-                echo "=== Pushing to Docker Hub ==="
+                echo "=== Copying to Docker Hub ==="
                 DH_IMAGE="docker.io/daemonless/${{ inputs.image_name }}"
-                echo "$DOCKERHUB_TOKEN" | podman login docker.io -u $DOCKERHUB_USERNAME --password-stdin
                 for t in $PUSH_TAGS; do
-                  echo "--- Pushing ${DH_IMAGE}:${t} ---"
-                  podman tag "${IMAGE}:build" "${DH_IMAGE}:${t}"
-                  podman push "${DH_IMAGE}:${t}"
+                  echo "--- Copying ${IMAGE}:${t} -> ${DH_IMAGE}:${t} ---"
+                  skopeo copy \
+                    --src-creds "$GITHUB_ACTOR:$GITHUB_TOKEN" \
+                    --dest-creds "$DOCKERHUB_USERNAME:$DOCKERHUB_TOKEN" \
+                    "docker://${IMAGE}:${t}" "docker://${DH_IMAGE}:${t}"
                 done
               fi
 
