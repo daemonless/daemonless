@@ -15,7 +15,7 @@
 #
 set -e
 
-SBOM_VERSION="1.2.0"
+SBOM_VERSION="1.3.0"
 
 # Defaults
 IMAGE=""
@@ -68,14 +68,21 @@ SBOM_FILE="$OUTPUT_DIR/${IMAGE_NAME}-${TAG}-sbom.json"
 APP_VERSION=$($PODMAN run --rm --entrypoint sh "$IMAGE" -c 'cat /app/version 2>/dev/null || pkg query "%v" $(pkg query -e "%At = title" "%n") 2>/dev/null | head -1 || echo "unknown"' 2>/dev/null || echo "unknown")
 echo "App version: $APP_VERSION"
 
-# Save image to tar for Trivy (--image-src podman needs socket, tar works everywhere)
-echo "Saving image to tar..."
-$PODMAN save "$IMAGE" -o /tmp/image-scan.tar
+# Mount image filesystem via buildah (avoids multi-GB tar export)
+BUILDAH="buildah"
+[ "$PODMAN" = "doas podman" ] && BUILDAH="doas buildah"
+echo "Mounting image filesystem..."
+SBOM_CTR=$($BUILDAH from "$IMAGE")
+SBOM_MNT=$($BUILDAH mount "$SBOM_CTR")
 
 # Run Trivy to detect app packages
 echo "Running Trivy scan..."
-trivy image --input /tmp/image-scan.tar --format json --scanners vuln \
+trivy rootfs "$SBOM_MNT" --format json --scanners vuln \
   --output /tmp/trivy.json 2>&1 || echo '{}' > /tmp/trivy.json
+
+# Unmount
+$BUILDAH umount "$SBOM_CTR"
+$BUILDAH rm "$SBOM_CTR"
 
 # Extract FreeBSD packages
 echo "Extracting FreeBSD packages..."
@@ -145,4 +152,4 @@ jq -c '.summary' "$SBOM_FILE"
 echo "Output: $SBOM_FILE"
 
 # Cleanup
-rm -f /tmp/image-scan.tar /tmp/trivy.json /tmp/freebsd_pkgs.json /tmp/trivy_pkgs.json
+rm -f /tmp/trivy.json /tmp/freebsd_pkgs.json /tmp/trivy_pkgs.json
