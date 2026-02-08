@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-07T06:35:38.762283Z",
+  "last_check": "2026-02-08T06:43:04.865997Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_2",
@@ -98,6 +98,9 @@
       "pkg": "5.28.0.10274",
       "pkg-latest": "6.0.4.10291_1",
       "upstream": "6.0.4.10291"
+    },
+    "readmeabook": {
+      "upstream": "v1.0.3"
     },
     "redis": {
       "pkg": "8.4.0_1",
