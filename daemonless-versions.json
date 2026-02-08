@@ -1,9 +1,9 @@
 {
-  "last_check": "2026-02-08T06:43:04.865997Z",
+  "last_check": "2026-02-08T22:56:42.801553Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_2",
-      "pkg-latest": "0.107.71",
+      "pkg-latest": "0.107.71_1",
       "upstream": "v0.107.71"
     },
     "adguardhome-sync": {
@@ -14,11 +14,11 @@
     },
     "cloudflared": {
       "pkg": "2025.8.0_5",
-      "pkg-latest": "2025.8.0_5"
+      "pkg-latest": "2025.8.0_6"
     },
     "gitea": {
       "pkg": "1.24.2_8",
-      "pkg-latest": "1.24.2_8",
+      "pkg-latest": "1.24.2_9",
       "upstream": "v1.25.4"
     },
     "homepage": {
@@ -27,7 +27,7 @@
       "upstream": "v1.10.1"
     },
     "hugo": {
-      "upstream": "v0.155.2"
+      "upstream": "v0.155.3"
     },
     "immich-ml": {
       "upstream": "v2.5.5"
@@ -122,7 +122,7 @@
     },
     "tailscale": {
       "pkg": "1.94.1",
-      "pkg-latest": "1.94.1",
+      "pkg-latest": "1.94.1_1",
       "upstream": "v1.94.1"
     },
     "tautulli": {
@@ -132,7 +132,7 @@
     },
     "traefik": {
       "pkg": "3.6.6_1",
-      "pkg-latest": "3.6.6_1",
+      "pkg-latest": "3.6.6_2",
       "upstream": "v3.6.7"
     },
     "transmission": {
