@@ -258,7 +258,7 @@ BUILD_ARGS="$BUILD_ARGS --build-arg FREEBSD_ARCH=$FREEBSD_ARCH"
 
 # Forward GITHUB_TOKEN for authenticated GitHub API access (avoids rate limiting)
 if [ -n "$GITHUB_TOKEN" ]; then
-    BUILD_ARGS="$BUILD_ARGS --build-arg GITHUB_TOKEN=$GITHUB_TOKEN"
+    BUILD_ARGS="$BUILD_ARGS --secret id=github_token,env=GITHUB_TOKEN"
 fi
 
 # Add extra build args
