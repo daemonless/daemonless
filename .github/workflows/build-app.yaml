@@ -7,196 +7,40 @@ on:
         description: 'Image name (e.g., radarr, sonarr)'
         required: true
         type: string
-      image_tag:
-        description: 'Override tag (skips auto-detection)'
-        required: false
-        type: string
-        default: ''
-      build_args:
-        description: 'Build args (e.g., PG_VERSION=14)'
-        required: false
-        type: string
-        default: ''
-      extra_tags:
-        description: 'Extra tags (e.g., latest)'
-        required: false
-        type: string
-        default: ''
 
 env:
   REGISTRY: ghcr.io
-  CIT_VERSION: "0.3.9"
+  DBUILD_REF: v1.0.0
   COMPOSE_PACKAGES: "py311-podman-compose"
 
 jobs:
-  # Detect which Containerfiles exist and build dynamic matrix
+  # Detect which variants exist and build dynamic matrix
   detect:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-      compose_only: ${{ steps.set-matrix.outputs.compose_only }}
-      architectures: ${{ steps.set-matrix.outputs.architectures }}
-      manifest_tags: ${{ steps.set-matrix.outputs.manifest_tags }}
+      matrix: ${{ steps.detect.outputs.matrix }}
+      compose_only: ${{ steps.detect.outputs.compose_only }}
+      architectures: ${{ steps.detect.outputs.architectures }}
+      manifest_tags: ${{ steps.detect.outputs.manifest_tags }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install yq
-        uses: mikefarah/yq@master
+      - name: Install dependencies
+        run: pip install PyYAML
 
       - name: Detect build matrix
-        id: set-matrix
+        id: detect
         run: |
-          CONFIG_FILE=".daemonless/config.yaml"
-
-          # Check for config.yaml with build.variants
-          if [ -f "$CONFIG_FILE" ] && yq -e '.build.variants' "$CONFIG_FILE" >/dev/null 2>&1; then
-            echo "Using build.variants from config.yaml"
-
-            # Get auto_version and type
-            auto_version=$(yq -r '.build.auto_version // false' "$CONFIG_FILE")
-            img_type=$(yq -r '.type // "app"' "$CONFIG_FILE")
-
-            # Get architectures (default to amd64 only)
-            architectures=$(yq -r '.build.architectures // ["amd64"] | join(" ")' "$CONFIG_FILE")
-            echo "Architectures: $architectures"
-
-            # Build matrix from variants x architectures
-            entries=""
-            variant_count=$(yq '.build.variants | length' "$CONFIG_FILE")
-
-            for i in $(seq 0 $((variant_count - 1))); do
-              tag=$(yq -r ".build.variants[$i].tag" "$CONFIG_FILE")
-
-              # Convert args object to space-separated KEY=VALUE string
-              build_args=$(yq -r ".build.variants[$i].args // {} | to_entries | map(.key + \"=\" + .value) | join(\" \")" "$CONFIG_FILE")
-
-              # Convert aliases array to space-separated string
-              aliases=$(yq -r ".build.variants[$i].aliases // [] | join(\" \")" "$CONFIG_FILE")
-
-              # Get containerfile (default to Containerfile)
-              containerfile=$(yq -r ".build.variants[$i].containerfile // \"Containerfile\"" "$CONFIG_FILE")
-
-              # Create entry for each architecture
-              for arch in $architectures; do
-                # Map arch to vmactions settings
-                if [ "$arch" = "amd64" ]; then
-                  arch_suffix=""
-                  vm_arch=""
-                  vm_sync="rsync"
-                elif [ "$arch" = "aarch64" ]; then
-                  arch_suffix="-aarch64"
-                  vm_arch="aarch64"
-                  vm_sync="rsync"
-                elif [ "$arch" = "riscv64" ]; then
-                  arch_suffix="-riscv64"
-                  vm_arch="riscv64"
-                  vm_sync="scp"
-                fi
-                entries+="{\"tag\":\"${tag}\",\"build_args\":\"${build_args}\",\"aliases\":\"${aliases}\",\"auto_version\":${auto_version},\"type\":\"${img_type}\",\"containerfile\":\"${containerfile}\",\"arch\":\"${arch}\",\"arch_suffix\":\"${arch_suffix}\",\"vm_arch\":\"${vm_arch}\",\"vm_sync\":\"${vm_sync}\"},"
-              done
-            done
-
-            entries="${entries%,}"
-            matrix="{\"include\":[${entries}]}"
-            echo "Config matrix: $matrix"
-            echo "matrix=$matrix" >> $GITHUB_OUTPUT
-            echo "compose_only=false" >> $GITHUB_OUTPUT
-
-            # Output architectures for manifest job
-            arch_json=$(yq -r '.build.architectures // ["amd64"] | @json' "$CONFIG_FILE")
-            echo "architectures=$arch_json" >> $GITHUB_OUTPUT
-
-            # Build manifest tags list (tag + aliases for each variant)
-            manifest_tags=""
-            for i in $(seq 0 $((variant_count - 1))); do
-              tag=$(yq -r ".build.variants[$i].tag" "$CONFIG_FILE")
-              manifest_tags="$manifest_tags $tag"
-              aliases=$(yq -r ".build.variants[$i].aliases // [] | .[]" "$CONFIG_FILE")
-              for a in $aliases; do
-                manifest_tags="$manifest_tags $a"
-              done
-            done
-            echo "manifest_tags=$manifest_tags" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          # If image_tag is provided, skip auto-detection (manual mode)
-          if [ -n "${{ inputs.image_tag }}" ]; then
-            tag="${{ inputs.image_tag }}"
-
-            # Select containerfile based on tag name
-            if [[ "$tag" == "pkg" || "$tag" == "pkg-latest" || "$tag" == *"-pkg" || "$tag" == *"-pkg-latest" ]]; then
-              cf="Containerfile.pkg"
-            else
-              cf="Containerfile"
-            fi
-
-            # Fall back if preferred file doesn't exist
-            if [ ! -f "$cf" ]; then
-              if [ -f "Containerfile" ]; then
-                cf="Containerfile"
-              elif [ -f "Containerfile.pkg" ]; then
-                cf="Containerfile.pkg"
-              else
-                echo "ERROR: No Containerfile or Containerfile.pkg found"
-                exit 1
-              fi
-            fi
-
-            # Determine version_suffix based on final containerfile and tag
-            if [[ "$tag" == "pkg-latest" || "$tag" == *"-pkg-latest" ]]; then
-              vs="-pkg-latest"
-            elif [ "$cf" = "Containerfile.pkg" ]; then
-              vs="-pkg"
-            else
-              vs=""
-            fi
-            matrix="{\"include\":[{\"containerfile\":\"${cf}\",\"tag\":\"${tag}\",\"base_version\":\"\",\"version_suffix\":\"${vs}\",\"push_latest\":\"\",\"auto_version\":false,\"type\":\"app\",\"arch\":\"amd64\",\"arch_suffix\":\"\",\"vm_arch\":\"\",\"vm_sync\":\"rsync\"}]}"
-            echo "Manual mode: $matrix"
-            echo "matrix=$matrix" >> $GITHUB_OUTPUT
-            echo "compose_only=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          # Build JSON matrix based on existing Containerfiles
-          entries=""
-          has_source="false"
-
-          if [ -f "Containerfile" ]; then
-            # Source build from upstream binaries (latest tag)
-            has_source="true"
-            entries+='{"containerfile":"Containerfile","tag":"latest","base_version":"","version_suffix":"","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_arch":"","vm_sync":"rsync"},'
-          fi
-
-          if [ -f "Containerfile.pkg" ]; then
-            entries+='{"containerfile":"Containerfile.pkg","tag":"pkg","base_version":"15-quarterly","version_suffix":"-pkg","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_arch":"","vm_sync":"rsync"},'
-            # If no source build, pkg-latest should also be tagged as "latest"
-            if [ "$has_source" = "false" ]; then
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"--alias latest","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_arch":"","vm_sync":"rsync"},'
-            else
-              entries+='{"containerfile":"Containerfile.pkg","tag":"pkg-latest","base_version":"15-latest","version_suffix":"-pkg-latest","push_latest":"","auto_version":false,"type":"app","arch":"amd64","arch_suffix":"","vm_arch":"","vm_sync":"rsync"},'
-            fi
-          fi
-
-          # Remove trailing comma and wrap in matrix format
-          entries="${entries%,}"
-          matrix="{\"include\":[${entries}]}"
-
-          # Check for compose-only mode (no Containerfiles but has compose.yml)
-          if [ -z "$entries" ] && { [ -f ".daemonless/compose.yml" ] || [ -f ".daemonless/compose.yaml" ]; }; then
-            echo "Compose-only mode detected"
-            echo "compose_only=true" >> $GITHUB_OUTPUT
-          else
-            echo "compose_only=false" >> $GITHUB_OUTPUT
-          fi
-
-          echo "Detected matrix: $matrix"
-          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+          # Fetch dbuild
+          curl -sSL "https://github.com/daemonless/dbuild/archive/${{ env.DBUILD_REF }}.tar.gz" | tar xz -C /tmp
+          DBUILD_DIR=$(ls -d /tmp/dbuild-* | head -1)
+          export PYTHONPATH="$DBUILD_DIR"
+          python3 -m dbuild detect --format github
 
   build:
     needs: detect
-    if: ${{ needs.detect.outputs.matrix != '{"include":[]}' }}
+    if: ${{ needs.detect.outputs.matrix != '' && needs.detect.outputs.compose_only != 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -252,7 +96,7 @@ jobs:
             mkdir -p /etc/pkg
             echo 'FreeBSD: { url: "http://pkg.FreeBSD.org/${ABI}/latest" }' > /etc/pkg/FreeBSD.conf
             pkg update -f
-            pkg install -y podman jq skopeo buildah trivy
+            pkg install -y podman jq skopeo buildah trivy python3 py311-yaml
 
             # Install patched ocijail for .NET apps (mlock support)
             fetch -qo /tmp/ocijail.pkg "https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2-${{ matrix.arch }}.pkg"
@@ -264,186 +108,51 @@ jobs:
             sysctl kern.ipc.shm_allow_removed=1
           run: |
             set -e
-            # Download shared scripts (pinned to version)
-            mkdir -p scripts
-            fetch -qo scripts/build.sh \
-              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.10.0/scripts/build.sh"
-            fetch -qo scripts/generate-sbom.sh \
-              "https://raw.githubusercontent.com/daemonless/daemonless/build-v1.10.0/scripts/generate-sbom.sh"
-            chmod +x scripts/build.sh scripts/generate-sbom.sh
 
-            # Build args from matrix (config.yaml) or inputs
-            BUILD_ARGS=""
-            if [ -n "${{ matrix.build_args }}" ]; then
-              for arg in ${{ matrix.build_args }}; do
-                BUILD_ARGS="$BUILD_ARGS --build-arg $arg"
-              done
-            fi
-            if [ -n "${{ inputs.build_args }}" ]; then
-              for arg in $(echo "${{ inputs.build_args }}" | tr ',' ' '); do
-                BUILD_ARGS="$BUILD_ARGS --build-arg $arg"
-              done
-            fi
+            # Fetch dbuild
+            fetch -qo /tmp/dbuild.tar.gz \
+              "https://github.com/daemonless/dbuild/archive/${{ env.DBUILD_REF }}.tar.gz"
+            mkdir -p /tmp/dbuild
+            tar -xzf /tmp/dbuild.tar.gz -C /tmp/dbuild --strip-components=1
+            export PYTHONPATH="/tmp/dbuild"
+            DBUILD="python3 -m dbuild"
 
-            # Base version (legacy apps)
-            BASE_VERSION_ARG=""
-            if [ -n "${{ matrix.base_version }}" ]; then
-              BASE_VERSION_ARG="--base-version ${{ matrix.base_version }}"
-            fi
+            echo "=== dbuild CI (GitHub Actions) ==="
+            $DBUILD --version
 
-            # Aliases from matrix (config.yaml) or inputs
-            # Add arch suffix for non-amd64 to avoid overwriting
-            ALIASES=""
-            if [ -n "${{ matrix.aliases }}" ]; then
-              for a in ${{ matrix.aliases }}; do
-                ALIASES="$ALIASES --alias ${a}${{ matrix.arch_suffix }}"
-              done
-            fi
-            if [ -n "${{ inputs.extra_tags }}" ]; then
-              for tag in $(echo "${{ inputs.extra_tags }}" | tr ',' ' '); do
-                ALIASES="$ALIASES --alias ${tag}${{ matrix.arch_suffix }}"
-              done
-            fi
+            VARIANT="${{ matrix.tag }}"
+            ARCH="${{ matrix.arch }}"
 
-            # Version flag: auto_version (base images) or tag-version (apps)
-            VERSION_FLAG="--tag-version"
-            if [ "${{ matrix.auto_version }}" = "true" ]; then
-              VERSION_FLAG="--auto-version"
-            fi
+            # Build
+            $DBUILD -v build --variant "$VARIANT" --arch "$ARCH"
 
-            # Build (no push yet)
-            ./scripts/build.sh \
-              --registry ${{ env.REGISTRY }} \
-              --image ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }} \
-              --containerfile ${{ matrix.containerfile }} \
-              --arch ${{ matrix.arch }} \
-              $BASE_VERSION_ARG \
-              $BUILD_ARGS \
-              --tag ${{ matrix.tag }}${{ matrix.arch_suffix }} \
-              $VERSION_FLAG \
-              --version-suffix "${{ matrix.version_suffix }}" \
-              ${{ matrix.push_latest }} \
-              $ALIASES \
-              --skip-wip
-
-            # Test with cit (blocking - must pass before push)
-            echo "=== Running cit tests ==="
-            fetch -qo - https://github.com/daemonless/cit/releases/download/v${{ env.CIT_VERSION }}/cit-${{ env.CIT_VERSION }}.tar.gz | tar xz
-            ./cit-${{ env.CIT_VERSION }}/cit --setup
-
-            # Install podman-compose if compose mode needed
-            if [ -f ".daemonless/compose.yml" ] || [ -f ".daemonless/compose.yaml" ]; then
-              pkg install -y ${{ env.COMPOSE_PACKAGES }}
-            fi
-
+            # Test (capture exit code for copyback)
             mkdir -p cit-results
-
-            # Test mode: shell for base images, default for apps
-            CIT_MODE=""
-            if [ "${{ matrix.type }}" = "base" ]; then
-              CIT_MODE="--mode shell"
-            fi
-
-            # Run cit and capture exit code (don't fail immediately)
             cit_exit=0
-            ./cit-${{ env.CIT_VERSION }}/cit ${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}:build \
-              --repo . \
-              --tag ${{ matrix.tag }}${{ matrix.arch_suffix }} \
-              $CIT_MODE \
+            $DBUILD -v test --variant "$VARIANT" \
               --json cit-results/${{ inputs.image_name }}-${{ matrix.tag }}${{ matrix.arch_suffix }}.json \
-              --screenshot cit-results/${{ inputs.image_name }}-${{ matrix.tag }}${{ matrix.arch_suffix }}.png \
-              --verbose || cit_exit=$?
+              || cit_exit=$?
 
-            # Always copy any temp screenshots to results (for debugging failures)
+            # Copy any temp screenshots to results
             cp /tmp/cit-screenshot*.png cit-results/ 2>/dev/null || true
 
-            # Save cit exit code to file (don't exit here - let copyback happen first)
+            # Save exit code (don't exit here - let copyback happen first)
             echo "$cit_exit" > cit-results/cit-exit-code
 
-            # Only push if cit passed and not a PR
+            # Only push + sbom if tests passed and not a PR
             if [ $cit_exit -ne 0 ]; then
-              echo "cit failed with exit code $cit_exit - skipping push"
+              echo "Tests failed with exit code $cit_exit - skipping push"
             elif [ "${{ github.event_name }}" = "pull_request" ]; then
               echo "PR build - skipping push"
             else
-              # Free disk before push (build is done, swap no longer needed)
+              # Free disk before push
               swapoff /dev/md0 2>/dev/null; mdconfig -d -u 0 2>/dev/null; rm -f /swapfile
               podman image prune -f
               pkg clean -ay
-              rm -rf /tmp/cit-* ./cit-${{ env.CIT_VERSION }}
+              rm -rf /tmp/cit-*
 
-              IMAGE="${{ env.REGISTRY }}/daemonless/${{ inputs.image_name }}"
-              TAG="${{ matrix.tag }}${{ matrix.arch_suffix }}"
-
-              # Extract version from already-built image
-              VERSION=$(podman run --rm --entrypoint="" "${IMAGE}:build" cat /app/version 2>/dev/null | sed 's/^v//' | tr -d '\n' || echo "")
-
-              # Build list of all tags to push
-              PUSH_TAGS="${TAG}"
-
-              # Version tag (--tag-version)
-              if [ "${{ matrix.auto_version }}" != "true" ] && [ -n "$VERSION" ]; then
-                PUSH_TAGS="${PUSH_TAGS} ${VERSION}${{ matrix.version_suffix }}"
-              fi
-
-              # Auto-version / dl-version tag (base images)
-              if [ "${{ matrix.auto_version }}" = "true" ]; then
-                CURRENT_DL=$(skopeo inspect "docker://${IMAGE}:${TAG}" 2>/dev/null \
-                  | jq -r '.Labels["org.opencontainers.image.version"] // empty' \
-                  | sed 's/.*-dl//' || echo "")
-                [ -z "$CURRENT_DL" ] && CURRENT_DL=0
-                NEW_DL=$((CURRENT_DL + 1))
-                PUSH_TAGS="${PUSH_TAGS} ${TAG}-dl${NEW_DL}"
-              fi
-
-              # Aliases from matrix (config.yaml)
-              for a in ${{ matrix.aliases }}; do
-                PUSH_TAGS="${PUSH_TAGS} ${a}${{ matrix.arch_suffix }}"
-              done
-
-              # push_latest alias (legacy detection: "--alias latest" or empty)
-              PUSH_LATEST=$(echo "${{ matrix.push_latest }}" | sed 's/--alias //')
-              if [ -n "$PUSH_LATEST" ]; then
-                PUSH_TAGS="${PUSH_TAGS} ${PUSH_LATEST}"
-              fi
-
-              # Extra tags from inputs
-              if [ -n "${{ inputs.extra_tags }}" ]; then
-                for t in $(echo "${{ inputs.extra_tags }}" | tr ',' ' '); do
-                  PUSH_TAGS="${PUSH_TAGS} ${t}${{ matrix.arch_suffix }}"
-                done
-              fi
-
-              echo "=== Tags to push: ${PUSH_TAGS} ==="
-
-              # Push to ghcr.io
-              echo "=== Pushing to ghcr.io ==="
-              echo "$GITHUB_TOKEN" | podman login ${{ env.REGISTRY }} -u $GITHUB_ACTOR --password-stdin
-              for t in $PUSH_TAGS; do
-                echo "--- Pushing ${IMAGE}:${t} ---"
-                podman tag "${IMAGE}:build" "${IMAGE}:${t}"
-                podman push "${IMAGE}:${t}"
-              done
-
-              # Copy to Docker Hub via skopeo (registry-to-registry, no local disk needed)
-              if [ -n "$DOCKERHUB_USERNAME" ] && [ -n "$DOCKERHUB_TOKEN" ]; then
-                echo "=== Copying to Docker Hub ==="
-                DH_IMAGE="docker.io/daemonless/${{ inputs.image_name }}"
-                for t in $PUSH_TAGS; do
-                  echo "--- Copying ${IMAGE}:${t} -> ${DH_IMAGE}:${t} ---"
-                  skopeo copy \
-                    --src-creds "$GITHUB_ACTOR:$GITHUB_TOKEN" \
-                    --dest-creds "$DOCKERHUB_USERNAME:$DOCKERHUB_TOKEN" \
-                    "docker://${IMAGE}:${t}" "docker://${DH_IMAGE}:${t}"
-                done
-              fi
-
-              # Generate CycloneDX SBOM
-              ./scripts/generate-sbom.sh \
-                --image "${IMAGE}:build" \
-                --image-name "${{ inputs.image_name }}" \
-                --tag "${{ matrix.tag }}${{ matrix.arch_suffix }}" \
-                --arch "${{ matrix.arch }}"
+              $DBUILD -v push --variant "$VARIANT" --arch "$ARCH"
+              $DBUILD -v sbom --variant "$VARIANT" --arch "$ARCH"
             fi
 
       - name: Upload test artifacts
@@ -462,7 +171,7 @@ jobs:
           path: sbom-results/
           retention-days: 90
 
-      - name: Check cit result
+      - name: Check test result
         if: always()
         run: |
           if [ ! -f cit-results/cit-exit-code ]; then
@@ -471,7 +180,7 @@ jobs:
           fi
           exit_code=$(cat cit-results/cit-exit-code)
           if [ "$exit_code" != "0" ]; then
-            echo "cit failed with exit code $exit_code"
+            echo "Tests failed with exit code $exit_code"
             exit $exit_code
           fi
 
@@ -582,10 +291,10 @@ jobs:
             mkdir -p /etc/pkg
             echo 'FreeBSD: { url: "http://pkg.FreeBSD.org/${ABI}/latest" }' > /etc/pkg/FreeBSD.conf
             pkg update -f
-            pkg install -y podman ${{ env.COMPOSE_PACKAGES }} jq
+            pkg install -y podman ${{ env.COMPOSE_PACKAGES }} jq python3 py311-yaml
 
             # Install patched ocijail for .NET apps (mlock support)
-            fetch -qo /tmp/ocijail.pkg "https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2-${{ matrix.arch || 'amd64' }}.pkg"
+            fetch -qo /tmp/ocijail.pkg "https://github.com/daemonless/freebsd-ports/releases/download/v0.4.0-patched/ocijail-0.4.0_2-amd64.pkg"
             pkg install -fy /tmp/ocijail.pkg
 
             rm -rf /var/db/containers /var/lib/containers 2>/dev/null || true
@@ -595,17 +304,17 @@ jobs:
           run: |
             set -e
 
-            # Download cit
-            fetch -qo - https://github.com/daemonless/cit/releases/download/v${{ env.CIT_VERSION }}/cit-${{ env.CIT_VERSION }}.tar.gz | tar xz
-            ./cit-${{ env.CIT_VERSION }}/cit --setup
+            # Fetch dbuild
+            fetch -qo /tmp/dbuild.tar.gz \
+              "https://github.com/daemonless/dbuild/archive/${{ env.DBUILD_REF }}.tar.gz"
+            mkdir -p /tmp/dbuild
+            tar -xzf /tmp/dbuild.tar.gz -C /tmp/dbuild --strip-components=1
+            export PYTHONPATH="/tmp/dbuild"
+            DBUILD="python3 -m dbuild"
 
-            # Run cit in compose mode (no image arg - detected from config)
             mkdir -p cit-results
-            ./cit-${{ env.CIT_VERSION }}/cit \
-              --repo . \
-              --json cit-results/${{ inputs.image_name }}.json \
-              --screenshot cit-results/${{ inputs.image_name }}.png \
-              --verbose
+            $DBUILD -v test \
+              --json cit-results/${{ inputs.image_name }}.json
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
@@ -622,10 +331,10 @@ jobs:
         run: |
           if [ "${{ job.status }}" = "success" ]; then
             COLOR=3066993
-            STATUS="✅ Success"
+            STATUS="Success"
           else
             COLOR=15158332
-            STATUS="❌ Failed"
+            STATUS="Failed"
           fi
 
           SHORT_SHA="${{ github.sha }}"
