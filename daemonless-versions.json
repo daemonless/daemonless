@@ -1,8 +1,8 @@
 {
-  "last_check": "2026-02-09T06:59:14.689304Z",
+  "last_check": "2026-02-10T00:26:11.255557Z",
   "services": {
     "adguardhome": {
-      "pkg": "0.107.69_2",
+      "pkg": "0.107.69_3",
       "pkg-latest": "0.107.71_1",
       "upstream": "v0.107.71"
     },
@@ -13,11 +13,11 @@
       "upstream": "v1.18.5"
     },
     "cloudflared": {
-      "pkg": "2025.8.0_5",
+      "pkg": "2025.8.0_6",
       "pkg-latest": "2025.8.0_6"
     },
     "gitea": {
-      "pkg": "1.24.2_8",
+      "pkg": "1.24.2_9",
       "pkg-latest": "1.24.2_9",
       "upstream": "v1.25.4"
     },
@@ -121,7 +121,7 @@
       "upstream": "4.0.16.2944"
     },
     "tailscale": {
-      "pkg": "1.94.1",
+      "pkg": "1.94.1_1",
       "pkg-latest": "1.94.1_1",
       "upstream": "v1.94.1"
     },
@@ -131,7 +131,7 @@
       "upstream": "v2.16.0"
     },
     "traefik": {
-      "pkg": "3.6.6_1",
+      "pkg": "3.6.6_2",
       "pkg-latest": "3.6.6_2",
       "upstream": "v3.6.7"
     },
@@ -148,7 +148,7 @@
     "unifi": {
       "pkg": "10.0.160",
       "pkg-latest": "10.0.160",
-      "upstream": "10.0.162"
+      "upstream": "10.1.84"
     },
     "uptime-kuma": {
       "upstream": "2.1.0"
