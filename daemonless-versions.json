@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-10T23:12:50.521668Z",
+  "last_check": "2026-02-11T06:55:48.831124Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -51,7 +51,7 @@
       "variants": {
         "11.4": {
           "pkg": "11.4.9",
-          "pkg-latest": "11.4.9"
+          "pkg-latest": "11.4.10"
         }
       }
     },
@@ -100,7 +100,7 @@
       "upstream": "6.0.4.10291"
     },
     "readmeabook": {
-      "upstream": "v1.0.5"
+      "upstream": "v1.0.6"
     },
     "redis": {
       "pkg": "8.4.0_1",
@@ -132,7 +132,7 @@
     },
     "traefik": {
       "pkg": "3.6.6_2",
-      "pkg-latest": "3.6.6_2",
+      "pkg-latest": "3.6.7",
       "upstream": "v3.6.7"
     },
     "transmission": {
