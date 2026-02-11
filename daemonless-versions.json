@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-11T06:55:48.831124Z",
+  "last_check": "2026-02-11T19:55:09.542014Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -59,7 +59,7 @@
       "upstream": "v3.10.2"
     },
     "n8n": {
-      "upstream": "2.6.4"
+      "upstream": "2.7.4"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
@@ -73,7 +73,7 @@
       "upstream": "v1.34.0"
     },
     "plex": {
-      "upstream": "1.42.2.10156-f737b826c"
+      "upstream": "1.43.0.10492-121068a07"
     },
     "postgres": {
       "default": "17",
@@ -131,9 +131,9 @@
       "upstream": "v2.16.0"
     },
     "traefik": {
-      "pkg": "3.6.6_2",
+      "pkg": "3.6.7",
       "pkg-latest": "3.6.7",
-      "upstream": "v3.6.7"
+      "upstream": "v3.6.8"
     },
     "transmission": {
       "pkg": "4.0.6_7",
