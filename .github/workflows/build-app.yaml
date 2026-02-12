@@ -75,6 +75,7 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DBUILD_REGISTRY: ghcr.io/daemonless
         with:
           release: "15.0"
           arch: ${{ matrix.vm_arch }}
@@ -83,7 +84,7 @@ jobs:
           copyback: true
           data-dir: /mnt/freebsd-vm
           debug-on-error: true
-          envs: "GITHUB_TOKEN GITHUB_ACTOR DOCKERHUB_USERNAME DOCKERHUB_TOKEN"
+          envs: "GITHUB_TOKEN GITHUB_ACTOR DOCKERHUB_USERNAME DOCKERHUB_TOKEN DBUILD_REGISTRY"
           prepare: |
             set -e
             # Create 4GB swap for heavy builds
