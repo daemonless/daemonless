@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-12T06:56:18.564657Z",
+  "last_check": "2026-02-12T22:03:26.319208Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -64,7 +64,7 @@
     "nextcloud": {
       "pkg": "32.0.3_4",
       "pkg-latest": "32.0.5",
-      "upstream": "v32.0.5"
+      "upstream": "v32.0.6"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
@@ -100,7 +100,7 @@
       "upstream": "6.0.4.10291"
     },
     "readmeabook": {
-      "upstream": "v1.0.7"
+      "upstream": "v1.0.8"
     },
     "redis": {
       "pkg": "8.4.0_1",
@@ -148,7 +148,7 @@
     "unifi": {
       "pkg": "10.0.160",
       "pkg-latest": "10.0.160",
-      "upstream": "10.1.84"
+      "upstream": "10.1.85"
     },
     "uptime-kuma": {
       "upstream": "2.1.0"
