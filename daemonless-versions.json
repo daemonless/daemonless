@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-13T06:53:24.901159Z",
+  "last_check": "2026-02-13T22:59:15.343324Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -59,7 +59,7 @@
       "upstream": "v3.10.2"
     },
     "n8n": {
-      "upstream": "2.7.4"
+      "upstream": "2.7.5"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
@@ -151,7 +151,7 @@
       "upstream": "10.1.85"
     },
     "uptime-kuma": {
-      "upstream": "2.1.0"
+      "upstream": "2.1.1"
     },
     "vaultwarden": {
       "pkg": "1.35.2",
