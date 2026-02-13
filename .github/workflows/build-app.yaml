@@ -7,6 +7,11 @@ on:
         description: 'Image name (e.g., radarr, sonarr)'
         required: true
         type: string
+      variant:
+        description: 'Variant to build (blank=all)'
+        required: false
+        type: string
+        default: ''
 
 env:
   REGISTRY: ghcr.io
@@ -36,7 +41,7 @@ jobs:
           curl -sSL "https://github.com/daemonless/dbuild/archive/${{ env.DBUILD_REF }}.tar.gz" | tar xz -C /tmp
           DBUILD_DIR=$(ls -d /tmp/dbuild-* | head -1)
           export PYTHONPATH="$DBUILD_DIR"
-          python3 -m dbuild detect --format github
+          python3 -m dbuild detect --format github ${{ inputs.variant && format('--variant {0}', inputs.variant) || '' }}
 
   build:
     needs: detect
