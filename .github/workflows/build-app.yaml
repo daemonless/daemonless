@@ -15,7 +15,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  DBUILD_REF: v1.0.1
+  DBUILD_REF: v1.1.0
   COMPOSE_PACKAGES: "py311-podman-compose"
 
 jobs:
