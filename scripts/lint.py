@@ -43,6 +43,7 @@ SKIP_REPOS = [
     "cit",
     "daemonless",
     "daemonless-io",
+    "dbuild",
     "freebsd-ports",
     "immich",  # Stack, not individual image
     "nginx-base",
@@ -154,22 +155,33 @@ def lint_repo(repo_path: Path) -> tuple[list[str], list[str]]:
     if not has_containerfile:
         errors.append(f"Missing Containerfile")
 
-    return errors
+    return errors, warnings
 
 
 def main():
     all_errors = {}
+    all_warnings = {}
 
     for repo in sorted(REPO_ROOT.glob("daemonless/*")):
         if not repo.is_dir() or repo.name in SKIP_REPOS:
             continue
 
-        errors = lint_repo(repo)
+        errors, warnings = lint_repo(repo)
         if errors:
             all_errors[repo.name] = errors
+        if warnings:
+            all_warnings[repo.name] = warnings
+
+    if all_warnings:
+        print("WARNINGS:")
+        print("=" * 60)
+        for name, warnings in sorted(all_warnings.items()):
+            print(f"\n{name}:")
+            for warn in warnings:
+                print(f"  - {warn}")
 
     if all_errors:
-        print("LINT ERRORS:")
+        print("\nERRORS:")
         print("=" * 60)
         for name, errors in sorted(all_errors.items()):
             print(f"\n{name}:")
@@ -178,7 +190,7 @@ def main():
         print(f"\n{len(all_errors)} repos with errors")
         sys.exit(1)
     else:
-        print("All repos passed lint checks")
+        print("\nAll repos passed lint checks")
         sys.exit(0)
 
 
