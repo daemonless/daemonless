@@ -102,9 +102,6 @@ def normalize_version(v: str) -> str:
     v = v.lstrip("v")
     # Convert commas to underscores (OCI tags can't have commas)
     v = v.replace(",", "_")
-    # Strip FreeBSD port revision suffix (_N) for comparison
-    # e.g., 14.20_1 -> 14.20, 17.7_1 -> 17.7
-    v = re.sub(r'_\d+$', '', v)
     return v
 
 
