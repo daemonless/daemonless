@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-13T22:59:15.343324Z",
+  "last_check": "2026-02-14T06:37:59.857563Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -14,11 +14,11 @@
     },
     "cloudflared": {
       "pkg": "2025.8.0_6",
-      "pkg-latest": "2025.8.0_6"
+      "pkg-latest": "2025.8.0_7"
     },
     "gitea": {
       "pkg": "1.24.2_9",
-      "pkg-latest": "1.24.2_9",
+      "pkg-latest": "1.24.2_10",
       "upstream": "v1.25.4"
     },
     "homepage": {
@@ -37,7 +37,6 @@
     },
     "jellyfin": {
       "pkg": "10.11.5",
-      "pkg-latest": "10.11.6",
       "upstream": "v10.11.6"
     },
     "lidarr": {
@@ -104,7 +103,7 @@
     },
     "redis": {
       "pkg": "8.4.0_1",
-      "pkg-latest": "8.4.0_1"
+      "pkg-latest": "8.4.1"
     },
     "sabnzbd": {
       "pkg": "4.5.5",
@@ -132,7 +131,7 @@
     },
     "traefik": {
       "pkg": "3.6.7",
-      "pkg-latest": "3.6.7",
+      "pkg-latest": "3.6.7_1",
       "upstream": "v3.6.8"
     },
     "transmission": {
@@ -155,7 +154,7 @@
     },
     "vaultwarden": {
       "pkg": "1.35.2",
-      "pkg-latest": "1.35.2_1",
+      "pkg-latest": "1.35.3",
       "upstream": "1.35.3"
     },
     "woodpecker": {
