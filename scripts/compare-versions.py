@@ -60,17 +60,21 @@ def get_deployed_versions(package: str, variant: str = None) -> dict:
 
                 if tag.endswith(suffix_pkg_latest) and tag.startswith(f"{variant}."):
                     version = tag[: -len(suffix_pkg_latest)]
-                    deployed["pkg-latest"] = version
+                    if "pkg-latest" not in deployed:
+                        deployed["pkg-latest"] = version
                 elif tag.endswith(suffix_pkg) and tag.startswith(f"{variant}."):
                     version = tag[: -len(suffix_pkg)]
-                    deployed["pkg"] = version
+                    if "pkg" not in deployed:
+                        deployed["pkg"] = version
                 # Legacy: "14.20-pkg-latest" (without variant in suffix)
                 elif tag.endswith("-pkg-latest") and tag.startswith(f"{variant}."):
                     version = tag.replace("-pkg-latest", "")
-                    deployed["pkg-latest"] = version
+                    if "pkg-latest" not in deployed:
+                        deployed["pkg-latest"] = version
                 elif tag.endswith("-pkg") and tag.startswith(f"{variant}."):
                     version = tag.replace("-pkg", "")
-                    deployed["pkg"] = version
+                    if "pkg" not in deployed:
+                        deployed["pkg"] = version
                 # Plain version tag: "14.20_1-14" or "14.20"
                 elif tag.endswith(suffix_variant) and tag.startswith(f"{variant}."):
                     version = tag[: -len(suffix_variant)]
