@@ -94,11 +94,15 @@ All images available as `:latest`, `:pkg`, and `:pkg-latest` tags.
 
 ## Contributing
 
-When adding or modifying images:
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contributor guide, or read
+the [online version](https://daemonless.io/guides/contributing-quickstart/).
 
-1. **Use `fetch`, not `curl`** - FreeBSD base includes `fetch`
-2. **Sync `Containerfile.pkg`** - Keep labels/env/volumes consistent
-3. **Label formatting** - Use `key="value"` format for OCI labels
+Quick checklist:
+
+1. Use `fetch`, not `curl` — FreeBSD base includes `fetch`
+2. Use `.j2` templates — run `python3 scripts/generate_docs.py` after changes
+3. Test locally — `dbuild build && dbuild test`
+4. Verify upstream license — check the SPDX identifier
 
 ## License
 
