@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-15T06:44:07.192279Z",
+  "last_check": "2026-02-16T06:57:12.143236Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -39,6 +39,7 @@
     },
     "jellyfin": {
       "pkg": "10.11.5",
+      "pkg-latest": "10.11.6",
       "upstream": "v10.11.6"
     },
     "lidarr": {
@@ -64,14 +65,14 @@
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
-      "pkg-latest": "32.0.5",
+      "pkg-latest": "32.0.6",
       "upstream": "v32.0.6"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
     },
     "overseerr": {
-      "upstream": "v1.34.0"
+      "upstream": "v1.35.0"
     },
     "plex": {
       "upstream": "1.43.0.10492-121068a07"
@@ -82,11 +83,11 @@
       "variants": {
         "14": {
           "pkg": "14.20_1",
-          "pkg-latest": "14.20_1"
+          "pkg-latest": "14.21"
         },
         "17": {
           "pkg": "17.7_1",
-          "pkg-latest": "17.7_1"
+          "pkg-latest": "17.8"
         }
       }
     },
@@ -129,11 +130,11 @@
     "tautulli": {
       "pkg": "2.16.0_1",
       "pkg-latest": "2.16.0_1",
-      "upstream": "v2.16.0"
+      "upstream": "v2.16.1"
     },
     "traefik": {
-      "pkg": "3.6.7",
-      "pkg-latest": "3.6.7_1",
+      "pkg": "3.6.8",
+      "pkg-latest": "3.6.8",
       "upstream": "v3.6.8"
     },
     "transmission": {
@@ -148,7 +149,7 @@
     },
     "unifi": {
       "pkg": "10.0.160",
-      "pkg-latest": "10.0.160",
+      "pkg-latest": "10.1.84",
       "upstream": "10.1.85"
     },
     "uptime-kuma": {
