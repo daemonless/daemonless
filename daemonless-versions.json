@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-17T06:52:34.824699Z",
+  "last_check": "2026-02-17T20:56:05.040375Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -61,7 +61,7 @@
       "upstream": "v3.11.0"
     },
     "n8n": {
-      "upstream": "2.7.5"
+      "upstream": "2.8.3"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
