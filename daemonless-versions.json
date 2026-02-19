@@ -1,10 +1,10 @@
 {
-  "last_check": "2026-02-19T13:22:57.923875Z",
+  "last_check": "2026-02-19T20:41:54.866590Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
       "pkg-latest": "0.107.71_1",
-      "upstream": "v0.107.71"
+      "upstream": "v0.107.72"
     },
     "adguardhome-sync": {
       "upstream": "v0.8.2"
@@ -14,7 +14,7 @@
     },
     "cloudflared": {
       "pkg": "2025.8.0_6",
-      "pkg-latest": "2025.8.0_7"
+      "pkg-latest": "2026.2.0"
     },
     "gitea": {
       "pkg": "1.24.2_9",
