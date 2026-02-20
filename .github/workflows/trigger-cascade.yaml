@@ -30,35 +30,68 @@ jobs:
 
       - name: Determine rebuild order
         id: order
+        env:
+          GH_TOKEN: ${{ secrets.REBUILD_TOKEN }}
         run: |
-          case "${{ inputs.base_image }}" in
-            base)
-              # Base changed - rebuild everything
-              echo "repos=arr-base nginx-base radarr sonarr prowlarr lidarr readarr sabnzbd tautulli jellyfin transmission transmission-wireguard gitea tailscale traefik mealie n8n overseerr unifi woodpecker openspeedtest organizr smokeping nextcloud vaultwarden" >> $GITHUB_OUTPUT
-              ;;
-            arr-base)
-              # arr-base changed - rebuild arr apps
-              echo "repos=radarr sonarr prowlarr lidarr readarr" >> $GITHUB_OUTPUT
-              ;;
-            nginx-base)
-              # nginx-base changed - rebuild nginx apps
-              echo "repos=openspeedtest organizr smokeping nextcloud vaultwarden" >> $GITHUB_OUTPUT
-              ;;
-          esac
+          BASE_NAME="${{ inputs.base_image }}"
+          echo "Base image: $BASE_NAME"
 
-      - name: Trigger rebuilds
+          # Use GitHub CLI to search for all repos in the org that use this base image
+          # Search for "FROM ghcr.io/daemonless/BASE_NAME" in Containerfiles
+          # We use the GH_TOKEN to allow searching private/internal repos if any
+          DEPENDENTS=$(gh search code "FROM ghcr.io/daemonless/$BASE_NAME" \
+            --owner daemonless \
+            --match "content" \
+            --filename "Containerfile*" \
+            --json repository \
+            --jq '.[].repository.name' | sort -u | xargs)
+
+          # Remove the base image itself if it appeared in search
+          DEPENDENTS=$(echo "$DEPENDENTS" | sed "s/\b$BASE_NAME\b//g" | xargs)
+
+          echo "repos=$DEPENDENTS" >> $GITHUB_OUTPUT
+          echo "Detected dependents: $DEPENDENTS"
+
+      - name: Trigger and Watch Rebuilds
         env:
           GH_TOKEN: ${{ secrets.REBUILD_TOKEN }}
         run: |
           REPOS="${{ steps.order.outputs.repos }}"
-          WAIT_MINS="${{ inputs.wait_between }}"
+
+          if [ -z "$REPOS" ]; then
+            echo "No dependents found for ${{ inputs.base_image }}."
+            exit 0
+          fi
 
           for repo in $REPOS; do
+            echo "::group::Rebuilding $repo"
             echo "=== Triggering build for: $repo ==="
-            gh workflow run build.yml --repo "daemonless/$repo" --ref main || echo "Warning: Failed to trigger $repo"
 
-            echo "Waiting ${WAIT_MINS} minutes before next build..."
-            sleep $((WAIT_MINS * 60))
+            # Trigger the workflow
+            gh workflow run build.yml --repo "daemonless/$repo" --ref main
+
+            # Wait a moment for the run to appear in the API
+            sleep 10
+
+            # Get the ID of the run we just triggered
+            RUN_ID=$(gh run list --repo "daemonless/$repo" --workflow build.yml --limit 1 --json databaseId --jq '.[0].databaseId')
+
+            if [ -n "$RUN_ID" ]; then
+              echo "Watching run: $RUN_ID"
+              # Wait for completion (success or failure)
+              gh run watch "$RUN_ID" --repo "daemonless/$repo" || echo "Warning: Build $repo failed or timed out"
+
+              # Check final status
+              STATUS=$(gh run view "$RUN_ID" --repo "daemonless/$repo" --json conclusion --jq '.conclusion')
+              if [ "$STATUS" != "success" ]; then
+                echo "Error: $repo failed with status $STATUS. Stopping cascade."
+                exit 1
+              fi
+            else
+              echo "Error: Could not find triggered run ID for $repo"
+              exit 1
+            fi
+            echo "::endgroup::"
           done
 
           echo "=== Cascade rebuild complete ==="
