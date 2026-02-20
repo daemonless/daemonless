@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-20T00:54:46.391447Z",
+  "last_check": "2026-02-20T06:48:06.421312Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -143,12 +143,12 @@
     "transmission": {
       "pkg": "4.0.6_7",
       "pkg-latest": "4.0.6_7",
-      "upstream": "4.1.0"
+      "upstream": "4.1.1"
     },
     "transmission-wireguard": {
       "pkg": "4.0.6_7",
       "pkg-latest": "4.0.6_7",
-      "upstream": "4.1.0"
+      "upstream": "4.1.1"
     },
     "unifi": {
       "pkg": "10.0.160",
