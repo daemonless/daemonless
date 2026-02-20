@@ -31,24 +31,40 @@ jobs:
       - name: Determine rebuild order
         id: order
         env:
-          GH_TOKEN: ${{ secrets.REBUILD_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BASE_NAME="${{ inputs.base_image }}"
           echo "Base image: $BASE_NAME"
 
-          # Use GitHub CLI to search for all repos in the org that use this base image
-          # Search for the base image reference in any code file
-          # We use the GH_TOKEN to allow searching private/internal repos if any
-          # We sort and unique the repository names
-          DEPENDENTS=$(gh search code "ghcr.io/daemonless/$BASE_NAME" \
-            --owner daemonless \
-            --limit 100 \
-            --json repository \
-            --jq '.[].repository.name' | sort -u | xargs)
+          # Get all service names from daemonless-versions.json
+          # and also add the intermediate base images
+          ALL_REPOS=$(jq -r '.services | keys[]' daemonless-versions.json)
+          ALL_REPOS="$ALL_REPOS arr-base nginx-base"
 
-          # Remove the base image repo itself if it appeared in search
-          DEPENDENTS=$(echo "$DEPENDENTS" | sed "s/\b$BASE_NAME\b//g" | xargs)
+          DEPENDENTS=""
+          for repo in $ALL_REPOS; do
+            # Skip searching the base repo itself
+            if [ "$repo" = "$BASE_NAME" ]; then continue; fi
 
+            echo "Checking $repo..."
+            # Use gh api to get Containerfile content (handles both Containerfile and Containerfile.j2)
+            # We check the first one that exists
+            FOUND=false
+            for cf in "Containerfile" "Containerfile.j2"; do
+              CONTENT=$(gh api repos/daemonless/$repo/contents/$cf --jq '.content' 2>/dev/null || echo "")
+              if [ -n "$CONTENT" ]; then
+                if echo "$CONTENT" | base64 -d | grep -q "daemonless/$BASE_NAME"; then
+                  DEPENDENTS="$DEPENDENTS $repo"
+                  echo "  -> Match found in $cf"
+                  FOUND=true
+                  break
+                fi
+              fi
+            done
+          done
+
+          # Clean up and sort
+          DEPENDENTS=$(echo "$DEPENDENTS" | xargs -n1 | sort -u | xargs)
           echo "repos=$DEPENDENTS" >> $GITHUB_OUTPUT
           echo "Detected dependents: $DEPENDENTS"
 
