@@ -37,16 +37,16 @@ jobs:
           echo "Base image: $BASE_NAME"
 
           # Use GitHub CLI to search for all repos in the org that use this base image
-          # Search for "FROM ghcr.io/daemonless/BASE_NAME" in Containerfiles
+          # Search for the base image reference in any code file
           # We use the GH_TOKEN to allow searching private/internal repos if any
-          DEPENDENTS=$(gh search code "FROM ghcr.io/daemonless/$BASE_NAME" \
+          # We sort and unique the repository names
+          DEPENDENTS=$(gh search code "ghcr.io/daemonless/$BASE_NAME" \
             --owner daemonless \
-            --match "content" \
-            --filename "Containerfile*" \
+            --limit 100 \
             --json repository \
             --jq '.[].repository.name' | sort -u | xargs)
 
-          # Remove the base image itself if it appeared in search
+          # Remove the base image repo itself if it appeared in search
           DEPENDENTS=$(echo "$DEPENDENTS" | sed "s/\b$BASE_NAME\b//g" | xargs)
 
           echo "repos=$DEPENDENTS" >> $GITHUB_OUTPUT
