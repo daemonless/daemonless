@@ -100,7 +100,7 @@ the [online version](https://daemonless.io/guides/contributing-quickstart/).
 Quick checklist:
 
 1. Use `fetch`, not `curl` — FreeBSD base includes `fetch`
-2. Use `.j2` templates — run `python3 scripts/generate_docs.py` after changes
+2. Use `.j2` templates — run `dbuild generate` after changes
 3. Test locally — `dbuild build && dbuild test`
 4. Verify upstream license — check the SPDX identifier
 

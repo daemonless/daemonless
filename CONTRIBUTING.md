@@ -150,7 +150,7 @@ Before submitting a new image, verify:
 - Clean the pkg cache: `pkg clean -ay && rm -rf /var/cache/pkg/*`
 - Set ownership: `chown -R bsd:bsd /config /app`
 - Use `ARG` for `BASE_VERSION`, `PACKAGES`, and `VERSION`
-- Use `.j2` templates — run `python3 scripts/generate_docs.py` after changes
+- Use `.j2` templates — run `dbuild generate` after changes
 
 ### Runtime conventions
 
