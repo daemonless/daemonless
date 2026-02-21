@@ -117,8 +117,8 @@ else
     log_info "Ports tree not found. Falling back to Git + Bazel method."
     
     # Install build dependencies
-    log_info "Installing build dependencies (bazel, git)..."
-    pkg install -y bazel git
+    log_info "Installing build dependencies (bazel5, git)..."
+    pkg install -y bazel5 git
 
     cd "$WORK_DIR"
     log_info "Cloning ocijail from $OCIJAIL_REPO..."
@@ -132,11 +132,11 @@ else
         exit 1
     fi
 
-    log_info "Building ocijail with Bazel (this may take a while)..."
+    log_info "Building ocijail with Bazel 5 (this may take a while)..."
     # Set a temporary HOME within WORK_DIR to avoid Bazel cache issues
     mkdir -p "${WORK_DIR}/home"
     export HOME="${WORK_DIR}/home"
-    bazel build //ocijail
+    bazel5 build //ocijail
 
     if [ ! -f "bazel-bin/ocijail/ocijail" ]; then
         log_error "Build failed. Binary not found."
