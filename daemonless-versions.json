@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-24T21:29:32.735639Z",
+  "last_check": "2026-02-25T06:56:51.398327Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -106,7 +106,7 @@
     },
     "redis": {
       "pkg": "8.4.0_1",
-      "pkg-latest": "8.4.1"
+      "pkg-latest": "8.6.0"
     },
     "sabnzbd": {
       "pkg": "4.5.5",
@@ -142,12 +142,12 @@
     },
     "transmission": {
       "pkg": "4.0.6_7",
-      "pkg-latest": "4.0.6_7",
+      "pkg-latest": "4.1.1",
       "upstream": "4.1.1"
     },
     "transmission-wireguard": {
       "pkg": "4.0.6_7",
-      "pkg-latest": "4.0.6_7",
+      "pkg-latest": "4.1.1",
       "upstream": "4.1.1"
     },
     "unifi": {
