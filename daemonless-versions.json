@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-25T06:56:51.398327Z",
+  "last_check": "2026-02-25T17:30:30.097987Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -29,7 +29,7 @@
     "hugo": {
       "pkg": "0.154.5_2,1",
       "pkg-latest": "0.156.0,1",
-      "upstream": "v0.156.0"
+      "upstream": "v0.157.0"
     },
     "immich-ml": {
       "upstream": "v2.5.6"
@@ -61,7 +61,7 @@
       "upstream": "v3.11.0"
     },
     "n8n": {
-      "upstream": "2.9.2"
+      "upstream": "2.9.4"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
@@ -102,7 +102,7 @@
       "upstream": "6.0.4.10291"
     },
     "readmeabook": {
-      "upstream": "v1.0.11"
+      "upstream": "v1.0.12"
     },
     "redis": {
       "pkg": "8.4.0_1",
@@ -128,7 +128,7 @@
     "tailscale": {
       "pkg": "1.94.1_1",
       "pkg-latest": "1.94.1_1",
-      "upstream": "v1.94.1"
+      "upstream": "v1.94.2"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
