@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-25T17:30:30.097987Z",
+  "last_check": "2026-02-26T06:54:07.571089Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -10,7 +10,7 @@
       "upstream": "v0.8.2"
     },
     "booklore": {
-      "upstream": "v2.0.1"
+      "upstream": "v2.0.2"
     },
     "cloudflared": {
       "pkg": "2025.8.0_6",
