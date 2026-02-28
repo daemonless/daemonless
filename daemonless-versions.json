@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-02-27T16:22:06.821552Z",
+  "last_check": "2026-02-28T06:30:40.018316Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -7,10 +7,10 @@
       "upstream": "v0.107.72"
     },
     "adguardhome-sync": {
-      "upstream": "v0.8.2"
+      "upstream": "v0.9.0"
     },
     "booklore": {
-      "upstream": "v2.0.3"
+      "upstream": "v2.0.4"
     },
     "cloudflared": {
       "pkg": "2025.8.0_6",
@@ -102,7 +102,7 @@
       "upstream": "6.0.4.10291"
     },
     "readmeabook": {
-      "upstream": "v1.0.14"
+      "upstream": "v1.0.15"
     },
     "redis": {
       "pkg": "8.4.0_1",
@@ -114,7 +114,7 @@
       "upstream": "4.5.5"
     },
     "seerr": {
-      "upstream": "v3.0.1"
+      "upstream": "v3.1.0"
     },
     "smokeping": {
       "pkg": "2.9.0_1",
