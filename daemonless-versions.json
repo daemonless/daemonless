@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-02T06:50:34.808460Z",
+  "last_check": "2026-03-02T22:04:47.517918Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -28,7 +28,7 @@
     },
     "hugo": {
       "pkg": "0.154.5_2,1",
-      "pkg-latest": "0.156.0,1",
+      "pkg-latest": "0.157.0,1",
       "upstream": "v0.157.0"
     },
     "immich-ml": {
@@ -39,7 +39,6 @@
     },
     "jellyfin": {
       "pkg": "10.11.5",
-      "pkg-latest": "10.11.6",
       "upstream": "v10.11.6"
     },
     "lidarr": {
@@ -65,7 +64,7 @@
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
-      "pkg-latest": "32.0.6",
+      "pkg-latest": "33.0.0",
       "upstream": "v33.0.0"
     },
     "openspeedtest": {
@@ -83,11 +82,11 @@
       "variants": {
         "14": {
           "pkg": "14.20_1",
-          "pkg-latest": "14.21"
+          "pkg-latest": "14.22"
         },
         "17": {
           "pkg": "17.7_1",
-          "pkg-latest": "17.8"
+          "pkg-latest": "17.9"
         }
       }
     },
@@ -152,7 +151,7 @@
     },
     "unifi": {
       "pkg": "10.0.160",
-      "pkg-latest": "10.1.84",
+      "pkg-latest": "10.1.85",
       "upstream": "10.1.85"
     },
     "uptime-kuma": {
@@ -160,7 +159,7 @@
     },
     "vaultwarden": {
       "pkg": "1.35.2",
-      "pkg-latest": "1.35.3",
+      "pkg-latest": "1.35.4",
       "upstream": "1.35.4"
     },
     "woodpecker": {
