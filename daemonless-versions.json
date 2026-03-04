@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-03T19:20:08.693696Z",
+  "last_check": "2026-03-04T06:40:11.311919Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_3",
@@ -23,7 +23,7 @@
     },
     "homepage": {
       "pkg": "1.8.0",
-      "pkg-latest": "1.8.0",
+      "pkg-latest": "1.10.1",
       "upstream": "v1.10.1"
     },
     "hugo": {
@@ -39,6 +39,7 @@
     },
     "jellyfin": {
       "pkg": "10.11.5",
+      "pkg-latest": "10.11.6",
       "upstream": "v10.11.6"
     },
     "lidarr": {
@@ -136,7 +137,7 @@
     },
     "traefik": {
       "pkg": "3.6.8",
-      "pkg-latest": "3.6.8",
+      "pkg-latest": "3.6.9",
       "upstream": "v3.6.9"
     },
     "transmission": {
