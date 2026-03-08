@@ -2,18 +2,33 @@
 
 This directory contains utility scripts for the Daemonless project.
 
+Most image build, test, lint, and documentation tasks are handled by
+**[dbuild](https://github.com/daemonless/dbuild)** — run `dbuild --help` for usage.
+
 ## build-ocijail.sh
 
-This script builds a custom version of `ocijail` patched to support extended FreeBSD jail parameters (like `allow.mlock`) via OCI annotations. 
-
-### Usage
+Builds a patched version of `ocijail` with support for extended FreeBSD jail
+parameters (like `allow.mlock`) via OCI annotations. Required for .NET apps.
 
 ```bash
 doas ./build-ocijail.sh
 ```
 
-### Documentation
+See **[ocijail Patch Documentation](../docs/ocijail-patch.md)** for details.
 
-For detailed information on why this patch is needed, how the automated script works, and instructions for manual installation via the ports system, please see:
+## compare-versions.py
 
-**[ocijail Patch Documentation](../docs/ocijail-patch.md)**
+Compares `daemonless-versions.json` against deployed tags on ghcr.io to show
+which images are out of date.
+
+```bash
+python3 scripts/compare-versions.py
+```
+
+## generate_versions.py
+
+Generates `daemonless-versions.json` by fetching version info from GitHub.
+
+```bash
+python3 scripts/generate_versions.py
+```
