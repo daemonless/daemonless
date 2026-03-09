@@ -1,8 +1,8 @@
 {
-  "last_check": "2026-03-08T06:36:06.698692Z",
+  "last_check": "2026-03-09T06:55:11.270977Z",
   "services": {
     "adguardhome": {
-      "pkg": "0.107.69_3",
+      "pkg": "0.107.69_4",
       "pkg-latest": "0.107.71_2",
       "upstream": "v0.107.72"
     },
@@ -10,14 +10,14 @@
       "upstream": "v0.9.0"
     },
     "booklore": {
-      "upstream": "v2.0.6"
+      "upstream": "v2.1.0"
     },
     "cloudflared": {
-      "pkg": "2026.2.0",
+      "pkg": "2026.2.0_1",
       "pkg-latest": "2026.2.0_1"
     },
     "gitea": {
-      "pkg": "1.24.2_9",
+      "pkg": "1.24.2_10",
       "pkg-latest": "1.25.4_1",
       "upstream": "v1.25.4"
     },
@@ -27,7 +27,7 @@
       "upstream": "v1.10.1"
     },
     "hugo": {
-      "pkg": "0.154.5_2,1",
+      "pkg": "0.154.5_3,1",
       "pkg-latest": "0.157.0_1,1",
       "upstream": "v0.157.0"
     },
@@ -126,7 +126,7 @@
       "upstream": "4.0.16.2944"
     },
     "tailscale": {
-      "pkg": "1.94.1_1",
+      "pkg": "1.94.1_2",
       "pkg-latest": "1.94.1_2",
       "upstream": "v1.94.2"
     },
@@ -136,7 +136,7 @@
       "upstream": "v2.16.1"
     },
     "traefik": {
-      "pkg": "3.6.9",
+      "pkg": "3.6.9_1",
       "pkg-latest": "3.6.9_1",
       "upstream": "v3.6.10"
     },
