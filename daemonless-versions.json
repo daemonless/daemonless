@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-09T06:55:11.270977Z",
+  "last_check": "2026-03-09T22:34:08.147812Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -8,6 +8,11 @@
     },
     "adguardhome-sync": {
       "upstream": "v0.9.0"
+    },
+    "bazarr": {
+      "pkg": "1.5.2_3",
+      "pkg-latest": "1.5.4",
+      "upstream": "v1.5.6"
     },
     "booklore": {
       "upstream": "v2.1.0"
@@ -61,7 +66,7 @@
       "upstream": "v3.12.0"
     },
     "n8n": {
-      "upstream": "2.10.4"
+      "upstream": "2.11.2"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
