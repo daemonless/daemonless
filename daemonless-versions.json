@@ -1,10 +1,10 @@
 {
-  "last_check": "2026-03-10T06:41:19.407492Z",
+  "last_check": "2026-03-10T20:49:05.736204Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
       "pkg-latest": "0.107.71_2",
-      "upstream": "v0.107.72"
+      "upstream": "v0.107.73"
     },
     "adguardhome-sync": {
       "upstream": "v0.9.0"
