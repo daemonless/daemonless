@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-09T22:34:08.147812Z",
+  "last_check": "2026-03-10T06:41:19.407492Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -141,7 +141,7 @@
       "upstream": "v2.16.1"
     },
     "traefik": {
-      "pkg": "3.6.9_1",
+      "pkg": "3.6.10",
       "pkg-latest": "3.6.9_1",
       "upstream": "v3.6.10"
     },
@@ -161,7 +161,7 @@
       "upstream": "10.1.85"
     },
     "uptime-kuma": {
-      "upstream": "2.2.0"
+      "upstream": "2.2.1"
     },
     "vaultwarden": {
       "pkg": "1.35.2",
