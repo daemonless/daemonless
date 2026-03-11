@@ -1,9 +1,9 @@
 {
-  "last_check": "2026-03-11T06:44:37.489675Z",
+  "last_check": "2026-03-11T17:16:32.525176Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
-      "pkg-latest": "0.107.71_2",
+      "pkg-latest": "0.107.72",
       "upstream": "v0.107.73"
     },
     "adguardhome-sync": {
@@ -15,7 +15,7 @@
       "upstream": "v1.5.6"
     },
     "booklore": {
-      "upstream": "v2.1.0"
+      "upstream": "v2.2.0"
     },
     "cloudflared": {
       "pkg": "2026.2.0_1",
@@ -66,7 +66,7 @@
       "upstream": "v3.12.0"
     },
     "n8n": {
-      "upstream": "2.11.2"
+      "upstream": "2.11.3"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
@@ -107,7 +107,7 @@
       "upstream": "6.0.4.10291"
     },
     "readmeabook": {
-      "upstream": "v1.1.4"
+      "upstream": "v1.1.5"
     },
     "redis": {
       "pkg": "8.4.0_1",
@@ -142,7 +142,7 @@
     },
     "traefik": {
       "pkg": "3.6.10",
-      "pkg-latest": "3.6.9_1",
+      "pkg-latest": "3.6.10",
       "upstream": "v3.6.10"
     },
     "transmission": {
