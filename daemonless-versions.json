@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-13T20:19:17.127963Z",
+  "last_check": "2026-03-14T06:39:35.950613Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -15,7 +15,7 @@
       "upstream": "v1.5.6"
     },
     "booklore": {
-      "upstream": "v2.2.0"
+      "upstream": "v2.2.1"
     },
     "cloudflared": {
       "pkg": "2026.2.0_1",
@@ -25,6 +25,9 @@
       "pkg": "1.24.2_10",
       "pkg-latest": "1.25.4_1",
       "upstream": "v1.25.5"
+    },
+    "home-assistant": {
+      "upstream": "2026.3.1"
     },
     "homepage": {
       "pkg": "1.8.0",
