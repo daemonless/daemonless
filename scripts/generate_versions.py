@@ -44,6 +44,10 @@ SKIP_REPOS = {
     "arr-base",
     "nginx-base",
     "cit",
+    "booklore",
+    "overseerr",
+    ".github",
+    "dbuild",
 }
 
 
