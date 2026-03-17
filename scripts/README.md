@@ -16,15 +16,6 @@ doas ./build-ocijail.sh
 
 See **[ocijail Patch Documentation](../docs/ocijail-patch.md)** for details.
 
-## compare-versions.py
-
-Compares `daemonless-versions.json` against deployed tags on ghcr.io to show
-which images are out of date.
-
-```bash
-python3 scripts/compare-versions.py
-```
-
 ## generate_versions.py
 
 Generates `daemonless-versions.json` by fetching version info from GitHub.
