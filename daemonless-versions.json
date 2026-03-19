@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-18T06:56:28.385854Z",
+  "last_check": "2026-03-19T06:53:03.175813Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -44,7 +44,6 @@
     },
     "jellyfin": {
       "pkg": "10.11.5",
-      "pkg-latest": "10.11.6",
       "upstream": "v10.11.6"
     },
     "lidarr": {
@@ -53,20 +52,24 @@
       "upstream": "3.1.0.4875"
     },
     "mariadb": {
-      "default": "11.4",
+      "default": "11.8",
       "type": "multi-version",
       "variants": {
         "11.4": {
           "pkg": "11.4.9",
           "pkg-latest": "11.4.10"
+        },
+        "11.8": {
+          "pkg": "11.8.5",
+          "pkg-latest": "11.8.6"
         }
       }
     },
     "mealie": {
-      "upstream": "v3.12.0"
+      "upstream": "v3.13.1"
     },
     "n8n": {
-      "upstream": "2.12.2"
+      "upstream": "2.12.3"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
@@ -130,7 +133,7 @@
     "tailscale": {
       "pkg": "1.94.1_2",
       "pkg-latest": "1.94.1_2",
-      "upstream": "v1.94.2"
+      "upstream": "v1.96.2"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
@@ -155,7 +158,7 @@
     "unifi": {
       "pkg": "10.0.160",
       "pkg-latest": "10.1.85",
-      "upstream": "10.1.85"
+      "upstream": "10.1.89"
     },
     "uptime-kuma": {
       "upstream": "2.2.1"
