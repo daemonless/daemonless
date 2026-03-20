@@ -2,7 +2,7 @@ name: Check for Package Updates
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Daily at 6 AM UTC
+    - cron: '50 */6 * * *'  # Every 6 hours, 10 min before deploy
   workflow_dispatch:
 
 jobs:
