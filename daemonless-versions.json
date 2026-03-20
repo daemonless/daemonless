@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-20T13:52:25.088022Z",
+  "last_check": "2026-03-20T19:30:14.625686Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -8,6 +8,9 @@
     },
     "adguardhome-sync": {
       "upstream": "v0.9.0"
+    },
+    "audiobookshelf": {
+      "upstream": "v2.33.1"
     },
     "bazarr": {
       "pkg": "1.5.2_3",
@@ -107,7 +110,7 @@
       "upstream": "6.0.4.10291"
     },
     "readmeabook": {
-      "upstream": "v1.1.6"
+      "upstream": "v1.1.7"
     },
     "redis": {
       "pkg": "8.4.0_1",
