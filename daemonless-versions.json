@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-19T06:53:03.175813Z",
+  "last_check": "2026-03-20T06:46:38.572019Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -33,14 +33,14 @@
     },
     "hugo": {
       "pkg": "0.154.5_3,1",
-      "pkg-latest": "0.157.0_1,1",
+      "pkg-latest": "0.158.0,1",
       "upstream": "v0.158.0"
     },
     "immich-ml": {
-      "upstream": "v2.5.6"
+      "upstream": "v2.6.1"
     },
     "immich-server": {
-      "upstream": "v2.5.6"
+      "upstream": "v2.6.1"
     },
     "jellyfin": {
       "pkg": "10.11.5",
@@ -128,12 +128,12 @@
     "sonarr": {
       "pkg": "4.0.16.2944",
       "pkg-latest": "4.0.16.2944_1",
-      "upstream": "4.0.16.2944"
+      "upstream": "4.0.17.2952"
     },
     "tailscale": {
       "pkg": "1.94.1_2",
       "pkg-latest": "1.94.1_2",
-      "upstream": "v1.96.2"
+      "upstream": "v1.96.3"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
@@ -143,7 +143,7 @@
     "traefik": {
       "pkg": "3.6.10",
       "pkg-latest": "3.6.10",
-      "upstream": "v3.6.10"
+      "upstream": "v3.6.11"
     },
     "transmission": {
       "pkg": "4.0.6_7",
