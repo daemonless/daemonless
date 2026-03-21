@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-20T19:30:14.625686Z",
+  "last_check": "2026-03-21T03:13:12.054594Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -27,7 +27,7 @@
       "upstream": "v1.25.5"
     },
     "home-assistant": {
-      "upstream": "2026.3.2"
+      "upstream": "2026.3.3"
     },
     "homepage": {
       "pkg": "1.8.0",
@@ -86,7 +86,7 @@
       "upstream": "1.43.0.10492-121068a07"
     },
     "postgres": {
-      "default": "17",
+      "default": "18",
       "type": "multi-version",
       "variants": {
         "14": {
@@ -96,6 +96,10 @@
         "17": {
           "pkg": "17.9",
           "pkg-latest": "17.9"
+        },
+        "18": {
+          "pkg": "18.3",
+          "pkg-latest": "18.3"
         }
       }
     },
