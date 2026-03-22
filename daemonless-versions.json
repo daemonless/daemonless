@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-22T03:34:43.930613Z",
+  "last_check": "2026-03-22T07:31:23.757090Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -47,6 +47,7 @@
     },
     "jellyfin": {
       "pkg": "10.11.5",
+      "pkg-latest": "10.11.6",
       "upstream": "v10.11.6"
     },
     "lidarr": {
@@ -118,7 +119,7 @@
     },
     "redis": {
       "pkg": "8.4.0_1",
-      "pkg-latest": "8.6.1"
+      "pkg-latest": "8.6.1_1"
     },
     "sabnzbd": {
       "pkg": "4.5.5",
@@ -149,7 +150,7 @@
     },
     "traefik": {
       "pkg": "3.6.10",
-      "pkg-latest": "3.6.10",
+      "pkg-latest": "3.6.11",
       "upstream": "v3.6.11"
     },
     "transmission": {
@@ -164,7 +165,7 @@
     },
     "unifi": {
       "pkg": "10.1.89",
-      "pkg-latest": "10.1.85",
+      "pkg-latest": "10.1.89",
       "upstream": "10.1.89"
     },
     "uptime-kuma": {
