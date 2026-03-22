@@ -8,7 +8,7 @@ Native FreeBSD OCI containers using Podman and ocijail. Similar to [LinuxServer.
 
 - s6 process supervision
 - PUID/PGID support for permission handling
-- FreeBSD 14.x and 15.x support
+- FreeBSD 15+ required (images are built with FreeBSD 15 userland)
 - Minimal image sizes (cleaned pkg cache)
 - Port forwarding support with `-p` flag
 
