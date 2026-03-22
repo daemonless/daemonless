@@ -65,6 +65,6 @@ jobs:
         if: steps.commit_changes.outputs.updated == 'true'
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.GH_DISPATCH_TOKEN }}
+          token: ${{ secrets.DISPATCH_TOKEN }}
           repository: daemonless/daemonless-io
           event-type: status-update
