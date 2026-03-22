@@ -46,6 +46,7 @@ jobs:
           path: daemonless-versions.json
 
       - name: Commit changes
+        id: commit_changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -54,6 +55,16 @@ jobs:
             git add daemonless-versions.json
             git commit -m "Update daemonless-versions.json"
             git push
+            echo "updated=true" >> $GITHUB_OUTPUT
           else
             echo "No changes to commit."
+            echo "updated=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Repository Dispatch
+        if: steps.commit_changes.outputs.updated == 'true'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GH_DISPATCH_TOKEN }}
+          repository: daemonless/daemonless-io
+          event-type: status-update
