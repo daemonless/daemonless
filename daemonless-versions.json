@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-24T07:45:43.345935Z",
+  "last_check": "2026-03-24T14:10:29.991387Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -43,10 +43,10 @@
       "upstream": "v0.159.0"
     },
     "immich-ml": {
-      "upstream": "v2.6.1"
+      "upstream": "v2.6.2"
     },
     "immich-server": {
-      "upstream": "v2.6.1"
+      "upstream": "v2.6.2"
     },
     "jellyfin": {
       "pkg": "10.11.5",
@@ -76,7 +76,7 @@
       "upstream": "v3.13.1"
     },
     "n8n": {
-      "upstream": "2.12.3"
+      "upstream": "2.13.2"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
