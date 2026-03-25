@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-25T07:45:06.794095Z",
+  "last_check": "2026-03-25T14:09:30.368302Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -76,7 +76,7 @@
       "upstream": "v3.13.1"
     },
     "n8n": {
-      "upstream": "2.13.2"
+      "upstream": "2.13.3"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
@@ -176,7 +176,7 @@
     },
     "vaultwarden": {
       "pkg": "1.35.2",
-      "pkg-latest": "1.35.4",
+      "pkg-latest": "1.35.4_1",
       "upstream": "1.35.4"
     },
     "woodpecker": {
