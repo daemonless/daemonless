@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-26T14:17:40.053970Z",
+  "last_check": "2026-03-26T19:48:39.098031Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -22,7 +22,7 @@
       "pkg-latest": "2026.2.0_1"
     },
     "gitea": {
-      "pkg": "1.24.2_10",
+      "pkg": "1.25.5",
       "pkg-latest": "1.25.4_1",
       "upstream": "v1.25.5"
     },
@@ -43,10 +43,10 @@
       "upstream": "v0.159.1"
     },
     "immich-ml": {
-      "upstream": "v2.6.2"
+      "upstream": "v2.6.3"
     },
     "immich-server": {
-      "upstream": "v2.6.2"
+      "upstream": "v2.6.3"
     },
     "jellyfin": {
       "pkg": "10.11.5",
@@ -81,7 +81,7 @@
     "nextcloud": {
       "pkg": "32.0.3_4",
       "pkg-latest": "33.0.0",
-      "upstream": "v33.0.0"
+      "upstream": "v32.0.7"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
