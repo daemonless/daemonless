@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-26T07:52:01.993420Z",
+  "last_check": "2026-03-26T14:17:40.053970Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -40,7 +40,7 @@
     "hugo": {
       "pkg": "0.154.5_3,1",
       "pkg-latest": "0.158.0,1",
-      "upstream": "v0.159.0"
+      "upstream": "v0.159.1"
     },
     "immich-ml": {
       "upstream": "v2.6.2"
@@ -76,7 +76,7 @@
       "upstream": "v3.13.1"
     },
     "n8n": {
-      "upstream": "2.13.3"
+      "upstream": "2.13.4"
     },
     "nextcloud": {
       "pkg": "32.0.3_4",
@@ -154,7 +154,7 @@
     "traefik": {
       "pkg": "3.6.11",
       "pkg-latest": "3.6.11",
-      "upstream": "v3.6.11"
+      "upstream": "v3.6.12"
     },
     "transmission": {
       "pkg": "4.0.6_7",
