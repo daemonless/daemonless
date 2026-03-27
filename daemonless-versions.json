@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-27T14:03:16.511651Z",
+  "last_check": "2026-03-27T19:34:30.358517Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -73,7 +73,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.13.1"
+      "upstream": "v3.14.0"
     },
     "n8n": {
       "upstream": "2.13.4"
@@ -144,7 +144,7 @@
     "tailscale": {
       "pkg": "1.94.1_2",
       "pkg-latest": "1.94.1_2",
-      "upstream": "v1.96.3"
+      "upstream": "v1.96.4"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
