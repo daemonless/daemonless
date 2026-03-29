@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-28T20:41:34.787986Z",
+  "last_check": "2026-03-29T03:51:20.583217Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -20,6 +20,9 @@
     "cloudflared": {
       "pkg": "2026.2.0_1",
       "pkg-latest": "2026.2.0_1"
+    },
+    "code-server": {
+      "upstream": "4.112.0"
     },
     "gitea": {
       "pkg": "1.25.5",
