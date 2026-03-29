@@ -111,6 +111,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Port | Description |
 |-------|------|-------------|
 | [Bichon](https://github.com/daemonless/bichon) |  | A lightweight, high-performance Rust email archiver with WebUI. |
+| [Heimdall](https://github.com/daemonless/heimdall) |  | An Application dashboard and launcher — organize all your web apps and services in one place. |
 | [Home Assistant](https://github.com/daemonless/home-assistant) |  | Home Assistant on FreeBSD. |
 | [Homepage](https://github.com/daemonless/homepage) |  | Modern, fully static, fast, secure and highly customizable application dashboard with integrations for over 100 services. |
 | [Mealie](https://github.com/daemonless/mealie) |  | Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web. |
