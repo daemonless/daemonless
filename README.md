@@ -1,109 +1,150 @@
-# FreeBSD Podman Containers
+# Daemonless
 
-Native FreeBSD OCI containers using Podman and ocijail. Similar to [LinuxServer.io](https://www.linuxserver.io/) but for FreeBSD.
+Native FreeBSD OCI container images for self-hosted applications.
 
-**[Documentation](https://daemonless.io)** | **[Quick Start](https://daemonless.io/quick-start/)** | **[Command Generator](https://daemonless.io/generator/)**
+**No Linux VM required.** Run your containers directly on FreeBSD using Podman + ocijail.
 
 ## Features
 
-- s6 process supervision
-- PUID/PGID support for permission handling
-- FreeBSD 15+ required (images are built with FreeBSD 15 userland)
-- Minimal image sizes (cleaned pkg cache)
-- Port forwarding support with `-p` flag
-
-## Quick Start
-
-```bash
-pkg install podman-suite cni-dnsname
-```
-
-See the full [Quick Start Guide](https://daemonless.io/quick-start/) for host configuration and setup.
-
-### Run a Container
-
-```bash
-# Tautulli (no special annotations needed)
-podman run -d --name tautulli \
-  -p 8181:8181 \
-  -e PUID=1000 -e PGID=1000 \
-  -v /data/config/tautulli:/config \
-  ghcr.io/daemonless/tautulli:latest
-
-# Radarr (.NET app - requires patched ocijail)
-podman run -d --name radarr \
-  -p 7878:7878 \
-  --annotation 'org.freebsd.jail.allow.mlock=true' \
-  -e PUID=1000 -e PGID=1000 \
-  -v /data/config/radarr:/config \
-  ghcr.io/daemonless/radarr:latest
-```
+- **s6 Process Supervision** - Proper signal handling, no zombie processes
+- **PUID/PGID Support** - Seamless permission mapping for ZFS datasets and bind mounts
+- **Multiple Tags** - Choose between upstream binaries (`:latest`), quarterly packages (`:pkg`), or rolling packages (`:pkg-latest`)
+- **Automated CI/CD** - Every image built and tested automatically
 
 ## Available Images
 
+
+### Base
+
 | Image | Port | Description |
 |-------|------|-------------|
-| [radarr](https://github.com/daemonless/radarr) | 7878 | Movie management |
-| [sonarr](https://github.com/daemonless/sonarr) | 8989 | TV show management |
-| [prowlarr](https://github.com/daemonless/prowlarr) | 9696 | Indexer management |
-| [lidarr](https://github.com/daemonless/lidarr) | 8686 | Music management |
-| [readarr](https://github.com/daemonless/readarr) | 8787 | Book management |
-| [jellyfin](https://github.com/daemonless/jellyfin) | 8096 | Media server |
-| [tautulli](https://github.com/daemonless/tautulli) | 8181 | Plex monitoring |
-| [overseerr](https://github.com/daemonless/overseerr) | 5055 | Media requests |
-| [sabnzbd](https://github.com/daemonless/sabnzbd) | 8080 | Usenet downloader |
-| [transmission](https://github.com/daemonless/transmission) | 9091 | BitTorrent client |
-| [transmission-wireguard](https://github.com/daemonless/transmission-wireguard) | 9091 | BitTorrent + VPN |
-| [traefik](https://github.com/daemonless/traefik) | 80/443 | Reverse proxy |
-| [gitea](https://github.com/daemonless/gitea) | 3000 | Self-hosted Git |
-| [woodpecker](https://github.com/daemonless/woodpecker) | 8000 | CI/CD |
-| [tailscale](https://github.com/daemonless/tailscale) | - | Mesh VPN |
-| [organizr](https://github.com/daemonless/organizr) | 80 | Service dashboard |
-| [smokeping](https://github.com/daemonless/smokeping) | 80 | Network latency |
-| [openspeedtest](https://github.com/daemonless/openspeedtest) | 3000 | Speed test |
-| [unifi](https://github.com/daemonless/unifi) | 8443 | UniFi Controller |
-| [vaultwarden](https://github.com/daemonless/vaultwarden) | 80 | Password manager |
-| [mealie](https://github.com/daemonless/mealie) | 9000 | Recipe manager |
-| [nextcloud](https://github.com/daemonless/nextcloud) | 80 | File hosting |
-| [n8n](https://github.com/daemonless/n8n) | 5678 | Workflow automation |
+| [Arr Base](https://github.com/daemonless/arr-base) |  | Shared base image for *Arr applications (Radarr, Sonarr, Lidarr, Prowlarr) containing common dependencies. |
+| [FreeBSD Base](https://github.com/daemonless/base) |  | FreeBSD base image with s6 supervision |
+| [FreeBSD Base Core](https://github.com/daemonless/base-core) |  | Minimal FreeBSD base image without service supervision. Foundation for CLI tools and non-daemon containers. |
+| [Nginx Base](https://github.com/daemonless/nginx-base) |  | Shared base image for Nginx-based applications. |
 
-All images available as `:latest`, `:pkg`, and `:pkg-latest` tags.
 
-## Documentation
+### Databases
 
-- [Quick Start](https://daemonless.io/quick-start/) - Host setup and first container
-- [Available Images](https://daemonless.io/images/) - Full image catalog with examples
-- [Permissions](https://daemonless.io/guides/permissions/) - PUID/PGID explained
-- [Networking](https://daemonless.io/guides/networking/) - Port forwarding vs host network
-- [ocijail Patch](https://daemonless.io/guides/ocijail-patch/) - Required for .NET apps
-- [ZFS Storage](https://daemonless.io/guides/zfs/) - Podman on ZFS
+| Image | Port | Description |
+|-------|------|-------------|
+| [Immich PostgreSQL](https://github.com/daemonless/immich-postgres) |  | PostgreSQL with pgvector and vectorchord extensions required by Immich for vector similarity search. Defaults to PostgreSQL 14 (:latest), PostgreSQL 18 available as :18. |
+| [MariaDB](https://github.com/daemonless/mariadb) |  | Drop-in replacement for MySQL built by the original authors — extends core MySQL functionality with alternate storage engines, server optimizations, and patches. |
+| [PostgreSQL](https://github.com/daemonless/postgres) |  | The World's Most Advanced Open Source Relational Database on FreeBSD. |
+| [Redis](https://github.com/daemonless/redis) |  | Redis key-value store on FreeBSD. |
 
-## Building Images Locally
 
-```bash
-# Build all images for FreeBSD 15
-./scripts/local-build.sh 15
+### Development
 
-# Build specific image
-./scripts/local-build.sh 15 radarr latest
-./scripts/local-build.sh 15 radarr pkg
+| Image | Port | Description |
+|-------|------|-------------|
+| [Hugo](https://github.com/daemonless/hugo) |  | Fast and flexible static site generator — builds your entire site at creation time rather than on each request. |
+| [code-server](https://github.com/daemonless/code-server) |  | VS Code in the browser — run a full development environment on your FreeBSD server and access it from anywhere. |
 
-# Patch ocijail for .NET apps
-./scripts/build-ocijail.sh
+
+### Downloaders
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [SABnzbd](https://github.com/daemonless/sabnzbd) |  | Free and easy binary newsreader that automates the downloading and processing of Usenet content. |
+| [Transmission](https://github.com/daemonless/transmission) |  | Lightweight BitTorrent client with a web UI for managing torrent downloads. |
+| [Transmission with WireGuard](https://github.com/daemonless/transmission-wireguard) |  | Transmission BitTorrent client with built-in WireGuard VPN support. |
+
+
+### Infrastructure
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [Cloudflared](https://github.com/daemonless/cloudflared) |  | Tunneling daemon that proxies any local webserver through the Cloudflare network without DNS records or firewall changes. |
+| [Gitea](https://github.com/daemonless/gitea) |  | Lightweight self-hosted Git service — a community managed fork of Gogs written in Go. |
+| [Tailscale](https://github.com/daemonless/tailscale) |  | Zero-config mesh VPN built on WireGuard — securely connect your devices without port forwarding or firewall changes. |
+| [Traefik](https://github.com/daemonless/traefik) |  | Modern HTTP reverse proxy and load balancer on FreeBSD. |
+| [Woodpecker CI](https://github.com/daemonless/woodpecker) |  | Lightweight CI/CD pipeline server with a built-in agent — integrates with Gitea, GitHub, and GitLab for automated builds and deployments. |
+
+
+### Media Management
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [Bazarr](https://github.com/daemonless/bazarr) |  | Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you. |
+| [BookLore](https://github.com/daemonless/booklore) |  | Self-hosted digital library with smart shelves, metadata, OPDS support, and built-in reader. |
+| [Dispatcharr](https://github.com/daemonless/dispatcharr) |  | Dispatcharr — stream dispatching and channel management. |
+| [Grimmory](https://github.com/daemonless/grimmory) |  | Self-hosted digital library — successor to BookLore, with smart shelves, metadata, Kobo/KOReader sync, OPDS support, and a built-in reader. |
+| [Lidarr](https://github.com/daemonless/lidarr) |  | Music collection manager for Usenet and BitTorrent users — monitors RSS feeds, grabs, sorts, and renames tracks from your favorite artists. |
+| [Overseerr](https://github.com/daemonless/overseerr) |  | Media request management for Plex ecosystems. |
+| [Prowlarr](https://github.com/daemonless/prowlarr) |  | Indexer manager and proxy for Sonarr, Radarr, and other *arr applications — centralizes indexer configuration across your media stack. |
+| [Radarr](https://github.com/daemonless/radarr) |  | Automated movie collection manager that monitors, grabs, and manages your movie library via Usenet and BitTorrent. |
+| [ReadMeABook](https://github.com/daemonless/readmeabook) |  | Audiobook request and management platform with AI recommendations. |
+| [Seerr](https://github.com/daemonless/seerr) |  | Unified media request management (Plex, Jellyfin, Emby) on FreeBSD. |
+| [Sonarr](https://github.com/daemonless/sonarr) |  | Automated TV series collection manager that monitors, grabs, and manages your TV library via Usenet and BitTorrent. |
+
+
+### Media Servers
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [Audiobookshelf](https://github.com/daemonless/audiobookshelf) |  | Self-hosted audiobook and podcast server. |
+| [Jellyfin](https://github.com/daemonless/jellyfin) |  | Volunteer-built media solution that puts you in control — stream to any device from your own server, with no strings attached. |
+| [Plex Media Server](https://github.com/daemonless/plex) |  | Personal media server that organizes and streams your movie, TV, and music collections to all your devices. |
+| [Tautulli](https://github.com/daemonless/tautulli) |  | Monitoring and tracking tool for Plex Media Server — tracks what is being watched, who is watching, and when. |
+
+
+### Network
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [AdGuard Home](https://github.com/daemonless/adguardhome) |  | Network-wide ad and tracker blocking DNS server. Covers all devices on your network with no client-side software — includes DoH, DoT, DoQ, and a built-in DHCP server. |
+| [AdGuardHome Sync](https://github.com/daemonless/adguardhome-sync) |  | Sync AdGuardHome configuration to replica instances. |
+
+
+### Photos & Media
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [Immich](https://github.com/daemonless/immich) |  | High performance self-hosted photo and video management solution. |
+| [Immich Machine Learning](https://github.com/daemonless/immich-ml) |  | Machine learning service for Immich — handles facial recognition, image classification, and semantic search using ONNX models. |
+| [Immich Server](https://github.com/daemonless/immich-server) |  | Self-hosted photo and video backup and management server with web UI, mobile sync, and shared albums. |
+
+
+### Utilities
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [Bichon](https://github.com/daemonless/bichon) |  | A lightweight, high-performance Rust email archiver with WebUI. |
+| [Home Assistant](https://github.com/daemonless/home-assistant) |  | Home Assistant on FreeBSD. |
+| [Homepage](https://github.com/daemonless/homepage) |  | Modern, fully static, fast, secure and highly customizable application dashboard with integrations for over 100 services. |
+| [Mealie](https://github.com/daemonless/mealie) |  | Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web. |
+| [Nextcloud](https://github.com/daemonless/nextcloud) |  | Online collaboration platform providing groupware capabilities by default, extensible with additional apps. |
+| [OpenSpeedTest](https://github.com/daemonless/openspeedtest) |  | Self-hosted HTML5 Network Speed Test on FreeBSD. |
+| [Organizr](https://github.com/daemonless/organizr) |  | HTPC/Homelab Services Organizer on FreeBSD. |
+| [SmokePing](https://github.com/daemonless/smokeping) |  | Network latency monitor with historical graphing — tracks round-trip times and packet loss to your hosts over time. |
+| [UniFi Network](https://github.com/daemonless/unifi) |  | Ubiquiti UniFi Network Application for managing UniFi access points, switches, and gateways. |
+| [Uptime Kuma](https://github.com/daemonless/uptime-kuma) |  | Self-hosted uptime monitoring tool with a beautiful dashboard, status pages, and multi-channel notifications. |
+| [Vaultwarden](https://github.com/daemonless/vaultwarden) |  | Lightweight Bitwarden-compatible password manager server — self-host your passwords, secrets, and secure notes. |
+| [n8n](https://github.com/daemonless/n8n) |  | Fair-code workflow automation platform with native AI capabilities — combine visual building with custom code and 400+ integrations. |
+
+
+
+## Quick Links
+
+- [Quick Start Guide](https://daemonless.io/quick-start/)
+- [Available Images](https://daemonless.io/images/)
+- [Documentation](https://daemonless.io)
+
+## Getting Started
+
+```sh
+# Pull an image
+podman pull ghcr.io/daemonless/radarr:latest
+
+# Run with PUID/PGID mapping
+podman run -d --name radarr \
+  -e PUID=1000 -e PGID=1000 \
+  -v /data/radarr:/config \
+  -v /media:/media \
+  ghcr.io/daemonless/radarr:latest
 ```
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contributor guide, or read
-the [online version](https://daemonless.io/guides/contributing-quickstart/).
-
-Quick checklist:
-
-1. Use `fetch`, not `curl` — FreeBSD base includes `fetch`
-2. Use `.j2` templates — run `dbuild generate` after changes
-3. Test locally — `dbuild build && dbuild test`
-4. Verify upstream license — check the SPDX identifier
 
 ## License
 
-BSD 2-Clause License. See [LICENSE](LICENSE).
+BSD
