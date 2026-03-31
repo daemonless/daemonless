@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-03-31T14:22:08.880744Z",
+  "last_check": "2026-03-31T18:56:07.519615Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -41,7 +41,7 @@
     "homepage": {
       "pkg": "1.8.0",
       "pkg-latest": "1.10.1",
-      "upstream": "v1.12.1"
+      "upstream": "v1.12.2"
     },
     "hugo": {
       "pkg": "0.154.5_3,1",
