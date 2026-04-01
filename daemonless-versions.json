@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-01T14:32:41.917380Z",
+  "last_check": "2026-04-01T19:49:20.976640Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -41,12 +41,12 @@
     "homepage": {
       "pkg": "1.8.0",
       "pkg-latest": "1.10.1",
-      "upstream": "v1.12.2"
+      "upstream": "v1.12.3"
     },
     "hugo": {
       "pkg": "0.154.5_3,1",
       "pkg-latest": "0.159.1,1",
-      "upstream": "v0.159.1"
+      "upstream": "v0.159.2"
     },
     "immich-ml": {
       "upstream": "v2.6.3"
@@ -158,7 +158,7 @@
       "upstream": "v2.17.0"
     },
     "traefik": {
-      "pkg": "3.6.11",
+      "pkg": "3.6.12",
       "pkg-latest": "3.6.12",
       "upstream": "v3.6.12"
     },
