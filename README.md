@@ -39,6 +39,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Port | Description |
 |-------|------|-------------|
 | [Hugo](https://github.com/daemonless/hugo) |  | Fast and flexible static site generator — builds your entire site at creation time rather than on each request. |
+| [Zensical](https://github.com/daemonless/zensical) |  | Zensical is a modern static site generator designed to simplify building and maintaining project documentation.  It's built by the creators of Material for MkDocs and shares the same core design principles and philosophy - batteries included, easy to use, with powerful customization options. |
 | [code-server](https://github.com/daemonless/code-server) |  | VS Code in the browser — run a full development environment on your FreeBSD server and access it from anywhere. |
 
 
