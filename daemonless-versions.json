@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-02T08:28:29.377945Z",
+  "last_check": "2026-04-02T08:48:39.323980Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -87,7 +87,7 @@
     "nextcloud": {
       "pkg": "32.0.3_4",
       "pkg-latest": "33.0.1",
-      "upstream": "v32.0.8"
+      "upstream": "v33.0.2"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
@@ -187,6 +187,10 @@
     },
     "woodpecker": {
       "upstream": "v3.13.0"
+    },
+    "zensical": {
+      "pkg": "0.0.15",
+      "pkg-latest": "0.0.30"
     }
   }
 }
