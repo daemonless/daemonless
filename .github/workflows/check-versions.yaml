@@ -30,6 +30,7 @@ jobs:
         with:
           release: "15.0"
           usesh: true
+          vnc_password: ${{ secrets.VNC_PASSWORD }}
           copyback: true
           envs: 'GITHUB_TOKEN'
           prepare: |
