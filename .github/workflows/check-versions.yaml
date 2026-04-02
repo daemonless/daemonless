@@ -13,11 +13,18 @@ jobs:
       packages: read
 
     steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: daemonless
+
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Check versions in FreeBSD VM
-        uses: vmactions/freebsd-vm@v1.3.5
+        uses: vmactions/freebsd-vm@v1.4.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -40,7 +47,7 @@ jobs:
             cat daemonless-versions.json
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: daemonless-versions
           path: daemonless-versions.json
@@ -48,8 +55,8 @@ jobs:
       - name: Commit changes
         id: commit_changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "daemonless-bot[bot]"
+          git config user.email "3247603+daemonless-bot[bot]@users.noreply.github.com"
 
           if [[ -n $(git status -s daemonless-versions.json) ]]; then
             git add daemonless-versions.json
@@ -63,8 +70,8 @@ jobs:
 
       - name: Repository Dispatch
         if: steps.commit_changes.outputs.updated == 'true'
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@v4
         with:
-          token: ${{ secrets.DISPATCH_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
           repository: daemonless/daemonless-io
           event-type: status-update
