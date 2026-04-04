@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-04T13:43:45.682296Z",
+  "last_check": "2026-04-04T19:23:10.639597Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -52,7 +52,7 @@
     "hugo": {
       "pkg": "0.154.5_3,1",
       "pkg-latest": "0.159.1,1",
-      "upstream": "v0.159.2"
+      "upstream": "v0.160.0"
     },
     "immich-ml": {
       "upstream": "v2.6.3"
@@ -122,7 +122,7 @@
     "prowlarr": {
       "pkg": "2.0.5.5160_1",
       "pkg-latest": "2.3.0.5236",
-      "upstream": "2.3.0.5236"
+      "upstream": "2.3.5.5327"
     },
     "radarr": {
       "pkg": "5.28.0.10274",
