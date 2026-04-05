@@ -120,6 +120,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [OpenSpeedTest](https://github.com/daemonless/openspeedtest) |  | Self-hosted HTML5 Network Speed Test on FreeBSD. |
 | [Organizr](https://github.com/daemonless/organizr) |  | HTPC/Homelab Services Organizer on FreeBSD. |
 | [SmokePing](https://github.com/daemonless/smokeping) |  | Network latency monitor with historical graphing — tracks round-trip times and packet loss to your hosts over time. |
+| [Stirling-PDF](https://github.com/daemonless/stirling-pdf) |  | Locally hosted web application for performing various operations on PDF files — merge, split, compress, convert, OCR, and more. |
 | [UniFi Network](https://github.com/daemonless/unifi) |  | Ubiquiti UniFi Network Application for managing UniFi access points, switches, and gateways. |
 | [Uptime Kuma](https://github.com/daemonless/uptime-kuma) |  | Self-hosted uptime monitoring tool with a beautiful dashboard, status pages, and multi-channel notifications. |
 | [Vaultwarden](https://github.com/daemonless/vaultwarden) |  | Lightweight Bitwarden-compatible password manager server — self-host your passwords, secrets, and secure notes. |
