@@ -50,6 +50,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [SABnzbd](https://github.com/daemonless/sabnzbd) |  | Free and easy binary newsreader that automates the downloading and processing of Usenet content. |
 | [Transmission](https://github.com/daemonless/transmission) |  | Lightweight BitTorrent client with a web UI for managing torrent downloads. |
 | [Transmission with WireGuard](https://github.com/daemonless/transmission-wireguard) |  | Transmission BitTorrent client with built-in WireGuard VPN support. |
+| [qBittorrent](https://github.com/daemonless/qbittorrent) |  | Fast, stable BitTorrent client with a feature-rich web UI. Supports DHT, PEX, encryption, magnet links, RSS, IP filtering, and remote management. |
 
 
 ### Infrastructure
