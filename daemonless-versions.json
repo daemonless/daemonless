@@ -1,8 +1,8 @@
 {
-  "last_check": "2026-04-07T08:52:10.565680Z",
+  "last_check": "2026-04-07T14:23:55.106909Z",
   "services": {
     "adguardhome": {
-      "pkg": "0.107.69_4",
+      "pkg": "0.107.72",
       "pkg-latest": "0.107.72",
       "upstream": "v0.107.73"
     },
@@ -13,7 +13,7 @@
       "upstream": "v2.33.1"
     },
     "bazarr": {
-      "pkg": "1.5.2_3",
+      "pkg": "1.5.4",
       "pkg-latest": "1.5.4_1",
       "upstream": "v1.5.6"
     },
@@ -45,12 +45,12 @@
       "upstream": "2026.4.1"
     },
     "homepage": {
-      "pkg": "1.8.0",
+      "pkg": "1.10.1",
       "pkg-latest": "1.10.1",
       "upstream": "v1.12.3"
     },
     "hugo": {
-      "pkg": "0.154.5_3,1",
+      "pkg": "0.159.2,1",
       "pkg-latest": "0.159.2,1",
       "upstream": "v0.160.0"
     },
@@ -61,12 +61,12 @@
       "upstream": "v2.6.3"
     },
     "jellyfin": {
-      "pkg": "10.11.5",
+      "pkg": "10.11.7",
       "pkg-latest": "10.11.7",
       "upstream": "v10.11.8"
     },
     "lidarr": {
-      "pkg": "2.13.3.4711_1",
+      "pkg": "3.1.0.4875",
       "pkg-latest": "3.1.0.4875",
       "upstream": "3.1.0.4875"
     },
@@ -75,11 +75,11 @@
       "type": "multi-version",
       "variants": {
         "11.4": {
-          "pkg": "11.4.9",
+          "pkg": "11.4.10",
           "pkg-latest": "11.4.10"
         },
         "11.8": {
-          "pkg": "11.8.5",
+          "pkg": "11.8.6",
           "pkg-latest": "11.8.6"
         }
       }
@@ -91,7 +91,7 @@
       "upstream": "2.15.0"
     },
     "nextcloud": {
-      "pkg": "32.0.3_4",
+      "pkg": "33.0.1",
       "pkg-latest": "33.0.2",
       "upstream": "v33.0.2"
     },
@@ -120,7 +120,7 @@
       }
     },
     "prowlarr": {
-      "pkg": "2.0.5.5160_1",
+      "pkg": "2.3.0.5236",
       "pkg-latest": "2.3.0.5236",
       "upstream": "2.3.5.5327"
     },
@@ -129,7 +129,7 @@
       "pkg-latest": "5.1.4_1"
     },
     "radarr": {
-      "pkg": "5.28.0.10274",
+      "pkg": "6.0.4.10291_1",
       "pkg-latest": "6.0.4.10291_1",
       "upstream": "6.1.1.10360"
     },
@@ -137,7 +137,7 @@
       "upstream": "v1.1.7"
     },
     "redis": {
-      "pkg": "8.4.0_1",
+      "pkg": "8.6.2",
       "pkg-latest": "8.6.2"
     },
     "sabnzbd": {
@@ -157,17 +157,17 @@
       "pkg-latest": "2.9.0_1"
     },
     "sonarr": {
-      "pkg": "4.0.16.2944",
+      "pkg": "4.0.16.2944_1",
       "pkg-latest": "4.0.16.2944_1",
       "upstream": "4.0.17.2952"
     },
     "stirling-pdf": {
-      "pkg": "2.2.1",
+      "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
       "upstream": "v2.9.2"
     },
     "tailscale": {
-      "pkg": "1.94.1_2",
+      "pkg": "1.96.4",
       "pkg-latest": "1.96.4",
       "upstream": "v1.96.4"
     },
@@ -179,15 +179,15 @@
     "traefik": {
       "pkg": "3.6.12",
       "pkg-latest": "3.6.12",
-      "upstream": "v3.6.12"
+      "upstream": "v3.6.13"
     },
     "transmission": {
-      "pkg": "4.0.6_7",
+      "pkg": "4.1.1",
       "pkg-latest": "4.1.1",
       "upstream": "4.1.1"
     },
     "transmission-wireguard": {
-      "pkg": "4.0.6_7",
+      "pkg": "4.1.1",
       "pkg-latest": "4.1.1",
       "upstream": "4.1.1"
     },
@@ -200,7 +200,7 @@
       "upstream": "2.2.1"
     },
     "vaultwarden": {
-      "pkg": "1.35.2",
+      "pkg": "1.35.4_1",
       "pkg-latest": "1.35.4_1",
       "upstream": "1.35.4"
     },
@@ -208,7 +208,7 @@
       "upstream": "v3.13.0"
     },
     "zensical": {
-      "pkg": "0.0.15",
+      "pkg": "0.0.31",
       "pkg-latest": "0.0.31"
     }
   }
