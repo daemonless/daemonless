@@ -97,6 +97,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 |-------|------|-------------|
 | [AdGuard Home](https://github.com/daemonless/adguardhome) |  | Network-wide ad and tracker blocking DNS server. Covers all devices on your network with no client-side software — includes DoH, DoT, DoQ, and a built-in DHCP server. |
 | [AdGuardHome Sync](https://github.com/daemonless/adguardhome-sync) |  | Sync AdGuardHome configuration to replica instances. |
+| [Samba](https://github.com/daemonless/samba) |  | SMB/CIFS file sharing and Active Directory compatible Domain Controller for FreeBSD. |
 
 
 ### Photos & Media
