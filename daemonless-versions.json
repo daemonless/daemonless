@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-07T08:03:57.634145Z",
+  "last_check": "2026-04-07T08:52:10.565680Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.69_4",
@@ -144,6 +144,10 @@
       "pkg": "4.5.5",
       "pkg-latest": "4.5.5",
       "upstream": "4.5.5"
+    },
+    "samba": {
+      "pkg": "4.16.11_10",
+      "pkg-latest": "4.16.11_10"
     },
     "seerr": {
       "upstream": "v3.1.0"
