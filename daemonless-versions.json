@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-08T14:25:38.017706Z",
+  "last_check": "2026-04-08T19:52:55.542010Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72",
@@ -51,7 +51,7 @@
     },
     "hugo": {
       "pkg": "0.159.2,1",
-      "pkg-latest": "0.159.2,1",
+      "pkg-latest": "0.160.0,1",
       "upstream": "v0.160.1"
     },
     "immich-ml": {
@@ -99,7 +99,7 @@
       "upstream": "v2.0.5"
     },
     "plex": {
-      "upstream": "1.43.0.10492-121068a07"
+      "upstream": "1.43.1.10576-06378bdcd"
     },
     "postgres": {
       "default": "18",
@@ -158,7 +158,7 @@
     },
     "sonarr": {
       "pkg": "4.0.16.2944_1",
-      "pkg-latest": "4.0.16.2944_1",
+      "pkg-latest": "4.0.17.2952",
       "upstream": "4.0.17.2952"
     },
     "stirling-pdf": {
@@ -201,7 +201,6 @@
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
-      "pkg-latest": "1.35.4_1",
       "upstream": "1.35.4"
     },
     "woodpecker": {
