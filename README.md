@@ -121,6 +121,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Nextcloud](https://github.com/daemonless/nextcloud) |  | Online collaboration platform providing groupware capabilities by default, extensible with additional apps. |
 | [OpenSpeedTest](https://github.com/daemonless/openspeedtest) |  | Self-hosted HTML5 Network Speed Test on FreeBSD. |
 | [Organizr](https://github.com/daemonless/organizr) |  | HTPC/Homelab Services Organizer on FreeBSD. |
+| [Playwright](https://github.com/daemonless/playwright) |  | Playwright (Chromium) on FreeBSD. Use as a base image for running browser tests. |
 | [SmokePing](https://github.com/daemonless/smokeping) |  | Network latency monitor with historical graphing — tracks round-trip times and packet loss to your hosts over time. |
 | [Stirling-PDF](https://github.com/daemonless/stirling-pdf) |  | Locally hosted web application for performing various operations on PDF files — merge, split, compress, convert, OCR, and more. |
 | [UniFi Network](https://github.com/daemonless/unifi) |  | Ubiquiti UniFi Network Application for managing UniFi access points, switches, and gateways. |
