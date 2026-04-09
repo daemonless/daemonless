@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-08T19:52:55.542010Z",
+  "last_check": "2026-04-09T03:41:23.219588Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72",
@@ -25,7 +25,7 @@
       "pkg-latest": "2026.2.0_1"
     },
     "code-server": {
-      "upstream": "4.114.1"
+      "upstream": "4.115.0"
     },
     "dispatcharr": {
       "upstream": "v0.22.1"
