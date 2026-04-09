@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-09T14:33:36.280098Z",
+  "last_check": "2026-04-09T19:56:59.209170Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72",
@@ -55,10 +55,10 @@
       "upstream": "v0.160.1"
     },
     "immich-ml": {
-      "upstream": "v2.7.2"
+      "upstream": "v2.7.3"
     },
     "immich-server": {
-      "upstream": "v2.7.2"
+      "upstream": "v2.7.3"
     },
     "jellyfin": {
       "pkg": "10.11.7",
