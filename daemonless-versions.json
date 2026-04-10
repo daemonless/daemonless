@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-10T08:14:13.101709Z",
+  "last_check": "2026-04-10T14:08:21.731951Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72",
@@ -92,7 +92,7 @@
       "upstream": "v3.14.0"
     },
     "n8n": {
-      "upstream": "2.15.0"
+      "upstream": "2.15.1"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -103,7 +103,7 @@
       "upstream": "v2.0.5"
     },
     "plex": {
-      "upstream": "1.43.1.10576-06378bdcd"
+      "upstream": "1.43.1.10611-1e34174b1"
     },
     "postgres": {
       "default": "18",
