@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-10T14:08:21.731951Z",
+  "last_check": "2026-04-10T19:35:39.566337Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72",
@@ -18,7 +18,7 @@
     },
     "bazarr": {
       "pkg": "1.5.6",
-      "pkg-latest": "1.5.4_1",
+      "pkg-latest": "1.5.6",
       "upstream": "v1.5.6"
     },
     "bichon": {
@@ -59,14 +59,14 @@
       "upstream": "v0.160.1"
     },
     "immich-ml": {
-      "upstream": "v2.7.3"
+      "upstream": "v2.7.4"
     },
     "immich-server": {
-      "upstream": "v2.7.3"
+      "upstream": "v2.7.4"
     },
     "jellyfin": {
       "pkg": "10.11.7",
-      "pkg-latest": "10.11.7",
+      "pkg-latest": "10.11.8",
       "upstream": "v10.11.8"
     },
     "lidarr": {
@@ -125,7 +125,7 @@
     },
     "prowlarr": {
       "pkg": "2.3.0.5236",
-      "pkg-latest": "2.3.0.5236",
+      "pkg-latest": "2.3.5.5327",
       "upstream": "2.3.5.5327"
     },
     "qbittorrent": {
@@ -134,7 +134,7 @@
     },
     "radarr": {
       "pkg": "6.0.4.10291_1",
-      "pkg-latest": "6.0.4.10291_1",
+      "pkg-latest": "6.1.1.10360",
       "upstream": "6.1.1.10360"
     },
     "readmeabook": {
