@@ -1,8 +1,8 @@
 {
-  "last_check": "2026-04-11T19:27:34.433225Z",
+  "last_check": "2026-04-12T03:58:34.370205Z",
   "services": {
     "adguardhome": {
-      "pkg": "0.107.72",
+      "pkg": "0.107.72_1",
       "pkg-latest": "0.107.72",
       "upstream": "v0.107.73"
     },
@@ -13,7 +13,7 @@
       "upstream": "v2.33.1"
     },
     "authelia-server": {
-      "pkg": "4.39.15_5",
+      "pkg": "4.39.15_6",
       "pkg-latest": "4.39.15_5",
       "upstream": "v4.39.18"
     },
@@ -26,7 +26,7 @@
       "upstream": "0.3.7"
     },
     "cloudflared": {
-      "pkg": "2026.2.0_1",
+      "pkg": "2026.2.0_2",
       "pkg-latest": "2026.2.0_1"
     },
     "code-server": {
@@ -36,7 +36,7 @@
       "upstream": "v0.22.1"
     },
     "gitea": {
-      "pkg": "1.25.5",
+      "pkg": "1.25.5_1",
       "pkg-latest": "1.25.5",
       "upstream": "v1.25.5"
     },
@@ -55,7 +55,7 @@
       "upstream": "v1.12.3"
     },
     "hugo": {
-      "pkg": "0.159.2,1",
+      "pkg": "0.159.2_1,1",
       "pkg-latest": "0.160.0,1",
       "upstream": "v0.160.1"
     },
@@ -172,7 +172,7 @@
       "upstream": "v2.9.2"
     },
     "tailscale": {
-      "pkg": "1.96.4",
+      "pkg": "1.96.4_1",
       "pkg-latest": "1.96.4",
       "upstream": "v1.96.4"
     },
@@ -182,7 +182,7 @@
       "upstream": "v2.17.0"
     },
     "traefik": {
-      "pkg": "3.6.12",
+      "pkg": "3.6.12_1",
       "pkg-latest": "3.6.12",
       "upstream": "v3.6.13"
     },
