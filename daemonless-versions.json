@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-13T21:29:02.208983Z",
+  "last_check": "2026-04-14T03:57:12.950210Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -206,7 +206,7 @@
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
-      "upstream": "1.35.6"
+      "upstream": "1.35.7"
     },
     "woodpecker": {
       "upstream": "v3.13.0"
