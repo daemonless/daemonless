@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-15T03:55:51.717230Z",
+  "last_check": "2026-04-15T16:41:42.540730Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -14,7 +14,7 @@
     },
     "authelia-server": {
       "pkg": "4.39.15_6",
-      "pkg-latest": "4.39.18",
+      "pkg-latest": "4.39.19",
       "upstream": "v4.39.19"
     },
     "bazarr": {
@@ -93,7 +93,7 @@
       "upstream": "v3.15.1"
     },
     "n8n": {
-      "upstream": "2.15.1"
+      "upstream": "2.16.1"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -183,7 +183,7 @@
     },
     "traefik": {
       "pkg": "3.6.12_1",
-      "pkg-latest": "3.6.12_1",
+      "pkg-latest": "3.6.13",
       "upstream": "v3.6.13"
     },
     "transmission": {
@@ -206,7 +206,7 @@
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
-      "upstream": "1.35.7"
+      "upstream": "v2026.1.1"
     },
     "woodpecker": {
       "upstream": "v3.13.0"
