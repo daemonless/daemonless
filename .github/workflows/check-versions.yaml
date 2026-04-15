@@ -16,7 +16,7 @@ jobs:
       - uses: actions/create-github-app-token@v3
         id: app-token
         with:
-          app-id: ${{ secrets.APP_ID }}
+          client-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: daemonless
 
@@ -30,7 +30,7 @@ jobs:
         with:
           release: "15.0"
           usesh: true
-          vnc_password: ${{ secrets.VNC_PASSWORD }}
+          vnc-password: ${{ secrets.VNC_PASSWORD }}
           copyback: true
           envs: 'GITHUB_TOKEN'
           prepare: |
