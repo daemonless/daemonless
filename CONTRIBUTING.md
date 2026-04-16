@@ -6,7 +6,7 @@ A 10-minute guide to building and testing your first FreeBSD container image.
 
 - **FreeBSD** (physical host or VM with Podman access)
 - **Python 3.11+** and **git**
-- **Podman** with **ocijail** runtime
+- **Podman** with **ocijail 0.5.0+** runtime (`pkg install ocijail`)
 - A GitHub account (for forking and PRs)
 
 Not sure if your environment is ready? After installing dbuild, run:
