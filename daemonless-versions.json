@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-16T14:31:57.508172Z",
+  "last_check": "2026-04-16T18:26:47.831005Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -182,7 +182,7 @@
       "upstream": "v2.17.0"
     },
     "traefik": {
-      "pkg": "3.6.12_1",
+      "pkg": "3.6.13",
       "pkg-latest": "3.6.13",
       "upstream": "v3.6.13"
     },
