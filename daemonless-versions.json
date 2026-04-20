@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-20T19:51:35.473245Z",
+  "last_check": "2026-04-20T21:42:10.172531Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -151,8 +151,34 @@
       "upstream": "4.5.5"
     },
     "samba": {
-      "pkg": "4.16.11_10",
-      "pkg-latest": "4.16.11_10"
+      "default": "pkg",
+      "type": "multi-version",
+      "variants": {
+        "422": {
+          "pkg-latest": "4.22.7_1"
+        },
+        "422-pkg": {
+          "pkg": "4.22.7_1"
+        },
+        "422-pkg-krb": {
+          "pkg": "4.22.7_1"
+        },
+        "423": {
+          "pkg-latest": "4.23.6_1"
+        },
+        "423-pkg": {
+          "pkg": "4.23.6_1"
+        },
+        "423-pkg-krb": {
+          "pkg": "4.23.6_1"
+        },
+        "pkg": {
+          "pkg": "4.16.11_10"
+        },
+        "pkg-latest": {
+          "pkg": "4.16.11_10"
+        }
+      }
     },
     "seerr": {
       "upstream": "v3.2.0"
