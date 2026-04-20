@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-19T19:33:56.861949Z",
+  "last_check": "2026-04-20T04:15:39.496270Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -10,7 +10,7 @@
       "upstream": "v0.9.0"
     },
     "audiobookshelf": {
-      "upstream": "v2.33.1"
+      "upstream": "v2.33.2"
     },
     "authelia-server": {
       "pkg": "4.39.15_6",
