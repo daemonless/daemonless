@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-21T08:02:41.943168Z",
+  "last_check": "2026-04-21T08:13:33.603415Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -76,14 +76,14 @@
       "upstream": "3.1.0.4875"
     },
     "mariadb": {
-      "default": "118",
+      "default": "11.8",
       "type": "multi-version",
       "variants": {
-        "114": {
+        "11.4": {
           "pkg": "11.4.10",
           "pkg-latest": "11.4.10"
         },
-        "118": {
+        "11.8": {
           "pkg": "11.8.6",
           "pkg-latest": "11.8.6"
         }
