@@ -433,6 +433,29 @@ def get_upstream_version(upstream_url, upstream_jq):
     return None
 
 
+def parse_variant_tag(variant_id, pkg_name):
+    """Parse variant tag into (major_version, build_type).
+
+    Handles both postgres-style numeric tags ("14", "14-pkg-latest") and
+    samba-style alias tags ("pkg", "pkg-latest", "422-pkg", "422-pkg-krb").
+    Returns (major_version_str, build_type_str).
+    """
+    # Try numeric prefix: "422-pkg-krb" -> ("422", "pkg-krb")
+    m = re.match(r'^(\d+)(?:-(.+))?$', variant_id)
+    if m:
+        major = m.group(1)
+        build_type = m.group(2) or "pkg"
+        return major, build_type
+
+    # No numeric prefix (e.g. "pkg", "pkg-latest") — extract major from pkg_name
+    pkg_major = re.search(r'(\d+)', pkg_name)
+    major = pkg_major.group(1) if pkg_major else pkg_name
+
+    if variant_id == "pkg-latest" or variant_id.endswith("-pkg-latest"):
+        return major, "pkg-latest"
+    return major, "pkg"
+
+
 def process_multi_version_service(repo, config):
     """Process a multi-version service using build.variants with pkg_name."""
     build_config = config.get("build", {})
@@ -451,19 +474,22 @@ def process_multi_version_service(repo, config):
         "variants": {},
     }
 
-    # Find default variant
+    # Find default variant (use its parsed major version as the default key)
     default_variant = None
     for variant in variants:
         if variant.get("default"):
-            default_variant = variant.get("tag") or variant.get("id")
+            tag = variant.get("tag") or variant.get("id", "")
+            pkg_name = variant.get("pkg_name", "")
+            major, _ = parse_variant_tag(tag, pkg_name)
+            default_variant = major
             break
 
     if default_variant:
         result["default"] = default_variant
 
-    # Process each variant
+    # Process each variant and consolidate by major version
+    consolidated = {}
     for variant in variants:
-        # Support both "id" (legacy) and "tag" (new) fields
         variant_id = variant.get("tag") or variant.get("id")
         if not variant_id:
             continue
@@ -472,33 +498,16 @@ def process_multi_version_service(repo, config):
         if not pkg_name:
             continue
 
-        # Determine which pkg repo to query based on variant id
-        # Variants ending in -pkg-latest use "latest" repo, others use "quarterly"
-        if variant_id.endswith("-pkg-latest"):
-            # This is a pkg-latest variant
-            l_ver = get_pkg_version(pkg_name, "latest")
-            if l_ver:
-                result["variants"][variant_id] = {"pkg-latest": l_ver}
-        else:
-            # This is a quarterly (pkg) variant
-            q_ver = get_pkg_version(pkg_name, "quarterly")
-            if q_ver:
-                result["variants"][variant_id] = {"pkg": q_ver}
+        major, build_type = parse_variant_tag(variant_id, pkg_name)
 
-    # Consolidate: group by major version
-    # e.g., "14" and "14-pkg-latest" -> "14": {"pkg": x, "pkg-latest": y}
-    consolidated = {}
-    for variant_id, versions in result["variants"].items():
-        # Extract base version (e.g., "14" from "14-pkg-latest")
-        base_version = variant_id.replace("-pkg-latest", "")
+        repo_type = "latest" if build_type == "pkg-latest" else "quarterly"
+        ver = get_pkg_version(pkg_name, repo_type)
+        if ver:
+            if major not in consolidated:
+                consolidated[major] = {}
+            consolidated[major][build_type] = ver
 
-        if base_version not in consolidated:
-            consolidated[base_version] = {}
-
-        consolidated[base_version].update(versions)
-
-    if consolidated:
-        result["variants"] = consolidated
+    result["variants"] = consolidated
 
     if not result["variants"]:
         return None
