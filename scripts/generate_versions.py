@@ -441,7 +441,7 @@ def parse_variant_tag(variant_id, pkg_name):
     Returns (major_version_str, build_type_str).
     """
     # Try numeric prefix: "422-pkg-krb" -> ("422", "pkg-krb")
-    m = re.match(r'^(\d+)(?:-(.+))?$', variant_id)
+    m = re.match(r'^([\d.]+)(?:-(.+))?$', variant_id)
     if m:
         major = m.group(1)
         build_type = m.group(2) or "pkg"
