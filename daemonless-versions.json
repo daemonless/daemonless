@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-20T22:53:27.907697Z",
+  "last_check": "2026-04-21T08:02:41.943168Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -76,14 +76,14 @@
       "upstream": "3.1.0.4875"
     },
     "mariadb": {
-      "default": "11.8",
+      "default": "118",
       "type": "multi-version",
       "variants": {
-        "11.4": {
+        "114": {
           "pkg": "11.4.10",
           "pkg-latest": "11.4.10"
         },
-        "11.8": {
+        "118": {
           "pkg": "11.8.6",
           "pkg-latest": "11.8.6"
         }
@@ -139,7 +139,7 @@
       "upstream": "6.1.1.10360"
     },
     "readmeabook": {
-      "upstream": "v1.1.7"
+      "upstream": "v1.1.8"
     },
     "redis": {
       "pkg": "8.6.2",
@@ -151,32 +151,22 @@
       "upstream": "4.5.5"
     },
     "samba": {
-      "default": "pkg",
+      "default": "416",
       "type": "multi-version",
       "variants": {
+        "416": {
+          "pkg": "4.16.11_10",
+          "pkg-latest": "4.16.11_10"
+        },
         "422": {
+          "pkg": "4.22.7_1",
+          "pkg-krb": "4.22.7_1",
           "pkg-latest": "4.22.7_1"
         },
-        "422-pkg": {
-          "pkg": "4.22.7_1"
-        },
-        "422-pkg-krb": {
-          "pkg": "4.22.7_1"
-        },
         "423": {
+          "pkg": "4.23.6_1",
+          "pkg-krb": "4.23.6_1",
           "pkg-latest": "4.23.6_1"
-        },
-        "423-pkg": {
-          "pkg": "4.23.6_1"
-        },
-        "423-pkg-krb": {
-          "pkg": "4.23.6_1"
-        },
-        "pkg": {
-          "pkg": "4.16.11_10"
-        },
-        "pkg-latest": {
-          "pkg": "4.16.11_10"
         }
       }
     },
