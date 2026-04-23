@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-22T19:57:08.994065Z",
+  "last_check": "2026-04-23T04:00:44.064881Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -41,7 +41,7 @@
       "upstream": "v1.26.0"
     },
     "grimmory": {
-      "upstream": "v2.3.0"
+      "upstream": "v3.0.0"
     },
     "heimdall": {
       "upstream": "v2.7.6"
