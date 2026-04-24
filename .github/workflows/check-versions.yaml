@@ -34,7 +34,6 @@ jobs:
           copyback: true
           envs: 'GITHUB_TOKEN'
           prepare: |
-            pkg install -y python3 py311-pyyaml jq
             # Configure both quarterly and latest repos for version checking
             # Use https:// instead of pkg+http:// to avoid SRV lookup issues
             mkdir -p /usr/local/etc/pkg/repos
@@ -42,6 +41,7 @@ jobs:
             echo 'FreeBSD-quarterly: { url: "https://pkg.FreeBSD.org/${ABI}/quarterly", enabled: yes }' > /usr/local/etc/pkg/repos/quarterly.conf
             echo 'FreeBSD-latest: { url: "https://pkg.FreeBSD.org/${ABI}/latest", enabled: yes }' > /usr/local/etc/pkg/repos/latest.conf
             pkg update -f
+            pkg install -y python3 devel/py-pyyaml jq
           run: |
             python3 scripts/generate_versions.py > daemonless-versions.json
             cat daemonless-versions.json
