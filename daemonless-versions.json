@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-28T09:13:03.070946Z",
+  "last_check": "2026-04-28T15:13:43.128699Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -57,7 +57,7 @@
     "hugo": {
       "pkg": "0.159.2_1,1",
       "pkg-latest": "0.160.1_1,1",
-      "upstream": "v0.160.1"
+      "upstream": "v0.161.0"
     },
     "immich-ml": {
       "upstream": "v2.7.5"
@@ -92,7 +92,7 @@
       "upstream": "v3.16.0"
     },
     "n8n": {
-      "upstream": "2.17.8"
+      "upstream": "2.18.4"
     },
     "nextcloud": {
       "pkg": "33.0.1",
