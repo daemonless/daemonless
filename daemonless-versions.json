@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-04-29T09:04:38.187873Z",
+  "last_check": "2026-04-29T15:00:48.043040Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -57,7 +57,7 @@
     "hugo": {
       "pkg": "0.159.2_1,1",
       "pkg-latest": "0.160.1_1,1",
-      "upstream": "v0.161.0"
+      "upstream": "v0.161.1"
     },
     "immich-ml": {
       "upstream": "v2.7.5"
@@ -199,7 +199,7 @@
     "traefik": {
       "pkg": "3.6.13",
       "pkg-latest": "3.6.13",
-      "upstream": "v3.6.14"
+      "upstream": "v3.6.15"
     },
     "transmission": {
       "pkg": "4.1.1",
