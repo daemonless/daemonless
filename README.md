@@ -110,6 +110,13 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Immich Server](https://github.com/daemonless/immich-server) |  | Self-hosted photo and video backup and management server with web UI, mobile sync, and shared albums. |
 
 
+### Productivity
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) |  | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
+
+
 ### Utilities
 
 | Image | Port | Description |
