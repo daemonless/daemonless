@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-01T00:02:16.392361Z",
+  "last_check": "2026-05-01T04:41:58.852206Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -99,6 +99,11 @@
       "pkg": "33.0.1",
       "pkg-latest": "33.0.2",
       "upstream": "v33.0.3"
+    },
+    "onlyoffice": {
+      "pkg": "9.3.1",
+      "pkg-latest": "9.3.1_1",
+      "upstream": "9.3.1"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
@@ -218,7 +223,7 @@
       "upstream": "10.3.58"
     },
     "uptime-kuma": {
-      "upstream": "2.2.1"
+      "upstream": "2.3.0"
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
