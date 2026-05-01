@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-01T08:53:50.344744Z",
+  "last_check": "2026-05-01T14:11:53.865101Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -102,7 +102,7 @@
     },
     "onlyoffice": {
       "pkg": "9.3.1",
-      "pkg-latest": "9.3.1_1",
+      "pkg-latest": "9.3.1_2",
       "upstream": "9.3.1"
     },
     "openspeedtest": {
@@ -230,11 +230,11 @@
       "upstream": "1.35.8"
     },
     "woodpecker": {
-      "upstream": "v3.13.0"
+      "upstream": "v3.14.0"
     },
     "zensical": {
       "pkg": "0.0.31",
-      "pkg-latest": "0.0.36_1"
+      "pkg-latest": "0.0.37"
     }
   }
 }
