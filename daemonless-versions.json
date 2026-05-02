@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-01T23:47:51.003982Z",
+  "last_check": "2026-05-02T04:14:54.681380Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -34,6 +34,16 @@
     },
     "dispatcharr": {
       "upstream": "v0.23.0"
+    },
+    "forgejo": {
+      "default": "15",
+      "type": "multi-version",
+      "variants": {
+        "forgejo-lts": {
+          "pkg": "11.0.12_2",
+          "pkg-latest": "11.0.13"
+        }
+      }
     },
     "gitea": {
       "pkg": "1.25.5_1",
