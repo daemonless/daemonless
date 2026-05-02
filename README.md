@@ -59,6 +59,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 |-------|------|-------------|
 | [Authelia](https://github.com/daemonless/authelia-server) |  | Authelia on FreeBSD. |
 | [Cloudflared](https://github.com/daemonless/cloudflared) |  | Tunneling daemon that proxies any local webserver through the Cloudflare network without DNS records or firewall changes. |
+| [Forgejo](https://github.com/daemonless/forgejo) |  | Forgejo is a self-hosted lightweight software forge |
 | [Gitea](https://github.com/daemonless/gitea) |  | Lightweight self-hosted Git service — a community managed fork of Gogs written in Go. |
 | [Tailscale](https://github.com/daemonless/tailscale) |  | Zero-config mesh VPN built on WireGuard — securely connect your devices without port forwarding or firewall changes. |
 | [Traefik](https://github.com/daemonless/traefik) |  | Modern HTTP reverse proxy and load balancer on FreeBSD. |
