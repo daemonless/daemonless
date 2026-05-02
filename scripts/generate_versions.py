@@ -447,7 +447,12 @@ def parse_variant_tag(variant_id, pkg_name):
         build_type = m.group(2) or "pkg"
         return major, build_type
 
-    # No numeric prefix (e.g. "pkg", "pkg-latest") — extract major from pkg_name
+    # Try word prefix before a known build-type suffix: "lts-pkg" -> ("lts", "pkg")
+    m = re.match(r'^(.+?)-(pkg(?:-.+)?)$', variant_id)
+    if m:
+        return m.group(1), m.group(2)
+
+    # No prefix (e.g. "pkg", "pkg-latest") — extract major from pkg_name
     pkg_major = re.search(r'(\d+)', pkg_name)
     major = pkg_major.group(1) if pkg_major else pkg_name
 
