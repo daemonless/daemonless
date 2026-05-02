@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-02T10:21:54.393645Z",
+  "last_check": "2026-05-02T12:34:16.635502Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -39,7 +39,7 @@
       "default": "15",
       "type": "multi-version",
       "variants": {
-        "forgejo-lts": {
+        "lts": {
           "pkg": "11.0.12_2",
           "pkg-latest": "11.0.13"
         }
