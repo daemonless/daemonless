@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-02T19:45:27.132264Z",
+  "last_check": "2026-05-03T04:36:12.518055Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -39,6 +39,10 @@
       "default": "15",
       "type": "multi-version",
       "variants": {
+        "14": {
+          "pkg": "14.0.4_2",
+          "pkg-latest": "14.0.5"
+        },
         "lts": {
           "pkg": "11.0.12_2",
           "pkg-latest": "11.0.13"
