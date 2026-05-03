@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-03T08:29:49.081424Z",
+  "last_check": "2026-05-03T14:03:59.359609Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -81,7 +81,6 @@
     },
     "jellyfin": {
       "pkg": "10.11.7",
-      "pkg-latest": "10.11.8",
       "upstream": "v10.11.8"
     },
     "lidarr": {
@@ -111,7 +110,7 @@
     },
     "nextcloud": {
       "pkg": "33.0.1",
-      "pkg-latest": "33.0.2",
+      "pkg-latest": "33.0.3",
       "upstream": "v33.0.3"
     },
     "onlyoffice": {
@@ -233,15 +232,16 @@
     },
     "unifi": {
       "pkg": "10.1.89",
-      "pkg-latest": "10.1.89_1",
+      "pkg-latest": "10.3.58",
       "upstream": "10.3.58"
     },
     "uptime-kuma": {
-      "upstream": "2.3.0"
+      "upstream": "2.3.1"
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
-      "upstream": "1.35.8"
+      "pkg-latest": "1.35.6_1",
+      "upstream": "1.36.0"
     },
     "woodpecker": {
       "upstream": "v3.14.0"
