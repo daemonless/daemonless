@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-03T14:03:59.359609Z",
+  "last_check": "2026-05-03T19:44:39.660348Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -33,7 +33,7 @@
       "upstream": "4.117.0"
     },
     "dispatcharr": {
-      "upstream": "v0.23.0"
+      "upstream": "v0.24.0"
     },
     "forgejo": {
       "default": "15",
@@ -149,7 +149,8 @@
     },
     "qbittorrent": {
       "pkg": "5.1.4_1",
-      "pkg-latest": "5.1.4_1"
+      "pkg-latest": "5.1.4_1",
+      "upstream": "release-5.2.0"
     },
     "radarr": {
       "pkg": "6.0.4.10291_1",
@@ -236,7 +237,7 @@
       "upstream": "10.3.58"
     },
     "uptime-kuma": {
-      "upstream": "2.3.1"
+      "upstream": "2.3.2"
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
