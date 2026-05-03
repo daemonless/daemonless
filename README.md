@@ -64,6 +64,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Tailscale](https://github.com/daemonless/tailscale) |  | Zero-config mesh VPN built on WireGuard — securely connect your devices without port forwarding or firewall changes. |
 | [Traefik](https://github.com/daemonless/traefik) |  | Modern HTTP reverse proxy and load balancer on FreeBSD. |
 | [Woodpecker CI](https://github.com/daemonless/woodpecker) |  | Lightweight CI/CD pipeline server with a built-in agent — integrates with Gitea, GitHub, and GitLab for automated builds and deployments. |
+| [lldap](https://github.com/daemonless/lldap) |  | This project is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication. |
 
 
 ### Media Management
