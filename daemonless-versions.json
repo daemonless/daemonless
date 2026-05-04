@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-03T19:44:39.660348Z",
+  "last_check": "2026-05-04T04:35:33.556440Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -87,6 +87,10 @@
       "pkg": "3.1.0.4875",
       "pkg-latest": "3.1.0.4875",
       "upstream": "3.1.0.4875"
+    },
+    "lldap": {
+      "pkg": "0.6.2_2",
+      "pkg-latest": "0.6.3"
     },
     "mariadb": {
       "default": "11.8",
