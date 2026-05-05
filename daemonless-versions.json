@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-05T09:03:57.300940Z",
+  "last_check": "2026-05-05T20:03:21.151552Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -110,7 +110,7 @@
       "upstream": "v3.16.0"
     },
     "n8n": {
-      "upstream": "2.18.7"
+      "upstream": "2.19.2"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -223,7 +223,7 @@
     "traefik": {
       "pkg": "3.6.13",
       "pkg-latest": "3.6.13",
-      "upstream": "v3.6.15"
+      "upstream": "v3.7.0"
     },
     "transmission": {
       "pkg": "4.1.1",
