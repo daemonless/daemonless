@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-06T04:32:49.769358Z",
+  "last_check": "2026-05-06T09:15:14.602099Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -40,12 +40,10 @@
       "type": "multi-version",
       "variants": {
         "14": {
-          "pkg": "14.0.5",
-          "pkg-latest": "14.0.5"
+          "pkg": "14.0.5"
         },
         "lts": {
-          "pkg": "11.0.13",
-          "pkg-latest": "11.0.13"
+          "pkg": "11.0.13"
         }
       }
     },
@@ -70,7 +68,7 @@
     },
     "hugo": {
       "pkg": "0.159.2_1,1",
-      "pkg-latest": "0.160.1_1,1",
+      "pkg-latest": "0.161.0,1",
       "upstream": "v0.161.1"
     },
     "immich-ml": {
@@ -152,7 +150,7 @@
     },
     "qbittorrent": {
       "pkg": "5.1.4_1",
-      "pkg-latest": "5.1.4_1",
+      "pkg-latest": "5.2.0",
       "upstream": "release-5.2.0"
     },
     "radarr": {
@@ -221,7 +219,7 @@
     },
     "traefik": {
       "pkg": "3.6.13",
-      "pkg-latest": "3.6.13",
+      "pkg-latest": "3.6.15",
       "upstream": "v3.7.0"
     },
     "transmission": {
@@ -244,7 +242,7 @@
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
-      "pkg-latest": "1.35.6_1",
+      "pkg-latest": "1.36.0",
       "upstream": "1.36.0"
     },
     "woodpecker": {
