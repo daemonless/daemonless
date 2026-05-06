@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-06T15:18:13.789809Z",
+  "last_check": "2026-05-06T20:16:00.664361Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -59,7 +59,7 @@
       "upstream": "v2.7.6"
     },
     "home-assistant": {
-      "upstream": "2026.4.4"
+      "upstream": "2026.5.0"
     },
     "homepage": {
       "pkg": "1.10.1",
@@ -104,10 +104,10 @@
       }
     },
     "mealie": {
-      "upstream": "v3.16.0"
+      "upstream": "v3.17.0"
     },
     "n8n": {
-      "upstream": "2.19.3"
+      "upstream": "2.19.4"
     },
     "nextcloud": {
       "pkg": "33.0.1",
