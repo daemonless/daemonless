@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-07T15:22:34.775703Z",
+  "last_check": "2026-05-07T20:08:46.442006Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -19,7 +19,7 @@
     },
     "bazarr": {
       "pkg": "1.5.6",
-      "pkg-latest": "1.5.6",
+      "pkg-latest": "1.5.6_1",
       "upstream": "v1.5.6"
     },
     "bichon": {
@@ -40,16 +40,18 @@
       "type": "multi-version",
       "variants": {
         "14": {
-          "pkg": "14.0.5"
+          "pkg": "14.0.5",
+          "pkg-latest": "15"
         },
         "lts": {
-          "pkg": "11.0.13"
+          "pkg": "11.0.13",
+          "pkg-latest": "15"
         }
       }
     },
     "gitea": {
       "pkg": "1.25.5_1",
-      "pkg-latest": "1.25.5_1",
+      "pkg-latest": "1.26.1",
       "upstream": "v1.26.1"
     },
     "grimmory": {
@@ -68,7 +70,7 @@
     },
     "hugo": {
       "pkg": "0.159.2_1,1",
-      "pkg-latest": "0.161.0,1",
+      "pkg-latest": "0.161.1,1",
       "upstream": "v0.161.1"
     },
     "immich-ml": {
@@ -107,7 +109,7 @@
       "upstream": "v3.17.0"
     },
     "n8n": {
-      "upstream": "2.19.4"
+      "upstream": "2.19.5"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -250,7 +252,7 @@
     },
     "zensical": {
       "pkg": "0.0.31",
-      "pkg-latest": "0.0.37"
+      "pkg-latest": "0.0.40"
     }
   }
 }
