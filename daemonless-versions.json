@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-07T20:08:46.442006Z",
+  "last_check": "2026-05-08T04:04:18.837357Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -207,7 +207,7 @@
     "stirling-pdf": {
       "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
-      "upstream": "v2.10.0"
+      "upstream": "v2.10.1"
     },
     "tailscale": {
       "pkg": "1.96.4_1",
