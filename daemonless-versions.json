@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-13T09:34:04.654747Z",
+  "last_check": "2026-05-13T15:40:43.089642Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_1",
@@ -109,7 +109,7 @@
       "upstream": "v3.17.0"
     },
     "n8n": {
-      "upstream": "2.20.7"
+      "upstream": "2.20.7-exp.0"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -123,6 +123,9 @@
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
+    },
+    "paperless-ngx": {
+      "upstream": "v2.20.15"
     },
     "plex": {
       "upstream": "1.43.1.10611-1e34174b1"
