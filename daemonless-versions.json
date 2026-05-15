@@ -1,9 +1,9 @@
 {
-  "last_check": "2026-05-14T20:22:04.433157Z",
+  "last_check": "2026-05-15T04:42:04.612909Z",
   "services": {
     "adguardhome": {
-      "pkg": "0.107.72_1",
-      "pkg-latest": "0.107.74",
+      "pkg": "0.107.72_2",
+      "pkg-latest": "0.107.74_1",
       "upstream": "v0.107.74"
     },
     "adguardhome-sync": {
@@ -13,8 +13,8 @@
       "upstream": "v2.34.0"
     },
     "authelia-server": {
-      "pkg": "4.39.15_6",
-      "pkg-latest": "4.39.19",
+      "pkg": "4.39.15_7",
+      "pkg-latest": "4.39.19_1",
       "upstream": "v4.39.19"
     },
     "bazarr": {
@@ -23,11 +23,11 @@
       "upstream": "v1.5.6"
     },
     "bichon": {
-      "upstream": "0.3.7"
+      "upstream": "1.0.0"
     },
     "cloudflared": {
-      "pkg": "2026.2.0_2",
-      "pkg-latest": "2026.2.0_2"
+      "pkg": "2026.2.0_3",
+      "pkg-latest": "2026.2.0_3"
     },
     "code-server": {
       "upstream": "4.117.0"
@@ -40,20 +40,20 @@
       "type": "multi-version",
       "variants": {
         "14": {
-          "pkg-latest": "14.0.5_1"
+          "pkg-latest": "14.0.5_2"
         },
         "15": {
-          "pkg-latest": "15.0.1"
+          "pkg-latest": "15.0.1_1"
         }
       }
     },
     "gitea": {
-      "pkg": "1.26.1",
-      "pkg-latest": "1.26.1",
+      "pkg": "1.26.1_1",
+      "pkg-latest": "1.26.1_1",
       "upstream": "v1.26.1"
     },
     "grimmory": {
-      "upstream": "v3.0.3"
+      "upstream": "v3.1.0"
     },
     "heimdall": {
       "upstream": "v2.7.6"
@@ -67,8 +67,8 @@
       "upstream": "v1.13.1"
     },
     "hugo": {
-      "pkg": "0.159.2_1,1",
-      "pkg-latest": "0.161.1,1",
+      "pkg": "0.159.2_2,1",
+      "pkg-latest": "0.161.1_1,1",
       "upstream": "v0.161.1"
     },
     "immich-ml": {
@@ -79,7 +79,6 @@
     },
     "jellyfin": {
       "pkg": "10.11.7",
-      "pkg-latest": "10.11.8",
       "upstream": "v10.11.8"
     },
     "lidarr": {
@@ -213,8 +212,8 @@
       "upstream": "v2.10.1"
     },
     "tailscale": {
-      "pkg": "1.96.4_1",
-      "pkg-latest": "1.96.4_1",
+      "pkg": "1.96.4_2",
+      "pkg-latest": "1.96.4_2",
       "upstream": "v1.96.4"
     },
     "tautulli": {
@@ -223,8 +222,8 @@
       "upstream": "v2.17.1"
     },
     "traefik": {
-      "pkg": "3.6.15",
-      "pkg-latest": "3.6.15",
+      "pkg": "3.6.16_1",
+      "pkg-latest": "3.6.16_1",
       "upstream": "v3.7.1"
     },
     "transmission": {
