@@ -142,6 +142,13 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [n8n](https://github.com/daemonless/n8n) |  | Fair-code workflow automation platform with native AI capabilities — combine visual building with custom code and 400+ integrations. |
 
 
+### Entertainment
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [RetroAssembly](https://github.com/daemonless/retroassembly) |  | Personal retro game collection cabinet in your browser. Play NES, SNES, Genesis, GBA, and more. |
+
+
 
 ## Quick Links
 
