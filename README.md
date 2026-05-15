@@ -116,6 +116,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Port | Description |
 |-------|------|-------------|
+| [AFFiNE](https://github.com/daemonless/affine) |  | AFFiNE is an open-source, privacy-first, local-first knowledge management and collaboration tool. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) |  | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
 
 
