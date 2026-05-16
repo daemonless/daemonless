@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-15T20:10:18.411208Z",
+  "last_check": "2026-05-16T04:24:01.936686Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -46,7 +46,7 @@
           "pkg-latest": "14.0.5_2"
         },
         "15": {
-          "pkg-latest": "15.0.1_1"
+          "pkg-latest": "15.0.2"
         }
       }
     },
@@ -62,7 +62,7 @@
       "upstream": "v2.7.6"
     },
     "home-assistant": {
-      "upstream": "2026.5.1"
+      "upstream": "2026.5.2"
     },
     "homepage": {
       "pkg": "1.10.1",
@@ -172,6 +172,9 @@
       "pkg": "8.6.2",
       "pkg-latest": "8.6.2"
     },
+    "retroassembly": {
+      "upstream": "v6.260321.1810"
+    },
     "sabnzbd": {
       "pkg": "4.5.5",
       "pkg-latest": "4.5.5",
@@ -193,7 +196,7 @@
         "423": {
           "pkg": "4.23.6_1",
           "pkg-krb": "4.23.6_1",
-          "pkg-latest": "4.23.7"
+          "pkg-latest": "4.23.7_1"
         }
       }
     },
