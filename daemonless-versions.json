@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-18T16:17:46.073861Z",
+  "last_check": "2026-05-18T20:10:21.870622Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -167,7 +167,7 @@
       "upstream": "6.1.1.10360"
     },
     "readmeabook": {
-      "upstream": "v1.2.0"
+      "upstream": "v1.2.1"
     },
     "redis": {
       "pkg": "8.6.2",
@@ -210,7 +210,8 @@
     },
     "sonarr": {
       "pkg": "4.0.16.2944_1",
-      "pkg-latest": "4.0.17.2952"
+      "pkg-latest": "4.0.17.2952",
+      "upstream": "4.0.17.2952"
     },
     "stirling-pdf": {
       "pkg": "2.2.1_1",
