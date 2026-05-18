@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-18T10:51:56.076044Z",
+  "last_check": "2026-05-18T16:17:46.073861Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -26,7 +26,7 @@
       "upstream": "v1.5.6"
     },
     "bichon": {
-      "upstream": "1.0.2"
+      "upstream": "1.1.0"
     },
     "cloudflared": {
       "pkg": "2026.2.0_3",
@@ -112,7 +112,7 @@
       "upstream": "v3.17.0"
     },
     "n8n": {
-      "upstream": "2.20.9"
+      "upstream": "2.20.11"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -210,8 +210,7 @@
     },
     "sonarr": {
       "pkg": "4.0.16.2944_1",
-      "pkg-latest": "4.0.17.2952",
-      "upstream": "4.0.17.2952"
+      "pkg-latest": "4.0.17.2952"
     },
     "stirling-pdf": {
       "pkg": "2.2.1_1",
@@ -221,7 +220,7 @@
     "tailscale": {
       "pkg": "1.96.4_2",
       "pkg-latest": "1.96.4_2",
-      "upstream": "v1.96.4"
+      "upstream": "v1.98.2"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
