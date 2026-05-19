@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-19T04:50:15.436037Z",
+  "last_check": "2026-05-19T10:29:17.334923Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -26,7 +26,7 @@
       "upstream": "v1.5.6"
     },
     "bichon": {
-      "upstream": "1.1.0"
+      "upstream": "1.1.1"
     },
     "cloudflared": {
       "pkg": "2026.2.0_3",
@@ -62,7 +62,7 @@
       "upstream": "v2.7.6"
     },
     "home-assistant": {
-      "upstream": "2026.5.2"
+      "upstream": "2026.5.3"
     },
     "homepage": {
       "pkg": "1.10.1",
@@ -122,7 +122,7 @@
     "onlyoffice": {
       "pkg": "9.3.1",
       "pkg-latest": "9.3.1_2",
-      "upstream": "9.3.1"
+      "upstream": "9.4.0"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
@@ -219,7 +219,7 @@
       "upstream": "v2.10.1"
     },
     "tailscale": {
-      "pkg": "1.96.4_2",
+      "pkg": "1.98.2",
       "pkg-latest": "1.96.4_2",
       "upstream": "v1.98.2"
     },
