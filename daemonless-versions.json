@@ -1,10 +1,10 @@
 {
-  "last_check": "2026-05-19T10:29:17.334923Z",
+  "last_check": "2026-05-19T16:13:31.300700Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
       "pkg-latest": "0.107.74_1",
-      "upstream": "v0.107.74"
+      "upstream": "v0.107.75"
     },
     "adguardhome-sync": {
       "upstream": "v0.9.0"
@@ -112,7 +112,7 @@
       "upstream": "v3.17.0"
     },
     "n8n": {
-      "upstream": "2.20.11"
+      "upstream": "2.21.4"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -216,11 +216,11 @@
     "stirling-pdf": {
       "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
-      "upstream": "v2.10.1"
+      "upstream": "v2.11.0"
     },
     "tailscale": {
       "pkg": "1.98.2",
-      "pkg-latest": "1.96.4_2",
+      "pkg-latest": "1.98.2",
       "upstream": "v1.98.2"
     },
     "tautulli": {
