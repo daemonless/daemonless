@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-20T10:16:38.281845Z",
+  "last_check": "2026-05-20T16:20:08.721851Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -109,7 +109,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.17.0"
+      "upstream": "v3.18.0"
     },
     "n8n": {
       "upstream": "2.21.5"
