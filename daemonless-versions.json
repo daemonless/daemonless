@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-20T16:20:08.721851Z",
+  "last_check": "2026-05-20T20:56:26.465867Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -53,7 +53,7 @@
     "gitea": {
       "pkg": "1.26.1_1",
       "pkg-latest": "1.26.1_1",
-      "upstream": "v1.26.1"
+      "upstream": "v1.26.2"
     },
     "grimmory": {
       "upstream": "v3.1.0"
