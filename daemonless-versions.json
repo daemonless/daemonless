@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-21T10:28:24.520287Z",
+  "last_check": "2026-05-21T16:11:24.131385Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -26,7 +26,7 @@
       "upstream": "v1.5.6"
     },
     "bichon": {
-      "upstream": "1.1.2"
+      "upstream": "1.1.3"
     },
     "cloudflared": {
       "pkg": "2026.2.0_3",
@@ -112,7 +112,7 @@
       "upstream": "v3.18.0"
     },
     "n8n": {
-      "upstream": "2.21.6"
+      "upstream": "2.21.7"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -125,7 +125,7 @@
       "upstream": "9.4.0"
     },
     "opencloud": {
-      "upstream": "v6.2.0"
+      "upstream": "v7.0.0"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
