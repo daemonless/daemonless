@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-22T10:03:14.188970Z",
+  "last_check": "2026-05-22T15:43:46.676037Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -37,6 +37,11 @@
     },
     "dispatcharr": {
       "upstream": "v0.25.0"
+    },
+    "emby": {
+      "pkg": "4.9.3.0",
+      "pkg-latest": "4.9.3.0",
+      "upstream": "4.9.5.0"
     },
     "forgejo": {
       "default": "15",
