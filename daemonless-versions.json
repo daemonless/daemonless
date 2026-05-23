@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-23T14:22:28.546610Z",
+  "last_check": "2026-05-23T19:57:42.205832Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -36,7 +36,7 @@
       "upstream": "4.117.0"
     },
     "dispatcharr": {
-      "upstream": "v0.25.0"
+      "upstream": "v0.25.1"
     },
     "emby": {
       "pkg": "4.9.3.0",
@@ -71,7 +71,8 @@
     },
     "homepage": {
       "pkg": "1.10.1",
-      "pkg-latest": "1.12.3"
+      "pkg-latest": "1.12.3",
+      "upstream": "v1.13.1"
     },
     "hugo": {
       "pkg": "0.159.2_2,1",
