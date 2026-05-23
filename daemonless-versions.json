@@ -1,22 +1,36 @@
 {
-  "last_check": "2026-05-23T08:56:07.349954Z",
+  "last_check": "2026-05-23T10:47:36.534550Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
       "pkg-latest": "0.107.74_1",
       "upstream": "v0.107.76"
     },
+    "adguardhome-sync": {
+      "upstream": "v0.9.0"
+    },
+    "affine": {
+      "upstream": "v0.26.3"
+    },
     "audiobookshelf": {
       "upstream": "v2.35.0"
     },
     "authelia-server": {
       "pkg": "4.39.15_7",
-      "pkg-latest": "4.39.19_1"
+      "pkg-latest": "4.39.19_1",
+      "upstream": "v4.39.19"
     },
     "bazarr": {
       "pkg": "1.5.6",
       "pkg-latest": "1.5.6_1",
       "upstream": "v1.5.6"
+    },
+    "bichon": {
+      "upstream": "1.2.0"
+    },
+    "cloudflared": {
+      "pkg": "2026.2.0_3",
+      "pkg-latest": "2026.2.0_3"
     },
     "code-server": {
       "upstream": "4.117.0"
@@ -52,6 +66,9 @@
     "heimdall": {
       "upstream": "v2.7.6"
     },
+    "home-assistant": {
+      "upstream": "2026.5.4"
+    },
     "homepage": {
       "pkg": "1.10.1",
       "pkg-latest": "1.12.3",
@@ -61,6 +78,9 @@
       "pkg": "0.159.2_2,1",
       "pkg-latest": "0.161.1_1,1",
       "upstream": "v0.161.1"
+    },
+    "immich-ml": {
+      "upstream": "v2.7.5"
     },
     "immich-server": {
       "upstream": "v2.7.5"
@@ -121,6 +141,24 @@
     "plex": {
       "upstream": "1.43.2.10687-563d026ea"
     },
+    "postgres": {
+      "default": "18",
+      "type": "multi-version",
+      "variants": {
+        "14": {
+          "pkg": "14.22",
+          "pkg-latest": "14.23"
+        },
+        "17": {
+          "pkg": "17.9",
+          "pkg-latest": "17.10"
+        },
+        "18": {
+          "pkg": "18.3",
+          "pkg-latest": "18.4"
+        }
+      }
+    },
     "prowlarr": {
       "pkg": "2.3.0.5236",
       "pkg-latest": "2.3.5.5327",
@@ -174,6 +212,10 @@
     "seerr": {
       "upstream": "v3.2.0"
     },
+    "smokeping": {
+      "pkg": "2.9.0_1",
+      "pkg-latest": "2.9.0_1"
+    },
     "sonarr": {
       "pkg": "4.0.16.2944_1",
       "pkg-latest": "4.0.17.2952",
@@ -181,7 +223,8 @@
     },
     "stirling-pdf": {
       "pkg": "2.2.1_1",
-      "pkg-latest": "2.2.1_2"
+      "pkg-latest": "2.2.1_2",
+      "upstream": "v2.11.0"
     },
     "syncthing": {
       "pkg": "2.0.15_3",
@@ -217,6 +260,9 @@
       "pkg": "10.1.89",
       "pkg-latest": "10.3.58",
       "upstream": "10.3.58"
+    },
+    "uptime-kuma": {
+      "upstream": "2.3.2"
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
