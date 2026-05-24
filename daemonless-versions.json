@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-24T19:57:50.594166Z",
+  "last_check": "2026-05-24T22:01:00.436367Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -81,6 +81,18 @@
     },
     "immich-ml": {
       "upstream": "v2.7.5"
+    },
+    "immich-postgres": {
+      "default": "14",
+      "type": "multi-version",
+      "variants": {
+        "14": {
+          "pkg": "14.23"
+        },
+        "18": {
+          "pkg": "18.4"
+        }
+      }
     },
     "immich-server": {
       "upstream": "v2.7.5"
