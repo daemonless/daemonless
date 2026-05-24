@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-24T14:17:06.496026Z",
+  "last_check": "2026-05-24T19:57:50.594166Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -104,17 +104,17 @@
       "type": "multi-version",
       "variants": {
         "11.4": {
-          "pkg": "11.4.10",
+          "pkg": "11.4.11",
           "pkg-latest": "11.4.11"
         },
         "11.8": {
-          "pkg": "11.8.6",
+          "pkg": "11.8.7",
           "pkg-latest": "11.8.7"
         }
       }
     },
     "mealie": {
-      "upstream": "v3.18.0"
+      "upstream": "v3.19.0"
     },
     "n8n": {
       "upstream": "2.21.7"
@@ -146,15 +146,15 @@
       "type": "multi-version",
       "variants": {
         "14": {
-          "pkg": "14.22",
+          "pkg": "14.23",
           "pkg-latest": "14.23"
         },
         "17": {
-          "pkg": "17.9",
+          "pkg": "17.10",
           "pkg-latest": "17.10"
         },
         "18": {
-          "pkg": "18.3",
+          "pkg": "18.4",
           "pkg-latest": "18.4"
         }
       }
@@ -233,7 +233,7 @@
     },
     "tailscale": {
       "pkg": "1.98.2",
-      "pkg-latest": "1.98.2",
+      "pkg-latest": "1.98.3",
       "upstream": "v1.98.3"
     },
     "tautulli": {
