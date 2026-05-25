@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-24T22:01:00.436367Z",
+  "last_check": "2026-05-25T05:14:25.231339Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -100,7 +100,7 @@
     "jellyfin": {
       "pkg": "10.11.7",
       "pkg-latest": "10.11.8",
-      "upstream": "v10.11.9"
+      "upstream": "v10.11.10"
     },
     "lidarr": {
       "pkg": "3.1.0.4875",
