@@ -145,6 +145,13 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [n8n](https://github.com/daemonless/n8n) |  | Fair-code workflow automation platform with native AI capabilities — combine visual building with custom code and 400+ integrations. |
 
 
+### Books
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [Stump](https://github.com/daemonless/stump) |  | A free and open source comics, manga and digital book server with OPDS support. |
+
+
 ### Entertainment
 
 | Image | Port | Description |
