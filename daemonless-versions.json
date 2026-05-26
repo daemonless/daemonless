@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-25T20:17:03.531910Z",
+  "last_check": "2026-05-26T04:55:29.742954Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -179,7 +179,7 @@
     "qbittorrent": {
       "pkg": "5.1.4_1",
       "pkg-latest": "5.2.0",
-      "upstream": "release-5.2.0"
+      "upstream": "release-5.2.1"
     },
     "radarr": {
       "pkg": "6.0.4.10291_1",
@@ -237,6 +237,9 @@
       "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
       "upstream": "v2.11.0"
+    },
+    "stump": {
+      "upstream": "v0.1.3"
     },
     "syncthing": {
       "pkg": "2.0.15_3",
