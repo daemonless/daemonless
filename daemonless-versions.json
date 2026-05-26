@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-26T04:55:29.742954Z",
+  "last_check": "2026-05-26T16:34:15.237971Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -18,7 +18,7 @@
     "authelia-server": {
       "pkg": "4.39.15_7",
       "pkg-latest": "4.39.19_1",
-      "upstream": "v4.39.19"
+      "upstream": "v4.39.20"
     },
     "bazarr": {
       "pkg": "1.5.6",
@@ -77,7 +77,7 @@
     "hugo": {
       "pkg": "0.159.2_2,1",
       "pkg-latest": "0.161.1_1,1",
-      "upstream": "v0.161.1"
+      "upstream": "v0.162.0"
     },
     "immich-ml": {
       "upstream": "v2.7.5"
