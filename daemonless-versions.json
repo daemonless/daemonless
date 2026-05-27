@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-26T20:50:40.766075Z",
+  "last_check": "2026-05-27T05:07:11.520988Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -98,7 +98,6 @@
       "upstream": "v2.7.5"
     },
     "jellyfin": {
-      "pkg": "10.11.7",
       "pkg-latest": "10.11.8",
       "upstream": "v10.11.10"
     },
@@ -247,7 +246,7 @@
       "upstream": "v2.1.0"
     },
     "tailscale": {
-      "pkg": "1.98.2",
+      "pkg": "1.98.3",
       "pkg-latest": "1.98.3",
       "upstream": "v1.98.3"
     },
