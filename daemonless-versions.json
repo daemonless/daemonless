@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-28T16:45:47.524025Z",
+  "last_check": "2026-05-28T21:03:39.416029Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -13,7 +13,7 @@
       "upstream": "v0.26.3"
     },
     "audiobookshelf": {
-      "upstream": "v2.35.0"
+      "upstream": "v2.35.1"
     },
     "authelia-server": {
       "pkg": "4.39.15_7",
@@ -77,7 +77,7 @@
     "hugo": {
       "pkg": "0.159.2_2,1",
       "pkg-latest": "0.161.1_1,1",
-      "upstream": "v0.162.0"
+      "upstream": "v0.162.1"
     },
     "immich-ml": {
       "upstream": "v2.7.5"
