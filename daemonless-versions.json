@@ -1,9 +1,9 @@
 {
-  "last_check": "2026-05-29T16:36:15.888493Z",
+  "last_check": "2026-05-29T21:04:45.370636Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
-      "pkg-latest": "0.107.74_1",
+      "pkg-latest": "0.107.76",
       "upstream": "v0.107.76"
     },
     "adguardhome-sync": {
@@ -17,7 +17,7 @@
     },
     "authelia-server": {
       "pkg": "4.39.15_7",
-      "pkg-latest": "4.39.19_1",
+      "pkg-latest": "4.39.20",
       "upstream": "v4.39.20"
     },
     "bazarr": {
