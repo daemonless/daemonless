@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-29T05:03:26.695728Z",
+  "last_check": "2026-05-29T10:36:50.682682Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -26,7 +26,7 @@
       "upstream": "v1.5.6"
     },
     "bichon": {
-      "upstream": "1.4.1"
+      "upstream": "1.4.2"
     },
     "cloudflared": {
       "pkg": "2026.2.0_3",
