@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-31T10:12:45.923849Z",
+  "last_check": "2026-05-31T12:06:08.560509Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -149,6 +149,9 @@
     },
     "paperless-ngx": {
       "upstream": "v2.20.15"
+    },
+    "playwright": {
+      "upstream": "1.60.0"
     },
     "plex": {
       "upstream": "1.43.2.10687-563d026ea"
