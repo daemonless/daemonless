@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-05-30T20:00:31.408480Z",
+  "last_check": "2026-05-31T05:11:39.666700Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -26,7 +26,7 @@
       "upstream": "v1.5.6"
     },
     "bichon": {
-      "upstream": "1.4.2"
+      "upstream": "1.4.3"
     },
     "cloudflared": {
       "pkg": "2026.2.0_3",
@@ -98,6 +98,7 @@
       "upstream": "v2.7.5"
     },
     "jellyfin": {
+      "pkg": "10.11.10",
       "pkg-latest": "10.11.10",
       "upstream": "v10.11.10"
     },
@@ -246,7 +247,7 @@
       "upstream": "v2.1.0"
     },
     "tailscale": {
-      "pkg": "1.98.3",
+      "pkg": "1.98.4",
       "pkg-latest": "1.98.4",
       "upstream": "v1.98.3"
     },
@@ -276,7 +277,7 @@
       "upstream": "10.3.58"
     },
     "uptime-kuma": {
-      "upstream": "2.3.2"
+      "upstream": "2.4.0"
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
