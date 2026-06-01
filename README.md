@@ -120,6 +120,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 |-------|------|-------------|
 | [AFFiNE](https://github.com/daemonless/affine) |  | AFFiNE is an open-source, privacy-first, local-first knowledge management and collaboration tool. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) |  | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
+| [Trek](https://github.com/daemonless/trek) |  | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
 
 
 ### Utilities
@@ -157,6 +158,13 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Port | Description |
 |-------|------|-------------|
 | [RetroAssembly](https://github.com/daemonless/retroassembly) |  | Personal retro game collection cabinet in your browser. Play NES, SNES, Genesis, GBA, and more. |
+
+
+### Networking
+
+| Image | Port | Description |
+|-------|------|-------------|
+| [Headscale](https://github.com/daemonless/headscale) |  | An open source, self-hosted implementation of the Tailscale control server. |
 
 
 
