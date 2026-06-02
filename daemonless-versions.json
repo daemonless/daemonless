@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-01T21:56:09.478270Z",
+  "last_check": "2026-06-02T05:19:10.085721Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -264,7 +264,7 @@
     "tailscale": {
       "pkg": "1.98.4",
       "pkg-latest": "1.98.4",
-      "upstream": "v1.98.3"
+      "upstream": "v1.98.5"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
