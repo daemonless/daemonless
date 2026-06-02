@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-02T05:19:10.085721Z",
+  "last_check": "2026-06-02T09:47:16.764579Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_2",
@@ -64,13 +64,8 @@
       "upstream": "v3.1.0"
     },
     "headscale": {
-      "type": "multi-version",
-      "variants": {
-        "headscale": {
-          "pkg": "0.27.1_5",
-          "pkg-latest": "0.27.1_5"
-        }
-      }
+      "pkg": "0.27.1_5",
+      "pkg-latest": "0.27.1_5"
     },
     "heimdall": {
       "upstream": "v2.7.6"
@@ -143,7 +138,7 @@
     "nextcloud": {
       "pkg": "33.0.1",
       "pkg-latest": "33.0.4",
-      "upstream": "v33.0.4"
+      "upstream": "v33.0.5"
     },
     "onlyoffice": {
       "pkg": "9.3.1",
