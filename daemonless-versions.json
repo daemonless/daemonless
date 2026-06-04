@@ -1,9 +1,9 @@
 {
-  "last_check": "2026-06-04T10:31:24.448175Z",
+  "last_check": "2026-06-04T16:15:47.394395Z",
   "services": {
     "adguardhome": {
-      "pkg": "0.107.72_2",
-      "pkg-latest": "0.107.76",
+      "pkg": "0.107.72_3",
+      "pkg-latest": "0.107.77_1",
       "upstream": "v0.107.77"
     },
     "adguardhome-sync": {
@@ -16,8 +16,8 @@
       "upstream": "v2.35.1"
     },
     "authelia-server": {
-      "pkg": "4.39.15_7",
-      "pkg-latest": "4.39.20",
+      "pkg": "4.39.15_8",
+      "pkg-latest": "4.39.20_1",
       "upstream": "v4.39.20"
     },
     "bazarr": {
@@ -26,11 +26,11 @@
       "upstream": "v1.5.6"
     },
     "bichon": {
-      "upstream": "1.4.3"
+      "upstream": "1.5.0"
     },
     "cloudflared": {
-      "pkg": "2026.2.0_3",
-      "pkg-latest": "2026.2.0_3"
+      "pkg": "2026.2.0_4",
+      "pkg-latest": "2026.2.0_4"
     },
     "code-server": {
       "upstream": "4.117.0"
@@ -48,24 +48,24 @@
       "type": "multi-version",
       "variants": {
         "14": {
-          "pkg-latest": "14.0.5_2"
+          "pkg-latest": "14.0.5_3"
         },
         "15": {
-          "pkg-latest": "15.0.2"
+          "pkg-latest": "15.0.2_1"
         }
       }
     },
     "gitea": {
-      "pkg": "1.26.1_1",
-      "pkg-latest": "1.26.1_1",
+      "pkg": "1.26.1_2",
+      "pkg-latest": "1.26.1_2",
       "upstream": "v1.26.2"
     },
     "grimmory": {
       "upstream": "v3.1.0"
     },
     "headscale": {
-      "pkg": "0.27.1_5",
-      "pkg-latest": "0.27.1_5"
+      "pkg": "0.27.1_6",
+      "pkg-latest": "0.27.1_6"
     },
     "heimdall": {
       "upstream": "v2.7.6"
@@ -79,8 +79,8 @@
       "upstream": "v1.13.1"
     },
     "hugo": {
-      "pkg": "0.159.2_2,1",
-      "pkg-latest": "0.162.1,1",
+      "pkg": "0.159.2_3,1",
+      "pkg-latest": "0.162.1_1,1",
       "upstream": "v0.162.1"
     },
     "immich-ml": {
@@ -137,7 +137,7 @@
     },
     "nextcloud": {
       "pkg": "33.0.1",
-      "pkg-latest": "33.0.4",
+      "pkg-latest": "33.0.5",
       "upstream": "v32.0.11"
     },
     "onlyoffice": {
@@ -252,13 +252,13 @@
       "upstream": "v0.1.4"
     },
     "syncthing": {
-      "pkg": "2.0.15_3",
-      "pkg-latest": "2.1.0",
+      "pkg": "2.0.15_4",
+      "pkg-latest": "2.1.1_1",
       "upstream": "v2.1.1"
     },
     "tailscale": {
-      "pkg": "1.98.4",
-      "pkg-latest": "1.98.4",
+      "pkg": "1.98.5_1",
+      "pkg-latest": "1.98.5_1",
       "upstream": "v1.98.5"
     },
     "tautulli": {
@@ -267,9 +267,9 @@
       "upstream": "v2.17.1"
     },
     "traefik": {
-      "pkg": "3.7.1",
-      "pkg-latest": "3.7.1",
-      "upstream": "v3.7.1"
+      "pkg": "3.7.1_1",
+      "pkg-latest": "3.7.1_1",
+      "upstream": "v3.7.3"
     },
     "transmission": {
       "pkg": "4.1.1",
