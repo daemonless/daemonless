@@ -102,6 +102,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [AdGuard Home](https://github.com/daemonless/adguardhome) |  | Network-wide ad and tracker blocking DNS server. Covers all devices on your network with no client-side software — includes DoH, DoT, DoQ, and a built-in DHCP server. |
 | [AdGuardHome Sync](https://github.com/daemonless/adguardhome-sync) |  | Sync AdGuardHome configuration to replica instances. |
 | [Samba](https://github.com/daemonless/samba) |  | SMB/CIFS file sharing and Active Directory compatible Domain Controller for FreeBSD. |
+| [SeaweedFS](https://github.com/daemonless/seaweedfs) |  | SeaweedFS is a fast distributed storage system for blobs, objects, files, and a data lake, scaling to billions of files. It provides an S3 API, POSIX FUSE mount, WebDAV, and a Filer with cross-cluster active-active replication. |
 | [Syncthing](https://github.com/daemonless/syncthing) |  | Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet. |
 
 
