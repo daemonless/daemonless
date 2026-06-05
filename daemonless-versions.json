@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-05T05:07:02.157548Z",
+  "last_check": "2026-06-05T10:39:50.206117Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -230,6 +230,11 @@
           "pkg-latest": "4.23.7_1"
         }
       }
+    },
+    "seaweedfs": {
+      "pkg": "4.12_4",
+      "pkg-latest": "4.12_4",
+      "upstream": "4.31"
     },
     "seerr": {
       "upstream": "v3.3.0"
