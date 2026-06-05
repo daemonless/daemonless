@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-05T10:39:50.206117Z",
+  "last_check": "2026-06-05T15:45:14.431082Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -133,7 +133,7 @@
       "upstream": "v3.19.2"
     },
     "n8n": {
-      "upstream": "2.23.3"
+      "upstream": "2.23.4"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -274,7 +274,7 @@
     "traefik": {
       "pkg": "3.7.1_1",
       "pkg-latest": "3.7.1_1",
-      "upstream": "v3.7.3"
+      "upstream": "v3.7.4"
     },
     "transmission": {
       "pkg": "4.1.1",
@@ -289,7 +289,7 @@
     "unifi": {
       "pkg": "10.1.89",
       "pkg-latest": "10.4.57",
-      "upstream": "10.3.58"
+      "upstream": "10.4.57"
     },
     "uptime-kuma": {
       "upstream": "2.4.0"
