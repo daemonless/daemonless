@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-05T21:10:17.014563Z",
+  "last_check": "2026-06-06T04:45:20.854463Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -147,6 +147,9 @@
     },
     "opencloud": {
       "upstream": "v7.1.0"
+    },
+    "opencloud-radicale": {
+      "upstream": "v3.7.4"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
