@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-07T08:42:58.786400Z",
+  "last_check": "2026-06-07T09:54:53.932625Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -113,7 +113,7 @@
     },
     "lldap": {
       "pkg": "0.6.2_2",
-      "pkg-latest": "0.6.3"
+      "pkg-latest": "0.6.3_1"
     },
     "mariadb": {
       "default": "11.8",
@@ -281,12 +281,12 @@
     },
     "transmission": {
       "pkg": "4.1.2",
-      "pkg-latest": "4.1.1",
+      "pkg-latest": "4.1.2",
       "upstream": "4.1.2"
     },
     "transmission-wireguard": {
       "pkg": "4.1.2",
-      "pkg-latest": "4.1.1",
+      "pkg-latest": "4.1.2",
       "upstream": "4.1.2"
     },
     "unifi": {
@@ -299,7 +299,7 @@
     },
     "vaultwarden": {
       "pkg": "1.35.4_1",
-      "pkg-latest": "1.36.0",
+      "pkg-latest": "1.36.0_1",
       "upstream": "1.36.0"
     },
     "woodpecker": {
@@ -307,7 +307,7 @@
     },
     "zensical": {
       "pkg": "0.0.31",
-      "pkg-latest": "0.0.43"
+      "pkg-latest": "0.0.43_1"
     }
   }
 }
