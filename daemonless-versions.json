@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-09T10:26:56.824693Z",
+  "last_check": "2026-06-09T15:48:23.970815Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -133,12 +133,12 @@
       "upstream": "v3.19.2"
     },
     "n8n": {
-      "upstream": "2.23.4"
+      "upstream": "2.25.6"
     },
     "nextcloud": {
       "pkg": "33.0.1",
       "pkg-latest": "33.0.5",
-      "upstream": "v33.0.5"
+      "upstream": "v34.0.0"
     },
     "onlyoffice": {
       "pkg": "9.3.1",
@@ -196,7 +196,8 @@
     },
     "radarr": {
       "pkg": "6.0.4.10291_1",
-      "pkg-latest": "6.1.1.10360"
+      "pkg-latest": "6.1.1.10360",
+      "upstream": "6.1.1.10360"
     },
     "readmeabook": {
       "upstream": "v1.2.1"
