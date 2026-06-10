@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-10T05:09:10.841533Z",
+  "last_check": "2026-06-10T10:46:15.460113Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -132,7 +132,7 @@
       "upstream": "v3.19.2"
     },
     "n8n": {
-      "upstream": "2.25.6"
+      "upstream": "2.25.7"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -186,7 +186,7 @@
     "prowlarr": {
       "pkg": "2.3.0.5236",
       "pkg-latest": "2.3.5.5327",
-      "upstream": "2.3.5.5327"
+      "upstream": "2.4.0.5397"
     },
     "qbittorrent": {
       "pkg": "5.1.4_1",
@@ -196,7 +196,7 @@
     "radarr": {
       "pkg": "6.0.4.10291_1",
       "pkg-latest": "6.1.1.10360",
-      "upstream": "6.1.1.10360"
+      "upstream": "6.2.1.10461"
     },
     "readmeabook": {
       "upstream": "v1.2.1"
