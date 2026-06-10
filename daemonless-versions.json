@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-09T20:53:07.488154Z",
+  "last_check": "2026-06-10T05:09:10.841533Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -40,7 +40,6 @@
     },
     "emby": {
       "pkg": "4.9.3.0",
-      "pkg-latest": "4.9.3.0",
       "upstream": "4.9.5.0"
     },
     "forgejo": {
@@ -254,7 +253,7 @@
     "stirling-pdf": {
       "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
-      "upstream": "v2.11.0"
+      "upstream": "v2.12.0"
     },
     "stump": {
       "upstream": "v0.1.4"
