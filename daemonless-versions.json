@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-11T05:18:15.565949Z",
+  "last_check": "2026-06-11T11:17:09.769309Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -211,7 +211,7 @@
     "sabnzbd": {
       "pkg": "4.5.5",
       "pkg-latest": "5.0.1",
-      "upstream": "5.0.3"
+      "upstream": "5.0.4"
     },
     "samba": {
       "default": "416",
@@ -236,7 +236,7 @@
     "seaweedfs": {
       "pkg": "4.12_4",
       "pkg-latest": "4.12_4",
-      "upstream": "4.32"
+      "upstream": "4.33"
     },
     "seerr": {
       "upstream": "v3.3.0"
