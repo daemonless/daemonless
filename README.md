@@ -121,6 +121,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 |-------|-------------|
 | [AFFiNE](https://github.com/daemonless/affine) | AFFiNE is an open-source, privacy-first, local-first knowledge management and collaboration tool. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
+| [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
 
 
@@ -160,6 +161,13 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [RetroAssembly](https://github.com/daemonless/retroassembly) | Personal retro game collection cabinet in your browser. Play NES, SNES, Genesis, GBA, and more. |
+
+
+### Health & Fitness
+
+| Image | Description |
+|-------|-------------|
+| [SparkyFitness](https://github.com/daemonless/sparkyfitness) | Self-hosted privacy-first fitness tracker on FreeBSD. |
 
 
 ### Networking
