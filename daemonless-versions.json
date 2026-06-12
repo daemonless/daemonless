@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-12T10:55:47.417898Z",
+  "last_check": "2026-06-12T13:58:06.484290Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -159,6 +159,9 @@
     "paperless-ngx": {
       "upstream": "v2.20.15"
     },
+    "papra": {
+      "upstream": "@papra/app@26.5.0"
+    },
     "playwright": {
       "upstream": "1.60.0"
     },
@@ -249,6 +252,9 @@
       "pkg": "4.0.16.2944_1",
       "pkg-latest": "4.0.17.2952",
       "upstream": "4.0.17.2952"
+    },
+    "sparkyfitness": {
+      "upstream": "v0.16.9"
     },
     "stirling-pdf": {
       "pkg": "2.2.1_1",
