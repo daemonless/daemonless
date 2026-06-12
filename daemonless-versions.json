@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-12T16:01:22.545638Z",
+  "last_check": "2026-06-12T20:58:05.364361Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -71,7 +71,7 @@
       "upstream": "v2.7.6"
     },
     "home-assistant": {
-      "upstream": "2026.6.2"
+      "upstream": "2026.6.3"
     },
     "homepage": {
       "pkg": "1.10.1",
