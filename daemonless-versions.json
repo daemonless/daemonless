@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-16T20:24:42.573942Z",
+  "last_check": "2026-06-16T21:37:58.248283Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -31,6 +31,18 @@
     "cloudflared": {
       "pkg": "2026.2.0_4",
       "pkg-latest": "2026.2.0_4"
+    },
+    "cnpg-postgres": {
+      "default": "18",
+      "type": "multi-version",
+      "variants": {
+        "17": {
+          "pkg": "17.10"
+        },
+        "18": {
+          "pkg": "18.4"
+        }
+      }
     },
     "code-server": {
       "upstream": "4.117.0"
