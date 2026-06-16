@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-15T21:38:21.333261Z",
+  "last_check": "2026-06-16T06:19:52.514057Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -80,7 +80,7 @@
     },
     "hugo": {
       "pkg": "0.159.2_3,1",
-      "pkg-latest": "0.163.0,1",
+      "pkg-latest": "0.163.1,1",
       "upstream": "v0.163.2"
     },
     "immich-ml": {
@@ -195,7 +195,7 @@
     "qbittorrent": {
       "pkg": "5.1.4_1",
       "pkg-latest": "5.2.1",
-      "upstream": "release-5.2.1"
+      "upstream": "release-5.2.2"
     },
     "radarr": {
       "pkg": "6.0.4.10291_1",
@@ -282,7 +282,7 @@
     },
     "traefik": {
       "pkg": "3.7.1_1",
-      "pkg-latest": "3.7.1_1",
+      "pkg-latest": "3.7.5",
       "upstream": "v3.7.5"
     },
     "transmission": {
