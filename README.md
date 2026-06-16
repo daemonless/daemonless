@@ -31,6 +31,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Immich PostgreSQL](https://github.com/daemonless/immich-postgres) | PostgreSQL with pgvector and vectorchord extensions required by Immich for vector similarity search. Defaults to PostgreSQL 14 (:latest), PostgreSQL 18 available as :18. |
 | [MariaDB](https://github.com/daemonless/mariadb) | Drop-in replacement for MySQL built by the original authors — extends core MySQL functionality with alternate storage engines, server optimizations, and patches. |
 | [PostgreSQL](https://github.com/daemonless/postgres) | The World's Most Advanced Open Source Relational Database on FreeBSD. |
+| [PostgreSQL (CloudNativePG)](https://github.com/daemonless/cnpg-postgres) | PostgreSQL on FreeBSD, compatible with the CloudNativePG Kubernetes operator. Includes pgvector, pgaudit, and pg_failover_slots. |
 | [Redis](https://github.com/daemonless/redis) | Redis key-value store on FreeBSD. |
 
 
