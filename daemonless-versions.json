@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-17T16:31:44.743470Z",
+  "last_check": "2026-06-17T20:59:45.071032Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -92,7 +92,7 @@
     },
     "hugo": {
       "pkg": "0.159.2_3,1",
-      "pkg-latest": "0.163.1,1",
+      "pkg-latest": "0.163.2,1",
       "upstream": "v0.163.2"
     },
     "immich-ml": {
@@ -333,7 +333,7 @@
     },
     "zensical": {
       "pkg": "0.0.31",
-      "pkg-latest": "0.0.43_1",
+      "pkg-latest": "0.0.45",
       "upstream": "0.0.45"
     }
   }
