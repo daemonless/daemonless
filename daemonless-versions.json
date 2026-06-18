@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-17T20:59:45.071032Z",
+  "last_check": "2026-06-18T05:26:48.072898Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -71,6 +71,10 @@
       "pkg": "1.26.1_2",
       "pkg-latest": "1.26.1_2",
       "upstream": "v1.26.2"
+    },
+    "grafana": {
+      "pkg": "12.4.2_3",
+      "pkg-latest": "13.0.1_2"
     },
     "grimmory": {
       "upstream": "v3.2.1"
