@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-18T16:23:44.657647Z",
+  "last_check": "2026-06-19T06:03:15.522127Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -97,7 +97,7 @@
     "hugo": {
       "pkg": "0.159.2_3,1",
       "pkg-latest": "0.163.2,1",
-      "upstream": "v0.163.2"
+      "upstream": "v0.163.3"
     },
     "immich-ml": {
       "upstream": "v2.7.5"
@@ -218,7 +218,7 @@
     },
     "qbittorrent": {
       "pkg": "5.1.4_1",
-      "pkg-latest": "5.2.1",
+      "pkg-latest": "5.2.2",
       "upstream": "release-5.2.2"
     },
     "radarr": {
@@ -284,7 +284,7 @@
     "stirling-pdf": {
       "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
-      "upstream": "v2.12.0"
+      "upstream": "v2.13.0"
     },
     "stump": {
       "upstream": "v0.1.4"
@@ -318,6 +318,9 @@
       "pkg": "4.1.2",
       "pkg-latest": "4.1.2",
       "upstream": "4.1.2"
+    },
+    "trek": {
+      "upstream": "3.1.1"
     },
     "unifi": {
       "pkg": "10.1.89",
