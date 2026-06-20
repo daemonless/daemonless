@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-19T20:23:09.441705Z",
+  "last_check": "2026-06-20T05:02:23.818574Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -77,7 +77,7 @@
       "pkg-latest": "13.0.1_2"
     },
     "grimmory": {
-      "upstream": "v3.2.1"
+      "upstream": "v3.2.2"
     },
     "headscale": {
       "pkg": "0.27.1_6",
@@ -87,7 +87,7 @@
       "upstream": "v2.7.6"
     },
     "home-assistant": {
-      "upstream": "2026.6.3"
+      "upstream": "2026.6.4"
     },
     "homepage": {
       "pkg": "1.10.1",
@@ -287,7 +287,7 @@
       "upstream": "v2.13.1"
     },
     "stump": {
-      "upstream": "v0.1.4"
+      "upstream": "v0.1.5"
     },
     "syncthing": {
       "pkg": "2.0.15_4",
