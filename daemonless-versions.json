@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-22T06:16:35.947446Z",
+  "last_check": "2026-06-22T12:40:09.664949Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -148,7 +148,7 @@
       "upstream": "v3.19.2"
     },
     "n8n": {
-      "upstream": "2.26.8"
+      "upstream": "2.26.9"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -263,7 +263,7 @@
     "seaweedfs": {
       "pkg": "4.12_4",
       "pkg-latest": "4.12_4",
-      "upstream": "4.34"
+      "upstream": "4.35"
     },
     "seerr": {
       "upstream": "v3.3.0"
