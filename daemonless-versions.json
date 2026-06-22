@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-21T20:19:18.953579Z",
+  "last_check": "2026-06-22T06:16:35.947446Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -69,8 +69,7 @@
     },
     "gitea": {
       "pkg": "1.26.1_2",
-      "pkg-latest": "1.26.1_2",
-      "upstream": "v1.26.4"
+      "pkg-latest": "1.26.1_2"
     },
     "grafana": {
       "pkg": "12.4.2_3",
