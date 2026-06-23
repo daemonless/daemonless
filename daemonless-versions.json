@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-22T21:29:09.531837Z",
+  "last_check": "2026-06-23T04:50:16.944564Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -278,7 +278,7 @@
       "upstream": "4.0.17.2952"
     },
     "sparkyfitness": {
-      "upstream": "v0.17.0"
+      "upstream": "v0.17.1"
     },
     "stirling-pdf": {
       "pkg": "2.2.1_1",
