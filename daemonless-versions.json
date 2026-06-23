@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-23T15:43:38.935321Z",
+  "last_check": "2026-06-23T20:58:33.999761Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -179,7 +179,7 @@
       "upstream": "26.5.0"
     },
     "playwright": {
-      "upstream": "1.61.0"
+      "upstream": "1.61.1"
     },
     "plex": {
       "upstream": "1.43.2.10687-563d026ea"
@@ -319,7 +319,7 @@
       "upstream": "4.1.2"
     },
     "trek": {
-      "upstream": "3.1.1"
+      "upstream": "3.1.2"
     },
     "unifi": {
       "pkg": "10.1.89",
