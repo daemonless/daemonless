@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-23T10:26:40.745415Z",
+  "last_check": "2026-06-23T15:43:38.935321Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -148,7 +148,7 @@
       "upstream": "v3.19.2"
     },
     "n8n": {
-      "upstream": "2.26.9"
+      "upstream": "2.27.3"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -278,7 +278,7 @@
       "upstream": "4.0.17.2952"
     },
     "sparkyfitness": {
-      "upstream": "v0.17.1"
+      "upstream": "v0.17.2"
     },
     "stirling-pdf": {
       "pkg": "2.2.1_1",
