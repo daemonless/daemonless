@@ -92,6 +92,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Audiobookshelf](https://github.com/daemonless/audiobookshelf) | Self-hosted audiobook and podcast server. |
 | [Emby](https://github.com/daemonless/emby) | Personal media server with apps on just about every device. |
 | [Jellyfin](https://github.com/daemonless/jellyfin) | Volunteer-built media solution that puts you in control — stream to any device from your own server, with no strings attached. |
+| [Navidrome](https://github.com/daemonless/navidrome) | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |
 | [Plex Media Server](https://github.com/daemonless/plex) | Personal media server that organizes and streams your movie, TV, and music collections to all your devices. |
 | [Tautulli](https://github.com/daemonless/tautulli) | Monitoring and tracking tool for Plex Media Server — tracks what is being watched, who is watching, and when. |
 
