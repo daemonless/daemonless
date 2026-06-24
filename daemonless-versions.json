@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-24T10:03:54.748265Z",
+  "last_check": "2026-06-24T15:30:45.922136Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -145,10 +145,10 @@
       }
     },
     "mealie": {
-      "upstream": "v3.19.2"
+      "upstream": "v3.20.0"
     },
     "n8n": {
-      "upstream": "2.27.3"
+      "upstream": "2.27.4"
     },
     "nextcloud": {
       "pkg": "33.0.1",
@@ -275,7 +275,7 @@
     "sonarr": {
       "pkg": "4.0.16.2944_1",
       "pkg-latest": "4.0.17.2952",
-      "upstream": "4.0.17.2952"
+      "upstream": "4.0.18.2971"
     },
     "sparkyfitness": {
       "upstream": "v0.17.2"
