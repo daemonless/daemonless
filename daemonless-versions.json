@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-24T20:25:16.442891Z",
+  "last_check": "2026-06-25T04:56:18.341884Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -146,6 +146,10 @@
     },
     "mealie": {
       "upstream": "v3.20.0"
+    },
+    "memcached": {
+      "pkg": "1.6.41",
+      "pkg-latest": "1.6.42"
     },
     "n8n": {
       "upstream": "2.27.4"
@@ -295,7 +299,7 @@
     "stirling-pdf": {
       "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
-      "upstream": "v2.13.1"
+      "upstream": "v2.13.2"
     },
     "stump": {
       "upstream": "v0.1.5"
