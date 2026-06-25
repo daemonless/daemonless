@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-25T20:52:19.725657Z",
+  "last_check": "2026-06-25T23:12:11.042198Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -27,6 +27,9 @@
     },
     "bichon": {
       "upstream": "1.5.3"
+    },
+    "bulwark-webmail": {
+      "upstream": "1.7.5"
     },
     "cloudflared": {
       "pkg": "2026.2.0_4",
@@ -131,16 +134,23 @@
       "pkg-latest": "0.6.3_1"
     },
     "mariadb": {
-      "default": "11.8",
+      "default": "12.3",
       "type": "multi-version",
       "variants": {
+        "10.11": {
+          "pkg-latest": "10.11.18"
+        },
+        "10.6": {
+          "pkg-latest": "10.6.27"
+        },
         "11.4": {
-          "pkg": "11.4.12",
           "pkg-latest": "11.4.12"
         },
         "11.8": {
-          "pkg": "11.8.8",
           "pkg-latest": "11.8.8"
+        },
+        "12.3": {
+          "pkg-latest": "12.3.2_1"
         }
       }
     },
