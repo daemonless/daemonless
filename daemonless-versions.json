@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-26T20:25:32.640038Z",
+  "last_check": "2026-06-26T23:08:27.886550Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -155,7 +155,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.20.0"
+      "upstream": "v3.20.1"
     },
     "memcached": {
       "pkg": "1.6.41",
@@ -255,8 +255,34 @@
       "upstream": "v1.2.1"
     },
     "redis": {
-      "pkg": "8.6.2",
-      "pkg-latest": "8.8.0"
+      "default": "redis",
+      "type": "multi-version",
+      "variants": {
+        "6.2": {
+          "pkg-latest": "6.2.22"
+        },
+        "7.2": {
+          "pkg-latest": "7.2.14"
+        },
+        "7.4": {
+          "pkg-latest": "7.4.9"
+        },
+        "8.0": {
+          "pkg-latest": "8.0.6"
+        },
+        "8.2": {
+          "pkg-latest": "8.2.7"
+        },
+        "8.4": {
+          "pkg-latest": "8.4.4"
+        },
+        "8.6": {
+          "pkg-latest": "8.6.4"
+        },
+        "redis": {
+          "pkg-latest": "8.8.0"
+        }
+      }
     },
     "retroassembly": {
       "upstream": "v6.260321.1810"
