@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-26T15:20:02.217685Z",
+  "last_check": "2026-06-26T20:25:32.640038Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -301,7 +301,7 @@
     "sonarr": {
       "pkg": "4.0.16.2944_1",
       "pkg-latest": "4.0.17.2952",
-      "upstream": "4.0.18.2971"
+      "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
       "upstream": "v0.17.2"
