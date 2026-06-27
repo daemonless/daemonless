@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-26T23:08:27.886550Z",
+  "last_check": "2026-06-27T04:44:26.112394Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -98,7 +98,7 @@
     },
     "hugo": {
       "pkg": "0.159.2_3,1",
-      "pkg-latest": "0.163.2,1",
+      "pkg-latest": "0.163.3,1",
       "upstream": "v0.163.3"
     },
     "immich-ml": {
@@ -170,7 +170,7 @@
     },
     "nextcloud": {
       "pkg": "33.0.1",
-      "pkg-latest": "33.0.5",
+      "pkg-latest": "34.0.0",
       "upstream": "v34.0.1"
     },
     "onlyoffice": {
@@ -298,7 +298,7 @@
       "variants": {
         "416": {
           "pkg": "4.16.11_10",
-          "pkg-latest": "4.16.11_10"
+          "pkg-latest": "4.16.11_11"
         },
         "422": {
           "pkg": "4.22.7_1",
@@ -391,7 +391,6 @@
     },
     "zensical": {
       "pkg": "0.0.31",
-      "pkg-latest": "0.0.45",
       "upstream": "0.0.46"
     }
   }
