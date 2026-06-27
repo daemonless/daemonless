@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-27T20:02:01.585617Z",
+  "last_check": "2026-06-27T23:13:59.181448Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -236,8 +236,38 @@
     "python": {
       "type": "multi-version",
       "variants": {
+        "2": {
+          "pkg-latest": "2_3"
+        },
+        "27": {
+          "pkg-latest": "2.7.18_5"
+        },
         "3": {
           "pkg-latest": "3_4"
+        },
+        "310": {
+          "pkg-latest": "3.10.20_4"
+        },
+        "311": {
+          "pkg-latest": "3.11.15_4"
+        },
+        "312": {
+          "pkg-latest": "3.12.13_3"
+        },
+        "313": {
+          "pkg-latest": "3.13.14"
+        },
+        "313t": {
+          "pkg-latest": "3.13.14"
+        },
+        "314": {
+          "pkg-latest": "3.14.6"
+        },
+        "314t": {
+          "pkg-latest": "3.14.6"
+        },
+        "315": {
+          "pkg-latest": "3.15.0.b2"
         }
       }
     },
