@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-27T09:20:11.476849Z",
+  "last_check": "2026-06-27T14:21:22.087962Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -383,7 +383,7 @@
       "upstream": "1.36.0"
     },
     "woodpecker": {
-      "upstream": "v3.15.0"
+      "upstream": "v3.16.0"
     },
     "zensical": {
       "pkg": "0.0.31",
