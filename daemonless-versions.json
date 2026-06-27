@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-27T04:44:26.112394Z",
+  "last_check": "2026-06-27T09:20:11.476849Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -255,7 +255,7 @@
       "upstream": "v1.2.1"
     },
     "redis": {
-      "default": "redis",
+      "default": "8.8",
       "type": "multi-version",
       "variants": {
         "6.2": {
@@ -279,7 +279,7 @@
         "8.6": {
           "pkg-latest": "8.6.4"
         },
-        "redis": {
+        "8.8": {
           "pkg-latest": "8.8.0"
         }
       }
@@ -293,13 +293,9 @@
       "upstream": "5.0.4"
     },
     "samba": {
-      "default": "416",
+      "default": "423",
       "type": "multi-version",
       "variants": {
-        "416": {
-          "pkg": "4.16.11_10",
-          "pkg-latest": "4.16.11_11"
-        },
         "422": {
           "pkg": "4.22.7_1",
           "pkg-krb": "4.22.7_1",
