@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-27T23:13:59.181448Z",
+  "last_check": "2026-06-28T05:10:39.043272Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -26,7 +26,7 @@
       "upstream": "v1.5.6"
     },
     "bichon": {
-      "upstream": "1.6.0"
+      "upstream": "1.6.1"
     },
     "bulwark-webmail": {
       "upstream": "1.7.5"
