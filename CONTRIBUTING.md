@@ -134,15 +134,27 @@ podman run -d --name myapp \
 
 Before submitting a new image, verify:
 
-- [ ] `Containerfile` with required labels (`io.daemonless.port`, `io.daemonless.category`, `io.daemonless.packages`)
-- [ ] `Containerfile.pkg` with matching labels (keep both in sync)
+- [ ] `compose.yaml` declares public metadata, documented env vars, volumes, ports, and deployment examples
+- [ ] `Containerfile*.j2` defines image construction and renders public labels from context
+- [ ] `dbuild generate` has refreshed generated `Containerfile*` and `README.md` artifacts
 - [ ] `root/etc/services.d/<app>/run` — s6 service script using `s6-setuidgid bsd`
-- [ ] `.daemonless/config.yaml` with CIT test configuration
+- [ ] `.daemonless/config.yaml` defines build variants and CIT test configuration
 - [ ] CI pipeline configured (`.woodpecker.yaml` or `.github/workflows/`)
 - [ ] Upstream license verified — check the SPDX identifier at https://spdx.org/licenses/
 - [ ] `dbuild build && dbuild test` passes locally
 
 ## Conventions
+
+### Source ownership
+
+Three editable sources, three questions: `compose.yaml` **declares** the app
+contract (what users see and deploy), `.daemonless/config.yaml` **operates** the
+build/test automation, and `Containerfile*.j2` **constructs** the image.
+Generated `Containerfile*` and `README.md` are artifacts — change the source and
+run `dbuild generate`.
+
+For the full breakdown of which file owns what (ports, health, annotations,
+labels), see [Service Source Files](https://daemonless.io/guides/service-anatomy/).
 
 ### Containerfile rules
 
@@ -150,7 +162,7 @@ Before submitting a new image, verify:
 - Clean the pkg cache: `pkg clean -ay && rm -rf /var/cache/pkg/*`
 - Set ownership: `chown -R bsd:bsd /config /app`
 - Use `ARG` for `BASE_VERSION`, `PACKAGES`, and `VERSION`
-- Use `.j2` templates — run `dbuild generate` after changes
+- Render public labels from `compose.yaml` context; keep variant/build labels in templates
 
 ### Runtime conventions
 
@@ -161,13 +173,7 @@ Before submitting a new image, verify:
 
 ### Labels
 
-Every image needs at minimum:
-
-```dockerfile
-LABEL io.daemonless.port="8080"
-LABEL io.daemonless.category="Utilities"
-LABEL io.daemonless.packages="${PACKAGES}"
-```
+Every image still emits `io.daemonless.*` and OCI labels, but public label values should be generated from `compose.yaml` metadata instead of copied by hand into generated Containerfiles. Template-owned build labels such as package source, package name, upstream extraction details, and work-in-progress status may remain in `Containerfile*.j2`.
 
 See the [Development Guide](https://daemonless.io/guides/development/) for the full labels reference.
 
@@ -196,6 +202,10 @@ Run tests locally:
 ```bash
 dbuild build && dbuild test
 ```
+
+## LLM / AI Policy
+
+If your contribution is aided by LLMs or other AI tools, please read our [LLM / AI Contribution Policy](LLM_POLICY.md). You are 100% responsible for your submissions, and AI-generated text is not permitted in pull requests or issues.
 
 ## Submitting Changes
 
