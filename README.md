@@ -129,6 +129,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
+| [Wagtail](https://github.com/daemonless/wagtail) | Wagtail is an open source content management system built on Django, with a strong community and commercial support. It's focused on user experience, and offers precise control for designers and developers. |
 
 
 ### Utilities
