@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-29T05:21:31.799748Z",
+  "last_check": "2026-06-29T11:52:53.468386Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -161,7 +161,7 @@
       "pkg-latest": "1.6.42"
     },
     "n8n": {
-      "upstream": "2.27.4"
+      "upstream": "2.27.5"
     },
     "navidrome": {
       "pkg": "0.60.3_4",
@@ -340,7 +340,7 @@
     "seaweedfs": {
       "pkg": "4.12_4",
       "pkg-latest": "4.12_4",
-      "upstream": "4.36"
+      "upstream": "4.37"
     },
     "seerr": {
       "upstream": "v3.3.0"
