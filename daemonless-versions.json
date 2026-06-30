@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-30T10:21:59.094871Z",
+  "last_check": "2026-06-30T15:22:03.209742Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -373,7 +373,7 @@
     "tailscale": {
       "pkg": "1.98.5_1",
       "pkg-latest": "1.98.5_1",
-      "upstream": "v1.98.5"
+      "upstream": "v1.98.8"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
@@ -383,7 +383,7 @@
     "traefik": {
       "pkg": "3.7.5",
       "pkg-latest": "3.7.5",
-      "upstream": "v3.7.5"
+      "upstream": "v3.7.6"
     },
     "transmission": {
       "pkg": "4.1.2",
