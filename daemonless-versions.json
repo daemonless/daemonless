@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-06-29T20:46:46.050608Z",
+  "last_check": "2026-06-30T04:56:33.940526Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -388,12 +388,12 @@
     "transmission": {
       "pkg": "4.1.2",
       "pkg-latest": "4.1.2",
-      "upstream": "4.1.2"
+      "upstream": "4.1.3"
     },
     "transmission-wireguard": {
       "pkg": "4.1.2",
       "pkg-latest": "4.1.2",
-      "upstream": "4.1.2"
+      "upstream": "4.1.3"
     },
     "trek": {
       "upstream": "3.1.3"
