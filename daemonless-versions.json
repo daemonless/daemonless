@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-01T05:14:01.679429Z",
+  "last_check": "2026-07-01T10:37:00.304566Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -71,7 +71,7 @@
       }
     },
     "gitea": {
-      "pkg": "1.26.1_2",
+      "pkg": "1.26.4",
       "pkg-latest": "1.26.1_2"
     },
     "grafana": {
@@ -161,7 +161,7 @@
       "pkg-latest": "1.6.42"
     },
     "n8n": {
-      "upstream": "2.27.5"
+      "upstream": "2.28.4"
     },
     "navidrome": {
       "pkg": "0.60.3_4",
