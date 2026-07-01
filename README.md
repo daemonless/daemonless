@@ -109,6 +109,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Grafana](https://github.com/daemonless/grafana) | Grafana is an open source and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. |
 | [Samba](https://github.com/daemonless/samba) | SMB/CIFS file sharing and Active Directory compatible Domain Controller for FreeBSD. |
 | [SeaweedFS](https://github.com/daemonless/seaweedfs) | SeaweedFS is a fast distributed storage system for blobs, objects, files, and a data lake, scaling to billions of files. It provides an S3 API, POSIX FUSE mount, WebDAV, and a Filer with cross-cluster active-active replication. |
+| [Stalwart](https://github.com/daemonless/stalwart) | Stalwart Mail Server is an open-source mail server solution with JMAP, IMAP4, POP3, and SMTP support and a wide range of modern features. It is written in Rust and designed to be secure, fast, robust and scalable. |
 | [Syncthing](https://github.com/daemonless/syncthing) | Syncthing replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet. |
 
 
