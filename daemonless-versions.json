@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-02T04:49:58.834681Z",
+  "last_check": "2026-07-02T09:50:39.681306Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -17,7 +17,7 @@
     },
     "authelia-server": {
       "pkg": "4.39.15_8",
-      "pkg-latest": "4.39.20_1",
+      "pkg-latest": "4.39.20_2",
       "upstream": "v4.39.20"
     },
     "bazarr": {
@@ -72,7 +72,7 @@
     },
     "gitea": {
       "pkg": "1.26.4",
-      "pkg-latest": "1.26.1_2"
+      "pkg-latest": "1.26.4"
     },
     "grafana": {
       "pkg": "12.4.2_3",
@@ -121,6 +121,7 @@
     },
     "jellyfin": {
       "pkg": "10.11.10",
+      "pkg-latest": "10.11.11",
       "upstream": "v10.11.11"
     },
     "lidarr": {
@@ -161,7 +162,7 @@
       "pkg-latest": "1.6.42"
     },
     "n8n": {
-      "upstream": "2.28.4"
+      "upstream": "2.28.5"
     },
     "navidrome": {
       "pkg": "0.60.3_4",
@@ -169,7 +170,7 @@
     },
     "nextcloud": {
       "pkg": "33.0.1",
-      "pkg-latest": "34.0.1",
+      "pkg-latest": "34.0.1_1",
       "upstream": "v34.0.1"
     },
     "onlyoffice": {
