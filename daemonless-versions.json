@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-02T15:02:33.388327Z",
+  "last_check": "2026-07-02T20:13:35.763916Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -194,7 +194,7 @@
       "upstream": "v2.20.15"
     },
     "papra": {
-      "upstream": "26.5.0"
+      "upstream": "26.6.0"
     },
     "playwright": {
       "upstream": "1.61.1"
