@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-03T15:00:43.356076Z",
+  "last_check": "2026-07-03T20:07:36.804729Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -89,7 +89,7 @@
       "upstream": "v2.7.6"
     },
     "home-assistant": {
-      "upstream": "2026.7.0"
+      "upstream": "2026.7.1"
     },
     "homepage": {
       "pkg": "1.10.1",
@@ -172,6 +172,26 @@
       "pkg": "33.0.1",
       "pkg-latest": "34.0.1_1",
       "upstream": "v34.0.1"
+    },
+    "node": {
+      "type": "multi-version",
+      "variants": {
+        "20": {
+          "pkg-latest": "20.20.2_2"
+        },
+        "22": {
+          "pkg-latest": "22.23.1"
+        },
+        "24": {
+          "pkg-latest": "24.18.0"
+        },
+        "25": {
+          "pkg-latest": "25.9.0_2"
+        },
+        "26": {
+          "pkg-latest": "26.4.0"
+        }
+      }
     },
     "onlyoffice": {
       "pkg": "9.3.1",
