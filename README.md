@@ -22,6 +22,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [FreeBSD Base](https://github.com/daemonless/base) | FreeBSD base image with s6 supervision |
 | [FreeBSD Base Core](https://github.com/daemonless/base-core) | Minimal FreeBSD base image without service supervision. Foundation for CLI tools and non-daemon containers. |
 | [Nginx Base](https://github.com/daemonless/nginx-base) | Shared base image for Nginx-based applications. |
+| [Node.js](https://github.com/daemonless/node) | JavaScript runtime built on Chrome's V8 engine, with npm included for building and running Node.js applications. |
 | [Python](https://github.com/daemonless/python) | Python is an interpreted object-oriented programming language, and is often compared to Tcl, Perl or Scheme. |
 
 
@@ -107,6 +108,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [AdGuard Home](https://github.com/daemonless/adguardhome) | Network-wide ad and tracker blocking DNS server. Covers all devices on your network with no client-side software — includes DoH, DoT, DoQ, and a built-in DHCP server. |
 | [AdGuardHome Sync](https://github.com/daemonless/adguardhome-sync) | Sync AdGuardHome configuration to replica instances. |
 | [Grafana](https://github.com/daemonless/grafana) | Grafana is an open source and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. |
+| [Headscale](https://github.com/daemonless/headscale) | An open source, self-hosted implementation of the Tailscale control server. |
 | [Samba](https://github.com/daemonless/samba) | SMB/CIFS file sharing and Active Directory compatible Domain Controller for FreeBSD. |
 | [SeaweedFS](https://github.com/daemonless/seaweedfs) | SeaweedFS is a fast distributed storage system for blobs, objects, files, and a data lake, scaling to billions of files. It provides an S3 API, POSIX FUSE mount, WebDAV, and a Filer with cross-cluster active-active replication. |
 | [Stalwart](https://github.com/daemonless/stalwart) | Stalwart Mail Server is an open-source mail server solution with JMAP, IMAP4, POP3, and SMTP support and a wide range of modern features. It is written in Rust and designed to be secure, fast, robust and scalable. |
@@ -184,13 +186,6 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [SparkyFitness](https://github.com/daemonless/sparkyfitness) | Self-hosted privacy-first fitness tracker on FreeBSD. |
-
-
-### Networking
-
-| Image | Description |
-|-------|-------------|
-| [Headscale](https://github.com/daemonless/headscale) | An open source, self-hosted implementation of the Tailscale control server. |
 
 
 
