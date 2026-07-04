@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-04T09:12:21.000605Z",
+  "last_check": "2026-07-04T14:20:39.924782Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -23,7 +23,7 @@
     "bazarr": {
       "pkg": "1.5.6",
       "pkg-latest": "1.5.6_1",
-      "upstream": "v1.5.6"
+      "upstream": "v1.6.0"
     },
     "bichon": {
       "upstream": "1.6.1"
