@@ -121,6 +121,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 |-------|-------------|
 | [Immich](https://github.com/daemonless/immich) | High performance self-hosted photo and video management solution. |
 | [Immich Machine Learning](https://github.com/daemonless/immich-ml) | Machine learning service for Immich — handles facial recognition, image classification, and semantic search using ONNX models. |
+| [Immich Public Proxy](https://github.com/daemonless/immich-public-proxy) | Share Immich photos and albums publicly without exposing the Immich instance itself. |
 | [Immich Server](https://github.com/daemonless/immich-server) | Self-hosted photo and video backup and management server with web UI, mobile sync, and shared albums. |
 
 
