@@ -133,6 +133,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Bulwark Webmail](https://github.com/daemonless/bulwark-webmail) | Modern self-hosted webmail client for Stalwart Mail Server, powered by JMAP. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
+| [Superset](https://github.com/daemonless/superset) | Modern data exploration and visualization platform — build charts, dashboards, and SQL-driven analytics on top of your databases. |
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
 | [Wagtail](https://github.com/daemonless/wagtail) | Wagtail is an open source content management system built on Django, with a strong community and commercial support. It's focused on user experience, and offers precise control for designers and developers. |
 
