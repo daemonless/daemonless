@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-04T20:02:00.405448Z",
+  "last_check": "2026-07-05T04:47:41.017452Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -214,7 +214,7 @@
       "upstream": "v2.20.15"
     },
     "papra": {
-      "upstream": "26.6.0"
+      "upstream": "26.6.1"
     },
     "playwright": {
       "upstream": "1.61.1"
@@ -389,6 +389,9 @@
     "stump": {
       "upstream": "v0.1.5"
     },
+    "superset": {
+      "upstream": "6.1.0"
+    },
     "syncthing": {
       "pkg": "2.0.15_4",
       "pkg-latest": "2.1.1_1",
@@ -420,7 +423,7 @@
       "upstream": "4.1.3"
     },
     "trek": {
-      "upstream": "3.1.4"
+      "upstream": "3.2.0"
     },
     "unifi": {
       "pkg": "10.1.89",
