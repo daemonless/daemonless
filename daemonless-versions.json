@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-05T20:05:05.616900Z",
+  "last_check": "2026-07-06T05:01:54.344974Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -422,7 +422,7 @@
       "upstream": "4.1.3"
     },
     "trek": {
-      "upstream": "3.2.0"
+      "upstream": "3.2.1"
     },
     "unifi": {
       "pkg": "10.1.89",
