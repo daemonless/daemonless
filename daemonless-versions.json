@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-06T11:19:15.816960Z",
+  "last_check": "2026-07-06T16:12:27.252451Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -55,16 +55,13 @@
     },
     "emby": {
       "pkg": "4.9.3.0",
-      "pkg-latest": "4.9.3.0",
+      "pkg-latest": "4.9.3.0_1",
       "upstream": "4.9.5.0"
     },
     "forgejo": {
       "default": "15",
       "type": "multi-version",
       "variants": {
-        "14": {
-          "pkg-latest": "14.0.5_3"
-        },
         "15": {
           "pkg-latest": "15.0.3"
         }
@@ -121,7 +118,6 @@
     },
     "jellyfin": {
       "pkg": "10.11.10",
-      "pkg-latest": "10.11.11",
       "upstream": "v10.11.11"
     },
     "lidarr": {
@@ -139,9 +135,6 @@
       "variants": {
         "10.11": {
           "pkg-latest": "10.11.18"
-        },
-        "10.6": {
-          "pkg-latest": "10.6.27"
         },
         "11.4": {
           "pkg-latest": "11.4.12"
@@ -185,9 +178,6 @@
         "24": {
           "pkg-latest": "24.18.0"
         },
-        "25": {
-          "pkg-latest": "25.9.0_2"
-        },
         "26": {
           "pkg-latest": "26.4.0"
         }
@@ -199,7 +189,7 @@
       "upstream": "9.4.0"
     },
     "opencloud": {
-      "upstream": "v7.2.0"
+      "upstream": "v7.2.1"
     },
     "opencloud-radicale": {
       "upstream": "v3.7.5"
@@ -375,7 +365,7 @@
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
-      "upstream": "v0.17.2"
+      "upstream": "v0.17.3"
     },
     "stalwart": {
       "pkg-latest": "0.15.5_4"
@@ -398,7 +388,7 @@
     },
     "tailscale": {
       "pkg": "1.98.5_1",
-      "pkg-latest": "1.98.5_1",
+      "pkg-latest": "1.98.8",
       "upstream": "v1.98.8"
     },
     "tautulli": {
@@ -413,12 +403,12 @@
     },
     "transmission": {
       "pkg": "4.1.3",
-      "pkg-latest": "4.1.2",
+      "pkg-latest": "4.1.3",
       "upstream": "4.1.3"
     },
     "transmission-wireguard": {
       "pkg": "4.1.3",
-      "pkg-latest": "4.1.2",
+      "pkg-latest": "4.1.3",
       "upstream": "4.1.3"
     },
     "trek": {
