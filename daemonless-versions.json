@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-06T16:12:27.252451Z",
+  "last_check": "2026-07-07T04:40:51.157761Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -96,7 +96,7 @@
     "hugo": {
       "pkg": "0.159.2_3,1",
       "pkg-latest": "0.163.3,1",
-      "upstream": "v0.163.3"
+      "upstream": "v0.164.0"
     },
     "immich-ml": {
       "upstream": "v3.0.1"
