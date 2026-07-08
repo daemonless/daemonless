@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-08T09:17:24.346714Z",
+  "last_check": "2026-07-08T15:03:58.136077Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -385,7 +385,7 @@
     "syncthing": {
       "pkg": "2.0.15_4",
       "pkg-latest": "2.1.1_1",
-      "upstream": "v2.1.1"
+      "upstream": "v2.1.2"
     },
     "tailscale": {
       "pkg": "1.98.5_1",
