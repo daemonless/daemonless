@@ -143,6 +143,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [Bichon](https://github.com/daemonless/bichon) | A lightweight, high-performance Rust email archiver with WebUI. |
+| [FFmpeg](https://github.com/daemonless/ffmpeg) | FFmpeg CLI (audio/video transcoding) on FreeBSD. |
 | [Heimdall](https://github.com/daemonless/heimdall) | An Application dashboard and launcher — organize all your web apps and services in one place. |
 | [Home Assistant](https://github.com/daemonless/home-assistant) | Open source home automation that puts local control and privacy first. |
 | [Homepage](https://github.com/daemonless/homepage) | Modern, fully static, fast, secure and highly customizable application dashboard with integrations for over 100 services. |
