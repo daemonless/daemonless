@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-07T21:29:41.466721Z",
+  "last_check": "2026-07-08T04:01:09.454981Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -284,7 +284,7 @@
     "qbittorrent": {
       "pkg": "5.1.4_1",
       "pkg-latest": "5.2.2",
-      "upstream": "release-5.2.2"
+      "upstream": "release-5.2.3"
     },
     "radarr": {
       "pkg": "6.0.4.10291_1",
@@ -373,7 +373,7 @@
     "stirling-pdf": {
       "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
-      "upstream": "v2.14.0"
+      "upstream": "v2.14.1"
     },
     "stump": {
       "upstream": "v0.1.5"
