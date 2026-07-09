@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-09T10:22:36.923195Z",
+  "last_check": "2026-07-09T15:51:37.757302Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -29,7 +29,7 @@
       "upstream": "1.6.2"
     },
     "bulwark-webmail": {
-      "upstream": "1.7.6"
+      "upstream": "1.7.7"
     },
     "cloudflared": {
       "pkg": "2026.2.0_4",
@@ -83,7 +83,7 @@
       "pkg-latest": "0.27.1_6"
     },
     "heimdall": {
-      "upstream": "v2.7.6"
+      "upstream": "v2.8.0"
     },
     "home-assistant": {
       "upstream": "2026.7.1"
@@ -374,7 +374,7 @@
     "stirling-pdf": {
       "pkg": "2.2.1_1",
       "pkg-latest": "2.2.1_2",
-      "upstream": "v2.14.1"
+      "upstream": "v2.14.2"
     },
     "stump": {
       "upstream": "v0.1.5"
@@ -433,7 +433,7 @@
     },
     "zensical": {
       "pkg": "0.0.31",
-      "upstream": "0.0.47"
+      "upstream": "0.0.50"
     }
   }
 }
