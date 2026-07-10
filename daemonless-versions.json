@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-09T20:32:03.262112Z",
+  "last_check": "2026-07-10T04:43:00.182385Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.72_3",
@@ -83,7 +83,7 @@
       "pkg-latest": "0.27.1_6"
     },
     "heimdall": {
-      "upstream": "v2.8.0"
+      "upstream": "v2.8.1"
     },
     "home-assistant": {
       "upstream": "2026.7.1"
@@ -351,7 +351,7 @@
     "seaweedfs": {
       "pkg": "4.12_4",
       "pkg-latest": "4.12_4",
-      "upstream": "4.38"
+      "upstream": "4.39"
     },
     "seerr": {
       "upstream": "v3.3.0"
