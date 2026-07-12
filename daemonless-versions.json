@@ -1,9 +1,9 @@
 {
-  "last_check": "2026-07-12T08:57:34.171963Z",
+  "last_check": "2026-07-12T14:20:37.646702Z",
   "services": {
     "adguardhome": {
-      "pkg": "0.107.72_3",
-      "pkg-latest": "0.107.77_1",
+      "pkg": "0.107.77_2",
+      "pkg-latest": "0.107.77_2",
       "upstream": "v0.107.77"
     },
     "adguardhome-sync": {
@@ -16,12 +16,12 @@
       "upstream": "v2.35.1"
     },
     "authelia-server": {
-      "pkg": "4.39.15_8",
-      "pkg-latest": "4.39.20_2",
+      "pkg": "4.39.20_3",
+      "pkg-latest": "4.39.20_3",
       "upstream": "v4.39.20"
     },
     "bazarr": {
-      "pkg": "1.5.6",
+      "pkg": "1.5.6_1",
       "pkg-latest": "1.5.6_1",
       "upstream": "v1.6.0"
     },
@@ -32,8 +32,8 @@
       "upstream": "1.7.7"
     },
     "cloudflared": {
-      "pkg": "2026.2.0_4",
-      "pkg-latest": "2026.2.0_4"
+      "pkg": "2026.2.0_5",
+      "pkg-latest": "2026.2.0_5"
     },
     "cnpg-postgres": {
       "default": "18",
@@ -54,7 +54,7 @@
       "upstream": "v0.27.2"
     },
     "emby": {
-      "pkg": "4.9.3.0",
+      "pkg": "4.9.3.0_1",
       "pkg-latest": "4.9.3.0_1",
       "upstream": "4.9.5.0"
     },
@@ -63,24 +63,24 @@
       "type": "multi-version",
       "variants": {
         "15": {
-          "pkg-latest": "15.0.3"
+          "pkg-latest": "15.0.4"
         }
       }
     },
     "gitea": {
-      "pkg": "1.26.4",
-      "pkg-latest": "1.26.4"
+      "pkg": "1.26.4_1",
+      "pkg-latest": "1.26.4_1"
     },
     "grafana": {
-      "pkg": "12.4.2_3",
-      "pkg-latest": "13.0.1_2"
+      "pkg": "13.0.1_3",
+      "pkg-latest": "13.0.1_3"
     },
     "grimmory": {
       "upstream": "v3.2.4"
     },
     "headscale": {
-      "pkg": "0.27.1_6",
-      "pkg-latest": "0.27.1_6"
+      "pkg": "0.27.1_7",
+      "pkg-latest": "0.27.1_7"
     },
     "heimdall": {
       "upstream": "v2.8.1"
@@ -89,13 +89,13 @@
       "upstream": "2026.7.2"
     },
     "homepage": {
-      "pkg": "1.10.1",
+      "pkg": "1.12.3",
       "pkg-latest": "1.12.3",
       "upstream": "v1.13.2"
     },
     "hugo": {
-      "pkg": "0.159.2_3,1",
-      "pkg-latest": "0.163.3,1",
+      "pkg": "0.163.3_1,1",
+      "pkg-latest": "0.164.0_1,1",
       "upstream": "v0.164.0"
     },
     "immich-ml": {
@@ -117,7 +117,7 @@
       "upstream": "v3.0.2"
     },
     "jellyfin": {
-      "pkg": "10.11.10",
+      "pkg": "10.11.11",
       "pkg-latest": "10.11.11",
       "upstream": "v10.11.11"
     },
@@ -127,7 +127,7 @@
       "upstream": "3.1.0.4875"
     },
     "lldap": {
-      "pkg": "0.6.2_2",
+      "pkg": "0.6.3_1",
       "pkg-latest": "0.6.3_1"
     },
     "mariadb": {
@@ -152,18 +152,18 @@
       "upstream": "v3.20.1"
     },
     "memcached": {
-      "pkg": "1.6.41",
+      "pkg": "1.6.43",
       "pkg-latest": "1.6.44"
     },
     "n8n": {
       "upstream": "2.29.10"
     },
     "navidrome": {
-      "pkg": "0.60.3_4",
-      "pkg-latest": "0.62.0"
+      "pkg": "0.62.0_1",
+      "pkg-latest": "0.62.0_1"
     },
     "nextcloud": {
-      "pkg": "33.0.1",
+      "pkg": "34.0.1_1",
       "pkg-latest": "34.0.1_1",
       "upstream": "v34.0.1"
     },
@@ -185,7 +185,7 @@
       }
     },
     "onlyoffice": {
-      "pkg": "9.3.1",
+      "pkg": "9.4.0",
       "pkg-latest": "9.4.0",
       "upstream": "9.4.0"
     },
@@ -240,7 +240,7 @@
       }
     },
     "prowlarr": {
-      "pkg": "2.3.0.5236",
+      "pkg": "2.3.5.5327",
       "pkg-latest": "2.3.5.5327",
       "upstream": "2.4.0.5397"
     },
@@ -283,12 +283,12 @@
       }
     },
     "qbittorrent": {
-      "pkg": "5.1.4_1",
+      "pkg": "5.2.3",
       "pkg-latest": "5.2.3",
       "upstream": "release-5.2.3"
     },
     "radarr": {
-      "pkg": "6.0.4.10291_1",
+      "pkg": "6.1.1.10360",
       "pkg-latest": "6.1.1.10360",
       "upstream": "6.2.1.10461"
     },
@@ -329,7 +329,7 @@
       "upstream": "v6.260321.1810"
     },
     "sabnzbd": {
-      "pkg": "4.5.5",
+      "pkg": "5.0.1",
       "pkg-latest": "5.0.1",
       "upstream": "5.0.4"
     },
@@ -338,19 +338,19 @@
       "type": "multi-version",
       "variants": {
         "422": {
-          "pkg": "4.22.7_1",
+          "pkg": "4.22.10_1",
           "pkg-latest": "4.22.10_1"
         },
         "423": {
-          "pkg": "4.23.6_1",
-          "pkg-krb": "4.23.6_1",
+          "pkg": "4.23.8_1",
+          "pkg-krb": "4.23.8_1",
           "pkg-latest": "4.23.8_1"
         }
       }
     },
     "seaweedfs": {
-      "pkg": "4.12_4",
-      "pkg-latest": "4.12_4",
+      "pkg": "4.12_5",
+      "pkg-latest": "4.12_5",
       "upstream": "4.39"
     },
     "seerr": {
@@ -361,7 +361,7 @@
       "pkg-latest": "2.9.0_1"
     },
     "sonarr": {
-      "pkg": "4.0.16.2944_1",
+      "pkg": "4.0.17.2952",
       "pkg-latest": "4.0.17.2952",
       "upstream": "4.0.19.2979"
     },
@@ -369,10 +369,11 @@
       "upstream": "v0.17.3"
     },
     "stalwart": {
+      "pkg": "0.15.5_4",
       "pkg-latest": "0.15.5_4"
     },
     "stirling-pdf": {
-      "pkg": "2.2.1_1",
+      "pkg": "2.2.1_2",
       "pkg-latest": "2.2.1_2",
       "upstream": "v2.14.2"
     },
@@ -383,13 +384,13 @@
       "upstream": "6.1.0"
     },
     "syncthing": {
-      "pkg": "2.0.15_4",
-      "pkg-latest": "2.1.2_1",
+      "pkg": "2.1.2_2",
+      "pkg-latest": "2.1.2_2",
       "upstream": "v2.1.2"
     },
     "tailscale": {
-      "pkg": "1.98.5_1",
-      "pkg-latest": "1.98.8",
+      "pkg": "1.98.8_1",
+      "pkg-latest": "1.98.8_1",
       "upstream": "v1.98.8"
     },
     "tautulli": {
@@ -398,8 +399,8 @@
       "upstream": "v2.17.2"
     },
     "traefik": {
-      "pkg": "3.7.6",
-      "pkg-latest": "3.7.6",
+      "pkg": "3.7.6_1",
+      "pkg-latest": "3.7.6_1",
       "upstream": "v3.7.7"
     },
     "transmission": {
@@ -416,7 +417,7 @@
       "upstream": "3.3.0"
     },
     "unifi": {
-      "pkg": "10.1.89",
+      "pkg": "10.4.57",
       "pkg-latest": "10.4.57",
       "upstream": "10.4.57"
     },
@@ -424,7 +425,7 @@
       "upstream": "2.4.0"
     },
     "vaultwarden": {
-      "pkg": "1.35.4_1",
+      "pkg": "1.36.0_1",
       "pkg-latest": "1.36.0_1",
       "upstream": "1.36.0"
     },
@@ -432,7 +433,6 @@
       "upstream": "v3.16.0"
     },
     "zensical": {
-      "pkg": "0.0.31",
       "upstream": "0.0.50"
     }
   }
