@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-12T14:20:37.646702Z",
+  "last_check": "2026-07-12T19:58:03.407367Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -290,7 +290,7 @@
     "radarr": {
       "pkg": "6.1.1.10360",
       "pkg-latest": "6.1.1.10360",
-      "upstream": "6.2.1.10461"
+      "upstream": "6.3.0.10514"
     },
     "readmeabook": {
       "upstream": "v1.2.1"
