@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-14T20:02:45.787355Z",
+  "last_check": "2026-07-15T03:51:28.524873Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -10,7 +10,7 @@
       "upstream": "v0.9.2"
     },
     "affine": {
-      "upstream": "v0.26.3"
+      "upstream": "v0.27.0"
     },
     "audiobookshelf": {
       "upstream": "v2.35.1"
