@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-15T14:31:42.415635Z",
+  "last_check": "2026-07-15T19:58:36.677596Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -99,7 +99,7 @@
       "upstream": "v0.164.0"
     },
     "immich-ml": {
-      "upstream": "v3.0.2"
+      "upstream": "v3.0.3"
     },
     "immich-postgres": {
       "default": "14",
@@ -114,7 +114,7 @@
       }
     },
     "immich-server": {
-      "upstream": "v3.0.2"
+      "upstream": "v3.0.3"
     },
     "jellyfin": {
       "pkg": "10.11.11",
