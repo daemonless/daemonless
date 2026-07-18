@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-18T08:29:52.748602Z",
+  "last_check": "2026-07-18T14:14:12.647256Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -433,6 +433,8 @@
       "upstream": "v3.16.0"
     },
     "zensical": {
+      "pkg": "0.0.50",
+      "pkg-latest": "0.0.46",
       "upstream": "0.0.51"
     }
   }
