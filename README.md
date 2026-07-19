@@ -98,6 +98,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Jellyfin](https://github.com/daemonless/jellyfin) | Volunteer-built media solution that puts you in control — stream to any device from your own server, with no strings attached. |
 | [Navidrome](https://github.com/daemonless/navidrome) | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |
 | [Plex Media Server](https://github.com/daemonless/plex) | Personal media server that organizes and streams your movie, TV, and music collections to all your devices. |
+| [Stump](https://github.com/daemonless/stump) | A free and open source comics, manga and digital book server with OPDS support. |
 | [Tautulli](https://github.com/daemonless/tautulli) | Monitoring and tracking tool for Plex Media Server — tracks what is being watched, who is watching, and when. |
 
 
@@ -168,13 +169,6 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [Immich-Cli](https://github.com/daemonless/immich-cli) |  |
-
-
-### Books
-
-| Image | Description |
-|-------|-------------|
-| [Stump](https://github.com/daemonless/stump) | A free and open source comics, manga and digital book server with OPDS support. |
 
 
 ### Entertainment
