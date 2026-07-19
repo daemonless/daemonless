@@ -1,9 +1,9 @@
 {
-  "last_check": "2026-07-19T09:01:22.594418Z",
+  "last_check": "2026-07-19T14:18:07.354282Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
-      "pkg-latest": "0.107.77_2",
+      "pkg-latest": "0.107.78",
       "upstream": "v0.107.78"
     },
     "adguardhome-sync": {
@@ -153,14 +153,14 @@
     },
     "memcached": {
       "pkg": "1.6.43",
-      "pkg-latest": "1.6.44"
+      "pkg-latest": "1.6.45"
     },
     "n8n": {
       "upstream": "2.30.7"
     },
     "navidrome": {
       "pkg": "0.62.0_1",
-      "pkg-latest": "0.62.0_1"
+      "pkg-latest": "0.63.2"
     },
     "nextcloud": {
       "pkg": "34.0.1_1",
@@ -180,13 +180,13 @@
           "pkg-latest": "24.18.0"
         },
         "26": {
-          "pkg-latest": "26.4.0"
+          "pkg-latest": "26.5.0"
         }
       }
     },
     "onlyoffice": {
       "pkg": "9.4.0_1",
-      "pkg-latest": "9.4.0",
+      "pkg-latest": "9.4.0_1",
       "upstream": "9.4.0"
     },
     "opencloud": {
@@ -326,7 +326,7 @@
       }
     },
     "retroassembly": {
-      "upstream": "v6.260321.1810"
+      "upstream": "v7.260719.1051"
     },
     "sabnzbd": {
       "pkg": "5.0.1",
@@ -434,7 +434,7 @@
     },
     "zensical": {
       "pkg": "0.0.50",
-      "pkg-latest": "0.0.46",
+      "pkg-latest": "0.0.50",
       "upstream": "0.0.51"
     }
   }
