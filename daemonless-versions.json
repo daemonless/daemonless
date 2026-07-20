@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-19T19:59:52.604271Z",
+  "last_check": "2026-07-20T04:29:20.642152Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -51,7 +51,7 @@
       "upstream": "4.117.0"
     },
     "dispatcharr": {
-      "upstream": "v0.27.2"
+      "upstream": "v0.28.0"
     },
     "emby": {
       "pkg": "4.9.3.0_1",
@@ -351,7 +351,7 @@
     "seaweedfs": {
       "pkg": "4.12_5",
       "pkg-latest": "4.12_5",
-      "upstream": "4.39"
+      "upstream": "4.40"
     },
     "seerr": {
       "upstream": "v3.3.0"
@@ -399,7 +399,7 @@
       "upstream": "v2.17.2"
     },
     "traefik": {
-      "pkg": "3.7.6_1",
+      "pkg": "3.7.8",
       "pkg-latest": "3.7.8",
       "upstream": "v3.7.8"
     },
