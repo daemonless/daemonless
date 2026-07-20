@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-20T15:01:01.506950Z",
+  "last_check": "2026-07-20T20:15:50.636214Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -51,7 +51,7 @@
       "upstream": "4.117.0"
     },
     "dispatcharr": {
-      "upstream": "v0.28.0"
+      "upstream": "v0.28.1"
     },
     "emby": {
       "pkg": "4.9.3.0_1",
@@ -391,7 +391,7 @@
     "tailscale": {
       "pkg": "1.98.8_1",
       "pkg-latest": "1.98.8_1",
-      "upstream": "v1.98.8"
+      "upstream": "v1.98.9"
     },
     "tautulli": {
       "pkg": "2.16.0_1",
