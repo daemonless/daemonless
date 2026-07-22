@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-22T14:51:43.747708Z",
+  "last_check": "2026-07-22T20:10:49.394555Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -29,7 +29,7 @@
       "upstream": "1.6.2"
     },
     "bulwark-webmail": {
-      "upstream": "1.7.7"
+      "upstream": "1.7.8"
     },
     "cloudflared": {
       "pkg": "2026.2.0_5",
@@ -202,7 +202,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v2.20.15"
+      "upstream": "v3.0.0"
     },
     "papra": {
       "upstream": "26.6.1"
