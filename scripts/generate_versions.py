@@ -24,14 +24,42 @@ GITHUB_ORG = "daemonless"
 GITHUB_API = "https://api.github.com"
 RAW_GITHUB = "https://raw.githubusercontent.com"
 
-# FreeBSD pkg repository base URLs
-FREEBSD_PKG_BASE = "http://pkg.FreeBSD.org/FreeBSD:15:amd64"
-PKG_REPOS = {
-    "quarterly": f"{FREEBSD_PKG_BASE}/quarterly",
-    "latest": f"{FREEBSD_PKG_BASE}/latest",
-}
+# pkg ABI is keyed by major only (FreeBSD:<major>:<arch>); major comes from
+# each image's BASE_VERSION. DEFAULT_MAJOR is the fallback for non-numeric
+# BASE_VERSION (e.g. "latest").
+ARCH = "amd64"
+DEFAULT_MAJOR = "15"
 
-# Cache for pkg indices (loaded lazily)
+# pkg branch directory names (also the repo_type values used throughout).
+PKG_BRANCHES = ("quarterly", "latest")
+
+
+def pkg_repo_url(major, branch, arch=ARCH):
+    """URL of a FreeBSD pkg repository for a given major/branch/arch."""
+    return f"http://pkg.FreeBSD.org/FreeBSD:{major}:{arch}/{branch}"
+
+
+def extract_freebsd_major(base_version):
+    """Derive the FreeBSD pkg major version from a BASE_VERSION string.
+
+    BASE_VERSION is the base image tag an image builds FROM, e.g. "15", "15.1",
+    "15-latest", "15.1-pkg-latest", "15-quarterly". Only the leading integer
+    matters for the pkg ABI. Returns it as a string, or DEFAULT_MAJOR when none
+    can be parsed (e.g. "latest").
+    """
+    if base_version:
+        m = re.match(r"\s*(\d+)", str(base_version))
+        if m:
+            return m.group(1)
+        print(
+            f"  Non-numeric BASE_VERSION={base_version!r}; "
+            f"defaulting FreeBSD major to {DEFAULT_MAJOR}",
+            file=sys.stderr,
+        )
+    return DEFAULT_MAJOR
+
+
+# Cache for pkg indices, keyed by (major, repo_type) (loaded lazily)
 _pkg_index_cache = {}
 
 # Repos to skip (not services)
@@ -322,23 +350,24 @@ def parse_containerfile(content, repo_name=None):
             pkg_name = packages_arg
 
     labels["pkg-name"] = pkg_name
+    labels["base-version"] = envs.get("BASE_VERSION")
 
     return labels
 
 
-def load_pkg_index(repo_type):
+def load_pkg_index(repo_type, major):
     """Load and cache the package index from FreeBSD pkg server."""
-    if repo_type in _pkg_index_cache:
-        return _pkg_index_cache[repo_type]
+    cache_key = (major, repo_type)
+    if cache_key in _pkg_index_cache:
+        return _pkg_index_cache[cache_key]
 
-    repo_url = PKG_REPOS.get(repo_type)
-    if not repo_url:
+    if repo_type not in PKG_BRANCHES:
         print(f"Unknown repo type: {repo_type}", file=sys.stderr)
         return {}
 
     # Fetch packagesite.pkg and extract using command-line tools
-    # FreeBSD 15 uses zstd-compressed tar archives
-    pkg_url = f"{repo_url}/packagesite.pkg"
+    # FreeBSD uses zstd-compressed tar archives
+    pkg_url = f"{pkg_repo_url(major, repo_type)}/packagesite.pkg"
     print(f"  Fetching pkg index from {pkg_url}...", file=sys.stderr)
 
     yaml_content = None
@@ -374,7 +403,7 @@ def load_pkg_index(repo_type):
 
     if not yaml_content:
         print(f"  Could not extract packagesite.yaml from {repo_type}", file=sys.stderr)
-        _pkg_index_cache[repo_type] = {}
+        _pkg_index_cache[cache_key] = {}
         return {}
 
     # Parse the YAML (actually JSON lines format)
@@ -392,17 +421,17 @@ def load_pkg_index(repo_type):
         except json.JSONDecodeError:
             continue
 
-    print(f"  Loaded {len(index)} packages from {repo_type}", file=sys.stderr)
-    _pkg_index_cache[repo_type] = index
+    print(f"  Loaded {len(index)} packages from FreeBSD:{major} {repo_type}", file=sys.stderr)
+    _pkg_index_cache[cache_key] = index
     return index
 
 
-def get_pkg_version(pkg_name, repo_type):
+def get_pkg_version(pkg_name, repo_type, major):
     """Query pkg version from FreeBSD repository via HTTP."""
     if not pkg_name:
         return None
 
-    index = load_pkg_index(repo_type)
+    index = load_pkg_index(repo_type, major)
     return index.get(pkg_name)
 
 
@@ -469,6 +498,9 @@ def process_multi_version_service(repo, config):
     if not variants:
         return None
 
+    # Default BASE_VERSION for variants that don't set their own.
+    default_base = build_config.get("args", {}).get("BASE_VERSION")
+
     # Check if any variant has pkg_name (required for version tracking)
     has_pkg_name = any(v.get("pkg_name") for v in variants)
     if not has_pkg_name:
@@ -505,8 +537,14 @@ def process_multi_version_service(repo, config):
 
         major, build_type = parse_variant_tag(variant_id, pkg_name)
 
+        # FreeBSD major comes ONLY from BASE_VERSION, never the app-version tag:
+        # postgres tag "16" builds on BASE_VERSION "15-quarterly", and
+        # postgresql16-server lives in the FreeBSD:15 repo.
+        variant_base = variant.get("args", {}).get("BASE_VERSION") or default_base
+        freebsd_major = extract_freebsd_major(variant_base)
+
         repo_type = "latest" if build_type == "pkg-latest" else "quarterly"
-        ver = get_pkg_version(pkg_name, repo_type)
+        ver = get_pkg_version(pkg_name, repo_type, freebsd_major)
         if ver:
             if major not in consolidated:
                 consolidated[major] = {}
@@ -552,6 +590,8 @@ def process_service(repo):
     pkg_name = None
     upstream_url = None
     upstream_jq = None
+    cf_base_version = None
+    pkg_base_version = None
 
     # Check Containerfile first (for upstream info)
     if "Containerfile" in files:
@@ -559,12 +599,14 @@ def process_service(repo):
         upstream_url = labels.get("upstream-url")
         upstream_jq = labels.get("upstream-jq")
         pkg_name = labels.get("pkg-name")
+        cf_base_version = labels.get("base-version")
 
     # Check Containerfile.pkg (for pkg info) - this takes priority for pkg-name
     if "Containerfile.pkg" in files:
         pkg_labels = parse_containerfile(files["Containerfile.pkg"], repo)
         if pkg_labels.get("pkg-name"):
             pkg_name = pkg_labels.get("pkg-name")
+        pkg_base_version = pkg_labels.get("base-version")
         # Also grab upstream info if not found in Containerfile
         if not upstream_url:
             upstream_url = pkg_labels.get("upstream-url")
@@ -576,12 +618,22 @@ def process_service(repo):
         if pkg_name_override:
             pkg_name = pkg_name_override
 
+    # FreeBSD major for pkg queries: config build.args override wins, then the
+    # pkg Containerfile's ARG (authoritative for pkg builds), then the plain
+    # Containerfile's ARG.
+    config_base_version = None
+    if config:
+        config_base_version = config.get("build", {}).get("args", {}).get("BASE_VERSION")
+    freebsd_major = extract_freebsd_major(
+        config_base_version or pkg_base_version or cf_base_version
+    )
+
     result = {}
 
     # Get pkg versions
     if pkg_name:
-        q_ver = get_pkg_version(pkg_name, "quarterly")
-        l_ver = get_pkg_version(pkg_name, "latest")
+        q_ver = get_pkg_version(pkg_name, "quarterly", freebsd_major)
+        l_ver = get_pkg_version(pkg_name, "latest", freebsd_major)
 
         if q_ver:
             result["pkg"] = q_ver
