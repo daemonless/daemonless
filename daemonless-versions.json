@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-23T14:58:27.599509Z",
+  "last_check": "2026-07-23T20:06:07.233848Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -149,7 +149,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.20.1"
+      "upstream": "v3.21.0"
     },
     "memcached": {
       "pkg": "1.6.43",
