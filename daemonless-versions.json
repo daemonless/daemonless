@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-23T20:06:07.233848Z",
+  "last_check": "2026-07-24T04:02:41.852664Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -51,7 +51,7 @@
       "upstream": "4.117.0"
     },
     "dispatcharr": {
-      "upstream": "v0.28.1"
+      "upstream": "v0.28.2"
     },
     "emby": {
       "pkg": "4.9.3.0_1",
@@ -202,7 +202,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.0.0"
+      "upstream": "v3.0.2"
     },
     "papra": {
       "upstream": "26.6.1"
