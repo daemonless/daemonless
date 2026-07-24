@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-24T14:31:17.226450Z",
+  "last_check": "2026-07-24T20:09:30.948722Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -366,7 +366,7 @@
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
-      "upstream": "v0.17.3"
+      "upstream": "v1.6.0"
     },
     "stalwart": {
       "pkg": "0.15.5_4",
@@ -427,7 +427,7 @@
     "vaultwarden": {
       "pkg": "1.36.0_1",
       "pkg-latest": "1.36.0_1",
-      "upstream": "1.36.0"
+      "upstream": "1.37.0"
     },
     "woodpecker": {
       "upstream": "v3.16.0"
