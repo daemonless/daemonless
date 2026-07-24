@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-24T20:09:30.948722Z",
+  "last_check": "2026-07-24T22:54:12.043605Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -208,7 +208,7 @@
       "upstream": "26.6.1"
     },
     "playwright": {
-      "upstream": "1.61.1"
+      "upstream": "1.62.0"
     },
     "plex": {
       "upstream": "1.43.3.10828-00f62d37d"
@@ -428,6 +428,10 @@
       "pkg": "1.36.0_1",
       "pkg-latest": "1.36.0_1",
       "upstream": "1.37.0"
+    },
+    "wagtail": {
+      "pkg": "7.4.2",
+      "pkg-latest": "7.4.2"
     },
     "woodpecker": {
       "upstream": "v3.16.0"
