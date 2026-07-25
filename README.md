@@ -148,6 +148,10 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Heimdall](https://github.com/daemonless/heimdall) | An Application dashboard and launcher — organize all your web apps and services in one place. |
 | [Home Assistant](https://github.com/daemonless/home-assistant) | Open source home automation that puts local control and privacy first. |
 | [Homepage](https://github.com/daemonless/homepage) | Modern, fully static, fast, secure and highly customizable application dashboard with integrations for over 100 services. |
+| [Jellyfin FFmpeg](https://github.com/daemonless/jellyfin-ffmpeg) | FFmpeg with the Jellyfin patch set for HDR tone mapping (the SIMD-optimized
+tonemapx / libplacebo filters) on FreeBSD. Ships both the 7.x and 8.x lines:
+`jellyfin-ffmpeg` (= v7, the default) / `jellyfin-ffmpeg7` / `jellyfin-ffmpeg8`
+(and matching `*probe`) are all on PATH. Standalone CLI image, not a service. |
 | [Mealie](https://github.com/daemonless/mealie) | Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web. |
 | [Nextcloud](https://github.com/daemonless/nextcloud) | Online collaboration platform providing groupware capabilities by default, extensible with additional apps. |
 | [OpenCloud](https://github.com/daemonless/opencloud) | OpenCloud is a modern file-sync and share platform. |
