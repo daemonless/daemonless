@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-25T20:05:52.640099Z",
+  "last_check": "2026-07-26T04:22:17.189162Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -128,7 +128,7 @@
     },
     "lldap": {
       "pkg": "0.6.3_1",
-      "pkg-latest": "0.6.3_1"
+      "pkg-latest": "0.6.3_2"
     },
     "mariadb": {
       "default": "12.3",
@@ -202,7 +202,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.0.2"
+      "upstream": "v3.0.3"
     },
     "papra": {
       "upstream": "26.6.1"
@@ -300,28 +300,28 @@
       "type": "multi-version",
       "variants": {
         "6.2": {
-          "pkg-latest": "6.2.22"
+          "pkg-latest": "6.2.23"
         },
         "7.2": {
-          "pkg-latest": "7.2.14"
+          "pkg-latest": "7.2.15"
         },
         "7.4": {
-          "pkg-latest": "7.4.9"
+          "pkg-latest": "7.4.10"
         },
         "8.0": {
           "pkg-latest": "8.0.6"
         },
         "8.2": {
-          "pkg-latest": "8.2.7"
+          "pkg-latest": "8.2.8"
         },
         "8.4": {
-          "pkg-latest": "8.4.4"
+          "pkg-latest": "8.4.5"
         },
         "8.6": {
-          "pkg-latest": "8.6.4"
+          "pkg-latest": "8.6.5"
         },
         "8.8": {
-          "pkg-latest": "8.8.0"
+          "pkg-latest": "8.8.1"
         }
       }
     },
@@ -370,7 +370,8 @@
     },
     "stalwart": {
       "pkg": "0.15.5_4",
-      "pkg-latest": "0.15.5_4"
+      "pkg-latest": "0.15.5_5",
+      "upstream": "v0.16.14"
     },
     "stirling-pdf": {
       "pkg": "2.2.1_2",
@@ -426,7 +427,7 @@
     },
     "vaultwarden": {
       "pkg": "1.36.0_1",
-      "pkg-latest": "1.36.0_1",
+      "pkg-latest": "1.36.0_2",
       "upstream": "1.37.0"
     },
     "wagtail": {
@@ -438,7 +439,7 @@
     },
     "zensical": {
       "pkg": "0.0.50",
-      "pkg-latest": "0.0.50",
+      "pkg-latest": "0.0.50_1",
       "upstream": "0.0.51"
     }
   }
