@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-27T20:13:49.651882Z",
+  "last_check": "2026-07-27T23:43:38.717689Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -13,7 +13,7 @@
       "upstream": "v0.27.3"
     },
     "audiobookshelf": {
-      "upstream": "v2.35.1"
+      "upstream": "v2.36.0"
     },
     "authelia-server": {
       "pkg": "4.39.20_3",
@@ -403,7 +403,7 @@
       "upstream": "v2.17.2"
     },
     "traefik": {
-      "pkg": "3.7.8",
+      "pkg": "3.7.9",
       "pkg-latest": "3.7.9",
       "upstream": "v3.7.9"
     },
@@ -421,7 +421,7 @@
       "upstream": "3.4.1"
     },
     "unifi": {
-      "pkg": "10.4.57",
+      "pkg": "10.4.57_1",
       "pkg-latest": "10.4.57_1",
       "upstream": "10.4.57"
     },
