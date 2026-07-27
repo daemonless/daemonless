@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-27T04:31:52.328111Z",
+  "last_check": "2026-07-27T10:33:24.185054Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -159,7 +159,7 @@
       "pkg-latest": "1.6.45"
     },
     "n8n": {
-      "upstream": "2.31.6"
+      "upstream": "2.31.7"
     },
     "navidrome": {
       "pkg": "0.62.0_1",
@@ -374,7 +374,7 @@
     "stalwart": {
       "pkg": "0.15.5_4",
       "pkg-latest": "0.15.5_5",
-      "upstream": "v0.16.14"
+      "upstream": "v0.16.15"
     },
     "stirling-pdf": {
       "pkg": "2.2.1_2",
