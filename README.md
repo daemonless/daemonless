@@ -108,6 +108,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 |-------|-------------|
 | [AdGuard Home](https://github.com/daemonless/adguardhome) | Network-wide ad and tracker blocking DNS server. Covers all devices on your network with no client-side software — includes DoH, DoT, DoQ, and a built-in DHCP server. |
 | [AdGuardHome Sync](https://github.com/daemonless/adguardhome-sync) | Sync AdGuardHome configuration to replica instances. |
+| [Caddy](https://github.com/daemonless/caddy) | Fast, multi-platform web server and reverse proxy with automatic HTTPS, written in Go. |
 | [Grafana](https://github.com/daemonless/grafana) | Grafana is an open source and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. |
 | [Headscale](https://github.com/daemonless/headscale) | An open source, self-hosted implementation of the Tailscale control server. |
 | [Samba](https://github.com/daemonless/samba) | SMB/CIFS file sharing and Active Directory compatible Domain Controller for FreeBSD. |
