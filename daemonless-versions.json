@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-27T23:43:38.717689Z",
+  "last_check": "2026-07-28T03:55:26.518611Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -152,7 +152,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.21.0"
+      "upstream": "v3.22.0"
     },
     "memcached": {
       "pkg": "1.6.43",
@@ -357,7 +357,7 @@
       "upstream": "4.40"
     },
     "seerr": {
-      "upstream": "v3.3.0"
+      "upstream": "v3.4.0"
     },
     "smokeping": {
       "pkg": "2.9.0_1",
