@@ -66,6 +66,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Daemonless pkg cache](https://github.com/daemonless/pkg-cache) | Managed FreeBSD pkg caching appliance — proxies pkg.FreeBSD.org to speed up package fetches across image builds and insulate them from upstream rate limits/outages. |
 | [Forgejo](https://github.com/daemonless/forgejo) | Forgejo is a self-hosted lightweight software forge |
 | [Gitea](https://github.com/daemonless/gitea) | Lightweight self-hosted Git service — a community managed fork of Gogs written in Go. |
+| [HAProxy](https://github.com/daemonless/haproxy) | Reliable, high performance TCP/HTTP load balancer and reverse proxy. |
 | [Tailscale](https://github.com/daemonless/tailscale) | Zero-config mesh VPN built on WireGuard — securely connect your devices without port forwarding or firewall changes. |
 | [Traefik](https://github.com/daemonless/traefik) | Modern HTTP reverse proxy and load balancer on FreeBSD. |
 | [Woodpecker CI](https://github.com/daemonless/woodpecker) | Lightweight CI/CD pipeline server with a built-in agent — integrates with Gitea, GitHub, and GitLab for automated builds and deployments. |
