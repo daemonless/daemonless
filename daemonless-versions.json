@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-07-30T09:24:31.596621Z",
+  "last_check": "2026-07-30T14:59:31.818230Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -82,6 +82,47 @@
     },
     "grimmory": {
       "upstream": "v3.2.4"
+    },
+    "haproxy": {
+      "default": "3.4",
+      "type": "multi-version",
+      "variants": {
+        "2.4": {
+          "lua-pkg-latest": "2.4.35",
+          "pkg-latest": "2.4.35"
+        },
+        "2.6": {
+          "lua-pkg-latest": "2.6.30",
+          "pkg-latest": "2.6.30"
+        },
+        "2.8": {
+          "lua-pkg-latest": "2.8.25",
+          "pkg-latest": "2.8.25"
+        },
+        "3.0": {
+          "lua-pkg-latest": "3.0.24_1",
+          "pkg-latest": "3.0.24_1",
+          "wolfssl-pkg-latest": "3.0.24_1"
+        },
+        "3.2": {
+          "lua-pkg-latest": "3.2.20_1",
+          "pkg-latest": "3.2.20_1",
+          "wolfssl-pkg-latest": "3.2.20_1"
+        },
+        "3.3": {
+          "lua-pkg-latest": "3.3.11_1",
+          "pkg-latest": "3.3.11_1",
+          "wolfssl-pkg-latest": "3.3.11_1"
+        },
+        "3.4": {
+          "lua-pkg-latest": "3.4.1_1",
+          "pkg-latest": "3.4.1_1",
+          "wolfssl-pkg-latest": "3.4.1_1"
+        },
+        "devel": {
+          "pkg-latest": "3.3.d10"
+        }
+      }
     },
     "headscale": {
       "pkg": "0.27.1_7",
@@ -362,7 +403,7 @@
       "upstream": "4.40"
     },
     "seerr": {
-      "upstream": "v3.4.0"
+      "upstream": "v3.4.1"
     },
     "smokeping": {
       "pkg": "2.9.0_1",
@@ -448,7 +489,7 @@
     "zensical": {
       "pkg": "0.0.50",
       "pkg-latest": "0.0.50_1",
-      "upstream": "0.0.51"
+      "upstream": "0.0.52"
     }
   }
 }
