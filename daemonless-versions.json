@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-01T09:00:07.208335Z",
+  "last_check": "2026-08-01T14:24:38.772918Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -164,7 +164,6 @@
     },
     "jellyfin": {
       "pkg": "10.11.11",
-      "pkg-latest": "10.11.11",
       "upstream": "v10.11.11"
     },
     "jellyfin-ffmpeg": {
@@ -419,7 +418,7 @@
     },
     "stalwart": {
       "pkg": "0.15.5_4",
-      "pkg-latest": "0.15.5_5",
+      "pkg-latest": "0.16.15",
       "upstream": "v0.16.15"
     },
     "stirling-pdf": {
@@ -476,7 +475,7 @@
     },
     "vaultwarden": {
       "pkg": "1.36.0_1",
-      "pkg-latest": "1.36.0_2",
+      "pkg-latest": "1.37.0",
       "upstream": "1.37.1"
     },
     "wagtail": {
