@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-01T14:24:38.772918Z",
+  "last_check": "2026-08-01T20:13:32.516291Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -471,7 +471,7 @@
       "upstream": "10.4.57"
     },
     "uptime-kuma": {
-      "upstream": "2.4.0"
+      "upstream": "2.5.0"
     },
     "vaultwarden": {
       "pkg": "1.36.0_1",
