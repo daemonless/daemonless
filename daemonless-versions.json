@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-02T20:03:02.716294Z",
+  "last_check": "2026-08-03T04:23:36.889758Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -414,7 +414,7 @@
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
-      "upstream": "v1.6.0"
+      "upstream": "v1.6.1"
     },
     "stalwart": {
       "pkg": "0.15.5_4",
