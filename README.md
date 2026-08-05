@@ -153,6 +153,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Jellyfin FFmpeg](https://github.com/daemonless/jellyfin-ffmpeg) | FFmpeg with the Jellyfin patch set for HDR tone mapping (the SIMD-optimized<br>tonemapx / libplacebo filters) on FreeBSD. Ships both the 7.x and 8.x lines:<br>`jellyfin-ffmpeg` (= v7, the default) / `jellyfin-ffmpeg7` / `jellyfin-ffmpeg8`<br>(and matching `*probe`) are all on PATH. Standalone CLI image, not a service. |
 | [Mealie](https://github.com/daemonless/mealie) | Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web. |
 | [Nextcloud](https://github.com/daemonless/nextcloud) | Online collaboration platform providing groupware capabilities by default, extensible with additional apps. |
+| [NocoDB](https://github.com/daemonless/nocodb) | Free and self-hostable Airtable alternative — turn any database into a smart spreadsheet. |
 | [OpenCloud](https://github.com/daemonless/opencloud) | OpenCloud is a modern file-sync and share platform. |
 | [OpenCloud-Radicale](https://github.com/daemonless/opencloud-radicale) | A simple CalDAV (calendar) and CardDAV (contact) server. |
 | [OpenSpeedTest](https://github.com/daemonless/openspeedtest) | Self-hosted HTML5 Network Speed Test on FreeBSD. |
