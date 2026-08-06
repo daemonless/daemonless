@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-05T20:19:38.882202Z",
+  "last_check": "2026-08-06T03:58:05.065194Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -22,7 +22,7 @@
     },
     "bazarr": {
       "pkg": "1.5.6_1",
-      "pkg-latest": "1.5.6_1",
+      "pkg-latest": "1.6.0",
       "upstream": "v1.6.0"
     },
     "bichon": {
@@ -67,10 +67,10 @@
       "type": "multi-version",
       "variants": {
         "15": {
-          "pkg-latest": "15.0.5"
+          "pkg-latest": "15.0.6"
         },
         "16": {
-          "pkg-latest": "16.0.1"
+          "pkg-latest": "16.0.2"
         }
       }
     },
@@ -95,30 +95,30 @@
         },
         "2.6": {
           "lua-pkg-latest": "2.6.30",
-          "pkg-latest": "2.6.30"
+          "pkg-latest": "2.6.32"
         },
         "2.8": {
           "lua-pkg-latest": "2.8.25",
-          "pkg-latest": "2.8.25"
+          "pkg-latest": "2.8.27"
         },
         "3.0": {
           "lua-pkg-latest": "3.0.24_1",
-          "pkg-latest": "3.0.24_1",
+          "pkg-latest": "3.0.26",
           "wolfssl-pkg-latest": "3.0.24_1"
         },
         "3.2": {
           "lua-pkg-latest": "3.2.20_1",
-          "pkg-latest": "3.2.20_1",
+          "pkg-latest": "3.2.22",
           "wolfssl-pkg-latest": "3.2.20_1"
         },
         "3.3": {
           "lua-pkg-latest": "3.3.11_1",
-          "pkg-latest": "3.3.11_1",
+          "pkg-latest": "3.3.13",
           "wolfssl-pkg-latest": "3.3.11_1"
         },
         "3.4": {
           "lua-pkg-latest": "3.4.1_1",
-          "pkg-latest": "3.4.1_1",
+          "pkg-latest": "3.4.3",
           "wolfssl-pkg-latest": "3.4.1_1"
         },
         "devel": {
@@ -166,6 +166,7 @@
     },
     "jellyfin": {
       "pkg": "10.11.11",
+      "pkg-latest": "10.11.11",
       "upstream": "v10.11.11"
     },
     "jellyfin-ffmpeg": {
@@ -294,7 +295,7 @@
     },
     "prowlarr": {
       "pkg": "2.3.5.5327",
-      "pkg-latest": "2.3.5.5327",
+      "pkg-latest": "2.4.0.5397",
       "upstream": "2.5.2.5491"
     },
     "python": {
@@ -342,7 +343,7 @@
     },
     "radarr": {
       "pkg": "6.1.1.10360",
-      "pkg-latest": "6.1.1.10360",
+      "pkg-latest": "6.3.0.10514",
       "upstream": "6.3.0.10514"
     },
     "readmeabook": {
@@ -371,7 +372,7 @@
           "pkg-latest": "8.4.5"
         },
         "8.6": {
-          "pkg-latest": "8.6.5"
+          "pkg-latest": "8.8.1"
         },
         "8.8": {
           "pkg-latest": "8.8.1"
@@ -415,7 +416,7 @@
     },
     "sonarr": {
       "pkg": "4.0.17.2952",
-      "pkg-latest": "4.0.17.2952",
+      "pkg-latest": "4.0.19.2979",
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
@@ -444,7 +445,7 @@
     },
     "tailscale": {
       "pkg": "1.98.8_1",
-      "pkg-latest": "1.98.9",
+      "pkg-latest": "1.98.10",
       "upstream": "v1.102.2"
     },
     "tautulli": {
@@ -454,7 +455,7 @@
     },
     "traefik": {
       "pkg": "3.7.9",
-      "pkg-latest": "3.7.9",
+      "pkg-latest": "3.7.10",
       "upstream": "v3.7.10"
     },
     "transmission": {
@@ -480,7 +481,7 @@
     },
     "vaultwarden": {
       "pkg": "1.36.0_1",
-      "pkg-latest": "1.37.0",
+      "pkg-latest": "1.37.1",
       "upstream": "1.37.1"
     },
     "wagtail": {
@@ -492,7 +493,7 @@
     },
     "zensical": {
       "pkg": "0.0.50",
-      "pkg-latest": "0.0.50_1",
+      "pkg-latest": "0.0.52",
       "upstream": "0.0.53"
     }
   }
