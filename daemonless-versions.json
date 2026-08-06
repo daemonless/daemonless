@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-06T03:58:05.065194Z",
+  "last_check": "2026-08-06T09:34:51.261181Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -207,7 +207,7 @@
       "pkg-latest": "1.6.45"
     },
     "n8n": {
-      "upstream": "2.33.4"
+      "upstream": "2.33.5"
     },
     "navidrome": {
       "pkg": "0.62.0_1",
@@ -247,7 +247,7 @@
       "upstream": "v7.4.0"
     },
     "opencloud-radicale": {
-      "upstream": "v3.7.7"
+      "upstream": "v3.7.8"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
@@ -405,7 +405,7 @@
     "seaweedfs": {
       "pkg": "4.12_5",
       "pkg-latest": "4.12_5",
-      "upstream": "4.40"
+      "upstream": "4.41"
     },
     "seerr": {
       "upstream": "v3.4.1"
