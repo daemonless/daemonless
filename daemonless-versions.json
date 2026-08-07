@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-07T08:04:40.823362Z",
+  "last_check": "2026-08-07T14:04:25.343405Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -475,7 +475,7 @@
     "unifi": {
       "pkg": "10.4.57_1",
       "pkg-latest": "10.4.57_1",
-      "upstream": "10.4.57"
+      "upstream": "10.5.67"
     },
     "uptime-kuma": {
       "upstream": "2.5.0"
