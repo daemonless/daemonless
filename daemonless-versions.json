@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-07T03:42:39.168775Z",
+  "last_check": "2026-08-07T08:04:40.823362Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -84,7 +84,7 @@
       "pkg-latest": "13.1.1"
     },
     "grimmory": {
-      "upstream": "v3.2.4"
+      "upstream": "v3.3.0"
     },
     "haproxy": {
       "default": "3.4",
@@ -139,7 +139,7 @@
     },
     "homepage": {
       "pkg": "1.12.3",
-      "pkg-latest": "1.12.3",
+      "pkg-latest": "1.13.2",
       "upstream": "v1.13.2"
     },
     "hugo": {
@@ -208,7 +208,7 @@
       "pkg-latest": "1.6.45"
     },
     "n8n": {
-      "upstream": "2.33.5"
+      "upstream": "2.33.6"
     },
     "navidrome": {
       "pkg": "0.62.0_1",
@@ -333,7 +333,7 @@
           "pkg-latest": "3.14.6"
         },
         "315": {
-          "pkg-latest": "3.15.0.b2"
+          "pkg-latest": "3.15.0.r1"
         }
       }
     },
@@ -373,7 +373,7 @@
           "pkg-latest": "8.4.5"
         },
         "8.6": {
-          "pkg-latest": "8.8.1"
+          "pkg-latest": "8.6.5"
         },
         "8.8": {
           "pkg-latest": "8.8.1"
@@ -441,12 +441,12 @@
     },
     "syncthing": {
       "pkg": "2.1.2_2",
-      "pkg-latest": "2.1.2_2",
+      "pkg-latest": "2.1.3",
       "upstream": "v2.1.3"
     },
     "tailscale": {
       "pkg": "1.98.10",
-      "pkg-latest": "1.98.10",
+      "pkg-latest": "1.102.2",
       "upstream": "v1.102.2"
     },
     "tautulli": {
