@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-10T08:20:30.883037Z",
+  "last_check": "2026-08-10T14:11:06.007952Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -390,7 +390,7 @@
     "sabnzbd": {
       "pkg": "5.0.1",
       "pkg-latest": "5.0.1",
-      "upstream": "5.0.4"
+      "upstream": "5.1.0"
     },
     "samba": {
       "default": "423",
