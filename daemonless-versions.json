@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-11T02:57:42.520255Z",
+  "last_check": "2026-08-11T08:01:03.943484Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -212,7 +212,7 @@
       "pkg-latest": "1.6.45"
     },
     "n8n": {
-      "upstream": "2.33.7"
+      "upstream": "2.34.4"
     },
     "navidrome": {
       "pkg": "0.62.0_1",
