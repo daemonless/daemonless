@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-12T14:11:55.495706Z",
+  "last_check": "2026-08-12T19:55:10.155945Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -136,7 +136,7 @@
       "pkg-latest": "0.27.1_7"
     },
     "heimdall": {
-      "upstream": "v2.8.1"
+      "upstream": "v2.8.2"
     },
     "home-assistant": {
       "upstream": "2026.8.1"
@@ -149,7 +149,7 @@
     "hugo": {
       "pkg": "0.163.3_1,1",
       "pkg-latest": "0.164.0_1,1",
-      "upstream": "v0.164.0"
+      "upstream": "v0.165.0"
     },
     "immich-ml": {
       "upstream": "v3.1.0"
