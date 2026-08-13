@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-12T19:55:10.155945Z",
+  "last_check": "2026-08-13T03:20:40.343245Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -322,19 +322,19 @@
           "pkg-latest": "3.11.15_4"
         },
         "312": {
-          "pkg-latest": "3.12.13_3"
+          "pkg-latest": "3.12.13_4"
         },
         "313": {
-          "pkg-latest": "3.13.14"
+          "pkg-latest": "3.13.15"
         },
         "313t": {
-          "pkg-latest": "3.13.14"
+          "pkg-latest": "3.13.15"
         },
         "314": {
-          "pkg-latest": "3.14.6"
+          "pkg-latest": "3.14.7"
         },
         "314t": {
-          "pkg-latest": "3.14.6"
+          "pkg-latest": "3.14.7"
         },
         "315": {
           "pkg-latest": "3.15.0.r1"
@@ -409,7 +409,7 @@
     },
     "seaweedfs": {
       "pkg": "4.12_5",
-      "pkg-latest": "4.12_5",
+      "pkg-latest": "4.41",
       "upstream": "4.41"
     },
     "seerr": {
