@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-14T14:07:14.838864Z",
+  "last_check": "2026-08-14T19:41:09.339321Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_2",
@@ -139,12 +139,12 @@
       "upstream": "v2.8.2"
     },
     "home-assistant": {
-      "upstream": "2026.8.1"
+      "upstream": "2026.8.2"
     },
     "homepage": {
       "pkg": "1.12.3",
       "pkg-latest": "1.13.2",
-      "upstream": "v1.13.2"
+      "upstream": "v2.0.0"
     },
     "hugo": {
       "pkg": "0.163.3_1,1",
@@ -425,7 +425,7 @@
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
-      "upstream": "v1.6.1"
+      "upstream": "v1.6.2"
     },
     "stalwart": {
       "pkg": "0.15.5_4",
