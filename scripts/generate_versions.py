@@ -4,6 +4,13 @@ Generate daemonless-versions.json by fetching service info from GitHub.
 
 Uses GitHub API to discover repos and raw.githubusercontent.com to fetch
 Containerfiles. No local cloning required.
+
+pkg versions are recorded PER ARCH (schema_version 2): `pkg` and `pkg-latest`
+are objects keyed by arch ({"amd64": "...", "aarch64": "..."}) because FreeBSD's
+aarch64 pkg repo routinely lags amd64 on PORTREVISION bumps. `upstream` (the
+binary release version) is arch-agnostic and stays a scalar. The comparator
+compares each arch against the same arch, so cross-arch lag no longer
+false-flags an image as outdated.
 """
 
 import datetime
@@ -27,14 +34,22 @@ RAW_GITHUB = "https://raw.githubusercontent.com"
 # pkg ABI is keyed by major only (FreeBSD:<major>:<arch>); major comes from
 # each image's BASE_VERSION. DEFAULT_MAJOR is the fallback for non-numeric
 # BASE_VERSION (e.g. "latest").
-ARCH = "amd64"
 DEFAULT_MAJOR = "15"
+
+# FreeBSD architectures we publish and therefore track upstream versions for.
+# pkg versions are recorded PER ARCH: FreeBSD's aarch64 pkg builder routinely
+# lags amd64 on PORTREVISION (`_N`) bumps, so a single amd64-only number would
+# false-flag the arm64 image as outdated forever. The comparator compares each
+# arch against the same arch, and only the arches actually published by an image
+# (from its manifest list) are compared.
+ARCHES = ("amd64", "aarch64")
+DEFAULT_ARCH = "amd64"
 
 # pkg branch directory names (also the repo_type values used throughout).
 PKG_BRANCHES = ("quarterly", "latest")
 
 
-def pkg_repo_url(major, branch, arch=ARCH):
+def pkg_repo_url(major, branch, arch=DEFAULT_ARCH):
     """URL of a FreeBSD pkg repository for a given major/branch/arch."""
     return f"http://pkg.FreeBSD.org/FreeBSD:{major}:{arch}/{branch}"
 
@@ -355,9 +370,9 @@ def parse_containerfile(content, repo_name=None):
     return labels
 
 
-def load_pkg_index(repo_type, major):
+def load_pkg_index(repo_type, major, arch=DEFAULT_ARCH):
     """Load and cache the package index from FreeBSD pkg server."""
-    cache_key = (major, repo_type)
+    cache_key = (major, repo_type, arch)
     if cache_key in _pkg_index_cache:
         return _pkg_index_cache[cache_key]
 
@@ -367,7 +382,7 @@ def load_pkg_index(repo_type, major):
 
     # Fetch packagesite.pkg and extract using command-line tools
     # FreeBSD uses zstd-compressed tar archives
-    pkg_url = f"{pkg_repo_url(major, repo_type)}/packagesite.pkg"
+    pkg_url = f"{pkg_repo_url(major, repo_type, arch)}/packagesite.pkg"
     print(f"  Fetching pkg index from {pkg_url}...", file=sys.stderr)
 
     yaml_content = None
@@ -421,18 +436,38 @@ def load_pkg_index(repo_type, major):
         except json.JSONDecodeError:
             continue
 
-    print(f"  Loaded {len(index)} packages from FreeBSD:{major} {repo_type}", file=sys.stderr)
+    print(
+        f"  Loaded {len(index)} packages from FreeBSD:{major}:{arch} {repo_type}",
+        file=sys.stderr,
+    )
     _pkg_index_cache[cache_key] = index
     return index
 
 
-def get_pkg_version(pkg_name, repo_type, major):
-    """Query pkg version from FreeBSD repository via HTTP."""
+def get_pkg_version(pkg_name, repo_type, major, arch=DEFAULT_ARCH):
+    """Query pkg version from a single FreeBSD repository (one arch)."""
     if not pkg_name:
         return None
 
-    index = load_pkg_index(repo_type, major)
+    index = load_pkg_index(repo_type, major, arch)
     return index.get(pkg_name)
+
+
+def get_pkg_versions_per_arch(pkg_name, repo_type, major):
+    """Return {arch: version} for a pkg across all tracked ARCHES.
+
+    Arches where the package is absent (e.g. an arch FreeBSD hasn't built yet)
+    are omitted rather than recorded as null, so the comparator simply has no
+    target to compare that arch against.
+    """
+    if not pkg_name:
+        return {}
+    out = {}
+    for arch in ARCHES:
+        ver = get_pkg_version(pkg_name, repo_type, major, arch)
+        if ver:
+            out[arch] = ver
+    return out
 
 
 def get_upstream_version(upstream_url, upstream_jq):
@@ -544,11 +579,11 @@ def process_multi_version_service(repo, config):
         freebsd_major = extract_freebsd_major(variant_base)
 
         repo_type = "latest" if build_type == "pkg-latest" else "quarterly"
-        ver = get_pkg_version(pkg_name, repo_type, freebsd_major)
-        if ver:
+        vers = get_pkg_versions_per_arch(pkg_name, repo_type, freebsd_major)
+        if vers:
             if major not in consolidated:
                 consolidated[major] = {}
-            consolidated[major][build_type] = ver
+            consolidated[major][build_type] = vers
 
     result["variants"] = consolidated
 
@@ -618,29 +653,41 @@ def process_service(repo):
         if pkg_name_override:
             pkg_name = pkg_name_override
 
-    # FreeBSD major for pkg queries: config build.args override wins, then the
-    # pkg Containerfile's ARG (authoritative for pkg builds), then the plain
+    # FreeBSD major for pkg queries: config build.args override wins (either
+    # top-level build.args.BASE_VERSION, or -- the normal dbuild shape --
+    # nested in the default/first variant's own args), then the pkg
+    # Containerfile's ARG (authoritative for pkg builds), then the plain
     # Containerfile's ARG.
     config_base_version = None
     if config:
-        config_base_version = config.get("build", {}).get("args", {}).get("BASE_VERSION")
+        build_config_ = config.get("build", {})
+        config_base_version = build_config_.get("args", {}).get("BASE_VERSION")
+        if not config_base_version:
+            variants_ = build_config_.get("variants", [])
+            default_variant = next(
+                (v for v in variants_ if v.get("default")),
+                variants_[0] if variants_ else None,
+            )
+            if default_variant:
+                config_base_version = default_variant.get("args", {}).get("BASE_VERSION")
     freebsd_major = extract_freebsd_major(
         config_base_version or pkg_base_version or cf_base_version
     )
 
     result = {}
 
-    # Get pkg versions
+    # Get pkg versions, per arch
     if pkg_name:
-        q_ver = get_pkg_version(pkg_name, "quarterly", freebsd_major)
-        l_ver = get_pkg_version(pkg_name, "latest", freebsd_major)
+        q = get_pkg_versions_per_arch(pkg_name, "quarterly", freebsd_major)
+        l = get_pkg_versions_per_arch(pkg_name, "latest", freebsd_major)
 
-        if q_ver:
-            result["pkg"] = q_ver
-        if l_ver:
-            result["pkg-latest"] = l_ver
+        if q:
+            result["pkg"] = q
+        if l:
+            result["pkg-latest"] = l
 
-    # Get upstream version
+    # Get upstream (binary) version -- a release version is arch-agnostic, so
+    # this stays a scalar; the comparator applies it to every published arch.
     if upstream_url and upstream_jq:
         u_ver = get_upstream_version(upstream_url, upstream_jq)
         if u_ver:
@@ -665,6 +712,11 @@ def main():
             services[repo] = result
 
     output = {
+        # schema 2: pkg/pkg-latest versions are per-arch objects ({arch: version});
+        # `upstream` (binary release) stays a scalar. schema 1 had scalar pkg
+        # versions -- the comparator keys off this to stay backward compatible.
+        "schema_version": 2,
+        "arches": list(ARCHES),
         "last_check": datetime.datetime.now(datetime.timezone.utc)
         .isoformat()
         .replace("+00:00", "Z"),
