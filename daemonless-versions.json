@@ -1,9 +1,9 @@
 {
-  "last_check": "2026-08-17T23:26:46.353771Z",
+  "last_check": "2026-08-18T07:27:39.488972Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_3",
-      "pkg-latest": "0.107.78",
+      "pkg-latest": "0.107.78_1",
       "upstream": "v0.107.78"
     },
     "adguardhome-sync": {
@@ -17,7 +17,7 @@
     },
     "authelia-server": {
       "pkg": "4.39.20_4",
-      "pkg-latest": "4.39.20_3",
+      "pkg-latest": "4.39.20_4",
       "upstream": "v4.39.20"
     },
     "base-manifest-test": {
@@ -37,12 +37,12 @@
     },
     "caddy": {
       "pkg": "2.11.4_2",
-      "pkg-latest": "2.11.4_1",
+      "pkg-latest": "2.11.4_2",
       "upstream": "v2.11.4"
     },
     "cloudflared": {
       "pkg": "2026.2.0_6",
-      "pkg-latest": "2026.2.0_5"
+      "pkg-latest": "2026.2.0_6"
     },
     "cnpg-postgres": {
       "default": "18",
@@ -57,7 +57,7 @@
       }
     },
     "code-server": {
-      "upstream": "4.117.0"
+      "upstream": "4.133.0"
     },
     "dispatcharr": {
       "upstream": "v0.29.0"
@@ -72,20 +72,20 @@
       "type": "multi-version",
       "variants": {
         "15": {
-          "pkg-latest": "15.0.6"
+          "pkg-latest": "15.0.6_1"
         },
         "16": {
-          "pkg-latest": "16.0.2"
+          "pkg-latest": "16.0.2_1"
         }
       }
     },
     "gitea": {
       "pkg": "1.26.4_2",
-      "pkg-latest": "1.26.4_1"
+      "pkg-latest": "1.26.4_2"
     },
     "grafana": {
       "pkg": "13.1.1_1",
-      "pkg-latest": "13.1.1"
+      "pkg-latest": "13.1.1_1"
     },
     "grimmory": {
       "upstream": "v3.3.1"
@@ -133,7 +133,7 @@
     },
     "headscale": {
       "pkg": "0.27.1_8",
-      "pkg-latest": "0.27.1_7"
+      "pkg-latest": "0.27.1_8"
     },
     "heimdall": {
       "upstream": "v2.8.2"
@@ -148,7 +148,7 @@
     },
     "hugo": {
       "pkg": "0.163.3_2,1",
-      "pkg-latest": "0.164.0_1,1",
+      "pkg-latest": "0.165.0_1,1",
       "upstream": "v0.165.0"
     },
     "immich-ml": {
@@ -216,11 +216,11 @@
     },
     "navidrome": {
       "pkg": "0.62.0_2",
-      "pkg-latest": "0.63.2"
+      "pkg-latest": "0.63.2_1"
     },
     "nextcloud": {
       "pkg": "34.0.1_1",
-      "pkg-latest": "34.0.2_1",
+      "pkg-latest": "34.0.3",
       "upstream": "v32.0.14"
     },
     "nocodb": {
@@ -316,13 +316,13 @@
           "pkg-latest": "3_4"
         },
         "310": {
-          "pkg-latest": "3.10.20_4"
+          "pkg-latest": "3.10.21"
         },
         "311": {
-          "pkg-latest": "3.11.15_4"
+          "pkg-latest": "3.11.16"
         },
         "312": {
-          "pkg-latest": "3.12.13_4"
+          "pkg-latest": "3.12.14"
         },
         "313": {
           "pkg-latest": "3.13.15"
@@ -409,7 +409,7 @@
     },
     "seaweedfs": {
       "pkg": "4.12_6",
-      "pkg-latest": "4.41",
+      "pkg-latest": "4.41_1",
       "upstream": "4.42"
     },
     "seerr": {
@@ -445,12 +445,12 @@
     },
     "syncthing": {
       "pkg": "2.1.2_3",
-      "pkg-latest": "2.1.3",
+      "pkg-latest": "2.1.3_1",
       "upstream": "v2.1.3"
     },
     "tailscale": {
       "pkg": "1.102.2_1",
-      "pkg-latest": "1.102.2",
+      "pkg-latest": "1.102.2_1",
       "upstream": "v1.102.2"
     },
     "tautulli": {
@@ -460,7 +460,7 @@
     },
     "traefik": {
       "pkg": "3.7.10_1",
-      "pkg-latest": "3.7.10",
+      "pkg-latest": "3.7.10_1",
       "upstream": "v3.7.10"
     },
     "transmission": {
