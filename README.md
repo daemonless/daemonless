@@ -145,7 +145,6 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
-| [Base Manifest Test](https://github.com/daemonless/base-manifest-test) | Base Manifest Test on FreeBSD. |
 | [Bichon](https://github.com/daemonless/bichon) | A lightweight, high-performance Rust email archiver with WebUI. |
 | [FFmpeg](https://github.com/daemonless/ffmpeg) | FFmpeg CLI (audio/video transcoding) on FreeBSD. |
 | [Heimdall](https://github.com/daemonless/heimdall) | An Application dashboard and launcher — organize all your web apps and services in one place. |
