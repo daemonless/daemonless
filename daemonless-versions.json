@@ -1,9 +1,20 @@
 {
-  "last_check": "2026-08-18T19:22:38.725556Z",
+  "arches": [
+    "amd64",
+    "aarch64"
+  ],
+  "last_check": "2026-08-18T19:52:52.805988Z",
+  "schema_version": 2,
   "services": {
     "adguardhome": {
-      "pkg": "0.107.77_3",
-      "pkg-latest": "0.107.78_1",
+      "pkg": {
+        "aarch64": "0.107.77_2",
+        "amd64": "0.107.77_3"
+      },
+      "pkg-latest": {
+        "aarch64": "0.107.78",
+        "amd64": "0.107.78_1"
+      },
       "upstream": "v0.107.79"
     },
     "adguardhome-sync": {
@@ -16,17 +27,35 @@
       "upstream": "v2.36.0"
     },
     "authelia-server": {
-      "pkg": "4.39.20_4",
-      "pkg-latest": "4.39.20_4",
+      "pkg": {
+        "aarch64": "4.39.20_3",
+        "amd64": "4.39.20_4"
+      },
+      "pkg-latest": {
+        "aarch64": "4.39.20_3",
+        "amd64": "4.39.20_4"
+      },
       "upstream": "v4.39.20"
     },
     "base-manifest-test": {
-      "pkg": "8.21.0",
-      "pkg-latest": "8.21.0"
+      "pkg": {
+        "aarch64": "8.21.0",
+        "amd64": "8.21.0"
+      },
+      "pkg-latest": {
+        "aarch64": "8.21.0",
+        "amd64": "8.21.0"
+      }
     },
     "bazarr": {
-      "pkg": "1.5.6_1",
-      "pkg-latest": "1.6.0",
+      "pkg": {
+        "aarch64": "1.5.6_1",
+        "amd64": "1.5.6_1"
+      },
+      "pkg-latest": {
+        "aarch64": "1.6.0",
+        "amd64": "1.6.0"
+      },
       "upstream": "v1.6.0"
     },
     "bichon": {
@@ -36,23 +65,41 @@
       "upstream": "1.8.1"
     },
     "caddy": {
-      "pkg": "2.11.4_2",
-      "pkg-latest": "2.11.4_2",
+      "pkg": {
+        "aarch64": "2.11.4_1",
+        "amd64": "2.11.4_2"
+      },
+      "pkg-latest": {
+        "aarch64": "2.11.4_1",
+        "amd64": "2.11.4_2"
+      },
       "upstream": "v2.11.4"
     },
     "cloudflared": {
-      "pkg": "2026.2.0_6",
-      "pkg-latest": "2026.2.0_6"
+      "pkg": {
+        "aarch64": "2026.2.0_5",
+        "amd64": "2026.2.0_6"
+      },
+      "pkg-latest": {
+        "aarch64": "2026.2.0_5",
+        "amd64": "2026.2.0_6"
+      }
     },
     "cnpg-postgres": {
       "default": "18",
       "type": "multi-version",
       "variants": {
         "17": {
-          "pkg": "17.10"
+          "pkg": {
+            "aarch64": "17.10",
+            "amd64": "17.10"
+          }
         },
         "18": {
-          "pkg": "18.4"
+          "pkg": {
+            "aarch64": "18.4",
+            "amd64": "18.4"
+          }
         }
       }
     },
@@ -63,8 +110,12 @@
       "upstream": "v0.29.0"
     },
     "emby": {
-      "pkg": "4.9.3.0_1",
-      "pkg-latest": "4.9.3.0_3",
+      "pkg": {
+        "amd64": "4.9.3.0_1"
+      },
+      "pkg-latest": {
+        "amd64": "4.9.3.0_3"
+      },
       "upstream": "4.9.5.0"
     },
     "forgejo": {
@@ -72,20 +123,38 @@
       "type": "multi-version",
       "variants": {
         "15": {
-          "pkg-latest": "15.0.6_1"
+          "pkg-latest": {
+            "aarch64": "15.0.6",
+            "amd64": "15.0.6_1"
+          }
         },
         "16": {
-          "pkg-latest": "16.0.2_1"
+          "pkg-latest": {
+            "aarch64": "16.0.2",
+            "amd64": "16.0.2_1"
+          }
         }
       }
     },
     "gitea": {
-      "pkg": "1.26.4_2",
-      "pkg-latest": "1.26.4_2"
+      "pkg": {
+        "aarch64": "1.26.4_1",
+        "amd64": "1.26.4_2"
+      },
+      "pkg-latest": {
+        "aarch64": "1.26.4_1",
+        "amd64": "1.26.4_2"
+      }
     },
     "grafana": {
-      "pkg": "13.1.1_1",
-      "pkg-latest": "13.1.1_1"
+      "pkg": {
+        "aarch64": "13.1.1",
+        "amd64": "13.1.1_1"
+      },
+      "pkg-latest": {
+        "aarch64": "13.1.1",
+        "amd64": "13.1.1_1"
+      }
     },
     "grimmory": {
       "upstream": "v3.3.1"
@@ -95,45 +164,108 @@
       "type": "multi-version",
       "variants": {
         "2.4": {
-          "lua-pkg-latest": "2.4.35",
-          "pkg-latest": "2.4.35"
+          "lua-pkg-latest": {
+            "aarch64": "2.4.35",
+            "amd64": "2.4.35"
+          },
+          "pkg-latest": {
+            "aarch64": "2.4.35",
+            "amd64": "2.4.35"
+          }
         },
         "2.6": {
-          "lua-pkg-latest": "2.6.30",
-          "pkg-latest": "2.6.32"
+          "lua-pkg-latest": {
+            "aarch64": "2.6.30",
+            "amd64": "2.6.30"
+          },
+          "pkg-latest": {
+            "aarch64": "2.6.32",
+            "amd64": "2.6.32"
+          }
         },
         "2.8": {
-          "lua-pkg-latest": "2.8.25",
-          "pkg-latest": "2.8.27"
+          "lua-pkg-latest": {
+            "aarch64": "2.8.25",
+            "amd64": "2.8.25"
+          },
+          "pkg-latest": {
+            "aarch64": "2.8.27",
+            "amd64": "2.8.27"
+          }
         },
         "3.0": {
-          "lua-pkg-latest": "3.0.24_1",
-          "pkg-latest": "3.0.26",
-          "wolfssl-pkg-latest": "3.0.24_1"
+          "lua-pkg-latest": {
+            "aarch64": "3.0.24_1",
+            "amd64": "3.0.24_1"
+          },
+          "pkg-latest": {
+            "aarch64": "3.0.26",
+            "amd64": "3.0.26"
+          },
+          "wolfssl-pkg-latest": {
+            "aarch64": "3.0.24_1",
+            "amd64": "3.0.24_1"
+          }
         },
         "3.2": {
-          "lua-pkg-latest": "3.2.20_1",
-          "pkg-latest": "3.2.22",
-          "wolfssl-pkg-latest": "3.2.20_1"
+          "lua-pkg-latest": {
+            "aarch64": "3.2.20_1",
+            "amd64": "3.2.20_1"
+          },
+          "pkg-latest": {
+            "aarch64": "3.2.22",
+            "amd64": "3.2.22"
+          },
+          "wolfssl-pkg-latest": {
+            "aarch64": "3.2.20_1",
+            "amd64": "3.2.20_1"
+          }
         },
         "3.3": {
-          "lua-pkg-latest": "3.3.11_1",
-          "pkg-latest": "3.3.13",
-          "wolfssl-pkg-latest": "3.3.11_1"
+          "lua-pkg-latest": {
+            "aarch64": "3.3.11_1",
+            "amd64": "3.3.11_1"
+          },
+          "pkg-latest": {
+            "aarch64": "3.3.13",
+            "amd64": "3.3.13"
+          },
+          "wolfssl-pkg-latest": {
+            "aarch64": "3.3.11_1",
+            "amd64": "3.3.11_1"
+          }
         },
         "3.4": {
-          "lua-pkg-latest": "3.4.1_1",
-          "pkg-latest": "3.4.3",
-          "wolfssl-pkg-latest": "3.4.1_1"
+          "lua-pkg-latest": {
+            "aarch64": "3.4.1_1",
+            "amd64": "3.4.1_1"
+          },
+          "pkg-latest": {
+            "aarch64": "3.4.3",
+            "amd64": "3.4.3"
+          },
+          "wolfssl-pkg-latest": {
+            "aarch64": "3.4.1_1",
+            "amd64": "3.4.1_1"
+          }
         },
         "devel": {
-          "pkg-latest": "3.3.d10"
+          "pkg-latest": {
+            "aarch64": "3.3.d10",
+            "amd64": "3.3.d10"
+          }
         }
       }
     },
     "headscale": {
-      "pkg": "0.27.1_8",
-      "pkg-latest": "0.27.1_8"
+      "pkg": {
+        "aarch64": "0.27.1_7",
+        "amd64": "0.27.1_8"
+      },
+      "pkg-latest": {
+        "aarch64": "0.27.1_7",
+        "amd64": "0.27.1_8"
+      }
     },
     "heimdall": {
       "upstream": "v2.8.2"
@@ -142,13 +274,25 @@
       "upstream": "2026.8.2"
     },
     "homepage": {
-      "pkg": "1.12.3",
-      "pkg-latest": "1.13.2",
+      "pkg": {
+        "aarch64": "1.12.3",
+        "amd64": "1.12.3"
+      },
+      "pkg-latest": {
+        "aarch64": "1.13.2",
+        "amd64": "1.13.2"
+      },
       "upstream": "v2.0.0"
     },
     "hugo": {
-      "pkg": "0.163.3_2,1",
-      "pkg-latest": "0.165.0_1,1",
+      "pkg": {
+        "aarch64": "0.163.3_1,1",
+        "amd64": "0.163.3_2,1"
+      },
+      "pkg-latest": {
+        "aarch64": "0.164.0_1,1",
+        "amd64": "0.165.0_1,1"
+      },
       "upstream": "v0.165.0"
     },
     "immich-ml": {
@@ -159,10 +303,16 @@
       "type": "multi-version",
       "variants": {
         "14": {
-          "pkg": "14.23"
+          "pkg": {
+            "aarch64": "14.23",
+            "amd64": "14.23"
+          }
         },
         "18": {
-          "pkg": "18.4"
+          "pkg": {
+            "aarch64": "18.4",
+            "amd64": "18.4"
+          }
         }
       }
     },
@@ -170,37 +320,65 @@
       "upstream": "v3.1.0"
     },
     "jellyfin": {
-      "pkg": "10.11.11",
-      "pkg-latest": "10.11.11",
+      "pkg": {
+        "aarch64": "10.11.11",
+        "amd64": "10.11.11"
+      },
+      "pkg-latest": {
+        "aarch64": "10.11.11",
+        "amd64": "10.11.11"
+      },
       "upstream": "v10.11.11"
     },
     "jellyfin-ffmpeg": {
       "upstream": "v7.1.4-3"
     },
     "lidarr": {
-      "pkg": "3.1.0.4875",
-      "pkg-latest": "3.1.0.4875",
+      "pkg": {
+        "amd64": "3.1.0.4875"
+      },
+      "pkg-latest": {
+        "amd64": "3.1.0.4875"
+      },
       "upstream": "3.1.0.4875"
     },
     "lldap": {
-      "pkg": "0.6.3_1",
-      "pkg-latest": "0.6.3_2"
+      "pkg": {
+        "aarch64": "0.6.3_1",
+        "amd64": "0.6.3_1"
+      },
+      "pkg-latest": {
+        "aarch64": "0.6.3_2",
+        "amd64": "0.6.3_2"
+      }
     },
     "mariadb": {
       "default": "12.3",
       "type": "multi-version",
       "variants": {
         "10.11": {
-          "pkg-latest": "10.11.18"
+          "pkg-latest": {
+            "aarch64": "10.11.18",
+            "amd64": "10.11.18"
+          }
         },
         "11.4": {
-          "pkg-latest": "11.4.12"
+          "pkg-latest": {
+            "aarch64": "11.4.12",
+            "amd64": "11.4.12"
+          }
         },
         "11.8": {
-          "pkg-latest": "11.8.8"
+          "pkg-latest": {
+            "aarch64": "11.8.8",
+            "amd64": "11.8.8"
+          }
         },
         "12.3": {
-          "pkg-latest": "12.3.2_1"
+          "pkg-latest": {
+            "aarch64": "12.3.2_1",
+            "amd64": "12.3.2_1"
+          }
         }
       }
     },
@@ -208,19 +386,37 @@
       "upstream": "v3.23.1"
     },
     "memcached": {
-      "pkg": "1.6.43",
-      "pkg-latest": "1.6.45"
+      "pkg": {
+        "aarch64": "1.6.43",
+        "amd64": "1.6.43"
+      },
+      "pkg-latest": {
+        "aarch64": "1.6.45",
+        "amd64": "1.6.45"
+      }
     },
     "n8n": {
       "upstream": "2.35.3"
     },
     "navidrome": {
-      "pkg": "0.62.0_2",
-      "pkg-latest": "0.63.2_1"
+      "pkg": {
+        "aarch64": "0.62.0_1",
+        "amd64": "0.62.0_2"
+      },
+      "pkg-latest": {
+        "aarch64": "0.63.2",
+        "amd64": "0.63.2_1"
+      }
     },
     "nextcloud": {
-      "pkg": "34.0.1_1",
-      "pkg-latest": "34.0.3",
+      "pkg": {
+        "aarch64": "34.0.1_1",
+        "amd64": "34.0.1_1"
+      },
+      "pkg-latest": {
+        "aarch64": "34.0.2",
+        "amd64": "34.0.3"
+      },
       "upstream": "v32.0.14"
     },
     "nocodb": {
@@ -230,22 +426,40 @@
       "type": "multi-version",
       "variants": {
         "20": {
-          "pkg-latest": "20.20.2_2"
+          "pkg-latest": {
+            "aarch64": "20.20.2_2",
+            "amd64": "20.20.2_2"
+          }
         },
         "22": {
-          "pkg-latest": "22.23.1"
+          "pkg-latest": {
+            "aarch64": "22.23.1",
+            "amd64": "22.23.1"
+          }
         },
         "24": {
-          "pkg-latest": "24.18.0"
+          "pkg-latest": {
+            "aarch64": "24.18.0",
+            "amd64": "24.18.0"
+          }
         },
         "26": {
-          "pkg-latest": "26.5.0"
+          "pkg-latest": {
+            "aarch64": "26.5.0",
+            "amd64": "26.5.0"
+          }
         }
       }
     },
     "onlyoffice": {
-      "pkg": "9.4.0_1",
-      "pkg-latest": "9.4.0_1",
+      "pkg": {
+        "aarch64": "9.4.0_1",
+        "amd64": "9.4.0_1"
+      },
+      "pkg-latest": {
+        "aarch64": "9.4.0_1",
+        "amd64": "9.4.0_1"
+      },
       "upstream": "9.4.0"
     },
     "opencloud": {
@@ -277,78 +491,155 @@
       "type": "multi-version",
       "variants": {
         "14": {
-          "pkg": "14.23",
-          "pkg-latest": "14.23"
+          "pkg": {
+            "aarch64": "14.23",
+            "amd64": "14.23"
+          },
+          "pkg-latest": {
+            "aarch64": "14.23",
+            "amd64": "14.23"
+          }
         },
         "15": {
-          "pkg": "15.18",
-          "pkg-latest": "15.18"
+          "pkg": {
+            "aarch64": "15.18",
+            "amd64": "15.18"
+          },
+          "pkg-latest": {
+            "aarch64": "15.18",
+            "amd64": "15.18"
+          }
         },
         "16": {
-          "pkg": "16.14",
-          "pkg-latest": "16.14"
+          "pkg": {
+            "aarch64": "16.14",
+            "amd64": "16.14"
+          },
+          "pkg-latest": {
+            "aarch64": "16.14",
+            "amd64": "16.14"
+          }
         },
         "17": {
-          "pkg": "17.10",
-          "pkg-latest": "17.10"
+          "pkg": {
+            "aarch64": "17.10",
+            "amd64": "17.10"
+          },
+          "pkg-latest": {
+            "aarch64": "17.10",
+            "amd64": "17.10"
+          }
         },
         "18": {
-          "pkg": "18.4",
-          "pkg-latest": "18.4"
+          "pkg": {
+            "aarch64": "18.4",
+            "amd64": "18.4"
+          },
+          "pkg-latest": {
+            "aarch64": "18.4",
+            "amd64": "18.4"
+          }
         }
       }
     },
     "prowlarr": {
-      "pkg": "2.3.5.5327",
-      "pkg-latest": "2.4.0.5397",
+      "pkg": {
+        "amd64": "2.3.5.5327"
+      },
+      "pkg-latest": {
+        "amd64": "2.4.0.5397"
+      },
       "upstream": "2.5.2.5491"
     },
     "python": {
       "type": "multi-version",
       "variants": {
         "2": {
-          "pkg-latest": "2_3"
+          "pkg-latest": {
+            "aarch64": "2_3",
+            "amd64": "2_3"
+          }
         },
         "27": {
-          "pkg-latest": "2.7.18_5"
+          "pkg-latest": {
+            "aarch64": "2.7.18_5",
+            "amd64": "2.7.18_5"
+          }
         },
         "3": {
-          "pkg-latest": "3_4"
+          "pkg-latest": {
+            "aarch64": "3_4",
+            "amd64": "3_4"
+          }
         },
         "310": {
-          "pkg-latest": "3.10.21"
+          "pkg-latest": {
+            "aarch64": "3.10.20_4",
+            "amd64": "3.10.21"
+          }
         },
         "311": {
-          "pkg-latest": "3.11.16"
+          "pkg-latest": {
+            "aarch64": "3.11.15_4",
+            "amd64": "3.11.16"
+          }
         },
         "312": {
-          "pkg-latest": "3.12.14"
+          "pkg-latest": {
+            "aarch64": "3.12.13_4",
+            "amd64": "3.12.14"
+          }
         },
         "313": {
-          "pkg-latest": "3.13.15"
+          "pkg-latest": {
+            "aarch64": "3.13.15",
+            "amd64": "3.13.15"
+          }
         },
         "313t": {
-          "pkg-latest": "3.13.15"
+          "pkg-latest": {
+            "aarch64": "3.13.15",
+            "amd64": "3.13.15"
+          }
         },
         "314": {
-          "pkg-latest": "3.14.7"
+          "pkg-latest": {
+            "aarch64": "3.14.7",
+            "amd64": "3.14.7"
+          }
         },
         "314t": {
-          "pkg-latest": "3.14.7"
+          "pkg-latest": {
+            "aarch64": "3.14.7",
+            "amd64": "3.14.7"
+          }
         },
         "315": {
-          "pkg-latest": "3.15.0.r1"
+          "pkg-latest": {
+            "aarch64": "3.15.0.r1",
+            "amd64": "3.15.0.r1"
+          }
         }
       }
     },
     "qbittorrent": {
-      "pkg": "5.2.3",
-      "pkg-latest": "5.2.3",
+      "pkg": {
+        "aarch64": "5.2.3",
+        "amd64": "5.2.3"
+      },
+      "pkg-latest": {
+        "aarch64": "5.2.3",
+        "amd64": "5.2.3"
+      },
       "upstream": "release-5.2.3"
     },
     "radarr": {
-      "pkg": "6.1.1.10360",
-      "pkg-latest": "6.3.0.10514",
+      "pkg": {
+        "amd64": "6.1.1.10360"
+      },
+      "pkg-latest": {
+        "amd64": "6.3.0.10514"
+      },
       "upstream": "6.3.0.10514"
     },
     "readmeabook": {
@@ -359,28 +650,52 @@
       "type": "multi-version",
       "variants": {
         "6.2": {
-          "pkg-latest": "6.2.23"
+          "pkg-latest": {
+            "aarch64": "6.2.23",
+            "amd64": "6.2.23"
+          }
         },
         "7.2": {
-          "pkg-latest": "7.2.15"
+          "pkg-latest": {
+            "aarch64": "7.2.15",
+            "amd64": "7.2.15"
+          }
         },
         "7.4": {
-          "pkg-latest": "7.4.10"
+          "pkg-latest": {
+            "aarch64": "7.4.10",
+            "amd64": "7.4.10"
+          }
         },
         "8.0": {
-          "pkg-latest": "8.0.6"
+          "pkg-latest": {
+            "aarch64": "8.0.6",
+            "amd64": "8.0.6"
+          }
         },
         "8.2": {
-          "pkg-latest": "8.2.8"
+          "pkg-latest": {
+            "aarch64": "8.2.8",
+            "amd64": "8.2.8"
+          }
         },
         "8.4": {
-          "pkg-latest": "8.4.5"
+          "pkg-latest": {
+            "aarch64": "8.4.5",
+            "amd64": "8.4.5"
+          }
         },
         "8.6": {
-          "pkg-latest": "8.6.5"
+          "pkg-latest": {
+            "aarch64": "8.6.5",
+            "amd64": "8.6.5"
+          }
         },
         "8.8": {
-          "pkg-latest": "8.8.1"
+          "pkg-latest": {
+            "aarch64": "8.8.1",
+            "amd64": "8.8.1"
+          }
         }
       }
     },
@@ -388,8 +703,14 @@
       "upstream": "v7.260719.1051"
     },
     "sabnzbd": {
-      "pkg": "5.0.1",
-      "pkg-latest": "5.0.1",
+      "pkg": {
+        "aarch64": "5.0.1",
+        "amd64": "5.0.1"
+      },
+      "pkg-latest": {
+        "aarch64": "5.0.1",
+        "amd64": "5.0.1"
+      },
       "upstream": "5.1.1"
     },
     "samba": {
@@ -397,44 +718,87 @@
       "type": "multi-version",
       "variants": {
         "422": {
-          "pkg": "4.22.10_1",
-          "pkg-latest": "4.22.11"
+          "pkg": {
+            "aarch64": "4.22.10_1",
+            "amd64": "4.22.10_1"
+          },
+          "pkg-latest": {
+            "aarch64": "4.22.11",
+            "amd64": "4.22.11"
+          }
         },
         "423": {
-          "pkg": "4.23.8_1",
-          "pkg-krb": "4.23.8_1",
-          "pkg-latest": "4.23.11"
+          "pkg": {
+            "aarch64": "4.23.8_1",
+            "amd64": "4.23.8_1"
+          },
+          "pkg-krb": {
+            "aarch64": "4.23.8_1",
+            "amd64": "4.23.8_1"
+          },
+          "pkg-latest": {
+            "aarch64": "4.23.11",
+            "amd64": "4.23.11"
+          }
         }
       }
     },
     "seaweedfs": {
-      "pkg": "4.12_6",
-      "pkg-latest": "4.41_1",
+      "pkg": {
+        "aarch64": "4.12_5",
+        "amd64": "4.12_6"
+      },
+      "pkg-latest": {
+        "aarch64": "4.41",
+        "amd64": "4.41_1"
+      },
       "upstream": "4.42"
     },
     "seerr": {
       "upstream": "v3.4.1"
     },
     "smokeping": {
-      "pkg": "2.9.0_1",
-      "pkg-latest": "2.9.0_2"
+      "pkg": {
+        "aarch64": "2.9.0_1",
+        "amd64": "2.9.0_1"
+      },
+      "pkg-latest": {
+        "aarch64": "2.9.0_2",
+        "amd64": "2.9.0_2"
+      }
     },
     "sonarr": {
-      "pkg": "4.0.17.2952",
-      "pkg-latest": "4.0.19.2979",
+      "pkg": {
+        "amd64": "4.0.17.2952"
+      },
+      "pkg-latest": {
+        "amd64": "4.0.19.2979"
+      },
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
       "upstream": "v1.6.2"
     },
     "stalwart": {
-      "pkg": "0.15.5_4",
-      "pkg-latest": "0.16.15",
+      "pkg": {
+        "aarch64": "0.15.5_4",
+        "amd64": "0.15.5_4"
+      },
+      "pkg-latest": {
+        "aarch64": "0.16.15",
+        "amd64": "0.16.15"
+      },
       "upstream": "v0.16.18"
     },
     "stirling-pdf": {
-      "pkg": "2.2.1_2",
-      "pkg-latest": "2.2.1_2",
+      "pkg": {
+        "aarch64": "2.2.1_2",
+        "amd64": "2.2.1_2"
+      },
+      "pkg-latest": {
+        "aarch64": "2.2.1_2",
+        "amd64": "2.2.1_2"
+      },
       "upstream": "v2.14.3"
     },
     "stump": {
@@ -444,61 +808,121 @@
       "upstream": "6.1.0"
     },
     "syncthing": {
-      "pkg": "2.1.2_3",
-      "pkg-latest": "2.1.3_1",
+      "pkg": {
+        "aarch64": "2.1.2_2",
+        "amd64": "2.1.2_3"
+      },
+      "pkg-latest": {
+        "aarch64": "2.1.3",
+        "amd64": "2.1.3_1"
+      },
       "upstream": "v2.1.3"
     },
     "tailscale": {
-      "pkg": "1.102.2_1",
-      "pkg-latest": "1.102.2_1",
+      "pkg": {
+        "aarch64": "1.102.2",
+        "amd64": "1.102.2_1"
+      },
+      "pkg-latest": {
+        "aarch64": "1.102.2",
+        "amd64": "1.102.2_1"
+      },
       "upstream": "v1.102.2"
     },
     "tautulli": {
-      "pkg": "2.16.0_1",
-      "pkg-latest": "2.16.0_1",
+      "pkg": {
+        "aarch64": "2.16.0_1",
+        "amd64": "2.16.0_1"
+      },
+      "pkg-latest": {
+        "aarch64": "2.16.0_1",
+        "amd64": "2.16.0_1"
+      },
       "upstream": "v2.17.2"
     },
     "traefik": {
-      "pkg": "3.7.10_1",
-      "pkg-latest": "3.7.10_1",
+      "pkg": {
+        "aarch64": "3.7.10",
+        "amd64": "3.7.10_1"
+      },
+      "pkg-latest": {
+        "aarch64": "3.7.10",
+        "amd64": "3.7.10_1"
+      },
       "upstream": "v3.7.10"
     },
     "transmission": {
-      "pkg": "4.1.3",
-      "pkg-latest": "4.1.3",
+      "pkg": {
+        "aarch64": "4.1.3",
+        "amd64": "4.1.3"
+      },
+      "pkg-latest": {
+        "aarch64": "4.1.3",
+        "amd64": "4.1.3"
+      },
       "upstream": "4.1.3"
     },
     "transmission-wireguard": {
-      "pkg": "4.1.3",
-      "pkg-latest": "4.1.3",
+      "pkg": {
+        "aarch64": "4.1.3",
+        "amd64": "4.1.3"
+      },
+      "pkg-latest": {
+        "aarch64": "4.1.3",
+        "amd64": "4.1.3"
+      },
       "upstream": "4.1.3"
     },
     "trek": {
       "upstream": "3.4.1"
     },
     "unifi": {
-      "pkg": "10.4.57_1",
-      "pkg-latest": "10.5.67",
+      "pkg": {
+        "aarch64": "10.4.57_1",
+        "amd64": "10.4.57_1"
+      },
+      "pkg-latest": {
+        "aarch64": "10.5.67",
+        "amd64": "10.5.67"
+      },
       "upstream": "10.5.67"
     },
     "uptime-kuma": {
       "upstream": "2.5.0"
     },
     "vaultwarden": {
-      "pkg": "1.36.0_1",
-      "pkg-latest": "1.37.1",
+      "pkg": {
+        "aarch64": "1.36.0_1",
+        "amd64": "1.36.0_1"
+      },
+      "pkg-latest": {
+        "aarch64": "1.37.1",
+        "amd64": "1.37.1"
+      },
       "upstream": "1.37.1"
     },
     "wagtail": {
-      "pkg": "7.4.2",
-      "pkg-latest": "7.4.2"
+      "pkg": {
+        "aarch64": "7.4.2",
+        "amd64": "7.4.2"
+      },
+      "pkg-latest": {
+        "aarch64": "7.4.2",
+        "amd64": "7.4.2"
+      }
     },
     "woodpecker": {
       "upstream": "v3.17.0"
     },
     "zensical": {
-      "pkg": "0.0.53",
-      "pkg-latest": "0.0.53",
+      "pkg": {
+        "aarch64": "0.0.53",
+        "amd64": "0.0.53"
+      },
+      "pkg-latest": {
+        "aarch64": "0.0.52",
+        "amd64": "0.0.53"
+      },
       "upstream": "0.0.56"
     }
   }
