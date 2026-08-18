@@ -1,5 +1,5 @@
 {
-  "last_check": "2026-08-18T07:27:39.488972Z",
+  "last_check": "2026-08-18T13:35:02.976598Z",
   "services": {
     "adguardhome": {
       "pkg": "0.107.77_3",
@@ -212,7 +212,7 @@
       "pkg-latest": "1.6.45"
     },
     "n8n": {
-      "upstream": "2.34.6"
+      "upstream": "2.35.3"
     },
     "navidrome": {
       "pkg": "0.62.0_2",
@@ -485,8 +485,6 @@
       "upstream": "2.5.0"
     },
     "vaultwarden": {
-      "pkg": "1.36.0_1",
-      "pkg-latest": "1.37.1",
       "upstream": "1.37.1"
     },
     "wagtail": {
