@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-19T02:12:39.071034Z",
+  "last_check": "2026-08-19T13:39:12.826123Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -49,7 +49,7 @@
       "upstream": "v1.6.0"
     },
     "bichon": {
-      "upstream": "2.0.1"
+      "upstream": "2.0.2"
     },
     "bulwark-webmail": {
       "upstream": "1.8.1"
@@ -124,16 +124,6 @@
             "amd64": "16.0.2_1"
           }
         }
-      }
-    },
-    "gitea": {
-      "pkg": {
-        "aarch64": "1.26.4_1",
-        "amd64": "1.26.4_2"
-      },
-      "pkg-latest": {
-        "aarch64": "1.26.4_2",
-        "amd64": "1.26.4_2"
       }
     },
     "grafana": {
@@ -386,7 +376,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.35.3"
+      "upstream": "2.35.4"
     },
     "navidrome": {
       "pkg": {
@@ -839,7 +829,7 @@
         "aarch64": "3.7.10_1",
         "amd64": "3.7.10_1"
       },
-      "upstream": "v3.7.10"
+      "upstream": "v3.7.11"
     },
     "transmission": {
       "pkg": {
