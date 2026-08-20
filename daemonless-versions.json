@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-20T07:30:55.835691Z",
+  "last_check": "2026-08-20T13:38:57.125921Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -107,6 +107,16 @@
         "amd64": "4.9.3.0_3"
       },
       "upstream": "4.9.5.0"
+    },
+    "ffmpeg": {
+      "pkg": {
+        "aarch64": "8.1.2_1,1",
+        "amd64": "8.1.2_1,1"
+      },
+      "pkg-latest": {
+        "aarch64": "8.1.2_2,1",
+        "amd64": "8.1.2_2,1"
+      }
     },
     "forgejo": {
       "default": "15",
@@ -376,7 +386,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.35.4"
+      "upstream": "2.35.5"
     },
     "navidrome": {
       "pkg": {
