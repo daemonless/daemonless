@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-20T13:38:57.125921Z",
+  "last_check": "2026-08-20T19:23:20.760320Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -817,7 +817,7 @@
         "aarch64": "1.102.2_1",
         "amd64": "1.102.2_1"
       },
-      "upstream": "v1.102.2"
+      "upstream": "v1.102.3"
     },
     "tautulli": {
       "pkg": {
