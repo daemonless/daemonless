@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-21T02:15:43.419580Z",
+  "last_check": "2026-08-21T07:32:39.001716Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -272,7 +272,7 @@
         "aarch64": "1.13.2",
         "amd64": "1.13.2"
       },
-      "upstream": "v2.0.0"
+      "upstream": "v2.1.0"
     },
     "hugo": {
       "pkg": {
@@ -742,7 +742,7 @@
         "aarch64": "4.41_1",
         "amd64": "4.41_1"
       },
-      "upstream": "4.42"
+      "upstream": "4.43"
     },
     "seerr": {
       "upstream": "v3.4.1"
