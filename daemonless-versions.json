@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-22T07:22:22.613676Z",
+  "last_check": "2026-08-22T13:22:57.793898Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -742,7 +742,7 @@
         "aarch64": "4.41_1",
         "amd64": "4.41_2"
       },
-      "upstream": "4.43"
+      "upstream": "4.44"
     },
     "seerr": {
       "upstream": "v3.4.1"
@@ -878,7 +878,7 @@
       "upstream": "10.5.67"
     },
     "uptime-kuma": {
-      "upstream": "2.5.1"
+      "upstream": "2.5.3"
     },
     "vaultwarden": {
       "pkg": {
@@ -889,7 +889,7 @@
         "aarch64": "1.37.1",
         "amd64": "1.37.1"
       },
-      "upstream": "1.37.1"
+      "upstream": "1.37.2"
     },
     "wagtail": {
       "pkg": {
