@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-22T02:08:47.060605Z",
+  "last_check": "2026-08-22T07:22:22.613676Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -147,7 +147,7 @@
       }
     },
     "grimmory": {
-      "upstream": "v3.3.2"
+      "upstream": "v3.3.3"
     },
     "haproxy": {
       "default": "3.4",
@@ -878,7 +878,7 @@
       "upstream": "10.5.67"
     },
     "uptime-kuma": {
-      "upstream": "2.5.0"
+      "upstream": "2.5.1"
     },
     "vaultwarden": {
       "pkg": {
