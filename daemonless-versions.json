@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-23T07:24:11.697877Z",
+  "last_check": "2026-08-23T13:24:53.073449Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -329,8 +329,7 @@
       },
       "pkg-latest": {
         "amd64": "3.1.0.4875"
-      },
-      "upstream": "3.1.0.4875"
+      }
     },
     "lldap": {
       "pkg": {
@@ -538,8 +537,7 @@
       },
       "pkg-latest": {
         "amd64": "2.4.0.5397"
-      },
-      "upstream": "2.5.2.5491"
+      }
     },
     "python": {
       "type": "multi-version",
@@ -629,8 +627,7 @@
       },
       "pkg-latest": {
         "amd64": "6.3.0.10514"
-      },
-      "upstream": "6.3.0.10514"
+      }
     },
     "readmeabook": {
       "upstream": "v1.2.2"
