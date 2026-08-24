@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-24T13:41:06.132550Z",
+  "last_check": "2026-08-24T19:20:56.755627Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -376,7 +376,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.23.1"
+      "upstream": "v3.24.0"
     },
     "memcached": {
       "pkg": {
