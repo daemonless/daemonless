@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-24T07:48:59.324465Z",
+  "last_check": "2026-08-24T13:41:06.132550Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -410,7 +410,7 @@
         "aarch64": "34.0.3",
         "amd64": "34.0.3"
       },
-      "upstream": "v32.0.14"
+      "upstream": "v34.0.3"
     },
     "nocodb": {
       "upstream": "0.301.3"
@@ -905,7 +905,7 @@
       }
     },
     "woodpecker": {
-      "upstream": "v3.17.0"
+      "upstream": "v3.18.0"
     },
     "zensical": {
       "pkg": {
