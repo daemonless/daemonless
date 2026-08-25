@@ -67,6 +67,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Forgejo](https://github.com/daemonless/forgejo) | Forgejo is a self-hosted lightweight software forge |
 | [Gitea](https://github.com/daemonless/gitea) | Lightweight self-hosted Git service — a community managed fork of Gogs written in Go. |
 | [HAProxy](https://github.com/daemonless/haproxy) | Reliable, high performance TCP/HTTP load balancer and reverse proxy. |
+| [Sylve](https://github.com/daemonless/sylve) | Modern, open-source management platform for FreeBSD managing Virtual Machines (Bhyve), Jails, and ZFS storage. |
 | [Tailscale](https://github.com/daemonless/tailscale) | Zero-config mesh VPN built on WireGuard — securely connect your devices without port forwarding or firewall changes. |
 | [Traefik](https://github.com/daemonless/traefik) | Modern HTTP reverse proxy and load balancer on FreeBSD. |
 | [Woodpecker CI](https://github.com/daemonless/woodpecker) | Lightweight CI/CD pipeline server with a built-in agent — integrates with Gitea, GitHub, and GitLab for automated builds and deployments. |
