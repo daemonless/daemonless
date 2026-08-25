@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-25T13:40:02.753729Z",
+  "last_check": "2026-08-25T15:35:16.720848Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -456,7 +456,7 @@
       "upstream": "9.4.0"
     },
     "opencloud": {
-      "upstream": "v7.4.0"
+      "upstream": "v7.5.0"
     },
     "opencloud-radicale": {
       "upstream": "v3.7.8"
@@ -704,7 +704,7 @@
         "aarch64": "5.0.1",
         "amd64": "5.0.1"
       },
-      "upstream": "5.1.1"
+      "upstream": "5.1.2"
     },
     "samba": {
       "default": "423",
