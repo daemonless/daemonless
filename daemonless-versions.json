@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-24T19:20:56.755627Z",
+  "last_check": "2026-08-25T02:11:35.031546Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -94,7 +94,7 @@
       }
     },
     "code-server": {
-      "upstream": "4.133.0"
+      "upstream": "4.134.0"
     },
     "dispatcharr": {
       "upstream": "v0.29.0"
@@ -781,7 +781,7 @@
         "aarch64": "0.16.15",
         "amd64": "0.16.18"
       },
-      "upstream": "v0.16.18"
+      "upstream": "v0.16.19"
     },
     "stirling-pdf": {
       "pkg": {
