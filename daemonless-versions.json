@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-25T19:21:15.343287Z",
+  "last_check": "2026-08-26T02:17:21.532226Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -836,7 +836,7 @@
     "traefik": {
       "pkg": {
         "aarch64": "3.7.10_2",
-        "amd64": "3.7.10_2"
+        "amd64": "3.7.11"
       },
       "pkg-latest": {
         "aarch64": "3.7.10_2",
