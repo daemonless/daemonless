@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-27T12:46:07.019084Z",
+  "last_check": "2026-08-27T22:40:51.477512Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -94,7 +94,7 @@
       }
     },
     "code-server": {
-      "upstream": "4.134.0"
+      "upstream": "4.135.0"
     },
     "dispatcharr": {
       "upstream": "v0.29.0"
@@ -831,7 +831,7 @@
         "aarch64": "2.16.0_1",
         "amd64": "2.16.0_1"
       },
-      "upstream": "v2.18.0"
+      "upstream": "v2.18.1"
     },
     "traefik": {
       "pkg": {
@@ -878,7 +878,7 @@
         "aarch64": "10.5.67",
         "amd64": "10.5.67"
       },
-      "upstream": "10.5.67"
+      "upstream": "10.6.101"
     },
     "uptime-kuma": {
       "upstream": "2.5.3"
