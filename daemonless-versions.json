@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-26T21:19:53.733526Z",
+  "last_check": "2026-08-27T10:40:59.883477Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -468,7 +468,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.0.5"
+      "upstream": "v3.1.0"
     },
     "papra": {
       "upstream": "26.6.1"
@@ -770,7 +770,7 @@
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
-      "upstream": "v1.6.3"
+      "upstream": "v1.6.4"
     },
     "stalwart": {
       "pkg": {
