@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-08-29T16:55:58.519078Z",
+  "last_check": "2026-08-29T21:21:43.092795Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -97,7 +97,7 @@
       "upstream": "4.135.0"
     },
     "dispatcharr": {
-      "upstream": "v0.29.0"
+      "upstream": "v0.30.0"
     },
     "emby": {
       "pkg": {
