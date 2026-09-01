@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-01T12:09:32.701379Z",
+  "last_check": "2026-09-01T17:02:45.625762Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -466,10 +466,10 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.1.1"
+      "upstream": "v3.1.2"
     },
     "papra": {
-      "upstream": "26.6.1"
+      "upstream": "26.6.2"
     },
     "playwright": {
       "upstream": "1.62.1"
