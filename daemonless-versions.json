@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-01T21:28:43.420531Z",
+  "last_check": "2026-09-02T05:11:35.125082Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -271,7 +271,7 @@
         "aarch64": "2.1.2",
         "amd64": "2.1.2"
       },
-      "upstream": "v2.1.2"
+      "upstream": "v2.2.0"
     },
     "hugo": {
       "pkg": {
