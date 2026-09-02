@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-02T11:47:26.189007Z",
+  "last_check": "2026-09-02T16:55:04.997992Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -260,7 +260,7 @@
       "upstream": "v2.8.2"
     },
     "home-assistant": {
-      "upstream": "2026.8.3"
+      "upstream": "2026.9.0"
     },
     "homepage": {
       "pkg": {
@@ -914,7 +914,7 @@
         "aarch64": "0.0.56",
         "amd64": "0.0.57"
       },
-      "upstream": "0.0.57"
+      "upstream": "0.0.58"
     }
   }
 }
