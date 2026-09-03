@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-03T05:15:19.462760Z",
+  "last_check": "2026-09-03T11:47:43.614841Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -35,7 +35,7 @@
         "aarch64": "4.39.20_5",
         "amd64": "4.39.20_5"
       },
-      "upstream": "v4.39.21"
+      "upstream": "v4.39.22"
     },
     "bazarr": {
       "pkg": {
@@ -457,7 +457,7 @@
       "upstream": "v7.5.0"
     },
     "opencloud-radicale": {
-      "upstream": "v3.7.8"
+      "upstream": "v3.8.0"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
