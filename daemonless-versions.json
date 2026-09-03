@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-03T11:47:43.614841Z",
+  "last_check": "2026-09-03T16:45:36.301421Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -387,7 +387,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.37.7"
+      "upstream": "2.37.9"
     },
     "navidrome": {
       "pkg": {
@@ -865,7 +865,7 @@
       "upstream": "4.1.3"
     },
     "trek": {
-      "upstream": "4.1.1"
+      "upstream": "4.2.0"
     },
     "unifi": {
       "pkg": {
