@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-03T16:45:36.301421Z",
+  "last_check": "2026-09-03T21:27:00.797375Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -914,7 +914,7 @@
         "aarch64": "0.0.56",
         "amd64": "0.0.57"
       },
-      "upstream": "0.0.58"
+      "upstream": "0.0.59"
     }
   }
 }
