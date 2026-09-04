@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-03T21:27:00.797375Z",
+  "last_check": "2026-09-04T05:12:07.048475Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -374,7 +374,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.25.0"
+      "upstream": "v3.25.1"
     },
     "memcached": {
       "pkg": {
@@ -466,7 +466,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.1.2"
+      "upstream": "v3.1.3"
     },
     "papra": {
       "upstream": "26.6.2"
@@ -793,7 +793,7 @@
       "upstream": "v2.14.3"
     },
     "stump": {
-      "upstream": "v0.1.6"
+      "upstream": "v0.1.7"
     },
     "superset": {
       "upstream": "6.1.0"
