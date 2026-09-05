@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-05T10:58:58.236400Z",
+  "last_check": "2026-09-05T15:40:20.464612Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -253,10 +253,10 @@
       }
     },
     "heimdall": {
-      "upstream": "v2.8.2"
+      "upstream": "v2.8.3"
     },
     "home-assistant": {
-      "upstream": "2026.9.0"
+      "upstream": "2026.9.1"
     },
     "homepage": {
       "pkg": {
