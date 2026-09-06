@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-06T05:11:36.306983Z",
+  "last_check": "2026-09-06T11:25:35.204104Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -39,7 +39,8 @@
     },
     "bazarr": {
       "pkg": {
-        "aarch64": "1.5.6_1"
+        "aarch64": "1.5.6_1",
+        "amd64": "1.5.6_1"
       },
       "pkg-latest": {
         "aarch64": "1.6.0",
@@ -318,7 +319,7 @@
       "upstream": "v10.11.11"
     },
     "jellyfin-ffmpeg": {
-      "upstream": "v7.1.4-3"
+      "upstream": "v8.1.2-4"
     },
     "lidarr": {
       "pkg": {
@@ -890,7 +891,8 @@
     },
     "wagtail": {
       "pkg": {
-        "aarch64": "7.4.2"
+        "aarch64": "7.4.2",
+        "amd64": "7.4.2"
       },
       "pkg-latest": {
         "aarch64": "7.4.2",
