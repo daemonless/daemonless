@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-07T05:20:17.091231Z",
+  "last_check": "2026-09-07T13:05:29.231481Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -819,7 +819,7 @@
     },
     "tautulli": {
       "pkg": {
-        "aarch64": "2.16.0_1",
+        "aarch64": "2.16.0_2",
         "amd64": "2.16.0_2"
       },
       "pkg-latest": {
