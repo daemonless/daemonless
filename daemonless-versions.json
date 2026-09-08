@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-08T05:24:03.693048Z",
+  "last_check": "2026-09-08T11:49:38.063432Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -35,7 +35,7 @@
         "aarch64": "4.39.20_5",
         "amd64": "4.39.20_6"
       },
-      "upstream": "v4.39.22"
+      "upstream": "v4.39.23"
     },
     "bazarr": {
       "pkg": {
@@ -384,7 +384,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.37.10"
+      "upstream": "2.38.1"
     },
     "navidrome": {
       "pkg": {
@@ -699,7 +699,7 @@
         "aarch64": "5.0.1",
         "amd64": "5.0.1"
       },
-      "upstream": "5.1.2"
+      "upstream": "5.1.3"
     },
     "samba": {
       "default": "423",
@@ -804,7 +804,7 @@
         "aarch64": "2.1.3_2",
         "amd64": "2.1.3_3"
       },
-      "upstream": "v2.1.3"
+      "upstream": "v2.1.5"
     },
     "tailscale": {
       "pkg": {
