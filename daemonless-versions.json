@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-09T05:25:54.017948Z",
+  "last_check": "2026-09-09T12:01:26.618618Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -35,7 +35,7 @@
         "aarch64": "4.39.20_5",
         "amd64": "4.39.20_6"
       },
-      "upstream": "v4.39.23"
+      "upstream": "v4.39.24"
     },
     "bazarr": {
       "pkg": {
