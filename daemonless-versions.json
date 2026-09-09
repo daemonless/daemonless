@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-09T12:01:26.618618Z",
+  "last_check": "2026-09-09T16:56:54.552949Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -279,7 +279,7 @@
         "aarch64": "0.165.0_2,1",
         "amd64": "0.165.0_3,1"
       },
-      "upstream": "v0.165.0"
+      "upstream": "v0.166.0"
     },
     "immich-cli": {
       "upstream": "3.1.0"
@@ -384,7 +384,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.38.1"
+      "upstream": "2.38.5"
     },
     "navidrome": {
       "pkg": {
