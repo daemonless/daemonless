@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-08T21:30:50.727726Z",
+  "last_check": "2026-09-09T05:25:54.017948Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -106,7 +106,7 @@
       "pkg-latest": {
         "amd64": "4.9.3.0_4"
       },
-      "upstream": "4.9.5.0"
+      "upstream": "4.10.0.40"
     },
     "ffmpeg": {
       "pkg": {
@@ -900,7 +900,7 @@
       }
     },
     "woodpecker": {
-      "upstream": "v3.18.0"
+      "upstream": "v3.18.1"
     },
     "zensical": {
       "pkg": {
