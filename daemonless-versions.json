@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-10T11:55:01.396890Z",
+  "last_check": "2026-09-10T16:44:44.933574Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -35,7 +35,7 @@
         "aarch64": "4.39.20_5",
         "amd64": "4.39.20_6"
       },
-      "upstream": "v4.39.24"
+      "upstream": "v4.39.25"
     },
     "bazarr": {
       "pkg": {
@@ -153,12 +153,6 @@
       "default": "3.4",
       "type": "multi-version",
       "variants": {
-        "2.4": {
-          "lua-pkg-latest": {
-            "aarch64": "2.4.35",
-            "amd64": "2.4.35"
-          }
-        },
         "2.6": {
           "lua-pkg-latest": {
             "aarch64": "2.6.30",
@@ -282,10 +276,10 @@
       "upstream": "v0.166.0"
     },
     "immich-cli": {
-      "upstream": "3.1.0"
+      "upstream": "3.2.0"
     },
     "immich-ml": {
-      "upstream": "v3.1.0"
+      "upstream": "v3.2.0"
     },
     "immich-postgres": {
       "default": "14",
@@ -306,7 +300,7 @@
       }
     },
     "immich-server": {
-      "upstream": "v3.1.0"
+      "upstream": "v3.2.0"
     },
     "jellyfin": {
       "pkg": {
@@ -406,7 +400,7 @@
         "aarch64": "34.0.3",
         "amd64": "34.0.3"
       },
-      "upstream": "v34.0.3"
+      "upstream": "v32.0.15"
     },
     "nocodb": {
       "upstream": "0.301.3"
