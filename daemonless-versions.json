@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-10T05:24:18.097983Z",
+  "last_check": "2026-09-10T11:55:01.396890Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -385,7 +385,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.38.5"
+      "upstream": "2.38.6"
     },
     "navidrome": {
       "pkg": {
@@ -837,7 +837,7 @@
         "aarch64": "3.7.11",
         "amd64": "3.7.11_1"
       },
-      "upstream": "v3.7.12"
+      "upstream": "v3.7.13"
     },
     "transmission": {
       "pkg": {
