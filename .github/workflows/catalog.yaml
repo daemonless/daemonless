@@ -1,0 +1,28 @@
+name: catalog
+
+# Builds the daemonless app catalog from catalog/sources.yaml with the
+# reusable fjord-catalog workflow and publishes it to this repo's GitHub
+# Pages: https://catalog.daemonless.io/v1/daemonless/catalog.json.
+# Runs 2h after the check-versions cycle so fresh sbom.json versions are in.
+on:
+  schedule:
+    - cron: "0 2,8,14,20 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["catalog/**"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  catalog:
+    uses: daemonless/fjord-catalog/.github/workflows/build.yml@main
+    with:
+      sources: catalog/sources.yaml

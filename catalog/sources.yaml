@@ -1,0 +1,13 @@
+# The daemonless app catalog, built and published by fjord-catalog
+# (https://github.com/daemonless/fjord-catalog). Edit here, not there.
+catalog:
+  name: "Daemonless Apps"
+  maintainer: "https://daemonless.io"
+  icon: "icon.svg"
+
+sources:
+  - name: daemonless
+    provider: daemonless-github
+    org: daemonless
+    # Tooling, bases and this catalog's own repos are not installable apps.
+    exclude: "^(base|base-core|base-manifest-test|build-tools|daemonless|daemonless-io|ci-daemonless-io|dbuild|fjord|fjord-catalog|freebsd-ports|mkdocs-zip-bundle-plugin|\\.github)$"

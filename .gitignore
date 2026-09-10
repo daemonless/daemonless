@@ -19,3 +19,7 @@ __pycache__/
 
 # Woodpecker local builds
 .woodpecker/
+# catalog build working dirs (never committed)
+/repos/
+/site/
+/out/
