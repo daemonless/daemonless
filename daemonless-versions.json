@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-10T16:44:44.933574Z",
+  "last_check": "2026-09-10T21:16:39.772433Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -467,7 +467,7 @@
       "upstream": "1.63.0"
     },
     "plex": {
-      "upstream": "1.43.3.10896-cb3ebc72d"
+      "upstream": "1.43.4.10903-e5521bd8c"
     },
     "postgres": {
       "default": "18",
