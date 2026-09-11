@@ -1,4 +1,4 @@
-name: catalog
+name: Build Daemonless FJORD Catalog
 
 # Builds the daemonless app catalog from catalog/sources.yaml with the
 # reusable fjord-catalog workflow and publishes it to this repo's GitHub
