@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-13T12:23:33.163379Z",
+  "last_check": "2026-09-13T16:42:48.200449Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -877,7 +877,7 @@
         "aarch64": "1.37.2",
         "amd64": "1.37.2_1"
       },
-      "upstream": "1.37.2"
+      "upstream": "1.37.3"
     },
     "wagtail": {
       "pkg": {
