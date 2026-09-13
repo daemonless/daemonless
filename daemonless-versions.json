@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-13T21:11:21.237153Z",
+  "last_check": "2026-09-13T22:25:16.213213Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -117,6 +117,9 @@
         "aarch64": "9.0.1,1",
         "amd64": "9.0.1,1"
       }
+    },
+    "filebrowser-quantum": {
+      "upstream": "v1.5.6-stable"
     },
     "forgejo": {
       "default": "15",
