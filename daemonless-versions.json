@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-13T16:42:48.200449Z",
+  "last_check": "2026-09-13T21:11:21.237153Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -97,7 +97,7 @@
       "upstream": "4.137.0"
     },
     "dispatcharr": {
-      "upstream": "v0.30.0"
+      "upstream": "v0.31.0"
     },
     "emby": {
       "pkg": {
@@ -766,7 +766,7 @@
         "aarch64": "0.15.5_4",
         "amd64": "0.15.5_4"
       },
-      "upstream": "v0.16.21"
+      "upstream": "v0.16.22"
     },
     "stirling-pdf": {
       "pkg": {
@@ -901,7 +901,7 @@
         "aarch64": "0.0.59",
         "amd64": "0.0.60"
       },
-      "upstream": "0.0.61"
+      "upstream": "0.0.62"
     }
   }
 }
