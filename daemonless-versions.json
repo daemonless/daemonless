@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-14T00:30:47.356042Z",
+  "last_check": "2026-09-14T05:32:56.516525Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -334,7 +334,8 @@
         "amd64": "0.6.3_1"
       },
       "pkg-latest": {
-        "aarch64": "0.6.3_2"
+        "aarch64": "0.6.3_2",
+        "amd64": "0.6.3_3"
       }
     },
     "mariadb": {
@@ -368,7 +369,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.25.1"
+      "upstream": "v3.26.0"
     },
     "memcached": {
       "pkg": {
@@ -400,7 +401,7 @@
       },
       "pkg-latest": {
         "aarch64": "34.0.3",
-        "amd64": "34.0.3"
+        "amd64": "34.0.4"
       },
       "upstream": "v32.0.15"
     },
@@ -425,13 +426,13 @@
         "24": {
           "pkg-latest": {
             "aarch64": "24.19.0",
-            "amd64": "24.20.0"
+            "amd64": "24.21.0"
           }
         },
         "26": {
           "pkg-latest": {
             "aarch64": "26.7.0",
-            "amd64": "26.8.1"
+            "amd64": "26.8.2"
           }
         }
       }
@@ -737,7 +738,7 @@
         "aarch64": "4.45",
         "amd64": "4.45"
       },
-      "upstream": "4.46"
+      "upstream": "4.47"
     },
     "seerr": {
       "upstream": "v3.4.1"
@@ -762,12 +763,15 @@
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
-      "upstream": "v1.6.5"
+      "upstream": "v1.7.0"
     },
     "stalwart": {
       "pkg": {
         "aarch64": "0.15.5_4",
         "amd64": "0.15.5_4"
+      },
+      "pkg-latest": {
+        "amd64": "0.16.21_1"
       },
       "upstream": "v0.16.22"
     },
@@ -806,7 +810,7 @@
       },
       "pkg-latest": {
         "aarch64": "1.102.3_1",
-        "amd64": "1.102.3_1"
+        "amd64": "1.102.4"
       },
       "upstream": "v1.102.4"
     },
@@ -817,7 +821,7 @@
       },
       "pkg-latest": {
         "aarch64": "2.16.0_2",
-        "amd64": "2.16.0_2"
+        "amd64": "2.18.1"
       },
       "upstream": "v2.18.1"
     },
