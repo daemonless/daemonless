@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-14T13:26:17.257292Z",
+  "last_check": "2026-09-14T22:09:57.730842Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -279,10 +279,10 @@
       "upstream": "v0.166.0"
     },
     "immich-cli": {
-      "upstream": "3.2.0"
+      "upstream": "3.2.1"
     },
     "immich-ml": {
-      "upstream": "v3.2.0"
+      "upstream": "v3.2.1"
     },
     "immich-postgres": {
       "default": "14",
@@ -303,7 +303,7 @@
       }
     },
     "immich-server": {
-      "upstream": "v3.2.0"
+      "upstream": "v3.2.1"
     },
     "jellyfin": {
       "pkg": {
@@ -629,7 +629,7 @@
       "upstream": "6.3.0.10514"
     },
     "readmeabook": {
-      "upstream": "v1.2.2"
+      "upstream": "v1.2.3"
     },
     "redis": {
       "default": "8.8",
@@ -763,7 +763,7 @@
       "upstream": "4.0.19.2979"
     },
     "sparkyfitness": {
-      "upstream": "v1.7.0"
+      "upstream": "v1.7.1"
     },
     "stalwart": {
       "pkg": {
