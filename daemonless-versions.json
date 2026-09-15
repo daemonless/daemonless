@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-15T17:21:39.651448Z",
+  "last_check": "2026-09-15T21:50:03.431531Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -128,13 +128,13 @@
         "15": {
           "pkg-latest": {
             "aarch64": "15.0.7_1",
-            "amd64": "15.0.7_1"
+            "amd64": "15.0.8"
           }
         },
         "16": {
           "pkg-latest": {
             "aarch64": "16.0.3_1",
-            "amd64": "16.0.3_1"
+            "amd64": "16.0.4"
           }
         }
       }
@@ -279,10 +279,10 @@
       "upstream": "v0.166.0"
     },
     "immich-cli": {
-      "upstream": "3.2.1"
+      "upstream": "3.2.2"
     },
     "immich-ml": {
-      "upstream": "v3.2.1"
+      "upstream": "v3.2.2"
     },
     "immich-postgres": {
       "default": "14",
@@ -303,7 +303,7 @@
       }
     },
     "immich-server": {
-      "upstream": "v3.2.1"
+      "upstream": "v3.2.2"
     },
     "jellyfin": {
       "pkg": {
@@ -403,7 +403,7 @@
         "aarch64": "34.0.4",
         "amd64": "34.0.4"
       },
-      "upstream": "v32.0.15"
+      "upstream": "v35.0.0"
     },
     "nocodb": {
       "upstream": "0.301.3"
@@ -443,8 +443,7 @@
         "amd64": "9.4.0_1"
       },
       "pkg-latest": {
-        "aarch64": "9.4.0_2",
-        "amd64": "9.4.0_2"
+        "aarch64": "9.4.0_2"
       },
       "upstream": "9.4.0"
     },
@@ -695,7 +694,7 @@
       },
       "pkg-latest": {
         "aarch64": "5.0.1",
-        "amd64": "5.0.1"
+        "amd64": "5.1.2"
       },
       "upstream": "5.1.3"
     },
@@ -907,7 +906,7 @@
       },
       "pkg-latest": {
         "aarch64": "0.0.60",
-        "amd64": "0.0.60"
+        "amd64": "0.0.62"
       },
       "upstream": "0.0.62"
     }
