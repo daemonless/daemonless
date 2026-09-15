@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-15T05:31:24.318068Z",
+  "last_check": "2026-09-15T12:16:09.165381Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -35,7 +35,7 @@
         "aarch64": "4.39.20_6",
         "amd64": "4.39.20_6"
       },
-      "upstream": "v4.39.26"
+      "upstream": "v4.39.27"
     },
     "bazarr": {
       "pkg": {
@@ -317,7 +317,7 @@
       "upstream": "v12.1"
     },
     "jellyfin-ffmpeg": {
-      "upstream": "v8.1.2-4"
+      "upstream": "v8.1.2-5"
     },
     "lidarr": {
       "pkg": {
@@ -382,7 +382,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.38.7"
+      "upstream": "2.39.5"
     },
     "navidrome": {
       "pkg": {
@@ -870,7 +870,7 @@
         "aarch64": "10.6.101",
         "amd64": "10.6.101"
       },
-      "upstream": "10.6.101"
+      "upstream": "10.6.106"
     },
     "uptime-kuma": {
       "upstream": "2.5.4"
