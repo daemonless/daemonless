@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-14T22:09:57.730842Z",
+  "last_check": "2026-09-15T05:31:24.318068Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -46,7 +46,7 @@
         "aarch64": "1.6.0",
         "amd64": "1.6.0"
       },
-      "upstream": "v1.6.0"
+      "upstream": "v1.6.1"
     },
     "bichon": {
       "upstream": "2.0.3"
@@ -150,7 +150,7 @@
       }
     },
     "grimmory": {
-      "upstream": "v3.3.3"
+      "upstream": "v3.4.0"
     },
     "haproxy": {
       "default": "3.4",
@@ -314,7 +314,7 @@
         "aarch64": "10.11.11_1",
         "amd64": "10.11.11_1"
       },
-      "upstream": "v12.0"
+      "upstream": "v12.1"
     },
     "jellyfin-ffmpeg": {
       "upstream": "v8.1.2-4"
