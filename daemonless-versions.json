@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-15T21:50:03.431531Z",
+  "last_check": "2026-09-16T05:25:01.610247Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -150,7 +150,7 @@
       }
     },
     "grimmory": {
-      "upstream": "v3.4.0"
+      "upstream": "v3.4.1"
     },
     "haproxy": {
       "default": "3.4",
