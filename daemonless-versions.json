@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-16T17:21:44.440680Z",
+  "last_check": "2026-09-16T21:48:30.362233Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -534,7 +534,7 @@
       "pkg-latest": {
         "amd64": "2.5.2.5491"
       },
-      "upstream": "2.5.2.5491"
+      "upstream": "2.6.5.5623"
     },
     "python": {
       "type": "multi-version",
@@ -625,7 +625,7 @@
       "pkg-latest": {
         "amd64": "6.3.0.10514"
       },
-      "upstream": "6.3.0.10514"
+      "upstream": "6.4.4.10685"
     },
     "readmeabook": {
       "upstream": "v1.2.3"
