@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-16T05:25:01.610247Z",
+  "last_check": "2026-09-16T12:14:40.348566Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -382,7 +382,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.39.5"
+      "upstream": "2.39.6"
     },
     "navidrome": {
       "pkg": {
@@ -805,7 +805,7 @@
     },
     "tailscale": {
       "pkg": {
-        "aarch64": "1.102.3",
+        "aarch64": "1.102.4",
         "amd64": "1.102.4"
       },
       "pkg-latest": {
@@ -816,8 +816,8 @@
     },
     "tautulli": {
       "pkg": {
-        "aarch64": "2.16.0_2",
-        "amd64": "2.16.0_2"
+        "aarch64": "2.18.1",
+        "amd64": "2.18.1"
       },
       "pkg-latest": {
         "aarch64": "2.18.1",
@@ -863,7 +863,6 @@
     },
     "unifi": {
       "pkg": {
-        "aarch64": "10.4.57_1",
         "amd64": "10.4.57_1"
       },
       "pkg-latest": {
