@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-16T12:14:40.348566Z",
+  "last_check": "2026-09-16T17:21:44.440680Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -448,7 +448,7 @@
       "upstream": "9.4.0"
     },
     "opencloud": {
-      "upstream": "v8.0.0"
+      "upstream": "v8.0.1"
     },
     "opencloud-radicale": {
       "upstream": "v3.8.0"
@@ -759,7 +759,7 @@
       "pkg-latest": {
         "amd64": "4.0.19.2979"
       },
-      "upstream": "4.0.19.2979"
+      "upstream": "4.0.20.3014"
     },
     "sparkyfitness": {
       "upstream": "v1.7.1"
@@ -872,7 +872,7 @@
       "upstream": "10.6.106"
     },
     "uptime-kuma": {
-      "upstream": "2.5.4"
+      "upstream": "2.5.5"
     },
     "vaultwarden": {
       "pkg": {
