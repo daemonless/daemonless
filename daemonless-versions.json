@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-16T21:48:30.362233Z",
+  "last_check": "2026-09-17T05:33:25.060985Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -24,7 +24,7 @@
       "upstream": "v0.27.4"
     },
     "audiobookshelf": {
-      "upstream": "v2.36.0"
+      "upstream": "v2.36.1"
     },
     "authelia-server": {
       "pkg": {
