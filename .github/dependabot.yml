@@ -1,0 +1,22 @@
+# Keeps GitHub Actions pinned versions current.
+#
+# Only repos with their own workflow steps need this. The ~95 image repos call
+# daemonless/dbuild/.github/workflows/daemonless-build.yaml@main, which is a
+# branch ref -- there is no version for dependabot to bump, and the actions they
+# actually run live in dbuild's reusable workflow instead.
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    # One PR for all action bumps rather than one per action.
+    groups:
+      github-actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: "ci"
+    labels: ["dependencies"]
+    open-pull-requests-limit: 3
