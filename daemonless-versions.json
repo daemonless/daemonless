@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-21T13:25:52.161265Z",
+  "last_check": "2026-09-21T22:35:56.712257Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -137,6 +137,16 @@
             "amd64": "16.0.4"
           }
         }
+      }
+    },
+    "garage": {
+      "pkg": {
+        "aarch64": "2.3.0_2",
+        "amd64": "2.3.0_2"
+      },
+      "pkg-latest": {
+        "aarch64": "2.3.0_4",
+        "amd64": "2.3.0_4"
       }
     },
     "grafana": {
@@ -311,8 +321,7 @@
         "amd64": "10.11.11"
       },
       "pkg-latest": {
-        "aarch64": "10.11.11_1",
-        "amd64": "10.11.11_1"
+        "aarch64": "10.11.11_1"
       },
       "upstream": "v12.1"
     },
@@ -382,7 +391,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.39.9"
+      "upstream": "2.39.10"
     },
     "navidrome": {
       "pkg": {
@@ -431,8 +440,7 @@
         },
         "26": {
           "pkg-latest": {
-            "aarch64": "26.8.2",
-            "amd64": "26.8.2"
+            "aarch64": "26.8.2"
           }
         }
       }
@@ -784,7 +792,7 @@
       "upstream": "v2.14.3"
     },
     "stump": {
-      "upstream": "v0.1.9"
+      "upstream": "v0.1.10"
     },
     "superset": {
       "upstream": "6.1.0"
