@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-20T21:07:58.387823Z",
+  "last_check": "2026-09-21T05:35:57.860608Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -150,7 +150,7 @@
       }
     },
     "grimmory": {
-      "upstream": "v3.4.1"
+      "upstream": "v3.5.0"
     },
     "haproxy": {
       "default": "3.4",
@@ -457,7 +457,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.2.0"
+      "upstream": "v3.2.1"
     },
     "papra": {
       "upstream": "26.6.2"
@@ -759,7 +759,7 @@
       "upstream": "4.0.20.3014"
     },
     "sparkyfitness": {
-      "upstream": "v1.7.1"
+      "upstream": "v1.7.2"
     },
     "stalwart": {
       "pkg": {
