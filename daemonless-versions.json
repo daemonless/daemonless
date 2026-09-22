@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-22T05:31:26.663671Z",
+  "last_check": "2026-09-22T12:07:52.038577Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -391,7 +391,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.39.10"
+      "upstream": "2.40.5"
     },
     "navidrome": {
       "pkg": {
@@ -481,53 +481,39 @@
       "type": "multi-version",
       "variants": {
         "14": {
-          "pkg": {
-            "aarch64": "14.24",
-            "amd64": "14.24"
-          },
           "pkg-latest": {
             "aarch64": "14.24",
             "amd64": "14.24"
           }
         },
         "15": {
-          "pkg": {
-            "aarch64": "15.19",
-            "amd64": "15.19"
-          },
           "pkg-latest": {
             "aarch64": "15.19",
             "amd64": "15.19"
           }
         },
         "16": {
-          "pkg": {
-            "aarch64": "16.15",
-            "amd64": "16.15"
-          },
           "pkg-latest": {
             "aarch64": "16.15",
             "amd64": "16.15"
           }
         },
         "17": {
-          "pkg": {
-            "aarch64": "17.11",
-            "amd64": "17.11"
-          },
           "pkg-latest": {
             "aarch64": "17.11",
             "amd64": "17.11"
           }
         },
         "18": {
-          "pkg": {
-            "aarch64": "18.6",
-            "amd64": "18.6"
-          },
           "pkg-latest": {
             "aarch64": "18.6",
             "amd64": "18.6"
+          }
+        },
+        "19": {
+          "pkg-latest": {
+            "aarch64": "19.b3",
+            "amd64": "19.b3"
           }
         }
       }
