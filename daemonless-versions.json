@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-22T19:45:24.546396Z",
+  "last_check": "2026-09-22T21:43:50.872274Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -109,7 +109,7 @@
       "upstream": "4.10.0.40"
     },
     "erpnext": {
-      "upstream": "16.35.0"
+      "upstream": "15.121.3"
     },
     "ffmpeg": {
       "pkg": {
