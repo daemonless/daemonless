@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-24T17:37:01.249744Z",
+  "last_check": "2026-09-24T21:53:14.602810Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -64,6 +64,16 @@
         "amd64": "2.11.4_4"
       },
       "upstream": "v2.11.4"
+    },
+    "clamav": {
+      "pkg": {
+        "aarch64": "1.5.2_3,1",
+        "amd64": "1.5.2_3,1"
+      },
+      "pkg-latest": {
+        "aarch64": "1.5.4_1,1",
+        "amd64": "1.5.4_1,1"
+      }
     },
     "cloudflared": {
       "pkg": {
@@ -899,7 +909,7 @@
         "aarch64": "0.0.62",
         "amd64": "0.0.63"
       },
-      "upstream": "0.0.64"
+      "upstream": "0.0.65"
     }
   }
 }
