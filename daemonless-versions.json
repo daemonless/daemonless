@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-26T11:53:35.749102Z",
+  "last_check": "2026-09-26T16:49:36.380032Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -877,7 +877,7 @@
       "upstream": "4.1.3"
     },
     "trek": {
-      "upstream": "4.3.2"
+      "upstream": "4.3.3"
     },
     "unifi": {
       "pkg": {
