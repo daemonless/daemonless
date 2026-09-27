@@ -103,6 +103,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Plex Media Server](https://github.com/daemonless/plex) | Personal media server that organizes and streams your movie, TV, and music collections to all your devices. |
 | [Stump](https://github.com/daemonless/stump) | A free and open source comics, manga and digital book server with OPDS support. |
 | [Tautulli](https://github.com/daemonless/tautulli) | Monitoring and tracking tool for Plex Media Server — tracks what is being watched, who is watching, and when. |
+| [Ubooquity](https://github.com/daemonless/ubooquity) | Free, lightweight home server for your comics and ebooks (EPUB, MOBI, PDF, CBZ, CBR) with OPDS support and a web reader. |
 
 
 ### Network
