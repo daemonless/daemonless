@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-27T21:41:08.914031Z",
+  "last_check": "2026-09-28T06:01:06.963015Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -762,7 +762,7 @@
       "upstream": "4.47"
     },
     "seerr": {
-      "upstream": "v3.4.1"
+      "upstream": "v3.5.0"
     },
     "smokeping": {
       "pkg": {
@@ -784,7 +784,7 @@
       "upstream": "4.0.20.3014"
     },
     "sparkyfitness": {
-      "upstream": "v1.7.2"
+      "upstream": "v1.7.3"
     },
     "stalwart": {
       "pkg": {
