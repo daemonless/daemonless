@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-28T14:36:11.763262Z",
+  "last_check": "2026-09-28T23:36:58.183405Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -24,7 +24,7 @@
       "upstream": "v0.27.4"
     },
     "audiobookshelf": {
-      "upstream": "v2.36.1"
+      "upstream": "v2.37.0"
     },
     "authelia-server": {
       "pkg": {
@@ -303,13 +303,13 @@
         "aarch64": "0.165.0_3,1",
         "amd64": "0.165.0_3,1"
       },
-      "upstream": "v0.166.0"
+      "upstream": "v0.167.0"
     },
     "immich-cli": {
-      "upstream": "3.2.2"
+      "upstream": "3.2.4"
     },
     "immich-ml": {
-      "upstream": "v3.2.2"
+      "upstream": "v3.2.4"
     },
     "immich-postgres": {
       "default": "14",
@@ -333,7 +333,7 @@
       "upstream": "3.4.0"
     },
     "immich-server": {
-      "upstream": "v3.2.2"
+      "upstream": "v3.2.4"
     },
     "jellyfin": {
       "pkg": {
@@ -638,7 +638,7 @@
         "aarch64": "5.2.3_2",
         "amd64": "5.2.3_2"
       },
-      "upstream": "release-5.2.3"
+      "upstream": "release-5.2.4"
     },
     "radarr": {
       "pkg": {
@@ -759,7 +759,7 @@
         "aarch64": "4.45",
         "amd64": "4.45"
       },
-      "upstream": "4.47"
+      "upstream": "4.48"
     },
     "seerr": {
       "upstream": "v3.5.0"
@@ -848,7 +848,7 @@
         "aarch64": "2.18.1",
         "amd64": "2.18.1"
       },
-      "upstream": "v2.18.1"
+      "upstream": "v2.18.2"
     },
     "traefik": {
       "pkg": {
