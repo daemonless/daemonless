@@ -106,6 +106,13 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Ubooquity](https://github.com/daemonless/ubooquity) | Free, lightweight home server for your comics and ebooks (EPUB, MOBI, PDF, CBZ, CBR) with OPDS support and a web reader. |
 
 
+### Monitoring
+
+| Image | Description |
+|-------|-------------|
+| [LibreNMS](https://github.com/daemonless/librenms) | LibreNMS is an autodiscovering PHP/MySQL/SNMP based network monitoring which includes support for a wide range of network hardware and operating systems including Cisco, Linux, FreeBSD, Juniper, Brocade, Foundry, HP and many more. |
+
+
 ### Network
 
 | Image | Description |
