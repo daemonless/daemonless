@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-29T13:26:17.910892Z",
+  "last_check": "2026-09-29T22:43:02.849166Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -116,7 +116,7 @@
       "pkg-latest": {
         "amd64": "4.9.3.0_4"
       },
-      "upstream": "4.10.0.40"
+      "upstream": "4.10.1.0"
     },
     "erpnext": {
       "upstream": "15.121.5"
@@ -363,6 +363,17 @@
           }
         }
       }
+    },
+    "librenms": {
+      "pkg": {
+        "aarch64": "26.6.1,1",
+        "amd64": "26.6.1,1"
+      },
+      "pkg-latest": {
+        "aarch64": "26.9.1.1,1",
+        "amd64": "26.9.1.1,1"
+      },
+      "upstream": "26.9.1.1"
     },
     "lidarr": {
       "pkg": {
@@ -837,7 +848,7 @@
         "aarch64": "1.102.4",
         "amd64": "1.102.4"
       },
-      "upstream": "v1.102.4"
+      "upstream": "v1.102.5"
     },
     "tautulli": {
       "pkg": {
