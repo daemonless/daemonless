@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-09-29T22:43:02.849166Z",
+  "last_check": "2026-09-30T06:04:58.333996Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -24,7 +24,7 @@
       "upstream": "v0.27.4"
     },
     "audiobookshelf": {
-      "upstream": "v2.37.0"
+      "upstream": "v2.37.1"
     },
     "authelia-server": {
       "pkg": {
@@ -128,7 +128,7 @@
       },
       "pkg-latest": {
         "aarch64": "9.0.1,1",
-        "amd64": "9.0.1,1"
+        "amd64": "9.0.2,1"
       }
     },
     "filebrowser-quantum": {
@@ -159,11 +159,11 @@
       },
       "pkg-latest": {
         "aarch64": "2.3.0_4",
-        "amd64": "2.3.0_4"
+        "amd64": "2.4.1"
       }
     },
     "gitea": {
-      "upstream": "v1.27.3"
+      "upstream": "v28.0.0"
     },
     "grafana": {
       "pkg": {
@@ -457,7 +457,7 @@
       },
       "pkg-latest": {
         "aarch64": "34.0.4",
-        "amd64": "34.0.4"
+        "amd64": "35.0.1"
       },
       "upstream": "v35.0.1"
     },
@@ -804,7 +804,7 @@
       },
       "pkg-latest": {
         "aarch64": "0.16.21_1",
-        "amd64": "0.16.21_1"
+        "amd64": "0.16.23"
       },
       "upstream": "v0.16.24"
     },
