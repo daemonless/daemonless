@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-01T22:45:30.062531Z",
+  "last_check": "2026-10-01T22:58:18.506045Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
