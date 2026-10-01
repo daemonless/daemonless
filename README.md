@@ -150,6 +150,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
 | [Superset](https://github.com/daemonless/superset) | Modern data exploration and visualization platform — build charts, dashboards, and SQL-driven analytics on top of your databases. |
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
+| [Vikunja](https://github.com/daemonless/vikunja) | Vikunja is an open-source, self-hostable to-do app. It helps you organize your tasks and projects with features like list, kanban, gantt, and table views - all while keeping your data under your control. |
 | [Wagtail](https://github.com/daemonless/wagtail) | Wagtail is an open source content management system built on Django, with a strong community and commercial support. It's focused on user experience, and offers precise control for designers and developers. |
 
 
