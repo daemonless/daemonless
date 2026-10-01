@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-01T06:39:45.133530Z",
+  "last_check": "2026-10-01T14:00:13.989773Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -438,7 +438,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.41.4"
+      "upstream": "2.41.5"
     },
     "navidrome": {
       "pkg": {
@@ -924,6 +924,16 @@
         "amd64": "1.37.2_1"
       },
       "upstream": "1.37.3"
+    },
+    "vikunja": {
+      "pkg": {
+        "aarch64": "2.3.0_5",
+        "amd64": "2.3.0_5"
+      },
+      "pkg-latest": {
+        "aarch64": "2.6.0",
+        "amd64": "2.6.0"
+      }
     },
     "wagtail": {
       "pkg": {
