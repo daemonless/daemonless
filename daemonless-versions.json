@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-01T14:00:13.989773Z",
+  "last_check": "2026-10-01T22:45:30.062531Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -63,7 +63,7 @@
         "aarch64": "2.11.4_4",
         "amd64": "2.11.4_4"
       },
-      "upstream": "v2.11.4"
+      "upstream": "v2.11.6"
     },
     "clamav": {
       "pkg": {
@@ -516,7 +516,7 @@
       "upstream": "v3.2.1"
     },
     "papra": {
-      "upstream": "26.6.2"
+      "upstream": "26.7.0"
     },
     "playwright": {
       "upstream": "1.63.0"
@@ -817,7 +817,7 @@
         "aarch64": "2.2.1_2",
         "amd64": "2.2.1_2"
       },
-      "upstream": "v3.0.1"
+      "upstream": "v3.0.2"
     },
     "stump": {
       "upstream": "v0.1.10"
