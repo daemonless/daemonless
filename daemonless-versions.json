@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-03T05:51:28.680593Z",
+  "last_check": "2026-10-03T12:07:47.024666Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -49,7 +49,7 @@
       "upstream": "v1.6.2"
     },
     "bichon": {
-      "upstream": "2.0.3"
+      "upstream": "2.1.0"
     },
     "bulwark-webmail": {
       "upstream": "1.12.0"
@@ -63,7 +63,7 @@
         "aarch64": "2.11.4_4",
         "amd64": "2.11.4_4"
       },
-      "upstream": "v2.11.6"
+      "upstream": "v2.11.7"
     },
     "clamav": {
       "pkg": {
