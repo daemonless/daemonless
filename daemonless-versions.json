@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-04T06:29:15.043813Z",
+  "last_check": "2026-10-04T12:54:46.558234Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -925,6 +925,16 @@
         "amd64": "1.37.2_1"
       },
       "upstream": "1.37.3"
+    },
+    "victoriametrics": {
+      "pkg": {
+        "aarch64": "1.133.0_10",
+        "amd64": "1.133.0_10"
+      },
+      "pkg-latest": {
+        "aarch64": "1.133.0_11",
+        "amd64": "1.133.0_11"
+      }
     },
     "vikunja": {
       "pkg": {
