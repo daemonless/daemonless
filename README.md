@@ -112,6 +112,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [LibreNMS](https://github.com/daemonless/librenms) | LibreNMS is an autodiscovering PHP/MySQL/SNMP based network monitoring which includes support for a wide range of network hardware and operating systems including Cisco, Linux, FreeBSD, Juniper, Brocade, Foundry, HP and many more. |
+| [VictoriaMetrics](https://github.com/daemonless/victoriametrics) | VictoriaMetrics is a fast, cost-effective, and scalable time-series database and monitoring solution. It is a drop-in replacement for Prometheus storage with low memory usage. |
 
 
 ### Network
