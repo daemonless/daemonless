@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-04T22:02:21.311971Z",
+  "last_check": "2026-10-05T06:20:43.672834Z",
   "schema_version": 2,
   "services": {
     "adguardhome": {
@@ -330,7 +330,7 @@
       }
     },
     "immich-public-proxy": {
-      "upstream": "3.4.0"
+      "upstream": "3.4.1"
     },
     "immich-server": {
       "upstream": "v3.2.4"
