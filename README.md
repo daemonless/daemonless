@@ -146,6 +146,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [AFFiNE](https://github.com/daemonless/affine) | AFFiNE is an open-source, privacy-first, local-first knowledge management and collaboration tool. |
+| [Actual Budget](https://github.com/daemonless/actual) | Self-hosted personal finance sync server (Actual Budget) on FreeBSD. |
 | [Bulwark Webmail](https://github.com/daemonless/bulwark-webmail) | Modern self-hosted webmail client for Stalwart Mail Server, powered by JMAP. |
 | [ERPNext](https://github.com/daemonless/erpnext) | Open source ERP: accounting, inventory, manufacturing, CRM, HR and projects, built on the Frappe framework. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
