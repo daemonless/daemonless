@@ -28,7 +28,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release: "15.0"
+          release: "15.1"
           usesh: true
           vnc-password: ${{ secrets.VNC_PASSWORD }}
           copyback: true
