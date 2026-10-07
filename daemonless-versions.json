@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-07T14:02:30.797858Z",
+  "last_check": "2026-10-07T23:22:43.622646Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -55,7 +55,7 @@
       "upstream": "2.1.1"
     },
     "bulwark-webmail": {
-      "upstream": "1.12.0"
+      "upstream": "1.13.0"
     },
     "caddy": {
       "pkg": {
@@ -284,7 +284,7 @@
       "upstream": "v2.8.3"
     },
     "home-assistant": {
-      "upstream": "2026.9.4"
+      "upstream": "2026.10.0"
     },
     "homepage": {
       "pkg": {
@@ -309,10 +309,10 @@
       "upstream": "v0.167.0"
     },
     "immich-cli": {
-      "upstream": "3.2.4"
+      "upstream": "3.3.0"
     },
     "immich-ml": {
-      "upstream": "v3.2.4"
+      "upstream": "v3.3.0"
     },
     "immich-postgres": {
       "default": "14",
@@ -333,10 +333,10 @@
       }
     },
     "immich-public-proxy": {
-      "upstream": "3.4.1"
+      "upstream": "4.0.0"
     },
     "immich-server": {
-      "upstream": "v3.2.4"
+      "upstream": "v3.3.0"
     },
     "jellyfin": {
       "pkg": {
@@ -525,7 +525,7 @@
       "upstream": "26.7.0"
     },
     "playwright": {
-      "upstream": "1.63.0"
+      "upstream": "1.64.0"
     },
     "plex": {
       "upstream": "1.43.4.10903-e5521bd8c"
@@ -848,7 +848,7 @@
         "aarch64": "1.102.4",
         "amd64": "1.102.5"
       },
-      "upstream": "v1.102.5"
+      "upstream": "v1.104.1"
     },
     "tautulli": {
       "pkg": {
@@ -954,7 +954,7 @@
       }
     },
     "woodpecker": {
-      "upstream": "v3.18.1"
+      "upstream": "v3.19.0"
     },
     "zensical": {
       "pkg": {
