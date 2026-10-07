@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-06T22:51:22.088403Z",
+  "last_check": "2026-10-07T06:37:56.537709Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -110,7 +110,7 @@
       "upstream": "4.140.0"
     },
     "dispatcharr": {
-      "upstream": "v0.31.0"
+      "upstream": "v0.32.0"
     },
     "emby": {
       "pkg": {
