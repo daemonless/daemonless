@@ -56,7 +56,7 @@ jobs:
         id: commit_changes
         run: |
           git config user.name "daemonless-bot[bot]"
-          git config user.email "3247603+daemonless-bot[bot]@users.noreply.github.com"
+          git config user.email "272955332+daemonless-bot[bot]@users.noreply.github.com"
 
           if [[ -n $(git status -s daemonless-versions.json) ]]; then
             git add daemonless-versions.json
