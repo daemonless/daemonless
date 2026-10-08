@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-07T23:22:43.622646Z",
+  "last_check": "2026-10-08T06:45:15.138016Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -202,7 +202,7 @@
           },
           "pkg-latest": {
             "aarch64": "2.8.28",
-            "amd64": "2.8.28"
+            "amd64": "2.8.30"
           }
         },
         "3.0": {
@@ -212,7 +212,7 @@
           },
           "pkg-latest": {
             "aarch64": "3.0.27",
-            "amd64": "3.0.27"
+            "amd64": "3.0.29"
           },
           "wolfssl-pkg-latest": {
             "aarch64": "3.0.24_1",
@@ -226,7 +226,7 @@
           },
           "pkg-latest": {
             "aarch64": "3.2.23",
-            "amd64": "3.2.23"
+            "amd64": "3.2.25"
           },
           "wolfssl-pkg-latest": {
             "aarch64": "3.2.20_1",
@@ -240,7 +240,7 @@
           },
           "pkg-latest": {
             "aarch64": "3.3.14",
-            "amd64": "3.3.14"
+            "amd64": "3.3.16"
           },
           "wolfssl-pkg-latest": {
             "aarch64": "3.3.11_1",
@@ -254,7 +254,7 @@
           },
           "pkg-latest": {
             "aarch64": "3.4.4",
-            "amd64": "3.4.4"
+            "amd64": "3.4.6"
           },
           "wolfssl-pkg-latest": {
             "aarch64": "3.4.1_1",
@@ -510,7 +510,7 @@
       "upstream": "v8.1.0"
     },
     "opencloud-radicale": {
-      "upstream": "v3.8.2"
+      "upstream": "v3.8.3"
     },
     "openspeedtest": {
       "upstream": "v2.0.5"
@@ -647,7 +647,7 @@
       },
       "pkg-latest": {
         "aarch64": "5.2.4",
-        "amd64": "5.2.4"
+        "amd64": "5.2.4_1"
       },
       "upstream": "release-5.2.4"
     },
@@ -795,7 +795,7 @@
       "upstream": "4.0.20.3014"
     },
     "sparkyfitness": {
-      "upstream": "v1.7.3"
+      "upstream": "v1.8.0"
     },
     "stalwart": {
       "pkg": {
@@ -940,7 +940,7 @@
       },
       "pkg-latest": {
         "aarch64": "2.6.0",
-        "amd64": "2.6.0"
+        "amd64": "2.7.0"
       }
     },
     "wagtail": {
