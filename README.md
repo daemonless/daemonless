@@ -161,6 +161,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
+| [Backrest](https://github.com/daemonless/backrest) | Backrest is a web-accessible backup solution built on top of restic. Backrest provides a WebUI which wraps the restic CLI and makes it easy to create repos, browse snapshots, and restore files. Additionally, Backrest can run in the background and take an opinionated approach to scheduling snapshots and orchestrating repo health operations. |
 | [Bichon](https://github.com/daemonless/bichon) | A lightweight, high-performance Rust email archiver with WebUI. |
 | [FFmpeg](https://github.com/daemonless/ffmpeg) | FFmpeg CLI (audio/video transcoding) on FreeBSD. |
 | [FileBrowser Quantum](https://github.com/daemonless/filebrowser-quantum) | Self-hosted web file manager with fast indexed search, granular share controls, and modern authentication (OIDC, LDAP, 2FA). |
