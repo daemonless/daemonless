@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-08T21:14:33.227221Z",
+  "last_check": "2026-10-08T23:37:03.934075Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -320,10 +320,10 @@
       "upstream": "v0.167.0"
     },
     "immich-cli": {
-      "upstream": "3.3.0"
+      "upstream": "3.3.1"
     },
     "immich-ml": {
-      "upstream": "v3.3.0"
+      "upstream": "v3.3.1"
     },
     "immich-postgres": {
       "default": "14",
@@ -347,7 +347,7 @@
       "upstream": "4.0.0"
     },
     "immich-server": {
-      "upstream": "v3.3.0"
+      "upstream": "v3.3.1"
     },
     "jellyfin": {
       "pkg": {
