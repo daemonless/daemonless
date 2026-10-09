@@ -135,10 +135,16 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
+| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's seven open-source, clean-room Adobe alternatives (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft) as WebAssembly web apps. Pick the ones you want. |
+| [EffectCraft](https://github.com/daemonless/effectcraft) | Open-source, clean-room reimplementation of Adobe After Effects in Rust, served as a WebAssembly web app on FreeBSD. |
+| [FilmCraft](https://github.com/daemonless/filmcraft) | Open-source, clean-room reimplementation of Adobe Premiere Pro in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Immich](https://github.com/daemonless/immich) | High performance self-hosted photo and video management solution. |
 | [Immich Machine Learning](https://github.com/daemonless/immich-ml) | Machine learning service for Immich — handles facial recognition, image classification, and semantic search using ONNX models. |
 | [Immich Public Proxy](https://github.com/daemonless/immich-public-proxy) | Share Immich photos and albums publicly without exposing the Immich instance itself. |
 | [Immich Server](https://github.com/daemonless/immich-server) | Self-hosted photo and video backup and management server with web UI, mobile sync, and shared albums. |
+| [LightCraft](https://github.com/daemonless/lightcraft) | Open-source, clean-room reimplementation of Adobe Lightroom in Rust, served as a WebAssembly web app on FreeBSD. |
+| [PhotoCraft](https://github.com/daemonless/photocraft) | Open-source, clean-room reimplementation of Adobe Photoshop in Rust, served as a WebAssembly web app on FreeBSD. |
+| [VectorCraft](https://github.com/daemonless/vectorcraft) | Open-source, clean-room reimplementation of Adobe Illustrator in Rust, served as a WebAssembly web app on FreeBSD. |
 
 
 ### Productivity
@@ -148,9 +154,11 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [AFFiNE](https://github.com/daemonless/affine) | AFFiNE is an open-source, privacy-first, local-first knowledge management and collaboration tool. |
 | [Actual Budget](https://github.com/daemonless/actual) | Self-hosted personal finance sync server (Actual Budget) on FreeBSD. |
 | [Bulwark Webmail](https://github.com/daemonless/bulwark-webmail) | Modern self-hosted webmail client for Stalwart Mail Server, powered by JMAP. |
+| [DesignCraft](https://github.com/daemonless/designcraft) | Open-source, clean-room reimplementation of Adobe InDesign in Rust, served as a WebAssembly web app on FreeBSD. |
 | [ERPNext](https://github.com/daemonless/erpnext) | Open source ERP: accounting, inventory, manufacturing, CRM, HR and projects, built on the Frappe framework. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
+| [PdfCraft](https://github.com/daemonless/pdfcraft) | Open-source, clean-room reimplementation of Adobe Acrobat in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Superset](https://github.com/daemonless/superset) | Modern data exploration and visualization platform — build charts, dashboards, and SQL-driven analytics on top of your databases. |
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
 | [Vikunja](https://github.com/daemonless/vikunja) | Vikunja is an open-source, self-hostable to-do app. It helps you organize your tasks and projects with features like list, kanban, gantt, and table views - all while keeping your data under your control. |
