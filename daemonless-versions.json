@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-09T14:01:11.196065Z",
+  "last_check": "2026-10-09T22:58:09.655007Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -21,7 +21,7 @@
       "upstream": "v0.107.79"
     },
     "adguardhome-sync": {
-      "upstream": "v0.9.3"
+      "upstream": "v0.9.4"
     },
     "affine": {
       "upstream": "v0.27.4"
@@ -120,8 +120,14 @@
     "code-server": {
       "upstream": "4.141.0"
     },
+    "designcraft": {
+      "upstream": "v0.4.0"
+    },
     "dispatcharr": {
       "upstream": "v0.32.0"
+    },
+    "effectcraft": {
+      "upstream": "v0.6.0"
     },
     "emby": {
       "pkg": {
@@ -146,7 +152,10 @@
       }
     },
     "filebrowser-quantum": {
-      "upstream": "v1.5.8-stable"
+      "upstream": "v2.0.0-stable"
+    },
+    "filmcraft": {
+      "upstream": "v0.4.0"
     },
     "forgejo": {
       "default": "15",
@@ -376,6 +385,16 @@
         }
       }
     },
+    "languagetool": {
+      "pkg": {
+        "aarch64": "20260925,1",
+        "amd64": "6.6_1"
+      },
+      "pkg-latest": {
+        "aarch64": "20260925,1",
+        "amd64": "20260925,1"
+      }
+    },
     "librenms": {
       "pkg": {
         "aarch64": "26.9.1.1,1",
@@ -395,6 +414,9 @@
         "amd64": "3.1.0.4875"
       },
       "upstream": "3.1.0.4875"
+    },
+    "lightcraft": {
+      "upstream": "v0.4.0"
     },
     "lldap": {
       "pkg": {
@@ -533,6 +555,12 @@
     },
     "papra": {
       "upstream": "26.7.0"
+    },
+    "pdfcraft": {
+      "upstream": "v0.4.0"
+    },
+    "photocraft": {
+      "upstream": "v0.5.0"
     },
     "playwright": {
       "upstream": "1.64.0"
@@ -920,7 +948,7 @@
       "upstream": "10.6.106"
     },
     "uptime-kuma": {
-      "upstream": "2.5.5"
+      "upstream": "2.5.6"
     },
     "vaultwarden": {
       "pkg": {
@@ -932,6 +960,9 @@
         "amd64": "1.37.3"
       },
       "upstream": "1.37.4"
+    },
+    "vectorcraft": {
+      "upstream": "v0.7.0"
     },
     "victoriametrics": {
       "pkg": {
