@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-09T22:58:09.655007Z",
+  "last_check": "2026-10-10T06:29:21.733182Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -121,13 +121,13 @@
       "upstream": "4.141.0"
     },
     "designcraft": {
-      "upstream": "v0.4.0"
+      "upstream": "v0.5.0"
     },
     "dispatcharr": {
       "upstream": "v0.32.0"
     },
     "effectcraft": {
-      "upstream": "v0.6.0"
+      "upstream": "v0.7.0"
     },
     "emby": {
       "pkg": {
@@ -155,7 +155,7 @@
       "upstream": "v2.0.0-stable"
     },
     "filmcraft": {
-      "upstream": "v0.4.0"
+      "upstream": "v0.5.0"
     },
     "forgejo": {
       "default": "15",
@@ -416,7 +416,7 @@
       "upstream": "3.1.0.4875"
     },
     "lightcraft": {
-      "upstream": "v0.4.0"
+      "upstream": "v0.5.0"
     },
     "lldap": {
       "pkg": {
@@ -557,10 +557,10 @@
       "upstream": "26.7.0"
     },
     "pdfcraft": {
-      "upstream": "v0.4.0"
+      "upstream": "v0.5.0"
     },
     "photocraft": {
-      "upstream": "v0.5.0"
+      "upstream": "v0.6.0"
     },
     "playwright": {
       "upstream": "1.64.0"
@@ -962,7 +962,7 @@
       "upstream": "1.37.4"
     },
     "vectorcraft": {
-      "upstream": "v0.7.0"
+      "upstream": "v0.8.0"
     },
     "victoriametrics": {
       "pkg": {
