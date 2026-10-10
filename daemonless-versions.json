@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-10T06:29:21.733182Z",
+  "last_check": "2026-10-10T12:28:36.406574Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -697,6 +697,16 @@
         "amd64": "6.4.4.10685"
       },
       "upstream": "6.4.4.10685"
+    },
+    "radicale": {
+      "pkg": {
+        "aarch64": "3.8.1",
+        "amd64": "3.7.5"
+      },
+      "pkg-latest": {
+        "aarch64": "3.8.1",
+        "amd64": "3.8.1"
+      }
     },
     "readmeabook": {
       "upstream": "v1.2.3"
