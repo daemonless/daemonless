@@ -135,7 +135,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
-| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's seven open-source, clean-room Adobe alternatives (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft) as WebAssembly web apps. Pick the ones you want. |
+| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's ten open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft) as WebAssembly web apps. Pick the ones you want. |
 | [EffectCraft](https://github.com/daemonless/effectcraft) | Open-source, clean-room reimplementation of Adobe After Effects in Rust, served as a WebAssembly web app on FreeBSD. |
 | [FilmCraft](https://github.com/daemonless/filmcraft) | Open-source, clean-room reimplementation of Adobe Premiere Pro in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Immich](https://github.com/daemonless/immich) | High performance self-hosted photo and video management solution. |
@@ -154,8 +154,10 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [AFFiNE](https://github.com/daemonless/affine) | AFFiNE is an open-source, privacy-first, local-first knowledge management and collaboration tool. |
 | [Actual Budget](https://github.com/daemonless/actual) | Self-hosted personal finance sync server (Actual Budget) on FreeBSD. |
 | [Bulwark Webmail](https://github.com/daemonless/bulwark-webmail) | Modern self-hosted webmail client for Stalwart Mail Server, powered by JMAP. |
+| [DeckCraft](https://github.com/daemonless/deckcraft) | Open-source, clean-room reimplementation of Microsoft PowerPoint in Rust, served as a WebAssembly web app on FreeBSD. |
 | [DesignCraft](https://github.com/daemonless/designcraft) | Open-source, clean-room reimplementation of Adobe InDesign in Rust, served as a WebAssembly web app on FreeBSD. |
 | [ERPNext](https://github.com/daemonless/erpnext) | Open source ERP: accounting, inventory, manufacturing, CRM, HR and projects, built on the Frappe framework. |
+| [GridCraft](https://github.com/daemonless/gridcraft) | Open-source, clean-room spreadsheet in Rust, served as a WebAssembly web app on FreeBSD. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
 | [PdfCraft](https://github.com/daemonless/pdfcraft) | Open-source, clean-room reimplementation of Adobe Acrobat in Rust, served as a WebAssembly web app on FreeBSD. |
@@ -164,6 +166,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
 | [Vikunja](https://github.com/daemonless/vikunja) | Vikunja is an open-source, self-hostable to-do app. It helps you organize your tasks and projects with features like list, kanban, gantt, and table views - all while keeping your data under your control. |
 | [Wagtail](https://github.com/daemonless/wagtail) | Wagtail is an open source content management system built on Django, with a strong community and commercial support. It's focused on user experience, and offers precise control for designers and developers. |
+| [WordCraft](https://github.com/daemonless/wordcraft) | Open-source, clean-room reimplementation of Microsoft Word in Rust, served as a WebAssembly web app on FreeBSD. |
 
 
 ### Utilities
