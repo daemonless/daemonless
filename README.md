@@ -30,6 +30,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
+| [ClickHouse](https://github.com/daemonless/clickhouse) | ClickHouse is an open-source column-oriented database management system that allows generating analytical data reports in real time. |
 | [Immich PostgreSQL](https://github.com/daemonless/immich-postgres) | PostgreSQL with pgvector and vectorchord extensions required by Immich for vector similarity search. Defaults to PostgreSQL 14 (:latest), PostgreSQL 18 available as :18. |
 | [MariaDB](https://github.com/daemonless/mariadb) | Drop-in replacement for MySQL built by the original authors — extends core MySQL functionality with alternate storage engines, server optimizations, and patches. |
 | [Memcached](https://github.com/daemonless/memcached) | High-performance distributed memory object caching system for speeding up dynamic web applications by reducing database load. |
