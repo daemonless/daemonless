@@ -162,6 +162,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
 | [PdfCraft](https://github.com/daemonless/pdfcraft) | Open-source, clean-room reimplementation of Adobe Acrobat in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Radicale](https://github.com/daemonless/radicale) | Radicale is a lightweight CalDAV (calendar, todo-lists) and CardDAV (contacts) server. |
+| [SparkyFitness](https://github.com/daemonless/sparkyfitness) | Self-hosted privacy-first fitness tracker on FreeBSD. |
 | [Superset](https://github.com/daemonless/superset) | Modern data exploration and visualization platform — build charts, dashboards, and SQL-driven analytics on top of your databases. |
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
 | [Vikunja](https://github.com/daemonless/vikunja) | Vikunja is an open-source, self-hostable to-do app. It helps you organize your tasks and projects with features like list, kanban, gantt, and table views - all while keeping your data under your control. |
@@ -204,13 +205,6 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [Immich-Cli](https://github.com/daemonless/immich-cli) |  |
-
-
-### Health & Fitness
-
-| Image | Description |
-|-------|-------------|
-| [SparkyFitness](https://github.com/daemonless/sparkyfitness) | Self-hosted privacy-first fitness tracker on FreeBSD. |
 
 
 
