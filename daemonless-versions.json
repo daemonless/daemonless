@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-12T06:39:53.446376Z",
+  "last_check": "2026-10-12T16:13:53.819724Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -486,7 +486,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.42.6"
+      "upstream": "2.42.7"
     },
     "navidrome": {
       "pkg": {
@@ -550,7 +550,7 @@
         "aarch64": "9.4.0_4",
         "amd64": "9.4.0_4"
       },
-      "upstream": "9.4.0"
+      "upstream": "10.0.0"
     },
     "opencloud": {
       "upstream": "v8.1.0"
@@ -571,7 +571,7 @@
       "upstream": "26.7.0"
     },
     "pdfcraft": {
-      "upstream": "v0.6.0"
+      "upstream": "v0.7.1"
     },
     "photocraft": {
       "upstream": "v0.7.0"
@@ -988,7 +988,7 @@
       "upstream": "1.37.4"
     },
     "vectorcraft": {
-      "upstream": "v0.9.0"
+      "upstream": "v0.10.0"
     },
     "victoriametrics": {
       "pkg": {
