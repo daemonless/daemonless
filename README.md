@@ -69,6 +69,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Forgejo](https://github.com/daemonless/forgejo) | Forgejo is a self-hosted lightweight software forge |
 | [Gitea](https://github.com/daemonless/gitea) | Lightweight self-hosted Git service — a community managed fork of Gogs written in Go. |
 | [HAProxy](https://github.com/daemonless/haproxy) | Reliable, high performance TCP/HTTP load balancer and reverse proxy. |
+| [Nginx + PHP-FPM](https://github.com/daemonless/nginx-php-fpm) | Nginx with PHP-FPM, composer and the PHP extensions from ports, for running your own PHP sites. |
 | [Sylve](https://github.com/daemonless/sylve) | Modern, open-source management platform for FreeBSD managing Virtual Machines (Bhyve), Jails, and ZFS storage. |
 | [Tailscale](https://github.com/daemonless/tailscale) | Zero-config mesh VPN built on WireGuard — securely connect your devices without port forwarding or firewall changes. |
 | [Traefik](https://github.com/daemonless/traefik) | Modern HTTP reverse proxy and load balancer on FreeBSD. |
@@ -195,6 +196,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Playwright](https://github.com/daemonless/playwright) | Playwright (Chromium) on FreeBSD. Use as a base image for running browser tests. |
 | [SmokePing](https://github.com/daemonless/smokeping) | Network latency monitor with historical graphing — tracks round-trip times and packet loss to your hosts over time. |
 | [Stirling-PDF](https://github.com/daemonless/stirling-pdf) | Locally hosted web application for performing various operations on PDF files — merge, split, compress, convert, OCR, and more. |
+| [Thelounge](https://github.com/daemonless/thelounge) | The self-hosted web IRC client on FreeBSD. |
 | [UniFi Network](https://github.com/daemonless/unifi) | Ubiquiti UniFi Network Application for managing UniFi access points, switches, and gateways. |
 | [Uptime Kuma](https://github.com/daemonless/uptime-kuma) | Self-hosted uptime monitoring tool with a beautiful dashboard, status pages, and multi-channel notifications. |
 | [Vaultwarden](https://github.com/daemonless/vaultwarden) | Lightweight Bitwarden-compatible password manager server — self-host your passwords, secrets, and secure notes. |
