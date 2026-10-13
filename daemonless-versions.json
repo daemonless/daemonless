@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-13T01:03:00.128958Z",
+  "last_check": "2026-10-13T14:39:59.695297Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -312,7 +312,7 @@
         "aarch64": "0.29.3",
         "amd64": "0.29.3_1"
       },
-      "upstream": "0.29.4"
+      "upstream": "0.29.5"
     },
     "heimdall": {
       "upstream": "v2.8.3"
@@ -486,7 +486,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.42.7"
+      "upstream": "2.43.4"
     },
     "navidrome": {
       "pkg": {
