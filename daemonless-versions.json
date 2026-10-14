@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-14T05:33:10.261787Z",
+  "last_check": "2026-10-14T12:32:00.293965Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -486,7 +486,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.43.4"
+      "upstream": "2.43.5"
     },
     "navidrome": {
       "pkg": {
@@ -613,7 +613,7 @@
       "upstream": "v0.8.2"
     },
     "playwright": {
-      "upstream": "1.64.0"
+      "upstream": "1.64.1"
     },
     "plex": {
       "upstream": "1.43.4.10903-e5521bd8c"
