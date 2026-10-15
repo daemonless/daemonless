@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-14T17:41:20.935057Z",
+  "last_check": "2026-10-15T05:21:15.648432Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -91,7 +91,7 @@
     },
     "clickhouse": {
       "pkg": {
-        "amd64": "26.3.22.7"
+        "amd64": "26.3.24.4"
       },
       "pkg-latest": {
         "amd64": "26.3.24.4"
@@ -150,7 +150,7 @@
       "upstream": "4.10.1.0"
     },
     "erpnext": {
-      "upstream": "15.122.0"
+      "upstream": "15.123.0"
     },
     "ffmpeg": {
       "pkg": {
@@ -966,7 +966,7 @@
     "traefik": {
       "pkg": {
         "aarch64": "3.7.13",
-        "amd64": "3.7.13_1"
+        "amd64": "3.7.14"
       },
       "pkg-latest": {
         "aarch64": "3.7.14",
@@ -1013,6 +1013,9 @@
       },
       "upstream": "10.6.106"
     },
+    "unifi-os-server": {
+      "upstream": "5.1.42"
+    },
     "uptime-kuma": {
       "upstream": "2.5.6"
     },
@@ -1029,6 +1032,16 @@
     },
     "vectorcraft": {
       "upstream": "v0.11.0"
+    },
+    "versitygw": {
+      "pkg": {
+        "aarch64": "1.7.0_1",
+        "amd64": "1.7.0_2"
+      },
+      "pkg-latest": {
+        "aarch64": "1.8.0_1",
+        "amd64": "1.8.0_1"
+      }
     },
     "victoriametrics": {
       "pkg": {
