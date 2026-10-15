@@ -189,6 +189,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Mealie](https://github.com/daemonless/mealie) | Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web. |
 | [Nextcloud](https://github.com/daemonless/nextcloud) | Online collaboration platform providing groupware capabilities by default, extensible with additional apps. |
 | [NocoDB](https://github.com/daemonless/nocodb) | Free and self-hostable Airtable alternative — turn any database into a smart spreadsheet. |
+| [Node-RED](https://github.com/daemonless/node-red) | Low-code programming for event-driven applications on FreeBSD. |
 | [OpenCloud](https://github.com/daemonless/opencloud) | OpenCloud is a modern file-sync and share platform. |
 | [OpenCloud-Radicale](https://github.com/daemonless/opencloud-radicale) | A simple CalDAV (calendar) and CardDAV (contact) server. |
 | [OpenSpeedTest](https://github.com/daemonless/openspeedtest) | Self-hosted HTML5 Network Speed Test on FreeBSD. |
