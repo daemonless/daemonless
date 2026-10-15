@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-15T05:21:15.648432Z",
+  "last_check": "2026-10-15T12:13:11.326984Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -487,7 +487,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.43.5"
+      "upstream": "2.43.6"
     },
     "navidrome": {
       "pkg": {
@@ -508,7 +508,7 @@
         "aarch64": "35.0.1",
         "amd64": "35.0.1"
       },
-      "upstream": "v35.0.1"
+      "upstream": "v33.0.10"
     },
     "nginx-php-fpm": {
       "default": "85",
@@ -577,6 +577,9 @@
           }
         }
       }
+    },
+    "node-red": {
+      "upstream": "5.0.8"
     },
     "onlyoffice": {
       "pkg": {
