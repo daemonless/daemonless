@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-15T12:13:11.326984Z",
+  "last_check": "2026-10-15T17:26:32.503437Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -975,7 +975,7 @@
         "aarch64": "3.7.14",
         "amd64": "3.7.14"
       },
-      "upstream": "v3.7.14"
+      "upstream": "v3.7.15"
     },
     "transmission": {
       "pkg": {
