@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-15T21:53:11.652350Z",
+  "last_check": "2026-10-16T05:12:35.976513Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -66,7 +66,7 @@
       "upstream": "2.1.1"
     },
     "bulwark-webmail": {
-      "upstream": "1.14.2"
+      "upstream": "1.15.0"
     },
     "caddy": {
       "pkg": {
