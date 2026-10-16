@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-16T12:00:02.818352Z",
+  "last_check": "2026-10-16T17:03:14.516947Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -1034,7 +1034,7 @@
       "upstream": "1.37.4"
     },
     "vectorcraft": {
-      "upstream": "v0.11.0"
+      "upstream": "v0.12.0"
     },
     "versitygw": {
       "pkg": {
@@ -1091,7 +1091,7 @@
         "aarch64": "0.0.67",
         "amd64": "0.0.67"
       },
-      "upstream": "0.0.70"
+      "upstream": "0.0.71"
     }
   }
 }
