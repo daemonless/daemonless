@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-16T05:12:35.976513Z",
+  "last_check": "2026-10-16T12:00:02.818352Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -487,7 +487,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.43.6"
+      "upstream": "2.43.7"
     },
     "navidrome": {
       "pkg": {
@@ -605,7 +605,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.3.1"
+      "upstream": "v3.3.2"
     },
     "papra": {
       "upstream": "26.7.0"
