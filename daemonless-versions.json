@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-17T16:00:44.036666Z",
+  "last_check": "2026-10-17T21:05:34.091074Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -474,7 +474,7 @@
       }
     },
     "mealie": {
-      "upstream": "v3.28.0"
+      "upstream": "v3.29.0"
     },
     "memcached": {
       "pkg": {
