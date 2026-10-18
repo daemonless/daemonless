@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-18T16:11:58.768264Z",
+  "last_check": "2026-10-18T21:07:39.956098Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -200,7 +200,7 @@
       }
     },
     "gitea": {
-      "upstream": "v28.1.0"
+      "upstream": "v28.2.0"
     },
     "grafana": {
       "pkg": {
@@ -913,7 +913,7 @@
         "aarch64": "0.16.25",
         "amd64": "0.16.25_1"
       },
-      "upstream": "v0.16.26"
+      "upstream": "v0.16.27"
     },
     "stirling-pdf": {
       "pkg": {
