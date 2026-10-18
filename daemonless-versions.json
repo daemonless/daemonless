@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-18T11:48:57.232434Z",
+  "last_check": "2026-10-18T16:11:58.768264Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -67,6 +67,9 @@
     },
     "bulwark-webmail": {
       "upstream": "1.15.0"
+    },
+    "cadcraft": {
+      "upstream": "v0.8.0"
     },
     "caddy": {
       "pkg": {
@@ -158,6 +161,9 @@
         "aarch64": "9.0.2_2,1",
         "amd64": "9.0.2_2,1"
       }
+    },
+    "figcraft": {
+      "upstream": "v0.7.0"
     },
     "filebrowser-quantum": {
       "upstream": "v2.0.1-stable"
@@ -891,6 +897,9 @@
         "amd64": "4.0.20.3014"
       },
       "upstream": "4.0.20.3014"
+    },
+    "soundcraft": {
+      "upstream": "v0.8.0"
     },
     "sparkyfitness": {
       "upstream": "v1.8.0"
