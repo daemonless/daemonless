@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-17T21:05:34.091074Z",
+  "last_check": "2026-10-18T05:14:05.837658Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -86,7 +86,7 @@
       },
       "pkg-latest": {
         "aarch64": "1.5.4_1,1",
-        "amd64": "1.5.4_1,1"
+        "amd64": "1.5.4_2,1"
       }
     },
     "clickhouse": {
@@ -94,7 +94,7 @@
         "amd64": "26.3.24.4"
       },
       "pkg-latest": {
-        "amd64": "26.3.24.4"
+        "amd64": "26.3.25.2"
       }
     },
     "cloudflared": {
@@ -129,23 +129,20 @@
       "upstream": "4.141.0"
     },
     "deckcraft": {
-      "upstream": "v0.7.0"
+      "upstream": "v0.8.0"
     },
     "designcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.9.0"
     },
     "dispatcharr": {
       "upstream": "v0.32.0"
     },
     "effectcraft": {
-      "upstream": "v0.10.0"
+      "upstream": "v0.11.1"
     },
     "emby": {
       "pkg": {
         "amd64": "4.9.3.0_4"
-      },
-      "pkg-latest": {
-        "amd64": "4.9.3.0_6"
       },
       "upstream": "4.10.1.0"
     },
@@ -166,7 +163,7 @@
       "upstream": "v2.0.1-stable"
     },
     "filmcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.9.0"
     },
     "forgejo": {
       "default": "15",
@@ -175,13 +172,13 @@
         "15": {
           "pkg-latest": {
             "aarch64": "15.0.9_1",
-            "amd64": "15.0.9_1"
+            "amd64": "15.0.10"
           }
         },
         "16": {
           "pkg-latest": {
             "aarch64": "16.0.5_1",
-            "amd64": "16.0.5_1"
+            "amd64": "16.0.6"
           }
         }
       }
@@ -193,7 +190,7 @@
       },
       "pkg-latest": {
         "aarch64": "2.4.1",
-        "amd64": "2.4.1"
+        "amd64": "2.4.1_1"
       }
     },
     "gitea": {
@@ -210,7 +207,7 @@
       }
     },
     "gridcraft": {
-      "upstream": "v0.7.0"
+      "upstream": "v0.8.0"
     },
     "grimmory": {
       "upstream": "v3.5.0"
@@ -226,7 +223,7 @@
           },
           "pkg-latest": {
             "aarch64": "2.6.33",
-            "amd64": "2.6.33"
+            "amd64": "2.6.35"
           }
         },
         "2.8": {
@@ -236,7 +233,7 @@
           },
           "pkg-latest": {
             "aarch64": "2.8.30",
-            "amd64": "2.8.30"
+            "amd64": "2.8.31"
           }
         },
         "3.0": {
@@ -246,7 +243,7 @@
           },
           "pkg-latest": {
             "aarch64": "3.0.29",
-            "amd64": "3.0.29"
+            "amd64": "3.0.30"
           },
           "wolfssl-pkg-latest": {
             "aarch64": "3.0.27",
@@ -260,7 +257,7 @@
           },
           "pkg-latest": {
             "aarch64": "3.2.25",
-            "amd64": "3.2.25"
+            "amd64": "3.2.26"
           },
           "wolfssl-pkg-latest": {
             "aarch64": "3.2.23",
@@ -274,7 +271,7 @@
           },
           "pkg-latest": {
             "aarch64": "3.3.16",
-            "amd64": "3.3.16"
+            "amd64": "3.3.17"
           },
           "wolfssl-pkg-latest": {
             "aarch64": "3.3.14",
@@ -288,7 +285,7 @@
           },
           "pkg-latest": {
             "aarch64": "3.4.6",
-            "amd64": "3.4.6"
+            "amd64": "3.4.7"
           },
           "wolfssl-pkg-latest": {
             "aarch64": "3.4.4",
@@ -431,7 +428,7 @@
       "upstream": "3.1.0.4875"
     },
     "lightcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.9.1"
     },
     "lldap": {
       "pkg": {
@@ -440,7 +437,7 @@
       },
       "pkg-latest": {
         "aarch64": "0.6.3_3",
-        "amd64": "0.6.3_3"
+        "amd64": "0.6.3_4"
       }
     },
     "mariadb": {
@@ -554,8 +551,7 @@
       "variants": {
         "20": {
           "pkg-latest": {
-            "aarch64": "20.20.2_3",
-            "amd64": "20.20.2_3"
+            "aarch64": "20.20.2_3"
           }
         },
         "22": {
@@ -611,10 +607,10 @@
       "upstream": "26.7.0"
     },
     "pdfcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.9.0"
     },
     "photocraft": {
-      "upstream": "v0.9.0"
+      "upstream": "v0.10.0"
     },
     "playwright": {
       "upstream": "1.64.1"
@@ -691,37 +687,37 @@
         "311": {
           "pkg-latest": {
             "aarch64": "3.11.16",
-            "amd64": "3.11.16"
+            "amd64": "3.11.17"
           }
         },
         "312": {
           "pkg-latest": {
             "aarch64": "3.12.14_1",
-            "amd64": "3.12.14_1"
+            "amd64": "3.12.15"
           }
         },
         "313": {
           "pkg-latest": {
             "aarch64": "3.13.15",
-            "amd64": "3.13.15"
+            "amd64": "3.13.16"
           }
         },
         "313t": {
           "pkg-latest": {
             "aarch64": "3.13.15",
-            "amd64": "3.13.15"
+            "amd64": "3.13.16"
           }
         },
         "314": {
           "pkg-latest": {
             "aarch64": "3.14.7",
-            "amd64": "3.14.7"
+            "amd64": "3.14.8"
           }
         },
         "314t": {
           "pkg-latest": {
             "aarch64": "3.14.7",
-            "amd64": "3.14.7"
+            "amd64": "3.14.8"
           }
         },
         "315": {
@@ -906,7 +902,7 @@
       },
       "pkg-latest": {
         "aarch64": "0.16.25",
-        "amd64": "0.16.25"
+        "amd64": "0.16.25_1"
       },
       "upstream": "v0.16.26"
     },
@@ -1029,12 +1025,12 @@
       },
       "pkg-latest": {
         "aarch64": "1.37.4",
-        "amd64": "1.37.4"
+        "amd64": "1.37.4_1"
       },
       "upstream": "1.37.4"
     },
     "vectorcraft": {
-      "upstream": "v0.12.0"
+      "upstream": "v0.13.1"
     },
     "versitygw": {
       "pkg": {
@@ -1080,7 +1076,7 @@
       "upstream": "v3.19.0"
     },
     "wordcraft": {
-      "upstream": "v0.7.0"
+      "upstream": "v0.8.0"
     },
     "zensical": {
       "pkg": {
@@ -1089,7 +1085,7 @@
       },
       "pkg-latest": {
         "aarch64": "0.0.67",
-        "amd64": "0.0.67"
+        "amd64": "0.0.67_1"
       },
       "upstream": "0.0.71"
     }
