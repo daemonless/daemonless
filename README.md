@@ -138,7 +138,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
-| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's ten open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft) as WebAssembly web apps. Pick the ones you want. |
+| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's thirteen open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft, FigCraft, SoundCraft, CADCraft) as WebAssembly web apps. Pick the ones you want. |
 | [EffectCraft](https://github.com/daemonless/effectcraft) | Open-source, clean-room reimplementation of Adobe After Effects in Rust, served as a WebAssembly web app on FreeBSD. |
 | [FilmCraft](https://github.com/daemonless/filmcraft) | Open-source, clean-room reimplementation of Adobe Premiere Pro in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Immich](https://github.com/daemonless/immich) | High performance self-hosted photo and video management solution. |
@@ -147,6 +147,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Immich Server](https://github.com/daemonless/immich-server) | Self-hosted photo and video backup and management server with web UI, mobile sync, and shared albums. |
 | [LightCraft](https://github.com/daemonless/lightcraft) | Open-source, clean-room reimplementation of Adobe Lightroom in Rust, served as a WebAssembly web app on FreeBSD. |
 | [PhotoCraft](https://github.com/daemonless/photocraft) | Open-source, clean-room reimplementation of Adobe Photoshop in Rust, served as a WebAssembly web app on FreeBSD. |
+| [SoundCraft](https://github.com/daemonless/soundcraft) | Open-source, clean-room reimplementation of Avid Pro Tools in Rust, served as a WebAssembly web app on FreeBSD. |
 | [VectorCraft](https://github.com/daemonless/vectorcraft) | Open-source, clean-room reimplementation of Adobe Illustrator in Rust, served as a WebAssembly web app on FreeBSD. |
 
 
@@ -157,9 +158,11 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [AFFiNE](https://github.com/daemonless/affine) | AFFiNE is an open-source, privacy-first, local-first knowledge management and collaboration tool. |
 | [Actual Budget](https://github.com/daemonless/actual) | Self-hosted personal finance sync server (Actual Budget) on FreeBSD. |
 | [Bulwark Webmail](https://github.com/daemonless/bulwark-webmail) | Modern self-hosted webmail client for Stalwart Mail Server, powered by JMAP. |
+| [CADCraft](https://github.com/daemonless/cadcraft) | Open-source, clean-room AutoCAD-style computer-aided design and drafting in Rust, served as a WebAssembly web app on FreeBSD. |
 | [DeckCraft](https://github.com/daemonless/deckcraft) | Open-source, clean-room reimplementation of Microsoft PowerPoint in Rust, served as a WebAssembly web app on FreeBSD. |
 | [DesignCraft](https://github.com/daemonless/designcraft) | Open-source, clean-room reimplementation of Adobe InDesign in Rust, served as a WebAssembly web app on FreeBSD. |
 | [ERPNext](https://github.com/daemonless/erpnext) | Open source ERP: accounting, inventory, manufacturing, CRM, HR and projects, built on the Frappe framework. |
+| [FigCraft](https://github.com/daemonless/figcraft) | Open-source, clean-room Figma-style interface design and prototyping in Rust, served as a WebAssembly web app on FreeBSD. |
 | [GridCraft](https://github.com/daemonless/gridcraft) | Open-source, clean-room spreadsheet in Rust, served as a WebAssembly web app on FreeBSD. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
