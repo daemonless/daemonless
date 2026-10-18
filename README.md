@@ -99,6 +99,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [Audiobookshelf](https://github.com/daemonless/audiobookshelf) | Self-hosted audiobook and podcast server. |
+| [Calibre-Web](https://github.com/daemonless/calibre-web) | Calibre-Web is a web app providing a clean interface for browsing, reading, and downloading eBooks using an existing or new Calibre database. |
 | [Emby](https://github.com/daemonless/emby) | Personal media server with apps on just about every device. |
 | [Jellyfin](https://github.com/daemonless/jellyfin) | Volunteer-built media solution that puts you in control — stream to any device from your own server, with no strings attached. |
 | [Navidrome](https://github.com/daemonless/navidrome) | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |
