@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-18T21:07:39.956098Z",
+  "last_check": "2026-10-19T05:27:19.021351Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -81,6 +81,16 @@
         "amd64": "2.11.7_1"
       },
       "upstream": "v2.11.7"
+    },
+    "calibre-web": {
+      "pkg": {
+        "aarch64": "0.6.27_1",
+        "amd64": "0.6.27_1"
+      },
+      "pkg-latest": {
+        "aarch64": "0.6.27_1",
+        "amd64": "0.6.27_1"
+      }
     },
     "clamav": {
       "pkg": {
@@ -370,7 +380,7 @@
       }
     },
     "immich-public-proxy": {
-      "upstream": "4.0.0"
+      "upstream": "4.1.0"
     },
     "immich-server": {
       "upstream": "v3.3.3"
