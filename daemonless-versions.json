@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-20T12:22:00.139779Z",
+  "last_check": "2026-10-20T17:36:36.613430Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -145,7 +145,7 @@
       "upstream": "v0.8.0"
     },
     "designcraft": {
-      "upstream": "v0.9.0"
+      "upstream": "v0.10.0"
     },
     "dispatcharr": {
       "upstream": "v0.32.0"
@@ -176,7 +176,7 @@
       }
     },
     "figcraft": {
-      "upstream": "v0.7.0"
+      "upstream": "v0.8.0"
     },
     "filebrowser-quantum": {
       "upstream": "v2.0.1-stable"
@@ -226,7 +226,7 @@
       }
     },
     "gridcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.9.0"
     },
     "grimmory": {
       "upstream": "v3.5.0"
@@ -630,7 +630,7 @@
       "upstream": "1.64.1"
     },
     "plex": {
-      "upstream": "1.43.4.10903-e5521bd8c"
+      "upstream": "1.43.5.11029-6bf8af3f0"
     },
     "postgres": {
       "default": "18",
@@ -751,7 +751,7 @@
         "aarch64": "5.2.4_1",
         "amd64": "5.2.4_1"
       },
-      "upstream": "release-5.2.4"
+      "upstream": "release-5.3.0"
     },
     "radarr": {
       "pkg": {
@@ -773,7 +773,7 @@
       }
     },
     "readmeabook": {
-      "upstream": "v1.2.7"
+      "upstream": "v1.2.8"
     },
     "redis": {
       "default": "8.8",
@@ -907,7 +907,7 @@
       "upstream": "4.0.20.3014"
     },
     "soundcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.10.0"
     },
     "sparkyfitness": {
       "upstream": "v1.8.0"
