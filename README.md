@@ -19,6 +19,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [Arr Base](https://github.com/daemonless/arr-base) | Shared base image for *Arr applications (Radarr, Sonarr, Lidarr, Prowlarr) containing common dependencies. |
+| [Arr Base (exec)](https://github.com/daemonless/arr-base-exec) | Shared base image for *Arr applications (Radarr, Sonarr, Lidarr, Prowlarr) containing common dependencies, built on base-exec (single process, no supervisor). |
 | [FreeBSD Base](https://github.com/daemonless/base) | FreeBSD base image with s6 supervision |
 | [FreeBSD Base (exec)](https://github.com/daemonless/base-exec) | FreeBSD base image for single-process containers: /init runs the setup, then execs the app; runs as root (PUID/PGID) or any user (podman --user, Kubernetes runAsUser) |
 | [FreeBSD Base Core](https://github.com/daemonless/base-core) | Minimal FreeBSD base image without service supervision. Foundation for CLI tools and non-daemon containers. |
