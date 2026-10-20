@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-20T17:36:36.613430Z",
+  "last_check": "2026-10-20T21:58:29.122227Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -624,7 +624,7 @@
       "upstream": "v0.9.0"
     },
     "photocraft": {
-      "upstream": "v0.10.0"
+      "upstream": "v0.11.1"
     },
     "playwright": {
       "upstream": "1.64.1"
@@ -773,7 +773,7 @@
       }
     },
     "readmeabook": {
-      "upstream": "v1.2.8"
+      "upstream": "v1.2.9"
     },
     "redis": {
       "default": "8.8",
@@ -935,7 +935,7 @@
       "upstream": "v3.2.0"
     },
     "stump": {
-      "upstream": "v0.1.10"
+      "upstream": "v0.1.11"
     },
     "superset": {
       "upstream": "6.1.0"
