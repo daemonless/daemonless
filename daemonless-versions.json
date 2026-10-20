@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-19T22:41:11.076436Z",
+  "last_check": "2026-10-20T05:27:46.448268Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -435,7 +435,7 @@
         "aarch64": "26.9.1.1,1",
         "amd64": "26.9.1.1,1"
       },
-      "upstream": "26.10.0"
+      "upstream": "26.10.1"
     },
     "lidarr": {
       "pkg": {
@@ -773,7 +773,7 @@
       }
     },
     "readmeabook": {
-      "upstream": "v1.2.4"
+      "upstream": "v1.2.6"
     },
     "redis": {
       "default": "8.8",
