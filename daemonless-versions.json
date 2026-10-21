@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-21T12:30:46.631196Z",
+  "last_check": "2026-10-21T17:44:54.889072Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -435,7 +435,7 @@
         "aarch64": "26.9.1.1,1",
         "amd64": "26.9.1.1,1"
       },
-      "upstream": "26.10.1"
+      "upstream": "26.10.2"
     },
     "lidarr": {
       "pkg": {
@@ -525,6 +525,16 @@
         "amd64": "35.0.1"
       },
       "upstream": "v33.0.10"
+    },
+    "nginx": {
+      "pkg": {
+        "aarch64": "1.30.5_2,3",
+        "amd64": "1.30.5_2,3"
+      },
+      "pkg-latest": {
+        "aarch64": "1.30.5_6,3",
+        "amd64": "1.30.6_1,3"
+      }
     },
     "nginx-php-fpm": {
       "default": "85",
@@ -885,7 +895,7 @@
       "upstream": "4.48"
     },
     "seerr": {
-      "upstream": "v3.5.0"
+      "upstream": "v3.5.1"
     },
     "smokeping": {
       "pkg": {
