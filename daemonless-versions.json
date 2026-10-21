@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-20T21:58:29.122227Z",
+  "last_check": "2026-10-21T05:25:05.052042Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -160,7 +160,7 @@
       "pkg-latest": {
         "amd64": "4.9.3.0_6"
       },
-      "upstream": "4.10.1.0"
+      "upstream": "4.10.2.0"
     },
     "erpnext": {
       "upstream": "15.123.0"
@@ -773,7 +773,7 @@
       }
     },
     "readmeabook": {
-      "upstream": "v1.2.9"
+      "upstream": "v1.2.10"
     },
     "redis": {
       "default": "8.8",
@@ -910,7 +910,7 @@
       "upstream": "v0.10.0"
     },
     "sparkyfitness": {
-      "upstream": "v1.8.0"
+      "upstream": "v1.9.0"
     },
     "stalwart": {
       "pkg": {
@@ -963,7 +963,7 @@
         "aarch64": "1.102.5_1",
         "amd64": "1.102.5_1"
       },
-      "upstream": "v1.104.1"
+      "upstream": "v1.104.2"
     },
     "tautulli": {
       "pkg": {
