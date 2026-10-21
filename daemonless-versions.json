@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-21T05:25:05.052042Z",
+  "last_check": "2026-10-21T12:30:46.631196Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -69,7 +69,7 @@
       "upstream": "1.16.0"
     },
     "cadcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.10.0"
     },
     "caddy": {
       "pkg": {
@@ -142,7 +142,7 @@
       "upstream": "4.141.0"
     },
     "deckcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.9.0"
     },
     "designcraft": {
       "upstream": "v0.10.0"
@@ -151,7 +151,7 @@
       "upstream": "v0.32.0"
     },
     "effectcraft": {
-      "upstream": "v0.11.1"
+      "upstream": "v0.13.0"
     },
     "emby": {
       "pkg": {
@@ -163,7 +163,7 @@
       "upstream": "4.10.2.0"
     },
     "erpnext": {
-      "upstream": "15.123.0"
+      "upstream": "15.124.0"
     },
     "ffmpeg": {
       "pkg": {
@@ -182,7 +182,7 @@
       "upstream": "v2.0.1-stable"
     },
     "filmcraft": {
-      "upstream": "v0.9.0"
+      "upstream": "v0.10.0"
     },
     "forgejo": {
       "default": "15",
@@ -447,7 +447,7 @@
       "upstream": "3.1.0.4875"
     },
     "lightcraft": {
-      "upstream": "v0.9.1"
+      "upstream": "v0.10.0"
     },
     "lldap": {
       "pkg": {
@@ -503,7 +503,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.44.4"
+      "upstream": "2.44.5"
     },
     "navidrome": {
       "pkg": {
@@ -589,7 +589,7 @@
       }
     },
     "node-red": {
-      "upstream": "5.0.8"
+      "upstream": "5.0.9"
     },
     "onlyoffice": {
       "pkg": {
@@ -621,7 +621,7 @@
       "upstream": "26.7.0"
     },
     "pdfcraft": {
-      "upstream": "v0.9.0"
+      "upstream": "v0.10.1"
     },
     "photocraft": {
       "upstream": "v0.11.1"
@@ -952,7 +952,7 @@
         "aarch64": "2.1.6_1",
         "amd64": "2.1.6_1"
       },
-      "upstream": "v2.1.6"
+      "upstream": "v2.1.7"
     },
     "tailscale": {
       "pkg": {
@@ -988,7 +988,7 @@
         "aarch64": "3.7.14",
         "amd64": "3.7.15"
       },
-      "upstream": "v3.7.15"
+      "upstream": "v3.7.16"
     },
     "transmission": {
       "pkg": {
@@ -1047,7 +1047,7 @@
       "upstream": "1.37.4"
     },
     "vectorcraft": {
-      "upstream": "v0.13.1"
+      "upstream": "v0.14.0"
     },
     "versitygw": {
       "pkg": {
@@ -1093,7 +1093,7 @@
       "upstream": "v3.19.0"
     },
     "wordcraft": {
-      "upstream": "v0.8.0"
+      "upstream": "v0.9.0"
     },
     "zensical": {
       "pkg": {
