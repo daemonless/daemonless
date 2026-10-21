@@ -9,5 +9,14 @@ sources:
   - name: daemonless
     provider: daemonless-github
     org: daemonless
+    os: [freebsd]
     # Tooling, bases and this catalog's own repos are not installable apps.
     exclude: "^(base|base-core|base-manifest-test|build-tools|daemonless|daemonless-io|ci-daemonless-io|dbuild|fjord|fjord-catalog|freebsd-ports|mkdocs-zip-bundle-plugin|\\.github)$"
+
+  # linuxserver.io's images, for Linux hosts. Only the apps that passed
+  # fjord's install test (tested-linuxserver.json, beside this file) are
+  # published; the rest are listed there with why not.
+  - name: linuxserver
+    provider: linuxserver-api
+    os: [linux]
+    tested: tested-linuxserver.json
