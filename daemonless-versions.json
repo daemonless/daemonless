@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-22T12:37:46.090431Z",
+  "last_check": "2026-10-22T17:43:32.048006Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -163,7 +163,7 @@
       "upstream": "4.10.2.0"
     },
     "erpnext": {
-      "upstream": "15.124.0"
+      "upstream": "15.124.1"
     },
     "ffmpeg": {
       "pkg": {
