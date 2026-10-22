@@ -22,6 +22,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Arr Base (exec)](https://github.com/daemonless/arr-base-exec) | Shared base image for *Arr applications (Radarr, Sonarr, Lidarr, Prowlarr) containing common dependencies, built on base-exec (single process, no supervisor). |
 | [FreeBSD Base](https://github.com/daemonless/base) | FreeBSD base image with s6 supervision |
 | [FreeBSD Base (exec)](https://github.com/daemonless/base-exec) | FreeBSD base image for single-process containers: /init runs the setup, then execs the app; runs as root (PUID/PGID) or any user (podman --user, Kubernetes runAsUser) |
+| [FreeBSD Base (rcd)](https://github.com/daemonless/base-rcd) | FreeBSD base image for multi-service containers, supervised by rcd(8) units in /usr/local/etc/rcd.d (PUID/PGID) |
 | [FreeBSD Base Core](https://github.com/daemonless/base-core) | Minimal FreeBSD base image without service supervision. Foundation for CLI tools and non-daemon containers. |
 | [Nginx Base](https://github.com/daemonless/nginx-base) | Shared base image for Nginx-based applications. |
 | [Node.js](https://github.com/daemonless/node) | JavaScript runtime built on Chrome's V8 engine, with npm included for building and running Node.js applications. |
