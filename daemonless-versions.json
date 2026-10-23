@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-22T21:59:23.262019Z",
+  "last_check": "2026-10-23T05:29:07.998526Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -69,7 +69,7 @@
       "upstream": "1.17.1"
     },
     "cadcraft": {
-      "upstream": "v0.11.0"
+      "upstream": "v0.12.0"
     },
     "caddy": {
       "pkg": {
@@ -151,7 +151,7 @@
       "upstream": "v0.32.0"
     },
     "effectcraft": {
-      "upstream": "v0.15.0"
+      "upstream": "v0.16.0"
     },
     "emby": {
       "pkg": {
@@ -182,7 +182,7 @@
       "upstream": "v2.0.1-stable"
     },
     "filmcraft": {
-      "upstream": "v0.11.0"
+      "upstream": "v0.12.0"
     },
     "forgejo": {
       "default": "15",
@@ -397,7 +397,7 @@
         "aarch64": "10.11.11_1",
         "amd64": "10.11.11_1"
       },
-      "upstream": "v12.2"
+      "upstream": "v12.3"
     },
     "jellyfin-ffmpeg": {
       "default": "8",
@@ -448,7 +448,7 @@
       "upstream": "3.1.0.4875"
     },
     "lightcraft": {
-      "upstream": "v0.12.0"
+      "upstream": "v0.13.0"
     },
     "lldap": {
       "pkg": {
@@ -530,7 +530,7 @@
     "nginx": {
       "pkg": {
         "aarch64": "1.30.6,3",
-        "amd64": "1.30.5_2,3"
+        "amd64": "1.30.6,3"
       },
       "pkg-latest": {
         "aarch64": "1.30.5_6,3",
@@ -636,16 +636,16 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.3.3"
+      "upstream": "v3.3.4"
     },
     "papra": {
       "upstream": "26.7.1"
     },
     "pdfcraft": {
-      "upstream": "v0.12.0"
+      "upstream": "v0.13.0"
     },
     "photocraft": {
-      "upstream": "v0.13.0"
+      "upstream": "v0.14.0"
     },
     "playwright": {
       "upstream": "1.64.1"
@@ -903,7 +903,7 @@
         "aarch64": "4.45_1",
         "amd64": "4.45_1"
       },
-      "upstream": "4.48"
+      "upstream": "4.49"
     },
     "seerr": {
       "upstream": "v3.5.1"
@@ -1003,7 +1003,7 @@
     "traefik": {
       "pkg": {
         "aarch64": "3.7.15",
-        "amd64": "3.7.14"
+        "amd64": "3.7.15"
       },
       "pkg-latest": {
         "aarch64": "3.7.14",
@@ -1054,7 +1054,7 @@
       "upstream": "5.1.42"
     },
     "uptime-kuma": {
-      "upstream": "2.5.6"
+      "upstream": "2.5.7"
     },
     "vaultwarden": {
       "pkg": {
@@ -1068,7 +1068,7 @@
       "upstream": "1.37.4"
     },
     "vectorcraft": {
-      "upstream": "v0.15.0"
+      "upstream": "v0.16.0"
     },
     "versitygw": {
       "pkg": {
