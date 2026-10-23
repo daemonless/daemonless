@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-23T17:33:00.781431Z",
+  "last_check": "2026-10-23T21:46:52.944900Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -12,7 +12,7 @@
     "adguardhome": {
       "pkg": {
         "aarch64": "0.107.79_1",
-        "amd64": "0.107.79_1"
+        "amd64": "0.107.79_2"
       },
       "pkg-latest": {
         "aarch64": "0.107.79_1",
@@ -27,12 +27,12 @@
       "upstream": "v0.27.4"
     },
     "audiobookshelf": {
-      "upstream": "v2.37.1"
+      "upstream": "v2.37.2"
     },
     "authelia-server": {
       "pkg": {
         "aarch64": "4.39.20_7",
-        "amd64": "4.39.20_7"
+        "amd64": "4.39.20_8"
       },
       "pkg-latest": {
         "aarch64": "4.39.20_7",
@@ -43,7 +43,7 @@
     "backrest": {
       "pkg": {
         "aarch64": "1.14.1_4",
-        "amd64": "1.14.1_4"
+        "amd64": "1.14.1_5"
       },
       "pkg-latest": {
         "aarch64": "1.14.1_4",
@@ -74,7 +74,7 @@
     "caddy": {
       "pkg": {
         "aarch64": "2.11.4_5",
-        "amd64": "2.11.4_5"
+        "amd64": "2.11.4_6"
       },
       "pkg-latest": {
         "aarch64": "2.11.7_1",
@@ -113,7 +113,7 @@
     "cloudflared": {
       "pkg": {
         "aarch64": "2026.2.0_9",
-        "amd64": "2026.2.0_9"
+        "amd64": "2026.2.0_10"
       },
       "pkg-latest": {
         "aarch64": "2026.2.0_9",
@@ -139,7 +139,7 @@
       }
     },
     "code-server": {
-      "upstream": "4.141.0"
+      "upstream": "4.141.1"
     },
     "deckcraft": {
       "upstream": "v0.10.0"
@@ -179,7 +179,7 @@
       "upstream": "v0.10.0"
     },
     "filebrowser-quantum": {
-      "upstream": "v2.0.1-stable"
+      "upstream": "v2.0.2-stable"
     },
     "filmcraft": {
       "upstream": "v0.12.0"
@@ -218,7 +218,7 @@
     "grafana": {
       "pkg": {
         "aarch64": "13.1.1_4",
-        "amd64": "13.1.1_4"
+        "amd64": "13.1.1_5"
       },
       "pkg-latest": {
         "aarch64": "13.1.1_4",
@@ -322,7 +322,7 @@
     "headscale": {
       "pkg": {
         "aarch64": "0.29.3_1",
-        "amd64": "0.29.3_1"
+        "amd64": "0.29.3_2"
       },
       "pkg-latest": {
         "aarch64": "0.29.3_1",
@@ -334,7 +334,7 @@
       "upstream": "v2.8.3"
     },
     "home-assistant": {
-      "upstream": "2026.10.2"
+      "upstream": "2026.10.3"
     },
     "homepage": {
       "pkg": {
@@ -350,7 +350,7 @@
     "hugo": {
       "pkg": {
         "aarch64": "0.167.0_1,1",
-        "amd64": "0.167.0_1,1"
+        "amd64": "0.167.0_2,1"
       },
       "pkg-latest": {
         "aarch64": "0.168.0,1",
@@ -509,7 +509,7 @@
     "navidrome": {
       "pkg": {
         "aarch64": "0.64.2",
-        "amd64": "0.64.2"
+        "amd64": "0.64.2_1"
       },
       "pkg-latest": {
         "aarch64": "0.64.2",
@@ -544,7 +544,7 @@
         "84": {
           "pkg": {
             "aarch64": "8.4.26",
-            "amd64": "8.4.26"
+            "amd64": "8.4.27_1"
           },
           "pkg-latest": {
             "aarch64": "8.4.26",
@@ -554,7 +554,7 @@
         "85": {
           "pkg": {
             "aarch64": "8.5.11",
-            "amd64": "8.5.11"
+            "amd64": "8.5.12_1"
           },
           "pkg-latest": {
             "aarch64": "8.5.11",
@@ -897,7 +897,7 @@
     "seaweedfs": {
       "pkg": {
         "aarch64": "4.45_1",
-        "amd64": "4.45_1"
+        "amd64": "4.45_2"
       },
       "pkg-latest": {
         "aarch64": "4.45_1"
@@ -966,7 +966,7 @@
     "syncthing": {
       "pkg": {
         "aarch64": "2.1.5_1",
-        "amd64": "2.1.5_1"
+        "amd64": "2.1.5_2"
       },
       "pkg-latest": {
         "aarch64": "2.1.6_1",
@@ -977,7 +977,7 @@
     "tailscale": {
       "pkg": {
         "aarch64": "1.102.5_1",
-        "amd64": "1.102.5_1"
+        "amd64": "1.104.2"
       },
       "pkg-latest": {
         "aarch64": "1.102.5_1",
@@ -1002,7 +1002,7 @@
     "traefik": {
       "pkg": {
         "aarch64": "3.7.15",
-        "amd64": "3.7.15"
+        "amd64": "3.7.15_1"
       },
       "pkg-latest": {
         "aarch64": "3.7.15",
@@ -1040,14 +1040,13 @@
     },
     "unifi": {
       "pkg": {
-        "aarch64": "10.6.106",
-        "amd64": "10.6.106"
+        "aarch64": "10.6.106"
       },
       "pkg-latest": {
         "aarch64": "10.6.106",
         "amd64": "10.6.106"
       },
-      "upstream": "10.6.106"
+      "upstream": "10.6.109"
     },
     "unifi-os-server": {
       "upstream": "5.1.42"
@@ -1072,7 +1071,7 @@
     "versitygw": {
       "pkg": {
         "aarch64": "1.7.0_2",
-        "amd64": "1.7.0_2"
+        "amd64": "1.7.0_3"
       },
       "pkg-latest": {
         "aarch64": "1.8.0_1",
@@ -1082,7 +1081,7 @@
     "victoriametrics": {
       "pkg": {
         "aarch64": "1.133.0_12",
-        "amd64": "1.133.0_12"
+        "amd64": "1.133.0_13"
       },
       "pkg-latest": {
         "aarch64": "1.133.0_12",
@@ -1092,7 +1091,7 @@
     "vikunja": {
       "pkg": {
         "aarch64": "2.6.0_1",
-        "amd64": "2.6.0_1"
+        "amd64": "2.6.0_2"
       },
       "pkg-latest": {
         "aarch64": "2.7.0_1",
