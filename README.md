@@ -6,7 +6,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 ## Features
 
-- **s6 Process Supervision** - Proper signal handling, no zombie processes
+- **One Process per Container** - The app is the container's process, so your runtime restarts, stops and logs it; multi-service appliances use `rcd`
 - **PUID/PGID Support** - Seamless permission mapping for ZFS datasets and bind mounts
 - **Multiple Tags** - Choose between upstream binaries (`:latest`), quarterly packages (`:pkg`), or rolling packages (`:pkg-latest`)
 - **Automated CI/CD** - Every image built and tested automatically
