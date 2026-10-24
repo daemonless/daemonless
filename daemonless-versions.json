@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-23T21:46:52.944900Z",
+  "last_check": "2026-10-24T05:09:26.967722Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -139,7 +139,7 @@
       }
     },
     "code-server": {
-      "upstream": "4.141.1"
+      "upstream": "4.143.1"
     },
     "deckcraft": {
       "upstream": "v0.10.0"
@@ -148,7 +148,7 @@
       "upstream": "v0.12.0"
     },
     "dispatcharr": {
-      "upstream": "v0.32.0"
+      "upstream": "v0.33.0"
     },
     "effectcraft": {
       "upstream": "v0.16.0"
@@ -645,7 +645,7 @@
       "upstream": "v0.13.0"
     },
     "photocraft": {
-      "upstream": "v0.14.0"
+      "upstream": "v0.15.1"
     },
     "playwright": {
       "upstream": "1.64.1"
@@ -1019,7 +1019,7 @@
         "aarch64": "4.1.3",
         "amd64": "4.1.3"
       },
-      "upstream": "4.1.3"
+      "upstream": "4.1.4"
     },
     "transmission-wireguard": {
       "pkg": {
@@ -1030,7 +1030,7 @@
         "aarch64": "4.1.3",
         "amd64": "4.1.3"
       },
-      "upstream": "4.1.3"
+      "upstream": "4.1.4"
     },
     "trek": {
       "upstream": "4.3.4"
