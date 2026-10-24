@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-24T05:09:26.967722Z",
+  "last_check": "2026-10-24T11:42:15.429116Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -21,7 +21,7 @@
       "upstream": "v0.107.79"
     },
     "adguardhome-sync": {
-      "upstream": "v0.9.4"
+      "upstream": "v0.9.5"
     },
     "affine": {
       "upstream": "v0.27.4"
@@ -328,7 +328,7 @@
         "aarch64": "0.29.3_1",
         "amd64": "0.29.3_2"
       },
-      "upstream": "0.29.5"
+      "upstream": "0.29.6"
     },
     "heimdall": {
       "upstream": "v2.8.3"
@@ -952,7 +952,7 @@
         "aarch64": "3.1.0",
         "amd64": "3.1.0"
       },
-      "upstream": "v3.2.1"
+      "upstream": "v3.2.2"
     },
     "stump": {
       "upstream": "v0.1.11"
