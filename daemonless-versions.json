@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-25T05:26:10.140738Z",
+  "last_check": "2026-10-25T12:09:30.823470Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -647,6 +647,9 @@
     "photocraft": {
       "upstream": "v0.15.1"
     },
+    "plausible": {
+      "upstream": "v3.2.1"
+    },
     "playwright": {
       "upstream": "1.64.1"
     },
@@ -1033,7 +1036,7 @@
       "upstream": "4.1.4"
     },
     "trek": {
-      "upstream": "4.3.4"
+      "upstream": "5.0.0"
     },
     "ubooquity": {
       "upstream": "3.1.0"
