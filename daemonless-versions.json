@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-25T16:54:39.941505Z",
+  "last_check": "2026-10-25T21:19:10.102866Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -617,7 +617,7 @@
       "upstream": "v8.1.0"
     },
     "opencloud-radicale": {
-      "upstream": "v3.8.3"
+      "upstream": "v3.9.0"
     },
     "openspeedtest": {
       "upstream": "v2.0.8"
@@ -905,7 +905,7 @@
       "pkg-latest": {
         "aarch64": "4.45_1"
       },
-      "upstream": "4.50"
+      "upstream": "4.51"
     },
     "seerr": {
       "upstream": "v3.5.1"
