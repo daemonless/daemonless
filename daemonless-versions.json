@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-24T21:16:23.674769Z",
+  "last_check": "2026-10-25T05:26:10.140738Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -620,7 +620,7 @@
       "upstream": "v3.8.3"
     },
     "openspeedtest": {
-      "upstream": "v2.0.5"
+      "upstream": "v2.0.8"
     },
     "openssh-server": {
       "pkg": {
@@ -902,7 +902,7 @@
       "pkg-latest": {
         "aarch64": "4.45_1"
       },
-      "upstream": "4.49"
+      "upstream": "4.50"
     },
     "seerr": {
       "upstream": "v3.5.1"
