@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-26T13:39:16.244375Z",
+  "last_check": "2026-10-26T22:55:48.240637Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -66,7 +66,7 @@
       "upstream": "2.2.0"
     },
     "bulwark-webmail": {
-      "upstream": "1.17.2"
+      "upstream": "1.18.0"
     },
     "cadcraft": {
       "upstream": "v0.13.0"
@@ -396,7 +396,7 @@
       "pkg-latest": {
         "aarch64": "10.11.11_1"
       },
-      "upstream": "v12.3"
+      "upstream": "v12.4"
     },
     "jellyfin-ffmpeg": {
       "default": "8",
@@ -796,7 +796,7 @@
       }
     },
     "readmeabook": {
-      "upstream": "v1.2.10"
+      "upstream": "v1.2.11"
     },
     "redis": {
       "default": "8.8",
@@ -944,7 +944,7 @@
         "aarch64": "0.16.25_1",
         "amd64": "0.16.25_1"
       },
-      "upstream": "v0.16.27"
+      "upstream": "v1.0.0"
     },
     "stirling-pdf": {
       "pkg": {
@@ -1055,7 +1055,7 @@
       "upstream": "5.1.42"
     },
     "uptime-kuma": {
-      "upstream": "2.5.7"
+      "upstream": "2.5.8"
     },
     "vaultwarden": {
       "pkg": {
