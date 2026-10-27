@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-27T12:48:12.715539Z",
+  "last_check": "2026-10-27T18:25:46.149093Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -356,7 +356,7 @@
         "aarch64": "0.168.0,1",
         "amd64": "0.168.0_1,1"
       },
-      "upstream": "v0.168.0"
+      "upstream": "v0.169.0"
     },
     "immich-cli": {
       "upstream": "3.3.5"
@@ -613,7 +613,7 @@
       "upstream": "10.0.0"
     },
     "opencloud": {
-      "upstream": "v8.1.0"
+      "upstream": "v9.0.0"
     },
     "opencloud-radicale": {
       "upstream": "v3.9.0"
@@ -698,7 +698,7 @@
       "pkg-latest": {
         "amd64": "2.6.5.5623"
       },
-      "upstream": "2.6.5.5623"
+      "upstream": "2.7.0.5723"
     },
     "python": {
       "type": "multi-version",
@@ -796,7 +796,7 @@
       }
     },
     "readmeabook": {
-      "upstream": "v1.2.11"
+      "upstream": "v1.2.12"
     },
     "redis": {
       "default": "8.8",
