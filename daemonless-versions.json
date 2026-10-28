@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-28T13:37:16.490478Z",
+  "last_check": "2026-10-28T22:56:21.663068Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -69,7 +69,7 @@
       "upstream": "1.18.0"
     },
     "cadcraft": {
-      "upstream": "v0.13.0"
+      "upstream": "v0.14.0"
     },
     "caddy": {
       "pkg": {
@@ -142,16 +142,16 @@
       "upstream": "4.143.1"
     },
     "deckcraft": {
-      "upstream": "v0.11.1"
+      "upstream": "v0.12.0"
     },
     "designcraft": {
-      "upstream": "v0.13.0"
+      "upstream": "v0.14.0"
     },
     "dispatcharr": {
       "upstream": "v0.33.0"
     },
     "effectcraft": {
-      "upstream": "v0.17.0"
+      "upstream": "v0.18.0"
     },
     "emby": {
       "pkg-latest": {
@@ -160,7 +160,7 @@
       "upstream": "4.10.2.0"
     },
     "erpnext": {
-      "upstream": "15.124.1"
+      "upstream": "15.124.2"
     },
     "ffmpeg": {
       "pkg": {
@@ -173,13 +173,13 @@
       }
     },
     "figcraft": {
-      "upstream": "v0.11.2"
+      "upstream": "v0.12.1"
     },
     "filebrowser-quantum": {
       "upstream": "v2.0.2-stable"
     },
     "filmcraft": {
-      "upstream": "v0.13.0"
+      "upstream": "v0.14.0"
     },
     "forgejo": {
       "default": "15",
@@ -227,7 +227,7 @@
       }
     },
     "gridcraft": {
-      "upstream": "v0.12.1"
+      "upstream": "v0.13.0"
     },
     "grimmory": {
       "upstream": "v3.5.0"
@@ -448,7 +448,7 @@
       "upstream": "3.1.6.5079"
     },
     "lightcraft": {
-      "upstream": "v0.14.0"
+      "upstream": "v0.15.0"
     },
     "lldap": {
       "pkg": {
@@ -642,10 +642,10 @@
       "upstream": "26.7.1"
     },
     "pdfcraft": {
-      "upstream": "v0.14.0"
+      "upstream": "v0.15.0"
     },
     "photocraft": {
-      "upstream": "v0.16.0"
+      "upstream": "v0.17.0"
     },
     "plausible": {
       "upstream": "v3.2.1"
@@ -931,7 +931,7 @@
       "upstream": "4.0.20.3014"
     },
     "soundcraft": {
-      "upstream": "v0.13.1"
+      "upstream": "v0.14.0"
     },
     "sparkyfitness": {
       "upstream": "v1.9.0"
@@ -945,7 +945,7 @@
         "aarch64": "0.16.25_1",
         "amd64": "0.16.25_1"
       },
-      "upstream": "v1.0.0"
+      "upstream": "v1.0.1"
     },
     "stirling-pdf": {
       "pkg": {
@@ -1071,7 +1071,7 @@
       "upstream": "1.37.4"
     },
     "vectorcraft": {
-      "upstream": "v0.17.0"
+      "upstream": "v0.18.0"
     },
     "versitygw": {
       "pkg": {
@@ -1114,10 +1114,10 @@
       }
     },
     "woodpecker": {
-      "upstream": "v3.19.0"
+      "upstream": "v3.20.0"
     },
     "wordcraft": {
-      "upstream": "v0.11.0"
+      "upstream": "v0.12.0"
     },
     "zensical": {
       "pkg": {
