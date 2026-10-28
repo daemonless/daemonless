@@ -131,7 +131,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [AdGuard Home](https://github.com/daemonless/adguardhome) | Network-wide ad and tracker blocking DNS server. Covers all devices on your network with no client-side software — includes DoH, DoT, DoQ, and a built-in DHCP server. |
 | [AdGuardHome Sync](https://github.com/daemonless/adguardhome-sync) | Sync AdGuardHome configuration to replica instances. |
 | [Caddy](https://github.com/daemonless/caddy) | Fast, multi-platform web server and reverse proxy with automatic HTTPS, written in Go. |
-| [Daemonless Reverse Proxy](https://github.com/daemonless/reverse-proxy) | Friendly HTTPS names for the services on your network: a managed Caddy reverse proxy with a web UI, secure by default. |
+| [Daemonless Reverse Proxy](https://github.com/daemonless/reverse-proxy) | Give every app on your network a real name with HTTPS: radarr.home.lan instead of 192.168.1.20:7878. Set up in a browser, no config files. |
 | [Garage](https://github.com/daemonless/garage) | Lightweight, geo-distributed S3-compatible object storage service designed for self-hosting on commodity hardware. |
 | [Grafana](https://github.com/daemonless/grafana) | Grafana is an open source and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. |
 | [Headscale](https://github.com/daemonless/headscale) | An open source, self-hosted implementation of the Tailscale control server. |
