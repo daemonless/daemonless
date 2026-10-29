@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-29T06:35:21.529104Z",
+  "last_check": "2026-10-29T13:49:15.585671Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -139,7 +139,7 @@
       }
     },
     "code-server": {
-      "upstream": "4.143.1"
+      "upstream": "4.144.0"
     },
     "deckcraft": {
       "upstream": "v0.12.0"
@@ -504,7 +504,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.45.5"
+      "upstream": "2.45.6"
     },
     "navidrome": {
       "pkg": {
