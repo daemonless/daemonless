@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-28T22:56:21.663068Z",
+  "last_check": "2026-10-29T06:35:21.529104Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -934,7 +934,7 @@
       "upstream": "v0.14.0"
     },
     "sparkyfitness": {
-      "upstream": "v1.9.0"
+      "upstream": "v1.10.0"
     },
     "stalwart": {
       "pkg": {
