@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-29T21:41:11.706720Z",
+  "last_check": "2026-10-29T23:03:55.047765Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -636,7 +636,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.3.4"
+      "upstream": "v3.4.0"
     },
     "papra": {
       "upstream": "26.7.1"
