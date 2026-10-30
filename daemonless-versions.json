@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-30T06:34:22.670853Z",
+  "last_check": "2026-10-30T13:42:41.621865Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -160,7 +160,7 @@
       "upstream": "4.10.2.0"
     },
     "erpnext": {
-      "upstream": "15.124.2"
+      "upstream": "15.124.3"
     },
     "ffmpeg": {
       "pkg": {
@@ -329,7 +329,7 @@
         "aarch64": "0.29.3_1",
         "amd64": "0.29.3_2"
       },
-      "upstream": "0.29.6"
+      "upstream": "0.29.7"
     },
     "heimdall": {
       "upstream": "v2.8.4"
@@ -505,7 +505,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.45.6"
+      "upstream": "2.45.7"
     },
     "navidrome": {
       "pkg": {
@@ -1013,7 +1013,7 @@
         "aarch64": "3.7.15",
         "amd64": "3.7.16"
       },
-      "upstream": "v3.7.16"
+      "upstream": "v3.7.17"
     },
     "transmission": {
       "pkg": {
