@@ -224,6 +224,13 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Immich-Cli](https://github.com/daemonless/immich-cli) |  |
 
 
+### Networking
+
+| Image | Description |
+|-------|-------------|
+| [Blocky](https://github.com/daemonless/blocky) | Fast and lightweight DNS proxy and ad-blocker for the local network, on FreeBSD. |
+
+
 
 ## Quick Links
 
