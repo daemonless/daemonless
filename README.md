@@ -130,6 +130,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 |-------|-------------|
 | [AdGuard Home](https://github.com/daemonless/adguardhome) | Network-wide ad and tracker blocking DNS server. Covers all devices on your network with no client-side software — includes DoH, DoT, DoQ, and a built-in DHCP server. |
 | [AdGuardHome Sync](https://github.com/daemonless/adguardhome-sync) | Sync AdGuardHome configuration to replica instances. |
+| [Blocky](https://github.com/daemonless/blocky) | Fast and lightweight DNS proxy and ad-blocker for the local network, on FreeBSD. |
 | [Caddy](https://github.com/daemonless/caddy) | Fast, multi-platform web server and reverse proxy with automatic HTTPS, written in Go. |
 | [Daemonless Reverse Proxy](https://github.com/daemonless/reverse-proxy) | Give every app on your network a real name with HTTPS: radarr.home.lan instead of 192.168.1.20:7878. Set up in a browser, no config files. |
 | [Garage](https://github.com/daemonless/garage) | Lightweight, geo-distributed S3-compatible object storage service designed for self-hosting on commodity hardware. |
@@ -222,13 +223,6 @@ Native FreeBSD OCI container images for self-hosted applications.
 | Image | Description |
 |-------|-------------|
 | [Immich-Cli](https://github.com/daemonless/immich-cli) |  |
-
-
-### Networking
-
-| Image | Description |
-|-------|-------------|
-| [Blocky](https://github.com/daemonless/blocky) | Fast and lightweight DNS proxy and ad-blocker for the local network, on FreeBSD. |
 
 
 
