@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-31T13:10:39.133257Z",
+  "last_check": "2026-10-31T21:59:44.939229Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -1074,7 +1074,7 @@
       "upstream": "5.1.42"
     },
     "uptime-kuma": {
-      "upstream": "2.5.8"
+      "upstream": "2.5.9"
     },
     "vaultwarden": {
       "pkg": {
