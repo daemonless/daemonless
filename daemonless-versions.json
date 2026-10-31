@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-10-31T06:24:20.425228Z",
+  "last_check": "2026-10-31T13:10:39.133257Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -935,6 +935,9 @@
         "amd64": "2.9.0_2"
       }
     },
+    "solidcraft": {
+      "upstream": "v0.28.0"
+    },
     "sonarr": {
       "pkg": {
         "amd64": "4.0.20.3014"
@@ -1051,7 +1054,7 @@
       "upstream": "4.1.4"
     },
     "trek": {
-      "upstream": "5.0.1"
+      "upstream": "5.1.0"
     },
     "ubooquity": {
       "upstream": "3.1.0"
