@@ -147,7 +147,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
-| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's thirteen open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft, FigCraft, SoundCraft, CADCraft) as WebAssembly web apps. Pick the ones you want. |
+| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's fourteen open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft, FigCraft, SoundCraft, CADCraft, SolidCraft) as WebAssembly web apps. Pick the ones you want. |
 | [EffectCraft](https://github.com/daemonless/effectcraft) | Open-source, clean-room reimplementation of Adobe After Effects in Rust, served as a WebAssembly web app on FreeBSD. |
 | [FilmCraft](https://github.com/daemonless/filmcraft) | Open-source, clean-room reimplementation of Adobe Premiere Pro in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Immich](https://github.com/daemonless/immich) | High performance self-hosted photo and video management solution. |
