@@ -177,6 +177,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
 | [PdfCraft](https://github.com/daemonless/pdfcraft) | Open-source, clean-room reimplementation of Adobe Acrobat in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Radicale](https://github.com/daemonless/radicale) | Radicale is a lightweight CalDAV (calendar, todo-lists) and CardDAV (contacts) server. |
+| [SolidCraft](https://github.com/daemonless/solidcraft) | Open-source, clean-room parametric 3D CAD application in pure Rust, served as a WebAssembly web app on FreeBSD. |
 | [SparkyFitness](https://github.com/daemonless/sparkyfitness) | Self-hosted privacy-first fitness tracker on FreeBSD. |
 | [Superset](https://github.com/daemonless/superset) | Modern data exploration and visualization platform — build charts, dashboards, and SQL-driven analytics on top of your databases. |
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
