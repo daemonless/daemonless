@@ -147,7 +147,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
-| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's fourteen open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft, FigCraft, SoundCraft, CADCraft, SolidCraft) as WebAssembly web apps. Pick the ones you want. |
+| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's fifteen open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft, FigCraft, SoundCraft, CADCraft, SolidCraft, Craft Anything) as WebAssembly web apps. Pick the ones you want. |
 | [EffectCraft](https://github.com/daemonless/effectcraft) | Open-source, clean-room reimplementation of Adobe After Effects in Rust, served as a WebAssembly web app on FreeBSD. |
 | [FilmCraft](https://github.com/daemonless/filmcraft) | Open-source, clean-room reimplementation of Adobe Premiere Pro in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Immich](https://github.com/daemonless/immich) | High performance self-hosted photo and video management solution. |
@@ -169,6 +169,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Baby Buddy](https://github.com/daemonless/babybuddy) | Baby Buddy helps caregivers track sleep, feedings, diaper changes, tummy time and more, to learn about and predict baby's needs without (as much) guess work. |
 | [Bulwark Webmail](https://github.com/daemonless/bulwark-webmail) | Modern self-hosted webmail client for Stalwart Mail Server, powered by JMAP. |
 | [CADCraft](https://github.com/daemonless/cadcraft) | Open-source, clean-room AutoCAD-style computer-aided design and drafting in Rust, served as a WebAssembly web app on FreeBSD. |
+| [Craft Anything](https://github.com/daemonless/craft-anything) | See how any website, app or game works, then have AI build your own version; an open-source, clean-room engine in pure Rust, served as a WebAssembly web app on FreeBSD. |
 | [DeckCraft](https://github.com/daemonless/deckcraft) | Open-source, clean-room reimplementation of Microsoft PowerPoint in Rust, served as a WebAssembly web app on FreeBSD. |
 | [DesignCraft](https://github.com/daemonless/designcraft) | Open-source, clean-room reimplementation of Adobe InDesign in Rust, served as a WebAssembly web app on FreeBSD. |
 | [ERPNext](https://github.com/daemonless/erpnext) | Open source ERP: accounting, inventory, manufacturing, CRM, HR and projects, built on the Frappe framework. |
