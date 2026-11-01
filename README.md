@@ -166,6 +166,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 |-------|-------------|
 | [AFFiNE](https://github.com/daemonless/affine) | AFFiNE is an open-source, privacy-first, local-first knowledge management and collaboration tool. |
 | [Actual Budget](https://github.com/daemonless/actual) | Self-hosted personal finance sync server (Actual Budget) on FreeBSD. |
+| [Baby Buddy](https://github.com/daemonless/babybuddy) | Baby Buddy helps caregivers track sleep, feedings, diaper changes, tummy time and more, to learn about and predict baby's needs without (as much) guess work. |
 | [Bulwark Webmail](https://github.com/daemonless/bulwark-webmail) | Modern self-hosted webmail client for Stalwart Mail Server, powered by JMAP. |
 | [CADCraft](https://github.com/daemonless/cadcraft) | Open-source, clean-room AutoCAD-style computer-aided design and drafting in Rust, served as a WebAssembly web app on FreeBSD. |
 | [DeckCraft](https://github.com/daemonless/deckcraft) | Open-source, clean-room reimplementation of Microsoft PowerPoint in Rust, served as a WebAssembly web app on FreeBSD. |
