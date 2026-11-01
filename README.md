@@ -217,6 +217,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Uptime Kuma](https://github.com/daemonless/uptime-kuma) | Self-hosted uptime monitoring tool with a beautiful dashboard, status pages, and multi-channel notifications. |
 | [Vaultwarden](https://github.com/daemonless/vaultwarden) | Lightweight Bitwarden-compatible password manager server — self-host your passwords, secrets, and secure notes. |
 | [Versitygw](https://github.com/daemonless/versitygw) | Versitygw on FreeBSD. |
+| [k9s](https://github.com/daemonless/k9s) | k9s, the Kubernetes terminal UI, with kubectl, on FreeBSD. Mount your kubeconfig and run it interactively. |
 | [n8n](https://github.com/daemonless/n8n) | Fair-code workflow automation platform with native AI capabilities — combine visual building with custom code and 400+ integrations. |
 
 
