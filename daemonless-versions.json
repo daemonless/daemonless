@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-02T21:59:56.333605Z",
+  "last_check": "2026-11-02T22:46:58.573754Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -474,7 +474,8 @@
       },
       "pkg-latest": {
         "amd64": "3.1.6.5079"
-      }
+      },
+      "upstream": "3.1.6.5079"
     },
     "lightcraft": {
       "upstream": "v0.17.0"
@@ -631,6 +632,16 @@
     "node-red": {
       "upstream": "5.0.9"
     },
+    "ntfy": {
+      "pkg": {
+        "aarch64": "2.29.0_1",
+        "amd64": "2.29.0_2"
+      },
+      "pkg-latest": {
+        "aarch64": "2.29.0_1",
+        "amd64": "2.29.0_2"
+      }
+    },
     "onlyoffice": {
       "pkg": {
         "aarch64": "9.4.0_4",
@@ -727,7 +738,8 @@
       },
       "pkg-latest": {
         "amd64": "2.7.0.5723"
-      }
+      },
+      "upstream": "2.7.0.5723"
     },
     "python": {
       "type": "multi-version",
@@ -811,7 +823,8 @@
       },
       "pkg-latest": {
         "amd64": "6.4.4.10685"
-      }
+      },
+      "upstream": "6.4.4.10685"
     },
     "radicale": {
       "pkg": {
