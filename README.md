@@ -185,6 +185,10 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Trek](https://github.com/daemonless/trek) | Self-hosted travel/trip planner with real-time collaboration, interactive maps, PWA support, SSO, budgets, and packing lists. |
 | [Vikunja](https://github.com/daemonless/vikunja) | Vikunja is an open-source, self-hostable to-do app. It helps you organize your tasks and projects with features like list, kanban, gantt, and table views - all while keeping your data under your control. |
 | [Wagtail](https://github.com/daemonless/wagtail) | Wagtail is an open source content management system built on Django, with a strong community and commercial support. It's focused on user experience, and offers precise control for designers and developers. |
+| [Weavestream](https://github.com/daemonless/weavestream) | Open-source, self-hosted IT documentation and asset management platform built around a relational knowledge model. |
+| [Weavestream API](https://github.com/daemonless/weavestream-api) | Backend REST API and MCP server for Weavestream, an open-source self-hosted IT documentation and asset management platform. |
+| [Weavestream Web](https://github.com/daemonless/weavestream-web) | Next.js web UI for Weavestream, an open-source self-hosted IT documentation and asset management platform. |
+| [Weavestream Worker](https://github.com/daemonless/weavestream-worker) | Background queue worker and scheduled task runner for Weavestream, an open-source self-hosted IT documentation and asset management platform. |
 | [WordCraft](https://github.com/daemonless/wordcraft) | Open-source, clean-room reimplementation of Microsoft Word in Rust, served as a WebAssembly web app on FreeBSD. |
 
 
