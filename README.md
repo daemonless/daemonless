@@ -224,6 +224,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Versitygw](https://github.com/daemonless/versitygw) | Versitygw on FreeBSD. |
 | [k9s](https://github.com/daemonless/k9s) | k9s, the Kubernetes terminal UI, with kubectl, on FreeBSD. Mount your kubeconfig and run it interactively. |
 | [n8n](https://github.com/daemonless/n8n) | Fair-code workflow automation platform with native AI capabilities — combine visual building with custom code and 400+ integrations. |
+| [ntfy](https://github.com/daemonless/ntfy) | Simple HTTP-based pub-sub notification service: send notifications to your phone or desktop from any script with a PUT or POST. |
 
 
 ### Apps
