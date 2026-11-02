@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-02T06:58:23.540001Z",
+  "last_check": "2026-11-02T21:59:56.333605Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -155,7 +155,7 @@
       "upstream": "4.144.0"
     },
     "craft-anything": {
-      "upstream": "v0.2.0"
+      "upstream": "v0.3.0"
     },
     "deckcraft": {
       "upstream": "v0.14.1"
@@ -474,8 +474,7 @@
       },
       "pkg-latest": {
         "amd64": "3.1.6.5079"
-      },
-      "upstream": "3.1.6.5079"
+      }
     },
     "lightcraft": {
       "upstream": "v0.17.0"
@@ -728,8 +727,7 @@
       },
       "pkg-latest": {
         "amd64": "2.7.0.5723"
-      },
-      "upstream": "2.7.0.5723"
+      }
     },
     "python": {
       "type": "multi-version",
@@ -813,8 +811,7 @@
       },
       "pkg-latest": {
         "amd64": "6.4.4.10685"
-      },
-      "upstream": "6.4.4.10685"
+      }
     },
     "radicale": {
       "pkg": {
@@ -936,7 +933,7 @@
         "aarch64": "4.45_1",
         "amd64": "4.45_2"
       },
-      "upstream": "4.51"
+      "upstream": "4.52"
     },
     "seerr": {
       "upstream": "v3.5.1"
@@ -952,7 +949,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.30.0"
+      "upstream": "v0.30.1"
     },
     "sonarr": {
       "pkg": {
@@ -978,7 +975,7 @@
         "aarch64": "0.16.25_1",
         "amd64": "0.16.25_1"
       },
-      "upstream": "v1.0.1"
+      "upstream": "v1.0.2"
     },
     "stirling-pdf": {
       "pkg": {
@@ -1145,6 +1142,15 @@
         "aarch64": "8.0",
         "amd64": "8.0"
       }
+    },
+    "weavestream-api": {
+      "upstream": "v1.11.1"
+    },
+    "weavestream-web": {
+      "upstream": "v1.11.1"
+    },
+    "weavestream-worker": {
+      "upstream": "v1.11.1"
     },
     "woodpecker": {
       "upstream": "v3.20.1"
