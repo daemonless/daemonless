@@ -3,11 +3,11 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-01T22:31:04.181993Z",
+  "last_check": "2026-11-02T06:58:23.540001Z",
   "schema_version": 2,
   "services": {
     "actual": {
-      "upstream": "v26.10.0"
+      "upstream": "v26.11.0"
     },
     "adguardhome": {
       "pkg": {
@@ -153,6 +153,9 @@
     },
     "code-server": {
       "upstream": "4.144.0"
+    },
+    "craft-anything": {
+      "upstream": "v0.2.0"
     },
     "deckcraft": {
       "upstream": "v0.14.1"
@@ -949,7 +952,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.29.0"
+      "upstream": "v0.30.0"
     },
     "sonarr": {
       "pkg": {
