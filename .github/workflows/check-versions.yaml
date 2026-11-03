@@ -61,6 +61,7 @@ jobs:
           if [[ -n $(git status -s daemonless-versions.json) ]]; then
             git add daemonless-versions.json
             git commit -m "Update daemonless-versions.json"
+            git pull --rebase origin main
             git push
             echo "updated=true" >> $GITHUB_OUTPUT
           else
