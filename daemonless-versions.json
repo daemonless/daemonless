@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-04T07:02:52.162046Z",
+  "last_check": "2026-11-04T20:08:51.393896Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -354,7 +354,7 @@
       "upstream": "v2.8.4"
     },
     "home-assistant": {
-      "upstream": "2026.10.4"
+      "upstream": "2026.11.0"
     },
     "homepage": {
       "pkg": {
@@ -379,10 +379,10 @@
       "upstream": "v0.169.0"
     },
     "immich-cli": {
-      "upstream": "3.3.5"
+      "upstream": "3.3.6"
     },
     "immich-ml": {
-      "upstream": "v3.3.5"
+      "upstream": "v3.3.6"
     },
     "immich-postgres": {
       "default": "14",
@@ -406,7 +406,7 @@
       "upstream": "4.1.2"
     },
     "immich-server": {
-      "upstream": "v3.3.5"
+      "upstream": "v3.3.6"
     },
     "jellyfin": {
       "pkg": {
@@ -532,7 +532,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.46.4"
+      "upstream": "2.46.6"
     },
     "navidrome": {
       "pkg": {
@@ -980,7 +980,7 @@
       "pkg": {
         "amd64": "0.16.23"
       },
-      "upstream": "v1.0.2"
+      "upstream": "v1.0.3"
     },
     "stirling-pdf": {
       "pkg": {
@@ -1149,13 +1149,13 @@
       }
     },
     "weavestream-api": {
-      "upstream": "v1.11.1"
+      "upstream": "v1.12.0"
     },
     "weavestream-web": {
-      "upstream": "v1.11.1"
+      "upstream": "v1.12.0"
     },
     "weavestream-worker": {
-      "upstream": "v1.11.1"
+      "upstream": "v1.12.0"
     },
     "woodpecker": {
       "upstream": "v3.20.1"
