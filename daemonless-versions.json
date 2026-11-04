@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-03T19:54:56.874940Z",
+  "last_check": "2026-11-04T07:02:52.162046Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -93,7 +93,7 @@
         "aarch64": "2.11.7_2",
         "amd64": "2.11.7_2"
       },
-      "upstream": "v2.11.7"
+      "upstream": "v2.11.8"
     },
     "calibre-web": {
       "pkg": {
@@ -120,7 +120,7 @@
         "amd64": "26.3.24.4"
       },
       "pkg-latest": {
-        "amd64": "26.8.5.13"
+        "amd64": "26.8.6.5"
       }
     },
     "cloudflared": {
@@ -179,7 +179,7 @@
       "upstream": "4.10.2.0"
     },
     "erpnext": {
-      "upstream": "15.124.4"
+      "upstream": "15.124.5"
     },
     "ffmpeg": {
       "pkg": {
@@ -562,7 +562,7 @@
       },
       "pkg-latest": {
         "aarch64": "1.30.6_6,3",
-        "amd64": "1.30.6_7,3"
+        "amd64": "1.30.6_10,3"
       }
     },
     "nginx-php-fpm": {
@@ -622,7 +622,7 @@
         "26": {
           "pkg-latest": {
             "aarch64": "26.12.1",
-            "amd64": "26.12.1"
+            "amd64": "26.12.1_1"
           }
         }
       }
@@ -674,13 +674,13 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.4.1"
+      "upstream": "v3.4.2"
     },
     "papra": {
       "upstream": "26.7.1"
     },
     "pdfcraft": {
-      "upstream": "v0.18.0"
+      "upstream": "v0.18.1"
     },
     "photocraft": {
       "upstream": "v0.20.1"
@@ -810,8 +810,7 @@
         "amd64": "5.2.4_1"
       },
       "pkg-latest": {
-        "aarch64": "5.2.4_2",
-        "amd64": "5.2.4_2"
+        "aarch64": "5.2.4_2"
       },
       "upstream": "release-5.3.0"
     },
@@ -981,9 +980,6 @@
       "pkg": {
         "amd64": "0.16.23"
       },
-      "pkg-latest": {
-        "amd64": "0.16.25_1"
-      },
       "upstream": "v1.0.2"
     },
     "stirling-pdf": {
@@ -1049,7 +1045,7 @@
       },
       "pkg-latest": {
         "aarch64": "3.7.16",
-        "amd64": "3.7.16"
+        "amd64": "3.7.17"
       },
       "upstream": "v3.7.17"
     },
@@ -1105,7 +1101,7 @@
       },
       "pkg-latest": {
         "aarch64": "1.37.4_1",
-        "amd64": "1.37.4_1"
+        "amd64": "1.37.5"
       },
       "upstream": "1.37.5"
     },
@@ -1165,7 +1161,7 @@
       "upstream": "v3.20.1"
     },
     "wordcraft": {
-      "upstream": "v0.15.0"
+      "upstream": "v0.15.1"
     },
     "zensical": {
       "pkg": {
@@ -1174,7 +1170,7 @@
       },
       "pkg-latest": {
         "aarch64": "0.0.71",
-        "amd64": "0.0.71"
+        "amd64": "0.0.74"
       },
       "upstream": "0.0.74"
     },
