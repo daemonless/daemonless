@@ -149,7 +149,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
-| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's fifteen open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft, FigCraft, SoundCraft, CADCraft, SolidCraft, Craft Anything) as WebAssembly web apps. Pick the ones you want. |
+| [Crafting Apps](https://github.com/daemonless/crafting-apps) | ArtCraft's sixteen open-source, clean-room creative and office apps (PhotoCraft, VectorCraft, FilmCraft, LightCraft, PdfCraft, EffectCraft, DesignCraft, WordCraft, GridCraft, DeckCraft, FigCraft, SoundCraft, CADCraft, Craft Anything, TextureCraft, MaterialCraft) as WebAssembly web apps. Pick the ones you want. |
 | [EffectCraft](https://github.com/daemonless/effectcraft) | Open-source, clean-room reimplementation of Adobe After Effects in Rust, served as a WebAssembly web app on FreeBSD. |
 | [FilmCraft](https://github.com/daemonless/filmcraft) | Open-source, clean-room reimplementation of Adobe Premiere Pro in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Immich](https://github.com/daemonless/immich) | High performance self-hosted photo and video management solution. |
@@ -157,8 +157,10 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Immich Public Proxy](https://github.com/daemonless/immich-public-proxy) | Share Immich photos and albums publicly without exposing the Immich instance itself. |
 | [Immich Server](https://github.com/daemonless/immich-server) | Self-hosted photo and video backup and management server with web UI, mobile sync, and shared albums. |
 | [LightCraft](https://github.com/daemonless/lightcraft) | Open-source, clean-room reimplementation of Adobe Lightroom in Rust, served as a WebAssembly web app on FreeBSD. |
+| [MaterialCraft](https://github.com/daemonless/materialcraft) | Open-source procedural materials in Rust: build tileable PBR materials in a node graph and export the maps for any engine, served as a WebAssembly web app on FreeBSD. |
 | [PhotoCraft](https://github.com/daemonless/photocraft) | Open-source, clean-room reimplementation of Adobe Photoshop in Rust, served as a WebAssembly web app on FreeBSD. |
 | [SoundCraft](https://github.com/daemonless/soundcraft) | Open-source, clean-room reimplementation of Avid Pro Tools in Rust, served as a WebAssembly web app on FreeBSD. |
+| [TextureCraft](https://github.com/daemonless/texturecraft) | Open-source 3D texture painting in Rust: paint PBR materials onto models in layers and export textures for any engine, served as a WebAssembly web app on FreeBSD. |
 | [VectorCraft](https://github.com/daemonless/vectorcraft) | Open-source, clean-room reimplementation of Adobe Illustrator in Rust, served as a WebAssembly web app on FreeBSD. |
 
 
