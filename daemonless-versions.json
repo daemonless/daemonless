@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-05T07:29:20.473238Z",
+  "last_check": "2026-11-05T20:22:37.889004Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -693,7 +693,7 @@
       "upstream": "v3.2.1"
     },
     "playwright": {
-      "upstream": "1.64.1"
+      "upstream": "1.65.0"
     },
     "plex": {
       "upstream": "1.43.5.11079-b3b13e506"
@@ -1005,7 +1005,7 @@
         "aarch64": "3.2.2",
         "amd64": "3.2.2"
       },
-      "upstream": "v3.2.2"
+      "upstream": "v3.3.0"
     },
     "stump": {
       "upstream": "v0.1.12"
@@ -1166,13 +1166,13 @@
       }
     },
     "weavestream-api": {
-      "upstream": "v1.12.0"
+      "upstream": "v1.13.0"
     },
     "weavestream-web": {
-      "upstream": "v1.12.0"
+      "upstream": "v1.13.0"
     },
     "weavestream-worker": {
-      "upstream": "v1.12.0"
+      "upstream": "v1.13.0"
     },
     "woodpecker": {
       "upstream": "v3.20.1"
@@ -1189,7 +1189,7 @@
         "aarch64": "0.0.71",
         "amd64": "0.0.74"
       },
-      "upstream": "0.0.74"
+      "upstream": "0.1.0"
     },
     "zot": {
       "pkg": {
