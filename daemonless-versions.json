@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-05T20:22:37.889004Z",
+  "last_check": "2026-11-06T07:28:42.608384Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -155,7 +155,7 @@
       "upstream": "4.145.0"
     },
     "craft-anything": {
-      "upstream": "v0.3.0"
+      "upstream": "v0.4.0"
     },
     "deckcraft": {
       "upstream": "v0.15.1"
