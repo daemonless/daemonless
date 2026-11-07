@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-07T13:39:18.930734Z",
+  "last_check": "2026-11-07T22:25:09.490831Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -79,7 +79,7 @@
       }
     },
     "bulwark-webmail": {
-      "upstream": "1.20.0"
+      "upstream": "1.21.0"
     },
     "cadcraft": {
       "upstream": "v0.18.0"
@@ -1167,13 +1167,13 @@
       }
     },
     "weavestream-api": {
-      "upstream": "v1.13.0"
+      "upstream": "v1.13.1"
     },
     "weavestream-web": {
-      "upstream": "v1.13.0"
+      "upstream": "v1.13.1"
     },
     "weavestream-worker": {
-      "upstream": "v1.13.0"
+      "upstream": "v1.13.1"
     },
     "woodpecker": {
       "upstream": "v3.20.1"
