@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-08T13:58:04.038887Z",
+  "last_check": "2026-11-08T22:34:24.280809Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -234,6 +234,17 @@
     },
     "gitea": {
       "upstream": "v28.3.0"
+    },
+    "glance": {
+      "pkg": {
+        "aarch64": "0.8.6_2",
+        "amd64": "0.8.6_2"
+      },
+      "pkg-latest": {
+        "aarch64": "0.8.7",
+        "amd64": "0.8.7"
+      },
+      "upstream": "v0.8.8"
     },
     "grafana": {
       "pkg": {
@@ -961,7 +972,7 @@
         "aarch64": "4.45_2",
         "amd64": "4.45_2"
       },
-      "upstream": "4.52"
+      "upstream": "4.53"
     },
     "seerr": {
       "upstream": "v3.5.1"
@@ -1093,7 +1104,7 @@
       "upstream": "4.1.4"
     },
     "trek": {
-      "upstream": "5.1.0"
+      "upstream": "5.1.1"
     },
     "ubooquity": {
       "upstream": "3.1.0"
