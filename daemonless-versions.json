@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-07T22:25:09.490831Z",
+  "last_check": "2026-11-08T06:48:01.487851Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -87,7 +87,7 @@
     "caddy": {
       "pkg": {
         "aarch64": "2.11.4_6",
-        "amd64": "2.11.8"
+        "amd64": "2.11.9"
       },
       "pkg-latest": {
         "aarch64": "2.11.7_2",
@@ -662,13 +662,16 @@
     "opencloud-radicale": {
       "upstream": "v3.9.0"
     },
+    "openobserve": {
+      "upstream": "v1.2.0-rc1"
+    },
     "openspeedtest": {
       "upstream": "v2.0.8"
     },
     "openssh-server": {
       "pkg": {
         "aarch64": "10.6.p1,1",
-        "amd64": "10.6.p1,1"
+        "amd64": "10.6.p2,1"
       },
       "pkg-latest": {
         "aarch64": "10.6.p1,1",
