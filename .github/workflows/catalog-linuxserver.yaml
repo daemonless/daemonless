@@ -1,0 +1,32 @@
+name: Build LinuxServer FJORD Catalog
+
+# Builds the linuxserver app catalog from catalog/sources.yaml with the
+# reusable fjord-catalog workflow and publishes it to this repo's GitHub
+# Pages: https://catalog.daemonless.io/v1/linuxserver/catalog.json.
+# Preserves v1/daemonless from the current Pages artifact.
+on:
+  schedule:
+    - cron: "0 2,8,14,20 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "catalog/sources.yaml"
+      - "catalog/tested-linuxserver.json"
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  catalog:
+    uses: daemonless/fjord-catalog/.github/workflows/build.yml@main
+    with:
+      sources: catalog/sources.yaml
+      source: linuxserver
