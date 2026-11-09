@@ -180,6 +180,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [ERPNext](https://github.com/daemonless/erpnext) | Open source ERP: accounting, inventory, manufacturing, CRM, HR and projects, built on the Frappe framework. |
 | [FigCraft](https://github.com/daemonless/figcraft) | Open-source, clean-room Figma-style interface design and prototyping in Rust, served as a WebAssembly web app on FreeBSD. |
 | [GridCraft](https://github.com/daemonless/gridcraft) | Open-source, clean-room spreadsheet in Rust, served as a WebAssembly web app on FreeBSD. |
+| [Kaneo](https://github.com/daemonless/kaneo) | Open-source project management and Kanban board platform built for speed and simplicity. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Online office suite providing collaborative editors for documents, spreadsheets, and presentations. Fully compatible with Office Open XML formats (.docx, .xlsx, .pptx). Requires PostgreSQL — see the onlyoffice-postgresql service below. |
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
 | [PdfCraft](https://github.com/daemonless/pdfcraft) | Open-source, clean-room reimplementation of Adobe Acrobat in Rust, served as a WebAssembly web app on FreeBSD. |
