@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-09T07:18:21.889135Z",
+  "last_check": "2026-11-09T22:46:54.862562Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -82,7 +82,7 @@
       "upstream": "1.21.0"
     },
     "cadcraft": {
-      "upstream": "v0.18.0"
+      "upstream": "v0.19.0"
     },
     "caddy": {
       "pkg": {
@@ -155,19 +155,19 @@
       "upstream": "4.145.2"
     },
     "craft-anything": {
-      "upstream": "v0.5.0"
+      "upstream": "v0.6.0"
     },
     "deckcraft": {
-      "upstream": "v0.16.0"
+      "upstream": "v0.17.0"
     },
     "designcraft": {
-      "upstream": "v0.18.0"
+      "upstream": "v0.19.0"
     },
     "dispatcharr": {
       "upstream": "v0.33.0"
     },
     "effectcraft": {
-      "upstream": "v0.22.0"
+      "upstream": "v0.23.0"
     },
     "emby": {
       "pkg": {
@@ -192,13 +192,13 @@
       }
     },
     "figcraft": {
-      "upstream": "v0.16.0"
+      "upstream": "v0.17.0"
     },
     "filebrowser-quantum": {
       "upstream": "v2.0.2-stable"
     },
     "filmcraft": {
-      "upstream": "v0.18.0"
+      "upstream": "v0.19.0"
     },
     "forgejo": {
       "default": "15",
@@ -257,7 +257,7 @@
       }
     },
     "gridcraft": {
-      "upstream": "v0.17.0"
+      "upstream": "v0.18.0"
     },
     "grimmory": {
       "upstream": "v3.5.0"
@@ -365,7 +365,7 @@
       "upstream": "v2.8.4"
     },
     "home-assistant": {
-      "upstream": "2026.11.0"
+      "upstream": "2026.11.1"
     },
     "homepage": {
       "pkg": {
@@ -458,6 +458,9 @@
         "amd64": "0.51.0_6"
       }
     },
+    "kaneo": {
+      "upstream": "v2.49.0"
+    },
     "languagetool": {
       "pkg": {
         "aarch64": "20260925,1",
@@ -489,7 +492,7 @@
       "upstream": "3.1.6.5079"
     },
     "lightcraft": {
-      "upstream": "v0.19.0"
+      "upstream": "v0.20.0"
     },
     "lldap": {
       "pkg": {
@@ -532,7 +535,7 @@
       }
     },
     "materialcraft": {
-      "upstream": "v0.2.0"
+      "upstream": "v0.3.0"
     },
     "mealie": {
       "upstream": "v3.30.0"
@@ -548,7 +551,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.46.6"
+      "upstream": "2.46.7"
     },
     "navidrome": {
       "pkg": {
@@ -699,10 +702,10 @@
       "upstream": "26.7.1"
     },
     "pdfcraft": {
-      "upstream": "v0.19.0"
+      "upstream": "v0.20.0"
     },
     "photocraft": {
-      "upstream": "v0.21.0"
+      "upstream": "v0.22.0"
     },
     "plausible": {
       "upstream": "v3.2.1"
@@ -1000,16 +1003,16 @@
       "upstream": "4.0.20.3014"
     },
     "soundcraft": {
-      "upstream": "v0.18.0"
+      "upstream": "v0.19.0"
     },
     "sparkyfitness": {
-      "upstream": "v1.11.0"
+      "upstream": "v1.12.0"
     },
     "stalwart": {
       "pkg": {
         "amd64": "0.16.23"
       },
-      "upstream": "v1.0.3"
+      "upstream": "v1.1.0"
     },
     "stirling-pdf": {
       "pkg": {
@@ -1065,7 +1068,7 @@
       "upstream": "v2.18.2"
     },
     "texturecraft": {
-      "upstream": "v0.4.0"
+      "upstream": "v0.5.0"
     },
     "thelounge": {
       "upstream": "v4.5.2"
@@ -1104,7 +1107,7 @@
       "upstream": "4.1.4"
     },
     "trek": {
-      "upstream": "5.1.1"
+      "upstream": "5.1.2"
     },
     "ubooquity": {
       "upstream": "3.1.0"
@@ -1138,7 +1141,7 @@
       "upstream": "1.37.5"
     },
     "vectorcraft": {
-      "upstream": "v0.22.0"
+      "upstream": "v0.23.0"
     },
     "versitygw": {
       "pkg": {
@@ -1193,7 +1196,7 @@
       "upstream": "v3.20.1"
     },
     "wordcraft": {
-      "upstream": "v0.16.0"
+      "upstream": "v0.17.0"
     },
     "zensical": {
       "pkg": {
