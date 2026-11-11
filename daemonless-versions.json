@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-11T19:57:07.118786Z",
+  "last_check": "2026-11-11T22:07:50.174044Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -492,7 +492,7 @@
       "upstream": "3.1.6.5079"
     },
     "lightcraft": {
-      "upstream": "v0.20.0"
+      "upstream": "v0.21.0"
     },
     "lldap": {
       "pkg": {
@@ -705,7 +705,7 @@
       "upstream": "v0.21.0"
     },
     "photocraft": {
-      "upstream": "v0.22.0"
+      "upstream": "v0.23.0"
     },
     "plausible": {
       "upstream": "v3.2.1"
