@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-11T07:17:26.187264Z",
+  "last_check": "2026-11-11T19:57:07.118786Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -82,7 +82,7 @@
       "upstream": "1.21.1"
     },
     "cadcraft": {
-      "upstream": "v0.19.0"
+      "upstream": "v0.20.0"
     },
     "caddy": {
       "pkg": {
@@ -158,16 +158,16 @@
       "upstream": "v0.6.0"
     },
     "deckcraft": {
-      "upstream": "v0.17.0"
+      "upstream": "v0.18.0"
     },
     "designcraft": {
-      "upstream": "v0.19.0"
+      "upstream": "v0.20.0"
     },
     "dispatcharr": {
       "upstream": "v0.33.0"
     },
     "effectcraft": {
-      "upstream": "v0.23.1"
+      "upstream": "v0.24.0"
     },
     "emby": {
       "pkg": {
@@ -198,7 +198,7 @@
       "upstream": "v2.0.2-stable"
     },
     "filmcraft": {
-      "upstream": "v0.19.0"
+      "upstream": "v0.20.0"
     },
     "forgejo": {
       "default": "15",
@@ -257,7 +257,7 @@
       }
     },
     "gridcraft": {
-      "upstream": "v0.18.0"
+      "upstream": "v0.19.0"
     },
     "grimmory": {
       "upstream": "v3.5.0"
@@ -390,10 +390,10 @@
       "upstream": "v0.169.0"
     },
     "immich-cli": {
-      "upstream": "3.4.0"
+      "upstream": "3.4.1"
     },
     "immich-ml": {
-      "upstream": "v3.4.0"
+      "upstream": "v3.4.1"
     },
     "immich-postgres": {
       "default": "14",
@@ -417,7 +417,7 @@
       "upstream": "4.1.2"
     },
     "immich-server": {
-      "upstream": "v3.4.0"
+      "upstream": "v3.4.1"
     },
     "jellyfin": {
       "pkg": {
@@ -535,7 +535,7 @@
       }
     },
     "materialcraft": {
-      "upstream": "v0.3.0"
+      "upstream": "v0.4.0"
     },
     "mealie": {
       "upstream": "v3.30.0"
@@ -551,7 +551,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.47.3"
+      "upstream": "2.47.4"
     },
     "navidrome": {
       "pkg": {
@@ -671,7 +671,7 @@
       "upstream": "10.0.0"
     },
     "opencloud": {
-      "upstream": "v9.0.0"
+      "upstream": "v9.1.0"
     },
     "opencloud-radicale": {
       "upstream": "v3.9.0"
@@ -702,7 +702,7 @@
       "upstream": "26.7.1"
     },
     "pdfcraft": {
-      "upstream": "v0.20.0"
+      "upstream": "v0.21.0"
     },
     "photocraft": {
       "upstream": "v0.22.0"
@@ -1071,7 +1071,7 @@
       "upstream": "v2.19.1"
     },
     "texturecraft": {
-      "upstream": "v0.5.0"
+      "upstream": "v0.6.0"
     },
     "thelounge": {
       "upstream": "v4.5.2"
@@ -1144,7 +1144,7 @@
       "upstream": "1.37.5"
     },
     "vectorcraft": {
-      "upstream": "v0.23.0"
+      "upstream": "v0.24.0"
     },
     "versitygw": {
       "pkg": {
@@ -1199,7 +1199,7 @@
       "upstream": "v3.20.1"
     },
     "wordcraft": {
-      "upstream": "v0.17.0"
+      "upstream": "v0.18.0"
     },
     "zensical": {
       "pkg": {
