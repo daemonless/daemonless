@@ -1,5 +1,6 @@
 name: Check for Package Updates
 
+# Push changes to this file as daemonless-bot: schedule runs are attributed to the last committer.
 on:
   schedule:
     - cron: '50 */6 * * *'  # Every 6 hours, 10 min before deploy

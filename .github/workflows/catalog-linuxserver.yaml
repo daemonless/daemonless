@@ -4,6 +4,7 @@ name: Build LinuxServer FJORD Catalog
 # reusable fjord-catalog workflow and publishes it to this repo's GitHub
 # Pages: https://catalog.daemonless.io/v1/linuxserver/catalog.json.
 # Preserves v1/daemonless from the current Pages artifact.
+# Push changes to this file as daemonless-bot: schedule runs are attributed to the last committer.
 on:
   schedule:
     - cron: "0 2,8,14,20 * * *"
