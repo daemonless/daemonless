@@ -75,6 +75,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Nginx](https://github.com/daemonless/nginx) | Nginx web server on base-exec: serves a site, or fronts another container in a stack. Logs go to the container's output. |
 | [Nginx + PHP-FPM](https://github.com/daemonless/nginx-php-fpm) | Nginx with PHP-FPM, composer and the PHP extensions from ports, for running your own PHP sites. |
 | [OpenSSH Server](https://github.com/daemonless/openssh-server) | SSH and SFTP into a container: one user, key or password login, optional sudo. |
+| [Pocket ID](https://github.com/daemonless/pocket-id) | Simple OpenID Connect and OAuth 2.0 provider that lets users sign in to your applications with passkeys. |
 | [Sylve](https://github.com/daemonless/sylve) | Modern, open-source management platform for FreeBSD managing Virtual Machines (Bhyve), Jails, and ZFS storage. |
 | [Tailscale](https://github.com/daemonless/tailscale) | Zero-config mesh VPN built on WireGuard — securely connect your devices without port forwarding or firewall changes. |
 | [Traefik](https://github.com/daemonless/traefik) | Modern HTTP reverse proxy and load balancer on FreeBSD. |
