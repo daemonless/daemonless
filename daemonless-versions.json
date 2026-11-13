@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-12T20:31:36.565244Z",
+  "last_check": "2026-11-13T07:26:29.591639Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -79,7 +79,7 @@
       }
     },
     "bulwark-webmail": {
-      "upstream": "1.21.1"
+      "upstream": "1.21.2"
     },
     "cadcraft": {
       "upstream": "v0.20.1"
@@ -538,7 +538,7 @@
       "upstream": "v0.4.1"
     },
     "mealie": {
-      "upstream": "v3.30.0"
+      "upstream": "v3.31.0"
     },
     "memcached": {
       "pkg": {
@@ -669,6 +669,9 @@
         "amd64": "9.4.0_4"
       },
       "upstream": "10.0.0"
+    },
+    "onlyoffice-workspace": {
+      "upstream": "12.8"
     },
     "opencloud": {
       "upstream": "v9.1.0"
@@ -992,7 +995,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.40.1"
+      "upstream": "v0.41.0"
     },
     "sonarr": {
       "pkg": {
@@ -1058,7 +1061,7 @@
         "aarch64": "1.104.5",
         "amd64": "1.104.5"
       },
-      "upstream": "v1.104.6"
+      "upstream": "v1.104.7"
     },
     "tautulli": {
       "pkg": {
