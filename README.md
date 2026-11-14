@@ -46,7 +46,6 @@ Native FreeBSD OCI container images for self-hosted applications.
 
 | Image | Description |
 |-------|-------------|
-| [Forgejo Runner](https://github.com/daemonless/forgejo-runner) | Runs Forgejo Actions jobs natively on FreeBSD, inside the container, for a Forgejo instance. |
 | [Hugo](https://github.com/daemonless/hugo) | Fast and flexible static site generator — builds your entire site at creation time rather than on each request. |
 | [Zensical](https://github.com/daemonless/zensical) | Zensical is a modern static site generator designed to simplify building and maintaining project documentation.  It's built by the creators of Material for MkDocs and shares the same core design principles and philosophy - batteries included, easy to use, with powerful customization options. |
 | [code-server](https://github.com/daemonless/code-server) | VS Code in the browser — run a full development environment on your FreeBSD server and access it from anywhere. |
@@ -71,6 +70,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Cloudflared](https://github.com/daemonless/cloudflared) | Tunneling daemon that proxies any local webserver through the Cloudflare network without DNS records or firewall changes. |
 | [Daemonless pkg cache](https://github.com/daemonless/pkg-cache) | Managed FreeBSD pkg caching appliance — proxies pkg.FreeBSD.org to speed up package fetches across image builds and insulate them from upstream rate limits/outages. |
 | [Forgejo](https://github.com/daemonless/forgejo) | Forgejo is a self-hosted lightweight software forge |
+| [Forgejo Runner](https://github.com/daemonless/forgejo-runner) | Runs Forgejo Actions jobs natively on FreeBSD, inside the container, for a Forgejo instance. |
 | [Gitea](https://github.com/daemonless/gitea) | Lightweight self-hosted Git service — a community managed fork of Gogs written in Go. |
 | [HAProxy](https://github.com/daemonless/haproxy) | Reliable, high performance TCP/HTTP load balancer and reverse proxy. |
 | [Nginx](https://github.com/daemonless/nginx) | Nginx web server on base-exec: serves a site, or fronts another container in a stack. Logs go to the container's output. |
