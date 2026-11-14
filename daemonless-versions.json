@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-14T18:34:14.187132Z",
+  "last_check": "2026-11-14T22:47:49.719352Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -217,6 +217,16 @@
             "amd64": "16.0.7_1"
           }
         }
+      }
+    },
+    "forgejo-runner": {
+      "pkg": {
+        "aarch64": "13.2.0",
+        "amd64": "13.2.0"
+      },
+      "pkg-latest": {
+        "aarch64": "13.2.0",
+        "amd64": "13.2.0_1"
       }
     },
     "garage": {
@@ -1005,7 +1015,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.41.0"
+      "upstream": "v0.42.0"
     },
     "sonarr": {
       "pkg": {
