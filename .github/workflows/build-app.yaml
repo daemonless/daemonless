@@ -1,7 +1,7 @@
 name: Reusable App Build
 
-# Passthrough to daemonless/dbuild — migrate callers to
-# daemonless/dbuild/.github/workflows/daemonless-build.yaml@main
+# Passthrough to daemonless/workflows — migrate callers to
+# daemonless/workflows/.github/workflows/daemonless-build.yaml@v1
 
 on:
   workflow_call:
@@ -18,7 +18,7 @@ on:
 
 jobs:
   build:
-    uses: daemonless/dbuild/.github/workflows/daemonless-build.yaml@main
+    uses: daemonless/workflows/.github/workflows/daemonless-build.yaml@v1
     with:
       image_name: ${{ inputs.image_name }}
       variant: ${{ inputs.variant }}
