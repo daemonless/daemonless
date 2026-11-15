@@ -42,6 +42,22 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Redis](https://github.com/daemonless/redis) | Redis key-value store on FreeBSD. |
 
 
+### Monitoring
+
+| Image | Description |
+|-------|-------------|
+| [LibreNMS](https://github.com/daemonless/librenms) | LibreNMS is an autodiscovering PHP/MySQL/SNMP based network monitoring which includes support for a wide range of network hardware and operating systems including Cisco, Linux, FreeBSD, Juniper, Brocade, Foundry, HP and many more. |
+| [Plausible Analytics](https://github.com/daemonless/plausible) | Privacy-first web analytics: one lightweight script, no cookies, a dashboard anyone can read. Runs with PostgreSQL and ClickHouse. |
+| [VictoriaMetrics](https://github.com/daemonless/victoriametrics) | VictoriaMetrics is a fast, cost-effective, and scalable time-series database and monitoring solution. It is a drop-in replacement for Prometheus storage with low memory usage. |
+
+
+### 
+
+| Image | Description |
+|-------|-------------|
+| [Immich-Cli](https://github.com/daemonless/immich-cli) |  |
+
+
 ### Development
 
 | Image | Description |
@@ -116,15 +132,6 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Stump](https://github.com/daemonless/stump) | A free and open source comics, manga and digital book server with OPDS support. |
 | [Tautulli](https://github.com/daemonless/tautulli) | Monitoring and tracking tool for Plex Media Server — tracks what is being watched, who is watching, and when. |
 | [Ubooquity](https://github.com/daemonless/ubooquity) | Free, lightweight home server for your comics and ebooks (EPUB, MOBI, PDF, CBZ, CBR) with OPDS support and a web reader. |
-
-
-### Monitoring
-
-| Image | Description |
-|-------|-------------|
-| [LibreNMS](https://github.com/daemonless/librenms) | LibreNMS is an autodiscovering PHP/MySQL/SNMP based network monitoring which includes support for a wide range of network hardware and operating systems including Cisco, Linux, FreeBSD, Juniper, Brocade, Foundry, HP and many more. |
-| [Plausible Analytics](https://github.com/daemonless/plausible) | Privacy-first web analytics: one lightweight script, no cookies, a dashboard anyone can read. Runs with PostgreSQL and ClickHouse. |
-| [VictoriaMetrics](https://github.com/daemonless/victoriametrics) | VictoriaMetrics is a fast, cost-effective, and scalable time-series database and monitoring solution. It is a drop-in replacement for Prometheus storage with low memory usage. |
 
 
 ### Network
@@ -235,13 +242,6 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [k9s](https://github.com/daemonless/k9s) | k9s, the Kubernetes terminal UI, with kubectl, on FreeBSD. Mount your kubeconfig and run it interactively. |
 | [n8n](https://github.com/daemonless/n8n) | Fair-code workflow automation platform with native AI capabilities — combine visual building with custom code and 400+ integrations. |
 | [ntfy](https://github.com/daemonless/ntfy) | Simple HTTP-based pub-sub notification service: send notifications to your phone or desktop from any script with a PUT or POST. |
-
-
-### Apps
-
-| Image | Description |
-|-------|-------------|
-| [Immich-Cli](https://github.com/daemonless/immich-cli) |  |
 
 
 
