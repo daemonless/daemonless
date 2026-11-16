@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-16T07:26:19.428700Z",
+  "last_check": "2026-11-16T22:36:15.071114Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -369,7 +369,7 @@
       "upstream": "v2.8.4"
     },
     "home-assistant": {
-      "upstream": "2026.11.1"
+      "upstream": "2026.11.2"
     },
     "homepage": {
       "pkg": {
@@ -418,7 +418,7 @@
       }
     },
     "immich-public-proxy": {
-      "upstream": "4.1.2"
+      "upstream": "4.2.0"
     },
     "immich-server": {
       "upstream": "v3.4.1"
@@ -483,7 +483,7 @@
         "aarch64": "26.10.2_1,1",
         "amd64": "26.10.2_1,1"
       },
-      "upstream": "26.10.2"
+      "upstream": "26.11.0"
     },
     "lidarr": {
       "pkg": {
@@ -677,7 +677,7 @@
       "upstream": "10.0.0"
     },
     "onlyoffice-workspace": {
-      "upstream": "12.8"
+      "upstream": "12.9.0"
     },
     "opencloud": {
       "upstream": "v9.1.0"
@@ -789,7 +789,7 @@
       "pkg-latest": {
         "amd64": "2.7.0.5723"
       },
-      "upstream": "2.7.0.5723"
+      "upstream": "3.0.2.5780"
     },
     "python": {
       "type": "multi-version",
@@ -1039,7 +1039,7 @@
       "pkg-latest": {
         "amd64": "1.0.3"
       },
-      "upstream": "v1.1.0"
+      "upstream": "v1.1.1"
     },
     "stirling-pdf": {
       "pkg": {
@@ -1211,13 +1211,13 @@
       }
     },
     "weavestream-api": {
-      "upstream": "v1.13.1"
+      "upstream": "v1.13.2"
     },
     "weavestream-web": {
-      "upstream": "v1.13.1"
+      "upstream": "v1.13.2"
     },
     "weavestream-worker": {
-      "upstream": "v1.13.1"
+      "upstream": "v1.13.2"
     },
     "woodpecker": {
       "upstream": "v3.20.1"
