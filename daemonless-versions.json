@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-15T19:10:49.588243Z",
+  "last_check": "2026-11-16T07:26:19.428700Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -237,7 +237,7 @@
       }
     },
     "gitea": {
-      "upstream": "v28.3.0"
+      "upstream": "v28.4.0"
     },
     "glance": {
       "pkg": {
@@ -734,7 +734,7 @@
         "aarch64": "2.14.0_3",
         "amd64": "2.14.0_4"
       },
-      "upstream": "v2.19.2"
+      "upstream": "v2.19.3"
     },
     "postgres": {
       "default": "18",
@@ -874,7 +874,7 @@
       "pkg-latest": {
         "amd64": "6.4.4.10685"
       },
-      "upstream": "6.4.4.10685"
+      "upstream": "7.0.3.10918"
     },
     "radicale": {
       "pkg": {
@@ -947,7 +947,7 @@
       "upstream": "v7.260719.1051"
     },
     "rustfs": {
-      "upstream": "1.0.5"
+      "upstream": "1.0.6"
     },
     "sabnzbd": {
       "pkg": {
@@ -999,7 +999,7 @@
         "aarch64": "4.45_2",
         "amd64": "4.45_3"
       },
-      "upstream": "4.53"
+      "upstream": "4.54"
     },
     "seerr": {
       "upstream": "v3.5.2"
@@ -1015,7 +1015,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.42.0"
+      "upstream": "v0.43.0"
     },
     "sonarr": {
       "pkg": {
