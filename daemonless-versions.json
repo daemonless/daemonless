@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-17T08:36:35.643803Z",
+  "last_check": "2026-11-17T23:21:29.575582Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -75,7 +75,7 @@
       },
       "pkg-latest": {
         "aarch64": "0.35.0_2",
-        "amd64": "0.35.0_3"
+        "amd64": "0.36.0"
       }
     },
     "bulwark-webmail": {
@@ -120,7 +120,7 @@
         "amd64": "26.3.24.4"
       },
       "pkg-latest": {
-        "amd64": "26.8.9.10"
+        "amd64": "26.8.10.6"
       }
     },
     "cloudflared": {
@@ -391,7 +391,7 @@
         "aarch64": "0.168.0_1,1",
         "amd64": "0.168.0_2,1"
       },
-      "upstream": "v0.170.0"
+      "upstream": "v0.170.1"
     },
     "immich-cli": {
       "upstream": "3.4.1"
@@ -490,8 +490,7 @@
       },
       "pkg-latest": {
         "amd64": "3.1.6.5079"
-      },
-      "upstream": "3.1.6.5079"
+      }
     },
     "lightcraft": {
       "upstream": "v0.21.1"
@@ -553,7 +552,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.47.7"
+      "upstream": "2.48.4"
     },
     "navidrome": {
       "pkg": {
@@ -575,7 +574,7 @@
       },
       "pkg-latest": {
         "aarch64": "35.0.2",
-        "amd64": "35.0.2"
+        "amd64": "35.0.3"
       },
       "upstream": "v33.0.11"
     },
@@ -586,7 +585,7 @@
       },
       "pkg-latest": {
         "aarch64": "1.30.6_13,3",
-        "amd64": "1.30.6_16,3"
+        "amd64": "1.30.6_18,3"
       }
     },
     "nginx-php-fpm": {
@@ -620,7 +619,7 @@
           },
           "pkg-latest": {
             "aarch64": "8.6.0.r5",
-            "amd64": "8.6.0.r5"
+            "amd64": "8.6.0.r6"
           }
         }
       }
@@ -634,25 +633,25 @@
         "22": {
           "pkg-latest": {
             "aarch64": "22.23.4",
-            "amd64": "22.23.4"
+            "amd64": "22.23.5"
           }
         },
         "24": {
           "pkg-latest": {
             "aarch64": "24.22.1",
-            "amd64": "24.22.2"
+            "amd64": "24.22.3"
           }
         },
         "26": {
           "pkg-latest": {
             "aarch64": "26.12.1_1",
-            "amd64": "26.13.0"
+            "amd64": "26.13.1"
           }
         }
       }
     },
     "node-red": {
-      "upstream": "5.0.9"
+      "upstream": "5.0.10"
     },
     "ntfy": {
       "pkg": {
@@ -671,7 +670,7 @@
       },
       "pkg-latest": {
         "aarch64": "9.4.0_4",
-        "amd64": "9.4.0_4"
+        "amd64": "10.0.0"
       },
       "upstream": "10.0.0"
     },
@@ -679,7 +678,7 @@
       "upstream": "12.9.0"
     },
     "opencloud": {
-      "upstream": "v9.1.0"
+      "upstream": "v9.2.0"
     },
     "opencloud-radicale": {
       "upstream": "v3.9.2"
@@ -731,7 +730,7 @@
       },
       "pkg-latest": {
         "aarch64": "2.14.0_3",
-        "amd64": "2.14.0_4"
+        "amd64": "2.19.2"
       },
       "upstream": "v2.19.3"
     },
@@ -742,31 +741,31 @@
         "14": {
           "pkg-latest": {
             "aarch64": "14.24",
-            "amd64": "14.24"
+            "amd64": "14.25"
           }
         },
         "15": {
           "pkg-latest": {
             "aarch64": "15.19",
-            "amd64": "15.19"
+            "amd64": "15.20"
           }
         },
         "16": {
           "pkg-latest": {
             "aarch64": "16.15",
-            "amd64": "16.15"
+            "amd64": "16.16"
           }
         },
         "17": {
           "pkg-latest": {
             "aarch64": "17.11",
-            "amd64": "17.11"
+            "amd64": "17.12"
           }
         },
         "18": {
           "pkg-latest": {
             "aarch64": "18.6",
-            "amd64": "18.6"
+            "amd64": "18.7"
           }
         }
       }
@@ -787,8 +786,7 @@
       },
       "pkg-latest": {
         "amd64": "2.7.0.5723"
-      },
-      "upstream": "3.0.2.5780"
+      }
     },
     "python": {
       "type": "multi-version",
@@ -872,8 +870,7 @@
       },
       "pkg-latest": {
         "amd64": "6.4.4.10685"
-      },
-      "upstream": "7.0.3.10918"
+      }
     },
     "radicale": {
       "pkg": {
@@ -882,7 +879,7 @@
       },
       "pkg-latest": {
         "aarch64": "3.9.0",
-        "amd64": "3.9.0"
+        "amd64": "3.9.1"
       }
     },
     "readmeabook": {
@@ -996,7 +993,7 @@
       },
       "pkg-latest": {
         "aarch64": "4.45_2",
-        "amd64": "4.45_3"
+        "amd64": "4.53"
       },
       "upstream": "4.54"
     },
@@ -1014,7 +1011,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.43.0"
+      "upstream": "v0.44.1"
     },
     "sonarr": {
       "pkg": {
@@ -1078,7 +1075,7 @@
       },
       "pkg-latest": {
         "aarch64": "1.104.5",
-        "amd64": "1.104.5_1"
+        "amd64": "1.104.7"
       },
       "upstream": "v1.104.7"
     },
@@ -1106,7 +1103,7 @@
       },
       "pkg-latest": {
         "aarch64": "3.7.17",
-        "amd64": "3.7.17_1"
+        "amd64": "3.7.19"
       },
       "upstream": "v3.7.19"
     },
@@ -1153,7 +1150,7 @@
       "upstream": "5.1.42"
     },
     "uptime-kuma": {
-      "upstream": "2.5.11"
+      "upstream": "2.5.12"
     },
     "vaultwarden": {
       "pkg": {
@@ -1206,7 +1203,7 @@
       },
       "pkg-latest": {
         "aarch64": "8.0",
-        "amd64": "8.0.1"
+        "amd64": "8.1"
       }
     },
     "weavestream-api": {
@@ -1233,7 +1230,7 @@
         "aarch64": "0.0.74",
         "amd64": "0.1.1"
       },
-      "upstream": "0.1.1"
+      "upstream": "0.1.2"
     },
     "zot": {
       "pkg": {
