@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-16T22:36:15.071114Z",
+  "last_check": "2026-11-17T08:36:35.643803Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -11,7 +11,7 @@
     },
     "adguardhome": {
       "pkg": {
-        "aarch64": "0.107.79_2",
+        "aarch64": "0.107.79_3",
         "amd64": "0.107.79_3"
       },
       "pkg-latest": {
@@ -31,7 +31,7 @@
     },
     "authelia-server": {
       "pkg": {
-        "aarch64": "4.39.20_8",
+        "aarch64": "4.39.20_9",
         "amd64": "4.39.20_9"
       },
       "pkg-latest": {
@@ -45,7 +45,7 @@
     },
     "backrest": {
       "pkg": {
-        "aarch64": "1.14.1_5",
+        "aarch64": "1.14.1_6",
         "amd64": "1.14.1_6"
       },
       "pkg-latest": {
@@ -70,7 +70,7 @@
     },
     "blocky": {
       "pkg": {
-        "aarch64": "0.35.0_2",
+        "aarch64": "0.35.0_3",
         "amd64": "0.35.0_3"
       },
       "pkg-latest": {
@@ -86,7 +86,7 @@
     },
     "caddy": {
       "pkg": {
-        "aarch64": "2.11.9",
+        "aarch64": "2.11.9_1",
         "amd64": "2.11.9_1"
       },
       "pkg-latest": {
@@ -125,7 +125,7 @@
     },
     "cloudflared": {
       "pkg": {
-        "aarch64": "2026.2.0_10",
+        "aarch64": "2026.10.7",
         "amd64": "2026.10.7"
       },
       "pkg-latest": {
@@ -164,7 +164,7 @@
       "upstream": "v0.20.1"
     },
     "dispatcharr": {
-      "upstream": "v0.33.0"
+      "upstream": "v0.34.0"
     },
     "effectcraft": {
       "upstream": "v0.24.1"
@@ -206,7 +206,7 @@
         },
         "16": {
           "pkg": {
-            "aarch64": "16.0.7",
+            "aarch64": "16.0.7_1",
             "amd64": "16.0.7_1"
           },
           "pkg-latest": {
@@ -218,7 +218,7 @@
     },
     "forgejo-runner": {
       "pkg": {
-        "aarch64": "13.2.0",
+        "aarch64": "13.2.0_1",
         "amd64": "13.2.0_1"
       },
       "pkg-latest": {
@@ -241,7 +241,7 @@
     },
     "glance": {
       "pkg": {
-        "aarch64": "0.8.6_2",
+        "aarch64": "0.8.6_3",
         "amd64": "0.8.6_3"
       },
       "pkg-latest": {
@@ -252,7 +252,7 @@
     },
     "grafana": {
       "pkg": {
-        "aarch64": "13.1.1_5",
+        "aarch64": "13.1.1_6",
         "amd64": "13.1.1_6"
       },
       "pkg-latest": {
@@ -356,7 +356,7 @@
     },
     "headscale": {
       "pkg": {
-        "aarch64": "0.29.3_2",
+        "aarch64": "0.29.3_3",
         "amd64": "0.29.3_3"
       },
       "pkg-latest": {
@@ -384,7 +384,7 @@
     },
     "hugo": {
       "pkg": {
-        "aarch64": "0.167.0_2,1",
+        "aarch64": "0.167.0_3,1",
         "amd64": "0.167.0_3,1"
       },
       "pkg-latest": {
@@ -425,7 +425,6 @@
     },
     "jellyfin": {
       "pkg": {
-        "aarch64": "10.11.11_1",
         "amd64": "10.11.11_1"
       },
       "pkg-latest": {
@@ -453,7 +452,7 @@
     },
     "k9s": {
       "pkg": {
-        "aarch64": "0.51.0_6",
+        "aarch64": "0.51.0_7",
         "amd64": "0.51.0_7"
       },
       "pkg-latest": {
@@ -558,7 +557,7 @@
     },
     "navidrome": {
       "pkg": {
-        "aarch64": "0.64.2_1",
+        "aarch64": "0.64.2_2",
         "amd64": "0.64.2_2"
       },
       "pkg-latest": {
@@ -657,7 +656,7 @@
     },
     "ntfy": {
       "pkg": {
-        "aarch64": "2.29.0_2",
+        "aarch64": "2.29.0_3",
         "amd64": "2.29.0_3"
       },
       "pkg-latest": {
@@ -683,7 +682,7 @@
       "upstream": "v9.1.0"
     },
     "opencloud-radicale": {
-      "upstream": "v3.9.1"
+      "upstream": "v3.9.2"
     },
     "openobserve": {
       "upstream": "v1.2.0-rc2"
@@ -705,7 +704,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.4.2"
+      "upstream": "v3.5.0"
     },
     "papra": {
       "upstream": "26.7.1"
@@ -727,7 +726,7 @@
     },
     "pocket-id": {
       "pkg": {
-        "aarch64": "2.14.0_3",
+        "aarch64": "2.14.0_4",
         "amd64": "2.14.0_4"
       },
       "pkg-latest": {
@@ -951,7 +950,7 @@
     },
     "sabnzbd": {
       "pkg": {
-        "aarch64": "5.1.2",
+        "aarch64": "5.1.3",
         "amd64": "5.1.3"
       },
       "pkg-latest": {
@@ -992,7 +991,7 @@
     },
     "seaweedfs": {
       "pkg": {
-        "aarch64": "4.45_2",
+        "aarch64": "4.45_3",
         "amd64": "4.45_3"
       },
       "pkg-latest": {
@@ -1063,7 +1062,7 @@
     },
     "syncthing": {
       "pkg": {
-        "aarch64": "2.1.5_2",
+        "aarch64": "2.1.5_3",
         "amd64": "2.1.5_3"
       },
       "pkg-latest": {
@@ -1074,7 +1073,7 @@
     },
     "tailscale": {
       "pkg": {
-        "aarch64": "1.104.5",
+        "aarch64": "1.104.5_1",
         "amd64": "1.104.5_1"
       },
       "pkg-latest": {
@@ -1102,7 +1101,7 @@
     },
     "traefik": {
       "pkg": {
-        "aarch64": "3.7.17",
+        "aarch64": "3.7.17_1",
         "amd64": "3.7.17_1"
       },
       "pkg-latest": {
@@ -1172,7 +1171,7 @@
     },
     "versitygw": {
       "pkg": {
-        "aarch64": "1.7.0_3",
+        "aarch64": "1.7.0_4",
         "amd64": "1.7.0_4"
       },
       "pkg-latest": {
@@ -1182,7 +1181,7 @@
     },
     "victoriametrics": {
       "pkg": {
-        "aarch64": "1.133.0_13",
+        "aarch64": "1.133.0_14",
         "amd64": "1.133.0_14"
       },
       "pkg-latest": {
@@ -1192,7 +1191,7 @@
     },
     "vikunja": {
       "pkg": {
-        "aarch64": "2.6.0_2",
+        "aarch64": "2.6.0_3",
         "amd64": "2.6.0_3"
       },
       "pkg-latest": {
@@ -1238,7 +1237,7 @@
     },
     "zot": {
       "pkg": {
-        "aarch64": "2.1.21_2",
+        "aarch64": "2.1.21_3",
         "amd64": "2.1.21_3"
       },
       "pkg-latest": {
