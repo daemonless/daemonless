@@ -9,6 +9,8 @@ on:
 jobs:
   check-updates:
     runs-on: ubuntu-latest
+    # A good run takes ~3 minutes; a stuck pkg ran to the 60-minute kill.
+    timeout-minutes: 20
     permissions:
       contents: write
       packages: read
@@ -37,12 +39,16 @@ jobs:
           prepare: |
             # Configure both quarterly and latest repos for version checking
             # Use https:// instead of pkg+http:// to avoid SRV lookup issues
+            # 15.x names its default repos FreeBSD-ports and FreeBSD-ports-kmods
             mkdir -p /usr/local/etc/pkg/repos
-            echo 'FreeBSD: { enabled: no }' > /usr/local/etc/pkg/repos/FreeBSD.conf
+            printf 'FreeBSD-ports: { enabled: no }\nFreeBSD-ports-kmods: { enabled: no }\n' > /usr/local/etc/pkg/repos/FreeBSD.conf
             echo 'FreeBSD-quarterly: { url: "https://pkg.FreeBSD.org/${ABI}/quarterly", enabled: yes }' > /usr/local/etc/pkg/repos/quarterly.conf
             echo 'FreeBSD-latest: { url: "https://pkg.FreeBSD.org/${ABI}/latest", enabled: yes }' > /usr/local/etc/pkg/repos/latest.conf
             pkg update -f
-            pkg install -y python3 devel/py-pyyaml jq
+            # One repo for pkg's self-upgrade and the tools: with several, the
+            # self-upgrade looped until the job was killed (2026-11-17).
+            pkg upgrade -y -r FreeBSD-latest pkg
+            pkg install -y -r FreeBSD-latest python3 devel/py-pyyaml jq
           run: |
             python3 scripts/generate_versions.py > daemonless-versions.json
             cat daemonless-versions.json
