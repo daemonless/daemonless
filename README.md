@@ -223,6 +223,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Jellyfin FFmpeg](https://github.com/daemonless/jellyfin-ffmpeg) | FFmpeg with the Jellyfin patch set for HDR tone mapping (the SIMD-optimized<br>tonemapx / libplacebo filters) on FreeBSD. `latest` / `8` is the 8.x line<br>(`jellyfin-ffmpeg8`); `7` is the 7.x line (`jellyfin-ffmpeg7`). In every tag<br>`ffmpeg` / `ffprobe` point at that line's binaries. Standalone CLI image, not a service. |
 | [LanguageTool](https://github.com/daemonless/languagetool) | LanguageTool is an open-source proofreading tool for English, French, German, Spanish, Portuguese, Dutch, and many other languages. It detects grammar, style, and spelling errors that a simple spell checker cannot find, such as subject-verb agreement problems, incorrect articles, and commonly confused words. |
 | [Mealie](https://github.com/daemonless/mealie) | Intuitive self-hosted recipe management app designed to be the best recipe management experience on the web. |
+| [NetBox](https://github.com/daemonless/netbox) | Network source of truth (IPAM/DCIM), built from the upstream NetBox release. |
 | [Nextcloud](https://github.com/daemonless/nextcloud) | Online collaboration platform providing groupware capabilities by default, extensible with additional apps. |
 | [NocoDB](https://github.com/daemonless/nocodb) | Free and self-hostable Airtable alternative — turn any database into a smart spreadsheet. |
 | [Node-RED](https://github.com/daemonless/node-red) | Low-code programming for event-driven applications on FreeBSD. |
