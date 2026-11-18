@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-17T23:21:29.575582Z",
+  "last_check": "2026-11-18T08:02:52.006171Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -27,7 +27,7 @@
       "upstream": "v0.27.4"
     },
     "audiobookshelf": {
-      "upstream": "v2.37.2"
+      "upstream": "v2.38.0"
     },
     "authelia-server": {
       "pkg": {
@@ -164,7 +164,7 @@
       "upstream": "v0.20.1"
     },
     "dispatcharr": {
-      "upstream": "v0.34.0"
+      "upstream": "v0.34.1"
     },
     "effectcraft": {
       "upstream": "v0.24.1"
@@ -490,7 +490,8 @@
       },
       "pkg-latest": {
         "amd64": "3.1.6.5079"
-      }
+      },
+      "upstream": "3.1.6.5079"
     },
     "lightcraft": {
       "upstream": "v0.21.1"
@@ -703,7 +704,7 @@
       "upstream": "2026-05-19"
     },
     "paperless-ngx": {
-      "upstream": "v3.5.0"
+      "upstream": "v3.5.1"
     },
     "papra": {
       "upstream": "26.7.1"
@@ -786,7 +787,8 @@
       },
       "pkg-latest": {
         "amd64": "2.7.0.5723"
-      }
+      },
+      "upstream": "3.0.2.5780"
     },
     "python": {
       "type": "multi-version",
@@ -870,7 +872,8 @@
       },
       "pkg-latest": {
         "amd64": "6.4.4.10685"
-      }
+      },
+      "upstream": "7.0.3.10918"
     },
     "radicale": {
       "pkg": {
