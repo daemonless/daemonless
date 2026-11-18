@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-18T08:02:52.006171Z",
+  "last_check": "2026-11-18T20:57:48.712210Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -66,7 +66,7 @@
       "upstream": "v1.6.2"
     },
     "bichon": {
-      "upstream": "2.4.2"
+      "upstream": "2.4.3"
     },
     "blocky": {
       "pkg": {
@@ -153,6 +153,16 @@
     },
     "code-server": {
       "upstream": "4.145.2"
+    },
+    "couchdb": {
+      "pkg": {
+        "aarch64": "3.5.2_5",
+        "amd64": "3.5.2_5"
+      },
+      "pkg-latest": {
+        "aarch64": "3.5.3",
+        "amd64": "3.5.3"
+      }
     },
     "craft-anything": {
       "upstream": "v0.6.1"
@@ -394,10 +404,10 @@
       "upstream": "v0.170.1"
     },
     "immich-cli": {
-      "upstream": "3.4.1"
+      "upstream": "3.4.2"
     },
     "immich-ml": {
-      "upstream": "v3.4.1"
+      "upstream": "v3.4.2"
     },
     "immich-postgres": {
       "default": "14",
@@ -421,7 +431,7 @@
       "upstream": "4.2.0"
     },
     "immich-server": {
-      "upstream": "v3.4.1"
+      "upstream": "v3.4.2"
     },
     "jellyfin": {
       "pkg": {
@@ -553,7 +563,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.48.4"
+      "upstream": "2.48.5"
     },
     "navidrome": {
       "pkg": {
