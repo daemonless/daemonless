@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-20T20:51:23.037816Z",
+  "last_check": "2026-11-21T07:49:15.011413Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -79,7 +79,7 @@
       }
     },
     "bulwark-webmail": {
-      "upstream": "1.21.2"
+      "upstream": "1.21.3"
     },
     "cadcraft": {
       "upstream": "v0.20.1"
@@ -698,7 +698,7 @@
       "upstream": "v1.2.0-rc2"
     },
     "openspeedtest": {
-      "upstream": "v2.0.8"
+      "upstream": "v2.0.9"
     },
     "openssh-server": {
       "pkg": {
