@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-21T19:53:01.229307Z",
+  "last_check": "2026-11-22T07:35:43.398647Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -21,7 +21,7 @@
       "upstream": "v1.0.0"
     },
     "adguardhome-sync": {
-      "upstream": "v0.10.0"
+      "upstream": "v0.10.1"
     },
     "affine": {
       "upstream": "v0.27.4"
@@ -186,7 +186,7 @@
       "upstream": "4.10.2.0"
     },
     "erpnext": {
-      "upstream": "15.125.0"
+      "upstream": "15.126.0"
     },
     "ffmpeg": {
       "pkg": {
