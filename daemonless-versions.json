@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-22T07:35:43.398647Z",
+  "last_check": "2026-11-22T20:01:28.568540Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -500,8 +500,7 @@
       },
       "pkg-latest": {
         "amd64": "3.1.6.5079"
-      },
-      "upstream": "3.1.6.5079"
+      }
     },
     "lightcraft": {
       "upstream": "v0.21.1"
@@ -1024,7 +1023,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.45.0"
+      "upstream": "v0.46.2"
     },
     "sonarr": {
       "pkg": {
@@ -1060,7 +1059,7 @@
         "aarch64": "3.3.0",
         "amd64": "3.3.0"
       },
-      "upstream": "v3.4.0"
+      "upstream": "v3.5.0"
     },
     "stump": {
       "upstream": "v0.1.14"
