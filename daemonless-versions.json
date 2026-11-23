@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-22T20:01:28.568540Z",
+  "last_check": "2026-11-23T08:22:33.120744Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -500,7 +500,8 @@
       },
       "pkg-latest": {
         "amd64": "3.1.6.5079"
-      }
+      },
+      "upstream": "3.1.6.5079"
     },
     "lightcraft": {
       "upstream": "v0.21.1"
@@ -719,7 +720,7 @@
       "upstream": "26.7.1"
     },
     "pdfcraft": {
-      "upstream": "v0.21.1"
+      "upstream": "v0.22.0"
     },
     "photocraft": {
       "upstream": "v0.23.1"
@@ -1007,7 +1008,7 @@
         "aarch64": "4.45_3",
         "amd64": "4.53"
       },
-      "upstream": "4.54"
+      "upstream": "4.55"
     },
     "seerr": {
       "upstream": "v3.5.2"
@@ -1023,7 +1024,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.46.2"
+      "upstream": "v0.47.0"
     },
     "sonarr": {
       "pkg": {
