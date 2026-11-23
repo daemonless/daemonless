@@ -92,6 +92,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Authelia](https://github.com/daemonless/authelia-server) | Authelia on FreeBSD. |
 | [ClamAV](https://github.com/daemonless/clamav) | Open-source anti-virus engine: clamd scans files and mail over TCP, with freshclam keeping signatures current. |
 | [Cloudflared](https://github.com/daemonless/cloudflared) | Tunneling daemon that proxies any local webserver through the Cloudflare network without DNS records or firewall changes. |
+| [CrowdSec](https://github.com/daemonless/crowdsec) | Open-source collaborative intrusion detection and prevention engine (IDS/IPS and AppSec WAF) with crowdsourced threat intelligence. |
 | [Daemonless pkg cache](https://github.com/daemonless/pkg-cache) | Managed FreeBSD pkg caching appliance — proxies pkg.FreeBSD.org to speed up package fetches across image builds and insulate them from upstream rate limits/outages. |
 | [Forgejo](https://github.com/daemonless/forgejo) | Forgejo is a self-hosted lightweight software forge |
 | [Forgejo Runner](https://github.com/daemonless/forgejo-runner) | Runs Forgejo Actions jobs natively on FreeBSD, inside the container, for a Forgejo instance. |
