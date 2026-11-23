@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-23T08:22:33.120744Z",
+  "last_check": "2026-11-23T10:06:38.634217Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -166,6 +166,16 @@
     },
     "craft-anything": {
       "upstream": "v0.6.1"
+    },
+    "crowdsec": {
+      "pkg": {
+        "aarch64": "1.8.1_3",
+        "amd64": "1.8.1_3"
+      },
+      "pkg-latest": {
+        "aarch64": "1.8.2_1",
+        "amd64": "1.8.2_1"
+      }
     },
     "deckcraft": {
       "upstream": "v0.18.1"
@@ -563,7 +573,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.48.7"
+      "upstream": "2.48.8"
     },
     "navidrome": {
       "pkg": {
