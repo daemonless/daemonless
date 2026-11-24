@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-24T10:32:40.850030Z",
+  "last_check": "2026-11-24T22:50:59.689962Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -64,6 +64,9 @@
         "amd64": "1.6.2"
       },
       "upstream": "v1.6.2"
+    },
+    "beszel": {
+      "upstream": "v0.21.2"
     },
     "bichon": {
       "upstream": "2.4.4"
@@ -212,7 +215,7 @@
       "upstream": "v0.18.1"
     },
     "filebrowser-quantum": {
-      "upstream": "v2.0.2-stable"
+      "upstream": "v2.1.0-stable"
     },
     "filmcraft": {
       "upstream": "v0.20.1"
@@ -586,7 +589,7 @@
       }
     },
     "netbox": {
-      "upstream": "v4.7.5"
+      "upstream": "v4.7.6"
     },
     "nextcloud": {
       "pkg": {
@@ -705,7 +708,7 @@
       "upstream": "v3.9.2"
     },
     "openobserve": {
-      "upstream": "v1.2.0-rc3"
+      "upstream": "v1.2.0"
     },
     "openspeedtest": {
       "upstream": "v2.0.9"
