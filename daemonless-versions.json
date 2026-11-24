@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-23T10:06:38.634217Z",
+  "last_check": "2026-11-24T00:27:16.009788Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -66,7 +66,7 @@
       "upstream": "v1.6.2"
     },
     "bichon": {
-      "upstream": "2.4.3"
+      "upstream": "2.4.4"
     },
     "blocky": {
       "pkg": {
@@ -181,13 +181,13 @@
       "upstream": "v0.18.1"
     },
     "designcraft": {
-      "upstream": "v0.20.1"
+      "upstream": "v0.21.1"
     },
     "dispatcharr": {
       "upstream": "v0.34.1"
     },
     "effectcraft": {
-      "upstream": "v0.24.1"
+      "upstream": "v0.25.1"
     },
     "emby": {
       "pkg": {
@@ -392,7 +392,7 @@
       "upstream": "v2.8.4"
     },
     "home-assistant": {
-      "upstream": "2026.11.2"
+      "upstream": "2026.11.3"
     },
     "homepage": {
       "pkg": {
@@ -705,7 +705,7 @@
       "upstream": "v3.9.2"
     },
     "openobserve": {
-      "upstream": "v1.2.0-rc2"
+      "upstream": "v1.2.0-rc3"
     },
     "openspeedtest": {
       "upstream": "v2.0.9"
@@ -736,7 +736,7 @@
       "upstream": "v0.23.1"
     },
     "plausible": {
-      "upstream": "v3.2.1"
+      "upstream": "v3.2.2"
     },
     "playwright": {
       "upstream": "1.65.1"
@@ -808,7 +808,7 @@
       "pkg-latest": {
         "amd64": "2.7.0.5723"
       },
-      "upstream": "3.0.2.5780"
+      "upstream": "3.1.0.5799"
     },
     "python": {
       "type": "multi-version",
@@ -1059,7 +1059,7 @@
         "aarch64": "1.0.3",
         "amd64": "1.0.3"
       },
-      "upstream": "v1.1.1"
+      "upstream": "v1.2.0"
     },
     "stirling-pdf": {
       "pkg": {
@@ -1129,7 +1129,7 @@
         "aarch64": "3.7.17_1",
         "amd64": "3.7.19"
       },
-      "upstream": "v3.7.19"
+      "upstream": "v3.8.0"
     },
     "transmission": {
       "pkg": {
@@ -1154,7 +1154,7 @@
       "upstream": "4.1.4"
     },
     "trek": {
-      "upstream": "5.1.4"
+      "upstream": "5.2.0"
     },
     "ubooquity": {
       "upstream": "3.1.0"
