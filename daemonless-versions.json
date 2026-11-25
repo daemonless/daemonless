@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-25T09:17:48.473649Z",
+  "last_check": "2026-11-25T22:04:08.010851Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -82,7 +82,7 @@
       }
     },
     "bulwark-webmail": {
-      "upstream": "1.21.3"
+      "upstream": "1.22.0"
     },
     "cadcraft": {
       "upstream": "v0.20.1"
@@ -181,7 +181,7 @@
       }
     },
     "deckcraft": {
-      "upstream": "v0.18.1"
+      "upstream": "v0.19.1"
     },
     "designcraft": {
       "upstream": "v0.21.1"
@@ -791,6 +791,12 @@
             "aarch64": "18.7",
             "amd64": "18.7"
           }
+        },
+        "19": {
+          "pkg-latest": {
+            "aarch64": "19.r2",
+            "amd64": "19.r2"
+          }
         }
       }
     },
@@ -1037,7 +1043,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.49.0"
+      "upstream": "v0.49.1"
     },
     "sonarr": {
       "pkg": {
@@ -1157,7 +1163,7 @@
       "upstream": "4.1.4"
     },
     "trek": {
-      "upstream": "5.2.0"
+      "upstream": "5.2.1"
     },
     "ubooquity": {
       "upstream": "3.1.0"
@@ -1243,10 +1249,10 @@
       "upstream": "v1.13.2"
     },
     "woodpecker": {
-      "upstream": "v3.20.1"
+      "upstream": "v3.21.0"
     },
     "wordcraft": {
-      "upstream": "v0.18.1"
+      "upstream": "v0.19.1"
     },
     "zensical": {
       "pkg": {
