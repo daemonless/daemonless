@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-24T22:50:59.689962Z",
+  "last_check": "2026-11-25T09:17:48.473649Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -199,7 +199,7 @@
       "upstream": "4.10.2.0"
     },
     "erpnext": {
-      "upstream": "15.126.0"
+      "upstream": "15.127.0"
     },
     "ffmpeg": {
       "pkg": {
@@ -576,7 +576,7 @@
       }
     },
     "n8n": {
-      "upstream": "2.49.5"
+      "upstream": "2.49.6"
     },
     "navidrome": {
       "pkg": {
@@ -1037,7 +1037,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.48.1"
+      "upstream": "v0.49.0"
     },
     "sonarr": {
       "pkg": {
