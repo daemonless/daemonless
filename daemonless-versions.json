@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-26T08:58:45.061420Z",
+  "last_check": "2026-11-26T22:00:34.815066Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -389,7 +389,7 @@
         "aarch64": "0.29.3_3",
         "amd64": "0.29.3_3"
       },
-      "upstream": "0.29.7"
+      "upstream": "0.29.8"
     },
     "heimdall": {
       "upstream": "v2.8.4"
@@ -699,7 +699,7 @@
       "upstream": "10.0.0"
     },
     "onlyoffice-workspace": {
-      "upstream": "12.9.0"
+      "upstream": "12.9.1"
     },
     "opencloud": {
       "upstream": "v9.2.0"
@@ -1043,7 +1043,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.49.1"
+      "upstream": "v0.50.0"
     },
     "sonarr": {
       "pkg": {
