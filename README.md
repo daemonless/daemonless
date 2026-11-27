@@ -202,6 +202,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [Kaneo](https://github.com/daemonless/kaneo) | Open-source project management and Kanban board platform built for speed and simplicity. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Standalone collaborative document, spreadsheet, and presentation editors (.docx, .xlsx, .pptx) for Nextcloud, Seafile, OwnCloud, and other WOPI/API hosts. For a complete office portal with users, files, Projects, CRM, and Calendar, see ONLYOFFICE Workspace. |
 | [ONLYOFFICE Workspace](https://github.com/daemonless/onlyoffice-workspace) | Self-hosted collaborative office workspace combining Documents, Projects, CRM, Mail, Calendar, People, Control Panel, and real-time ONLYOFFICE Document Server editors. |
+| [Outline](https://github.com/daemonless/outline) | A fast, collaborative knowledge base for your team, with rich-text documents, nested collections and full-text search. |
 | [Papra](https://github.com/daemonless/papra) | Minimalist self-hosted document management platform (Paperless alternative) on FreeBSD. |
 | [PdfCraft](https://github.com/daemonless/pdfcraft) | Open-source, clean-room reimplementation of Adobe Acrobat in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Radicale](https://github.com/daemonless/radicale) | Radicale is a lightweight CalDAV (calendar, todo-lists) and CardDAV (contacts) server. |
