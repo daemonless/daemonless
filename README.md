@@ -200,6 +200,7 @@ Native FreeBSD OCI container images for self-hosted applications.
 | [FigCraft](https://github.com/daemonless/figcraft) | Open-source, clean-room Figma-style interface design and prototyping in Rust, served as a WebAssembly web app on FreeBSD. |
 | [GridCraft](https://github.com/daemonless/gridcraft) | Open-source, clean-room spreadsheet in Rust, served as a WebAssembly web app on FreeBSD. |
 | [Kaneo](https://github.com/daemonless/kaneo) | Open-source project management and Kanban board platform built for speed and simplicity. |
+| [Memos](https://github.com/daemonless/memos) | Open-source, self-hosted note-taking app that brings your everyday thoughts together in a personal timeline. |
 | [ONLYOFFICE Document Server](https://github.com/daemonless/onlyoffice) | Standalone collaborative document, spreadsheet, and presentation editors (.docx, .xlsx, .pptx) for Nextcloud, Seafile, OwnCloud, and other WOPI/API hosts. For a complete office portal with users, files, Projects, CRM, and Calendar, see ONLYOFFICE Workspace. |
 | [ONLYOFFICE Workspace](https://github.com/daemonless/onlyoffice-workspace) | Self-hosted collaborative office workspace combining Documents, Projects, CRM, Mail, Calendar, People, Control Panel, and real-time ONLYOFFICE Document Server editors. |
 | [Outline](https://github.com/daemonless/outline) | A fast, collaborative knowledge base for your team, with rich-text documents, nested collections and full-text search. |
