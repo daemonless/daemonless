@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-27T09:13:11.179525Z",
+  "last_check": "2026-11-27T11:49:23.464871Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -513,7 +513,8 @@
       },
       "pkg-latest": {
         "amd64": "3.1.6.5079"
-      }
+      },
+      "upstream": "3.1.6.5079"
     },
     "lightcraft": {
       "upstream": "v0.21.1"
@@ -724,6 +725,9 @@
     },
     "organizr": {
       "upstream": "2026-05-19"
+    },
+    "outline": {
+      "upstream": "1.13.0"
     },
     "paperless-ngx": {
       "upstream": "v3.5.1"
