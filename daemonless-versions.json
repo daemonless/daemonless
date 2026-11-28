@@ -3,7 +3,7 @@
     "amd64",
     "aarch64"
   ],
-  "last_check": "2026-11-27T21:44:29.770029Z",
+  "last_check": "2026-11-28T08:33:11.609911Z",
   "schema_version": 2,
   "services": {
     "actual": {
@@ -575,6 +575,9 @@
         "amd64": "1.6.45"
       }
     },
+    "memos": {
+      "upstream": "26.11.3"
+    },
     "n8n": {
       "upstream": "2.49.8"
     },
@@ -1046,7 +1049,7 @@
       }
     },
     "solidcraft": {
-      "upstream": "v0.51.1"
+      "upstream": "v0.51.2"
     },
     "sonarr": {
       "pkg": {
